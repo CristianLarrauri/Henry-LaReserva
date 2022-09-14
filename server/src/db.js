@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const { Equipos, Jugadores, Torneos } = require('./models');
+const { Equipos, Jugadores, Torneos } = sequelize.models;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/reserva`,
@@ -36,21 +36,14 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+Equipos.belongsToMany(Torneos, { through: "Equipos_Torneos" });
+Torneos.belongsToMany(Equipos, { through: "Equipos_Torneos" });
 
-// Aca vendrian las relaciones
+Jugadores.belongsToMany(Equipos, { through: "Jugadores_Equipos" });
+Equipos.belongsToMany(Jugadores, { through: "Jugadores_Equipos" });
 
-Equipos.belongsToMany(Torneos, { through: 'Equipos_Torneos' });
-Torneos.belongsToMany(Equipos, { through: 'Equipos_Torneos' });
-
-Jugadores.belongsToMany(Equipos, { through: 'Jugadores_Equipos' });
-Equipos.belongsToMany(Jugadores, { through: 'Jugadores_Equipos' });
-
-Torneos.belongsToMany(Jugadores, { through: 'Torneos_Jugadores' });
-Jugadores.belongsToMany(Torneos, { through: 'Torneos_Jugadores' });
-
-
+Torneos.belongsToMany(Jugadores, { through: "Torneos_Jugadores" });
+Jugadores.belongsToMany(Torneos, { through: "Torneos_Jugadores" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
