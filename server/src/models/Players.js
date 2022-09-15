@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("jugadores", {
+  sequelize.define("players", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    DNI: {
+    dni: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
