@@ -1,4 +1,5 @@
 import './App.css';
+import Landing from './components/Landing';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import TeamInscription from './components/TeamInscription';
@@ -9,7 +10,8 @@ function App() {
 		<BrowserRouter>
 			<div>
 				<Switch>
-					<Route exact path="/" component={Home} />
+					<Route exact path="/" component={Landing} />
+					<Route exact path="/home" component={Home} />
 					<Route exact path="/inscription" component={TeamInscription} />
 					<Route
 						exact
