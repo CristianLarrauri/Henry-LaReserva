@@ -3,7 +3,6 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-const { Equipos, Jugadores, Torneos } = sequelize.models;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/reserva`,
@@ -36,14 +35,16 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-Equipos.belongsToMany(Torneos, { through: "Equipos_Torneos" });
-Torneos.belongsToMany(Equipos, { through: "Equipos_Torneos" });
+const { Teams, Players, Tournaments } = sequelize.models;
 
-Jugadores.belongsToMany(Equipos, { through: "Jugadores_Equipos" });
-Equipos.belongsToMany(Jugadores, { through: "Jugadores_Equipos" });
+Teams.belongsToMany(Tournaments, { through: "teams_tournaments" });
+Tournaments.belongsToMany(Teams, { through: "teams_tournaments" });
 
-Torneos.belongsToMany(Jugadores, { through: "Torneos_Jugadores" });
-Jugadores.belongsToMany(Torneos, { through: "Torneos_Jugadores" });
+Players.belongsToMany(Teams, { through: "players_teams" });
+Teams.belongsToMany(Players, { through: "players_teams" });
+
+Tournaments.belongsToMany(Players, { through: "tournaments_players" });
+Players.belongsToMany(Tournaments, { through: "tournaments_players" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

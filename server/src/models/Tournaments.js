@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define("torneos", {
-    nameTeam: {
+  sequelize.define("tournaments", {
+    name: {
       //Name equipos.
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
     },
     category: {
       // descripcion del torneo.
-      type: DataTypes.ENUM("Sub - 20", "Libre", "Senior"),
+      type: DataTypes.ENUM("Sub20", "Libre", "Senior"),
     },
     genre: {
       type: DataTypes.ENUM("Masculino", "Femenino", "Mixto"),
