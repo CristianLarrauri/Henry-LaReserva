@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const { create_players } = require("../utils/utilsPlayers");
+const { Players } = require("../db");
+
 const router = Router();
 
 router.post("/", async (req, res) => {
