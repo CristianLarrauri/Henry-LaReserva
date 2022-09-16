@@ -1,5 +1,6 @@
 const { Players, Teams, Tournaments } = require("../db");
 
+// CREATE TOURNAMENTS ______________________________
 const create_tournament = async (data) => {
   try {
     const {
@@ -29,8 +30,25 @@ const create_tournament = async (data) => {
 
     return new_tournament;
   } catch (error) {
-    console.log("ERROR en create_tournament", error);
+    console.log("ERROR EN create_tournament", error);
   }
 };
 
-module.exports = { create_tournament };
+// GET TOURNAMENTS DB ______________________________
+const get_tournaments_db = async () => {
+  try {
+    return await Tournaments.findAll({
+      include: {
+        model: Teams,
+        attributes: ["name"],
+        throught: {
+          attributes: [],
+        },
+      },
+    });
+  } catch (error) {
+    console.log("ERROR EN get_tournaments_db", error);
+  }
+};
+
+module.exports = { create_tournament, get_tournaments_db };
