@@ -29,8 +29,7 @@ export const getAllTournaments = () => {
 	return async function (dispatch) {
 		try {
 			const info = await axios.get(
-				'',
-				payload
+				'../../../tournaments.json'
 			);
 
 			return dispatch({
@@ -43,7 +42,7 @@ export const getAllTournaments = () => {
 	};
 };
 
-export const nameSort = () => {
+export const nameSort = (payload) => {
 	return async function (dispatch) {
 		try {
 			const info = await axios.get(
