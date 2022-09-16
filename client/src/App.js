@@ -4,7 +4,11 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
+
+import CreateTournament from './components/CreateTournament';
+
 import Nav from './components/Nav';
+
 
 function App() {
 	return (
@@ -20,6 +24,7 @@ function App() {
 						path="/inscription/players"
 						component={PlayerInscription}
 					/>
+					<Route exact path="/create" component={CreateTournament} />
 				</Switch>
 			</div>
 		</BrowserRouter>
