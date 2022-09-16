@@ -1,0 +1,17 @@
+.mainWrapper{
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    height: 390px;
+}
+
+.titleContainer{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.tournamentsContainer{
+    width: 100%;
+}

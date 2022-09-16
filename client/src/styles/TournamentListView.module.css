@@ -1,0 +1,34 @@
+.mainWrapper{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mainWrapper p{
+    font-size: 1.1em;
+    color: #959FA8;
+}
+
+.icon{
+    width: 50px;
+}
+
+.inscriptionWrapper{
+    margin-left: 10px;
+    font-weight: 600;
+    color: #2DCC70;
+    display: flex;
+    align-items: center;
+}
+
+.tournamentContainer{
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mainWrapper:hover{
+    background-color:rgba(0, 123, 52, .2);
+}
