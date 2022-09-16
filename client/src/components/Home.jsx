@@ -7,6 +7,8 @@ import {FaClock} from 'react-icons/fa';
 import {MdLocationOn} from 'react-icons/md';
 import Filtros from '../components/Filtros';
 
+
+
 export default function Home() {
 	return (
 		<div className={styles.mainWrapper}>

@@ -13,10 +13,10 @@ module.exports = (sequelize) => {
     },
     dateInit: {
       //fecha de inicio, y de finalizacion.
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     dateFinish: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
     },
     category: {
       // descripcion del torneo.

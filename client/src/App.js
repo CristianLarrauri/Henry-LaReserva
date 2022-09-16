@@ -5,10 +5,16 @@ import Home from './components/Home';
 import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
 
+import CreateTournament from './components/CreateTournament';
+
+import Nav from './components/Nav';
+
+
 function App() {
 	return (
 		<BrowserRouter>
 			<div>
+					<Nav/>
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
@@ -18,6 +24,7 @@ function App() {
 						path="/inscription/players"
 						component={PlayerInscription}
 					/>
+					<Route exact path="/create" component={CreateTournament} />
 				</Switch>
 			</div>
 		</BrowserRouter>

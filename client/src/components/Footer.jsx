@@ -6,7 +6,7 @@ import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
-    <div className="container mx-auto bg-slate-300 ">
+    <div className="container  bg-slate-300 mt-[50%] ">
       <div className="grid grid-cols-3 gap-2 justify-center">
         <div className=" mx-auto">
           <h5 className="text-2xl">Nosotros</h5>
