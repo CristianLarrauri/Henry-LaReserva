@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Teams, Players } = require('../db');
-const { create_teams } = require('../utils/utilsTeams');
+const { create_teams, get_db_info } = require('../utils/utilsTeams');
 
 const router = Router();
 
@@ -20,6 +20,25 @@ router.post('/', async (req, res) => {
         }
 
         if (team) res.status(400).send('This team already exist!');
+    }
+});
+
+router.get('/', async (req, res) => {
+    try {
+        const { name } = req.query;
+
+        const info = await get_db_info();
+
+        if (!name) {
+            res.status(200).send(info);
+        }
+        else {
+            const filtrado = info.filter(ele => ele.name.toLowerCase().includes(name.toLowerCase()));
+
+            filtrado.length ? res.status(200).send(filtrado) : res.status(400).send('Team not found');
+        }
+    } catch (error) {
+        console.log('Error en ruta get de teams', error);
     }
 });
 
