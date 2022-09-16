@@ -19,4 +19,21 @@ const create_teams = async (data) => {
     }
 }
 
-module.exports = { create_teams };
+
+const get_db_info = async () => {
+    try {
+        return await Teams.findAll({
+            include: {
+                model: Players,
+                attributes: ['name', 'surname', 'dni'],
+                through: {
+                    attributes: [],
+                },
+            },
+        });
+    } catch (error) {
+        console.log('error en get_db_info', error);
+    }
+}
+
+module.exports = { create_teams, get_db_info };
