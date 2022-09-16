@@ -1,7 +1,10 @@
 import { CREATE_TOURNAMENT } from '../actions';
 
 let initialState = {
-	tournaments: []
+	tournaments: [],
+	teams: [],
+	players: [],
+	users: []
 };
 
 function rootReducer(state = initialState, action) {

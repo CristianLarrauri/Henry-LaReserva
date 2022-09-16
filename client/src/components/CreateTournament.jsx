@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createTournament } from '../redux/actions';
+// import PopUp from '../components/PopUp';
 
 export default function CreateTournament() {
 	const dispatch = useDispatch();
+	// const [x, setX] = useState({});
 
 	const [input, setInput] = useState({
 		name: '',
@@ -17,11 +20,12 @@ export default function CreateTournament() {
 	});
 
 	const handleChange = (e) => {
+		e.preventDefault();
 		setInput({
 			...input,
 			[e.target.name]: e.target.value
 		});
-		console.log('value', e.target.value);
+
 		setFormErrors(
 			validate({
 				...input,
@@ -34,13 +38,18 @@ export default function CreateTournament() {
 		e.preventDefault();
 		let error = Object.keys(validate(input));
 		if (error.length !== 0) {
+			// setX({
+			// 	title: 'Error',
+			// 	msg: 'Llene los campos correctamente'
+			// });
+
 			alert('Llene todos los campos necesarios');
 		} else {
-			dispatch('funcion de creacion');
+			dispatch(createTournament(input));
 			alert('torneo creado exitosamente');
 			setInput({
 				name: '',
-				amountOfTeams: '',
+				amountOfTeams: 0,
 				dateInit: '',
 				dateFinish: '',
 				genre: '',
@@ -74,6 +83,7 @@ export default function CreateTournament() {
 
 	function validate(data) {
 		let errors = {};
+
 		if (validateName(data.name)) errors.name = 'Nombre invalido';
 		if (validateAmount(data.amountOfTeams))
 			errors.amountOfTeams = 'Cantidad inadaecuada';
@@ -90,13 +100,14 @@ export default function CreateTournament() {
 
 	return (
 		<div>
+			{/* <PopUp msg={x} />; */}
 			<div>
 				<Link to="/home">
 					<button>Volver</button>
 				</Link>
 			</div>
 			<h1>Crea tu torneo</h1>
-			<form onSubmit={(e) => handleSubmit(e)}>
+			<form>
 				<div>
 					<div>
 						<label>Nombre del torneo: </label>
@@ -204,7 +215,9 @@ export default function CreateTournament() {
 						)}
 					</div>
 				</div>
-				<button type="submit">Inscribir</button>
+				<button type="submit" onClick={(e) => handleSubmit(e)}>
+					Inscribir
+				</button>
 			</form>
 			<Footer />
 		</div>
