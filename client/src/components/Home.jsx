@@ -1,11 +1,52 @@
 import React from 'react';
 import Footer from './Footer';
+import styles from '../styles/Home.module.css';
+import NextTournaments from './NextTournaments';
+import jugador from '../images/jugadorHome.png';
+import {FaClock} from 'react-icons/fa';
+import {MdLocationOn} from 'react-icons/md';
+import Filtros from '../components/Filtros';
 
 export default function Home() {
 	return (
-		<div>
-			<h1 className="text-3xl font-bold underline">Complejo La Reserva</h1>
-			<Footer />
+		<div className={styles.mainWrapper}>
+			<div className={styles.falseNavBar}><h2>El que esta haciendo la barra de navegacion pongala aca</h2></div>
+			
+			<div className={styles.upperContainer}>
+				<NextTournaments/>
+
+				<div className={styles.nextTournamentWrapper}>
+					<img src={jugador} alt="jugador.png" />
+
+					<div className={styles.nextTournamentSubWrapper}>
+						<div>
+							<h2>Torneo</h2>
+							<h2>La</h2>
+							<h2>Reserva</h2>
+						</div>
+
+						<div className={styles.infoContainer}>
+							<div>
+								<FaClock className={styles.icon}/>
+								<p>00:00:00 AM</p>
+							</div>
+
+							<div>
+								<MdLocationOn className={styles.icon}/>
+								<p>Calle falsa 123</p>
+							</div>
+						</div>
+					</div>
+
+					<div className={styles.halfCircle}></div>
+					
+					<div className={styles.btnContainer}>
+						<button>Inscribite</button>
+					</div>
+				</div>
+			</div>
+
+			<Filtros/>
 		</div>
 	);
 }
