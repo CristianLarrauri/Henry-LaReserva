@@ -47,6 +47,7 @@ export default function Home() {
 			</div>
 
 			<Filtros/>
+			<Footer/>
 		</div>
 	);
 }
