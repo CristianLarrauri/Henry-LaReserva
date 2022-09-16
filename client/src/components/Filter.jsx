@@ -5,7 +5,7 @@ import * as actions from '../redux/actions'
 import { NavLink } from 'react-router-dom'
 
 const Filter = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleGetAllTournaments = () => {
         dispatch(actions.getAllTournaments())
