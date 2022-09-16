@@ -17,10 +17,10 @@ router.post("/", async (req, res) => {
         (tournament) => tournament.name === data.name
       );
       if (tournament) {
+        return res.status(404).send("El torneo ya existe");
+      } else {
         create_tournament(data);
         return res.status(200).send("Torneo creado con exito");
-      } else {
-        return res.status(404).send("El torneo ya existe");
       }
     }
   } catch (error) {
