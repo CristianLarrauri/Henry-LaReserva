@@ -29,7 +29,7 @@ const create_tournament = async (data) => {
 
     return new_tournament;
   } catch (error) {
-    return res.status(404).send("ERROR en create_tournament", error);
+    console.log("ERROR en create_tournament", error);
   }
 };
 
