@@ -1,0 +1,107 @@
+[
+    {
+        "id": 11,
+        "name": "Manchester Not United",
+        "createdAt": "2022-09-16T16:09:32.411Z",
+        "updatedAt": "2022-09-16T16:09:32.411Z",
+        "players": []
+    },
+    {
+        "id": 12,
+        "name": "Man Blue",
+        "createdAt": "2022-09-16T16:09:55.357Z",
+        "updatedAt": "2022-09-16T16:09:55.357Z",
+        "players": []
+    },
+    {
+        "id": 10,
+        "name": "Los Magios",
+        "createdAt": "2022-09-16T16:09:06.964Z",
+        "updatedAt": "2022-09-16T16:09:06.964Z",
+        "players": []
+    },
+    {
+        "id": 2,
+        "name": "Riber Plate",
+        "createdAt": "2022-09-16T15:57:25.575Z",
+        "updatedAt": "2022-09-16T15:57:25.575Z",
+        "players": []
+    },
+    {
+        "id": 15,
+        "name": "Arsenal",
+        "createdAt": "2022-09-16T16:10:39.699Z",
+        "updatedAt": "2022-09-16T16:10:39.699Z",
+        "players": []
+    },
+    {
+        "id": 13,
+        "name": "Liverpal",
+        "createdAt": "2022-09-16T16:10:14.177Z",
+        "updatedAt": "2022-09-16T16:10:14.177Z",
+        "players": []
+    },
+    {
+        "id": 5,
+        "name": "Rasin Club",
+        "createdAt": "2022-09-16T15:57:47.595Z",
+        "updatedAt": "2022-09-16T15:57:47.595Z",
+        "players": []
+    },
+    {
+        "id": 8,
+        "name": "Rosario Central",
+        "createdAt": "2022-09-16T16:08:44.778Z",
+        "updatedAt": "2022-09-16T16:08:44.778Z",
+        "players": []
+    },
+    {
+        "id": 6,
+        "name": "San Lorenzo de ?",
+        "createdAt": "2022-09-16T15:57:54.929Z",
+        "updatedAt": "2022-09-16T15:57:54.929Z",
+        "players": []
+    },
+    {
+        "id": 4,
+        "name": "Independiente",
+        "createdAt": "2022-09-16T15:57:40.430Z",
+        "updatedAt": "2022-09-16T15:57:40.430Z",
+        "players": []
+    },
+    {
+        "id": 1,
+        "name": "Boca Juniors",
+        "createdAt": "2022-09-16T15:57:13.768Z",
+        "updatedAt": "2022-09-16T15:57:13.768Z",
+        "players": []
+    },
+    {
+        "id": 3,
+        "name": "Talleres",
+        "createdAt": "2022-09-16T15:57:32.368Z",
+        "updatedAt": "2022-09-16T15:57:32.368Z",
+        "players": []
+    },
+    {
+        "id": 14,
+        "name": "Aldosivi",
+        "createdAt": "2022-09-16T16:10:29.896Z",
+        "updatedAt": "2022-09-16T16:10:29.896Z",
+        "players": []
+    },
+    {
+        "id": 9,
+        "name": "Newell's",
+        "createdAt": "2022-09-16T16:08:52.214Z",
+        "updatedAt": "2022-09-16T16:08:52.214Z",
+        "players": []
+    },
+    {
+        "id": 7,
+        "name": "Colon",
+        "createdAt": "2022-09-16T16:08:31.500Z",
+        "updatedAt": "2022-09-16T16:08:31.500Z",
+        "players": []
+    }
+]
