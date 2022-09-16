@@ -4,17 +4,14 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
-
 import CreateTournament from './components/CreateTournament';
-
 import Nav from './components/Nav';
-
 
 function App() {
 	return (
 		<BrowserRouter>
 			<div>
-				<Nav/>
+				<Nav />			
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
