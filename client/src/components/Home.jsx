@@ -12,8 +12,6 @@ import Filtros from '../components/Filtros';
 export default function Home() {
 	return (
 		<div className={styles.mainWrapper}>
-			<div className={styles.falseNavBar}><h2>El que esta haciendo la barra de navegacion pongala aca</h2></div>
-			
 			<div className={styles.upperContainer}>
 				<NextTournaments/>
 
