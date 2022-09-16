@@ -23,14 +23,14 @@
 }
 
 .halfCircleLeft{
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
+    border-top-right-radius: 300px;
+    border-bottom-right-radius: 300px;
     left: 0;
 }
 
 .halfCircleRight{
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 300px;
     right: 0;
 }
 
