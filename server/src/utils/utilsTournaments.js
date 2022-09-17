@@ -1,7 +1,8 @@
 const { Players, Teams, Tournaments } = require("../db");
 const preTournaments = require("../json/preTournaments.json");
 
-// PRELOAD TOURNAMENTS ______________________________
+//.........................................................................................//
+// PRELOAD TOURNAMENTS
 const preload_tournaments = async () => {
   try {
     let data = preTournaments.map((tournament) => {
@@ -23,7 +24,8 @@ const preload_tournaments = async () => {
   }
 };
 
-// CREATE TOURNAMENTS ______________________________
+//.........................................................................................//
+// CREATE TOURNAMENTS
 const create_tournament = async (data) => {
   try {
     const {
@@ -59,17 +61,18 @@ const create_tournament = async (data) => {
   }
 };
 
-// GET TOURNAMENTS DB ______________________________
+//.........................................................................................//
+// GET TOURNAMENTS DB
 const get_tournaments_db = async () => {
   try {
     return await Tournaments.findAll({
-      include: {
-        model: Teams,
-        attributes: ["name"],
-        throught: {
-          attributes: [],
-        },
-      },
+      // include: {
+      //   model: Teams,
+      //   attributes: ["name"],
+      //   throught: {
+      //     attributes: [],
+      //   },
+      // },
     });
   } catch (error) {
     console.log("ERROR EN get_tournaments_db", error);
