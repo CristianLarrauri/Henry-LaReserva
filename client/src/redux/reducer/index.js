@@ -1,19 +1,22 @@
 import {
+<
 	CREATE_TOURNAMENT,
 	GET_ALL_TOURNAMENTS,
 	NAME_SORT,
 	GENDER_FILTER,
 	DIV_FILTER,
-	TOURNAMENT_DETAILS
+	TOURNAMENT_DETAILS,
+   SEARCH_TOURNAMENTS,
 } from '../actions';
 
+
 let initialState = {
-	tournaments: [],
-	tournamentDetail: {},
-	teams: [],
-	players: [],
-	users: [],
-	userProfile: {}
+  tournaments: [],
+  tournamentDetail: {},
+  teams: [],
+  players: [],
+  users: [],
+  userProfile: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -42,6 +45,11 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournaments: action.payload
 			};
+       case SEARCH_TOURNAMENTS:
+      return {
+        ...state,
+        tournaments: action.payload,
+      };
 		case TOURNAMENT_DETAILS:
 			return {
 				...state,
