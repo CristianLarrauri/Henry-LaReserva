@@ -25,11 +25,11 @@ export const createTournament = (payload) => {
   };
 };
 
-export const getAllTournaments = () => {
-  return async function (dispatch) {
+export const getAllTournaments = (page) => {
+  return async (dispatch) => {
     try {
-      const info = await axios.get("");
-      return dispatch({
+      const info = await axios.get(`http://localhost:3001/tournaments?page=${page}`);
+      dispatch({
         type: GET_ALL_TOURNAMENTS,
         payload: info.data,
       });

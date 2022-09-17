@@ -7,9 +7,24 @@ import {FaClock} from 'react-icons/fa';
 import {MdLocationOn} from 'react-icons/md';
 import Filter from '../components/Filter';
 import TournamentCards from './TournamentCards';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllTournaments } from '../redux/actions';
 
 
 export default function Home() {
+
+	// const [page,setPage] = useState(0)
+
+	// const dispatch = useDispatch()
+
+	// const tournaments = useSelector((state)=> state.tournaments)
+
+	// useEffect(()=>{
+	// 	dispatch(getAllTournaments(page))
+	// },[])
+
 	return (
 		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
 			<div className={styles.mainWrapper}>
