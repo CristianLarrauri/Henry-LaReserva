@@ -11,6 +11,7 @@ const preload_tournaments = async () => {
         amountOfTeams: tournament.amountOfTeams,
         dateInit: tournament.dateInit,
         dateFinish: tournament.dateFinish,
+        description: tournament.description,
         category: tournament.category,
         genre: tournament.genre,
       };
