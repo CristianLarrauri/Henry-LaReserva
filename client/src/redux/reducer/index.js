@@ -3,7 +3,8 @@ import {
 	GET_ALL_TOURNAMENTS,
 	NAME_SORT,
 	GENDER_FILTER,
-	DIV_FILTER
+	DIV_FILTER,
+	TOURNAMENT_DETAILS
 } from '../actions';
 
 let initialState = {
@@ -25,22 +26,27 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				tournaments: action.payload
-			}
+			};
 		case NAME_SORT:
 			return {
 				...state,
 				tournaments: action.payload
-			}
+			};
 		case GENDER_FILTER:
 			return {
 				...state,
 				tournaments: action.payload
-			}
+			};
 		case DIV_FILTER:
 			return {
 				...state,
 				tournaments: action.payload
-			}
+			};
+		case TOURNAMENT_DETAILS:
+			return {
+				...state,
+				tournamentDetail: action.payload
+			};
 	}
 }
 
