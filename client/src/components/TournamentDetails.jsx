@@ -1,56 +1,42 @@
-import React from 'react';
-import styles from '../styles/TournamentDetails.module.css';
-import Card from './Card';
-import { useState } from 'react';
-import Torneos from "../tournaments.json"
-import { useEffect } from 'react';
 
-export default function TournamentDetails(tournaments) {//Esto lo recibe del componente filtros
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../redux/actions"
+import { NavLink } from 'react-router-dom';
 
-    const [page, setPage] = useState(0);
+const TournamentDetail = (props) => {
+     let {id} = props.match.params
+     const dispatch = useDispatch();
+     React.useEffect(()=>{
+        dispatch(actions.tournamentDetail(id));
+     }, [dispatch]);
 
-  const handlePrev = (event) => {
-    event.preventDefault();
-    if (page <= 1) {
-      setPage(1);
-    } else {
-      setPage(page - 4);
-    }
-  };
+     let tournament = useSelector((state) => state.tournamentDetail)
 
-  const handleNext = (event) => {
-    event.preventDefault();
-    if (Torneos.length < 4) {
-      return;
-    } else {
-      setPage(page + 4);
-    }
-  };
-
-  useEffect(()=>{
-    
-  },[])
     return (
-        <div className="bg-red-500 ml-3 mr-3 rounded-lg mb-3 mt-5 justify-between items-center flex">
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg ml-5" onClick={handlePrev} >
-                {"<<"}
-            </button>
-            {Torneos?.map((ele)=>{
-                return(
-                    <div>
-                        <Card 
-                        key={ele.id}
-                        name={ele.name}
-                        dateInit={ele.dateInit}
-                        genre={ele.genre}
-                        category={ele.category}
-                        />
-                    </div>
-                )
-            })}
-            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg mr-[1%]" onClick={handleNext}>
-                {">>"}
-            </button>
+        <div>
+            
+            <h2>{`Torneo "${tournament.name}"`}</h2>
+            <img src={tournament.image} alt={tournament.name} />
+            <h4>Categoria: {tournament.category}</h4>
+            <h4>Género: {tournament.genre}</h4>
+            <br />
+            <h4>{tournament.description}</h4>
+            <br />
+            <h4>Fecha de inicio: {tournament.dateInit}</h4>
+            <h4>Finaliza: {tournament.dateFinish}</h4>
+            <h4>{tournament.teams? <ul> {tournament.teams.map((team) => <li>{team}</li>)}</ul> : null}</h4>
+
+            <NavLink to="/home"><button>Volver</button></NavLink>
+           
         </div>
-    );
+    )
 }
+
+
+
+
+
+
+
+export default TournamentDetail
