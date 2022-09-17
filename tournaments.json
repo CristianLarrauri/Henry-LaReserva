@@ -6,10 +6,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Mixto",
-    "createdAt": "2022-09-16T07:05:00.954Z",
-    "updatedAt": "2022-09-16T07:05:00.954Z",
-    "teams": []
+    "genre": "Mixto"
   },
   {
     "id": 5,
@@ -18,10 +15,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Femenino",
-    "createdAt": "2022-09-16T07:06:12.926Z",
-    "updatedAt": "2022-09-16T07:06:12.926Z",
-    "teams": []
+    "genre": "Femenino"
   },
   {
     "id": 8,
@@ -30,10 +24,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Femenino",
-    "createdAt": "2022-09-16T07:09:36.273Z",
-    "updatedAt": "2022-09-16T07:09:36.273Z",
-    "teams": []
+    "genre": "Femenino"
   },
   {
     "id": 6,
@@ -42,10 +33,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Masculino",
-    "createdAt": "2022-09-16T07:06:53.013Z",
-    "updatedAt": "2022-09-16T07:06:53.013Z",
-    "teams": []
+    "genre": "Masculino"
   },
   {
     "id": 4,
@@ -54,10 +42,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Masculino",
-    "createdAt": "2022-09-16T07:05:45.355Z",
-    "updatedAt": "2022-09-16T07:05:45.355Z",
-    "teams": []
+    "genre": "Masculino"
   },
   {
     "id": 1,
@@ -66,10 +51,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Masculino",
-    "createdAt": "2022-09-16T07:04:49.298Z",
-    "updatedAt": "2022-09-16T07:04:49.298Z",
-    "teams": []
+    "genre": "Masculino"
   },
   {
     "id": 3,
@@ -78,10 +60,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Mixto",
-    "createdAt": "2022-09-16T07:05:30.244Z",
-    "updatedAt": "2022-09-16T07:05:30.244Z",
-    "teams": []
+    "genre": "Mixto"
   },
   {
     "id": 9,
@@ -90,10 +69,7 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Mixto",
-    "createdAt": "2022-09-16T07:09:45.759Z",
-    "updatedAt": "2022-09-16T07:09:45.759Z",
-    "teams": []
+    "genre": "Mixto"
   },
   {
     "id": 7,
@@ -102,9 +78,6 @@
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Femenino",
-    "createdAt": "2022-09-16T07:07:57.735Z",
-    "updatedAt": "2022-09-16T07:07:57.735Z",
-    "teams": []
+    "genre": "Femenino"
   }
 ]
