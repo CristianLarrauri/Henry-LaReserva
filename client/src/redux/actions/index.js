@@ -93,7 +93,12 @@ export const divFilter = (payload) => {
 			console.log(error);
 		}
 	};
+
 };
+
+}
+
+
 
 export const searchTournaments = (name) => {
 	return async function (dispatch) {
