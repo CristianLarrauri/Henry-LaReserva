@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../styles/TournamentDetails.module.css';
 import Card from './Card';
 import { useState } from 'react';
 import Torneos from "../tournaments.json"
