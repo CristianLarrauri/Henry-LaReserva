@@ -9,9 +9,7 @@ const preload_teams = async () => {
       };
     });
 
-    data.forEach(async (teams) => {
-      await create_teams(teams);
-    });
+    await Teams.bulkCreate(data);
 
     return data;
   } catch (error) {

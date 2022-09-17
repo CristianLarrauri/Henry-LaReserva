@@ -11,9 +11,8 @@ const preload_players = async () => {
       };
     });
 
-    data.forEach(async (players) => {
-      await create_players(players);
-    });
+    await Players.bulkCreate(data);
+    
 
     return data;
   } catch (error) {

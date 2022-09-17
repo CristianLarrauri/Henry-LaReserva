@@ -15,9 +15,7 @@ const preload_tournaments = async () => {
       };
     });
 
-    data.forEach(async (tournament) => {
-      await create_tournament(tournament);
-    });
+    await Tournaments.bulkCreate(data);
 
     return data;
   } catch (error) {
