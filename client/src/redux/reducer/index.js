@@ -1,11 +1,14 @@
 import {
-  CREATE_TOURNAMENT,
-  GET_ALL_TOURNAMENTS,
-  NAME_SORT,
-  GENDER_FILTER,
-  DIV_FILTER,
-  SEARCH_TOURNAMENTS,
-} from "../actions";
+<
+	CREATE_TOURNAMENT,
+	GET_ALL_TOURNAMENTS,
+	NAME_SORT,
+	GENDER_FILTER,
+	DIV_FILTER,
+	TOURNAMENT_DETAILS,
+   SEARCH_TOURNAMENTS,
+} from '../actions';
+
 
 let initialState = {
   tournaments: [],
@@ -17,37 +20,42 @@ let initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case CREATE_TOURNAMENT:
-      return {
-        ...state,
-      };
-    case GET_ALL_TOURNAMENTS:
+	switch (action.type) {
+		case CREATE_TOURNAMENT:
+			return {
+				...state
+			};
+		case GET_ALL_TOURNAMENTS:
+			return {
+				...state,
+				tournaments: action.payload
+			};
+		case NAME_SORT:
+			return {
+				...state,
+				tournaments: action.payload
+			};
+		case GENDER_FILTER:
+			return {
+				...state,
+				tournaments: action.payload
+			};
+		case DIV_FILTER:
+			return {
+				...state,
+				tournaments: action.payload
+			};
+       case SEARCH_TOURNAMENTS:
       return {
         ...state,
         tournaments: action.payload,
       };
-    case NAME_SORT:
-      return {
-        ...state,
-        tournaments: action.payload,
-      };
-    case GENDER_FILTER:
-      return {
-        ...state,
-        tournaments: action.payload,
-      };
-    case DIV_FILTER:
-      return {
-        ...state,
-        tournaments: action.payload,
-      };
-    case SEARCH_TOURNAMENTS:
-      return {
-        ...state,
-        tournaments: action.payload,
-      };
-  }
+		case TOURNAMENT_DETAILS:
+			return {
+				...state,
+				tournamentDetail: action.payload
+			};
+	}
 }
 
 export default rootReducer;

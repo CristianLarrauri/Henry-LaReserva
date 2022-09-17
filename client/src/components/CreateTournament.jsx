@@ -53,7 +53,8 @@ export default function CreateTournament() {
 				dateInit: '',
 				dateFinish: '',
 				genre: '',
-				category: ''
+				category: '',
+				description: ''
 			});
 		}
 	};
@@ -81,6 +82,10 @@ export default function CreateTournament() {
 		if (!select) return true;
 	}
 
+	function validateDescription(text) {
+		if (!text) return true;
+	}
+
 	function validate(data) {
 		let errors = {};
 
@@ -95,6 +100,8 @@ export default function CreateTournament() {
 			errors.genre = 'Seleccione el genero del torneo';
 		if (validateSelect(data.category))
 			errors.category = 'Seleccione la categoria del torneo';
+		if (validateDescription(data.description))
+			errors.description = 'Ingrese una descripcion del torneo';
 		return errors;
 	}
 
@@ -209,6 +216,22 @@ export default function CreateTournament() {
 						{formErrors.category ? (
 							<h4>
 								<small>{formErrors.category}</small>
+							</h4>
+						) : (
+							false
+						)}
+					</div>
+					<div>
+						<label>Descripcion del torneo: </label>
+						<input
+							type="text"
+							value={input.description}
+							name="description"
+							onChange={handleChange}
+						></input>
+						{formErrors.description ? (
+							<h4>
+								<small>{formErrors.description}</small>
 							</h4>
 						) : (
 							false
