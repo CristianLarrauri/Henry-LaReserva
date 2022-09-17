@@ -50,11 +50,22 @@ router.get("/", async (req, res) => {
         ? res.status(200).send(data_tournament)
         : res.status(404).send("No se encontro el torneo");
     } else {
-      return res.status(200).send(data);
+      let data_total = await Tournaments.findAll({
+        offset: req.query.page,
+        limit: 4,
+        order: [["name", "ASC"]],
+        // include: {
+        //   model: Teams,
+        //   attributes: ["name"],
+        //   through: {
+        //     attributes: [],
+        //   },
+        // },
+      });
+      return res.status(200).send(data_total);
     }
   } catch (error) {
-    console.log("ERROR EN RUTA GET/tournaments");
-
+    console.log("ERROR EN RUTA GET/tournaments", error);
   }
 });
 
@@ -79,6 +90,5 @@ router.get("/", async (req, res) => {
 
 //.........................................................................................//
 // DELETE /tournaments
-
 
 module.exports = router;

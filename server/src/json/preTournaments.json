@@ -2,82 +2,91 @@
   {
     "id": 2,
     "name": "La Gran 7",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Mixto"
+    "genre": "Mixto",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 5,
     "name": "Pibardas",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Femenino"
+    "genre": "Femenino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 8,
     "name": "Oxidadas",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Femenino"
+    "genre": "Femenino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 6,
     "name": "Oxidados",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Masculino"
+    "genre": "Masculino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 4,
     "name": "Magios",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Masculino"
+    "genre": "Masculino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 1,
     "name": "Rusticom",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Masculino"
+    "genre": "Masculino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 3,
     "name": "Henry",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Libre",
-    "genre": "Mixto"
+    "genre": "Mixto",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 9,
     "name": "Oxidades",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Senior",
-    "genre": "Mixto"
+    "genre": "Mixto",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
     "id": 7,
     "name": "Matadoras",
-    "amountOfTeams": null,
+    "amountOfTeams": 7,
     "dateInit": "10/10/2022",
     "dateFinish": "10/12/2022",
     "category": "Sub20",
-    "genre": "Femenino"
+    "genre": "Femenino",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   }
 ]
