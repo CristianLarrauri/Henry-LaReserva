@@ -71,7 +71,7 @@ router.get("/", async (req, res) => {
 
 //.........................................................................................//
 // GET /tournaments/:id
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     let data = await get_tournaments_db();
