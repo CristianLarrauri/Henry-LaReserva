@@ -1,0 +1,110 @@
+[
+  {
+    "id": 2,
+    "name": "La Gran 7",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Sub20",
+    "genre": "Mixto",
+    "createdAt": "2022-09-16T07:05:00.954Z",
+    "updatedAt": "2022-09-16T07:05:00.954Z",
+    "teams": []
+  },
+  {
+    "id": 5,
+    "name": "Pibardas",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Libre",
+    "genre": "Femenino",
+    "createdAt": "2022-09-16T07:06:12.926Z",
+    "updatedAt": "2022-09-16T07:06:12.926Z",
+    "teams": []
+  },
+  {
+    "id": 8,
+    "name": "Oxidadas",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Senior",
+    "genre": "Femenino",
+    "createdAt": "2022-09-16T07:09:36.273Z",
+    "updatedAt": "2022-09-16T07:09:36.273Z",
+    "teams": []
+  },
+  {
+    "id": 6,
+    "name": "Oxidados",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Senior",
+    "genre": "Masculino",
+    "createdAt": "2022-09-16T07:06:53.013Z",
+    "updatedAt": "2022-09-16T07:06:53.013Z",
+    "teams": []
+  },
+  {
+    "id": 4,
+    "name": "Magios",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Libre",
+    "genre": "Masculino",
+    "createdAt": "2022-09-16T07:05:45.355Z",
+    "updatedAt": "2022-09-16T07:05:45.355Z",
+    "teams": []
+  },
+  {
+    "id": 1,
+    "name": "Rusticom",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Sub20",
+    "genre": "Masculino",
+    "createdAt": "2022-09-16T07:04:49.298Z",
+    "updatedAt": "2022-09-16T07:04:49.298Z",
+    "teams": []
+  },
+  {
+    "id": 3,
+    "name": "Henry",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Libre",
+    "genre": "Mixto",
+    "createdAt": "2022-09-16T07:05:30.244Z",
+    "updatedAt": "2022-09-16T07:05:30.244Z",
+    "teams": []
+  },
+  {
+    "id": 9,
+    "name": "Oxidades",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Senior",
+    "genre": "Mixto",
+    "createdAt": "2022-09-16T07:09:45.759Z",
+    "updatedAt": "2022-09-16T07:09:45.759Z",
+    "teams": []
+  },
+  {
+    "id": 7,
+    "name": "Matadoras",
+    "amountOfTeams": null,
+    "dateInit": "10/10/2022",
+    "dateFinish": "10/12/2022",
+    "category": "Sub20",
+    "genre": "Femenino",
+    "createdAt": "2022-09-16T07:07:57.735Z",
+    "updatedAt": "2022-09-16T07:07:57.735Z",
+    "teams": []
+  }
+]
