@@ -54,6 +54,7 @@ router.get("/", async (req, res) => {
     }
   } catch (error) {
     console.log("ERROR EN RUTA GET/tournaments");
+
   }
 });
 
