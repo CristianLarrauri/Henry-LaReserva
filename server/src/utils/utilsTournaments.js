@@ -10,6 +10,7 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      description,
       teams,
     } = data;
 
@@ -20,6 +21,7 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      description,
     });
 
     const teams_tournaments = await Teams.findAll({
