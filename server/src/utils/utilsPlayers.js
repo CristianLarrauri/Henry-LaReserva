@@ -1,4 +1,25 @@
 const { Players, Teams, Tournaments } = require("../db");
+const prePlayers = require("../json/prePlayers.json");
+
+const preload_players = async () => {
+  try {
+    let data = prePlayers.map((players) => {
+      return {
+        name: players.name,
+        surname: players.surname,
+        dni: players.dni,
+      };
+    });
+
+    data.forEach(async (players) => {
+      await create_players(players);
+    });
+
+    return data;
+  } catch (error) {
+    console.log("ERROR EN preload_players", error);
+  }
+};
 
 const create_players = async (data) => {
   try {
@@ -36,4 +57,4 @@ const players_db = async () => {
   }
 };
 
-module.exports = { create_players, players_db };
+module.exports = { create_players, players_db, preload_players };
