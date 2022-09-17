@@ -1,61 +1,50 @@
 [
-    {
-      "id": 1,
-      "name": "franco",
-      "surname": "bosco",
-      "dni": 33456786
-     
-     
-      
-    },
-    {
-      "id": 2,
-      "name": "juan",
-      "surname": "berraz",
-      "dni": 34456756
-     
-      
-      
-    },
-    {
-      "id": 3,
-      "name": "cristian",
-      "surname": "larrauri",
-      "dni": 39128368
-    
-    },
-    {
-      "id": 4,
-      "name": "brian",
-      "surname": "garcia",
-      "dni": 42456756
-     
-    },
-    {
-        "id": 5,
-        "name": "matias",
-        "surname": "franco",
-        "dni": 41234576
-      
-    },
-    {
-        "id": 6,
-        "name": "mauro",
-        "surname": "alos",
-        "dni": 38765321
-      
-    },
-    {
-        "id": 7,
-        "name": "nicolas",
-        "surname": "carballo",
-        "dni": 40765789
-      
-    },
-    {
-        "id": 8,
-        "name": "maximiliano",
-        "surname": "giagnorio",
-        "dni": 35768089
-    }
-  ]
+  {
+    "id": 1,
+    "name": "franco",
+    "surname": "bosco",
+    "dni": 33456786
+  },
+  {
+    "id": 2,
+    "name": "juan",
+    "surname": "berraz",
+    "dni": 34456756
+  },
+  {
+    "id": 3,
+    "name": "cristian",
+    "surname": "larrauri",
+    "dni": 39128368
+  },
+  {
+    "id": 4,
+    "name": "braian",
+    "surname": "garcia",
+    "dni": 42456756
+  },
+  {
+    "id": 5,
+    "name": "matias",
+    "surname": "franco",
+    "dni": 41234576
+  },
+  {
+    "id": 6,
+    "name": "mauro",
+    "surname": "alos",
+    "dni": 38765321
+  },
+  {
+    "id": 7,
+    "name": "nicolas",
+    "surname": "carballo",
+    "dni": 40765789
+  },
+  {
+    "id": 8,
+    "name": "maximiliano",
+    "surname": "giagnorio",
+    "dni": 35768089
+  }
+]
