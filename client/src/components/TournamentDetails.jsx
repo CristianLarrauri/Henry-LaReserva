@@ -16,9 +16,12 @@ const TournamentDetail = (props) => {
         <div>
             
             <h2>{`Torneo "${tournament.name}"`}</h2>
-            <img src={tournament.img} alt={tournament.name} />
+            <img src={tournament.image} alt={tournament.name} />
             <h4>Categoria: {tournament.category}</h4>
             <h4>Género: {tournament.genre}</h4>
+            <br />
+            <h4>{tournament.description}</h4>
+            <br />
             <h4>Fecha de inicio: {tournament.dateInit}</h4>
             <h4>Finaliza: {tournament.dateFinish}</h4>
             <h4>{tournament.teams? <ul> {tournament.teams.map((team) => <li>{team}</li>)}</ul> : null}</h4>
