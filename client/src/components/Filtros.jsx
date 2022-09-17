@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Filtros.module.css"
-import TournamentDetails from "./TournamentDetails";
+import TournamentDetails from "./TournamentCards";
 
 export default function Filtros(){
     return(

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Torneos from "../tournaments.json"
 import { useEffect } from 'react';
 
-export default function TournamentDetails(tournaments) {//Esto lo recibe del componente filtros
+export default function TournamentCards(tournaments) {//Esto lo recibe del componente filtros
 
     const [page, setPage] = useState(0);
 

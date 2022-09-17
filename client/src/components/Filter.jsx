@@ -1,8 +1,8 @@
-import "./Filter.css"
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../redux/actions'
 import { NavLink } from 'react-router-dom'
+import TournamentCards from "./TournamentCards";
 
 const Filter = () => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Filter = () => {
         dispatch(actions.getAllTournaments())
     }
 
-    const handleNameSort= (e) => {
+    const handleNameSort = (e) => {
         dispatch(actions.nameSort(e.target.value))
     }
 
@@ -22,28 +22,37 @@ const Filter = () => {
     const handleDivFilter = (e) => {
         dispatch(actions.divFilter(e.target.value))
     }
- 
+
 
     return (
         <div >
-            
+            <div className="flex container-xl px-[5%] py-[5%] border-2 rounded-lg mt-[2%] justify-center">
+                <div className="container">
+                    <p className="text-md font-mono mt-1 items-center justify-center">Mostrar torneos: </p>
+                    <select className="mt-5" name="genero" onClick={e => handleGenderFilter(e)}>
+                        <option value="all">Indistinto</option>
+                        <option value="masc">Masculinos</option>
+                        <option value="fem">Femeninos</option>
+                    </select>
+                    <select name="division" onClick={e => handleDivFilter(e)}>
+                        <option value="all">Indistinto</option>
+                        <option value="sub20">Sub 20</option>
+                        <option value="senior">Senior</option>
+                    </select>
+                </div>
 
-            <p>Mostrar torneos: </p>
-                <select name="genero" onClick={e => handleGenderFilter(e)}>
-                    <option value="all">Indistinto</option>
-                    <option value="masc">Masculinos</option>
-                    <option value="fem">Femeninos</option>
-                </select>
-                <select name="division" onClick={e => handleDivFilter(e)}>
-                    <option value="all">Indistinto</option>
-                    <option value="sub20">Sub 20</option>
-                    <option value="senior">Senior</option>
-                </select>
-                <p>Ordenar:</p>
-                Por nombre <br />
-                <button name="nameUp" value="up" onClick={e => handleNameSort(e)}>/\</button>
-                <button name="nameDown" value="down" onClick={e => handleNameSort(e)}>\/</button>
-                <button onClick={handleGetAllTournaments}>Quitar filtros</button>
+                <div className="container ml-[8%] items-center">
+                    <p className="text-md font-mono mt-1">Ordenar: Por nombre</p>
+                    <button name="nameUp" value="up" onClick={e => handleNameSort(e)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-lg">/\</button>
+                    <button name="nameDown" value="down" onClick={e => handleNameSort(e)} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-lg ml-5">\/</button>
+                </div>
+
+                <div className="container">
+
+                    <button onClick={handleGetAllTournaments} className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg mt-[15%] ml-3">Quitar filtros</button>
+                </div>
+            </div>
+
         </div>
     )
 }
