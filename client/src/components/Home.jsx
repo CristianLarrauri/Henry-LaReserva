@@ -6,6 +6,7 @@ import jugador from '../images/jugadorHome.png';
 import {FaClock} from 'react-icons/fa';
 import {MdLocationOn} from 'react-icons/md';
 import Filter from '../components/Filter';
+import TournamentCards from './TournamentCards';
 
 
 
@@ -47,7 +48,8 @@ export default function Home() {
 			</div>
 
 			<Filter/>
-			<Footer/>
+			<TournamentCards/>
 		</div>
 	);
+
 }
