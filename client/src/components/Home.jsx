@@ -9,46 +9,49 @@ import Filter from '../components/Filter';
 import TournamentCards from './TournamentCards';
 
 
-
 export default function Home() {
 	return (
-		<div className={styles.mainWrapper}>
-			<div className={styles.upperContainer}>
-				<NextTournaments/>
+		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+			<div className={styles.mainWrapper}>
+				<div className={styles.upperContainer}>
+					<NextTournaments/>
 
-				<div className={styles.nextTournamentWrapper}>
-					<img src={jugador} alt="jugador.png" />
+					<div className={styles.nextTournamentWrapper}>
+						<img src={jugador} alt="jugador.png" />
 
-					<div className={styles.nextTournamentSubWrapper}>
-						<div>
-							<h2>Torneo</h2>
-							<h2>La</h2>
-							<h2>Reserva</h2>
-						</div>
-
-						<div className={styles.infoContainer}>
+						<div className={styles.nextTournamentSubWrapper}>
 							<div>
-								<FaClock className={styles.icon}/>
-								<p>00:00:00 AM</p>
+								<h2>Torneo</h2>
+								<h2>La</h2>
+								<h2>Reserva</h2>
 							</div>
 
-							<div>
-								<MdLocationOn className={styles.icon}/>
-								<p>Calle falsa 123</p>
+							<div className={styles.infoContainer}>
+								<div>
+									<FaClock className={styles.icon}/>
+									<p>00:00:00 AM</p>
+								</div>
+
+								<div>
+									<MdLocationOn className={styles.icon}/>
+									<p>Calle falsa 123</p>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div className={styles.halfCircle}></div>
-					
-					<div className={styles.btnContainer}>
-						<button>Inscribite</button>
+						<div className={styles.halfCircle}></div>
+						
+						<div className={styles.btnContainer}>
+							<button>Inscribite</button>
+						</div>
 					</div>
 				</div>
+
+				<Filter/>
+				<TournamentCards/>
 			</div>
 
-			<Filter/>
-			<TournamentCards/>
+			<Footer/>
 		</div>
 	);
 

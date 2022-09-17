@@ -7,8 +7,6 @@ import { createTournament } from '../redux/actions';
 import styles from '../styles/CreateTournament.module.css';
 import {IoIosArrowBack} from 'react-icons/io'
 
-// import PopUp from '../components/PopUp';
-
 export default function CreateTournament() {
 	const dispatch = useDispatch();
 	const [popUpError, setPopUpError] = useState({});
@@ -120,6 +118,7 @@ export default function CreateTournament() {
 	}
 
 	return (
+		<div>
 		<div className={styles.mainWrapper}>
 			<h1>Crear torneo</h1>
 			<div className={popUpError.title?styles.popUpOverlay:styles.popUpOverlay_hidden}>
@@ -252,6 +251,9 @@ export default function CreateTournament() {
 					Inscribir
 				</button>
 			</form>
+		</div>
+
+		<Footer/>
 		</div>
 	);
 }
