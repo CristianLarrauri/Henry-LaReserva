@@ -58,7 +58,8 @@ export default function CreateTournament() {
 				dateInit: '',
 				dateFinish: '',
 				genre: '',
-				category: ''
+				category: '',
+				description: ''
 			});
 		}
 	};
@@ -69,7 +70,8 @@ export default function CreateTournament() {
 		dateFinish: 'Ingrese una fecha de finalizacion',
 		dateInit: 'Ingrese una fecha de inicio',
 		genre: 'Seleccione el genero del torneo',
-		category: 'Seleccione la categoria del torneo'
+		category: 'Seleccione la categoria del torneo',
+		description: 'Ingrese una descripcion del torneo'
 	});
 
 	function validateName(str) {
@@ -94,6 +96,10 @@ export default function CreateTournament() {
 		if (select==='' || select==='Seleccione un genero' || select==='Seleccione una categoria') return true;
 	}
 
+	function validateDescription(text) {
+		if (!text) return true;
+	}
+
 	function validate(data) {
 		let errors = {};
 
@@ -108,6 +114,8 @@ export default function CreateTournament() {
 			errors.genre = 'Seleccione el genero del torneo';
 		if (validateSelect(data.category))
 			errors.category = 'Seleccione la categoria del torneo';
+		if (validateDescription(data.description))
+			errors.description = 'Ingrese una descripcion del torneo';
 		return errors;
 	}
 
@@ -222,6 +230,24 @@ export default function CreateTournament() {
 							{formErrors.category}
 						</div>
 					</div>
+
+					<div className={styles.infoSection}>
+						<label>Descripcion: </label>
+						<input
+							className={styles.stringInput}
+							type="text"
+							value={input.description}
+							name="description"
+							onChange={handleChange}
+						></input>
+
+						<div style={{left:'20%'}} className={formErrors.description?
+						styles.error_visible:styles.error_hidden}>
+							{formErrors.description}
+						</div>
+
+					</div>
+				
 				<button className={styles.sendBtn} type="submit" onClick={(e) => handleSubmit(e)}>
 					Inscribir
 				</button>
