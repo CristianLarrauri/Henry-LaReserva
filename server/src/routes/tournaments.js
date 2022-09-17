@@ -7,7 +7,8 @@ const {
 
 const router = Router();
 
-// POST TOURNAMENTS _________________________________________
+//.........................................................................................//
+// POST /tournaments
 router.post("/", async (req, res) => {
   try {
     let data = req.body;
@@ -28,11 +29,12 @@ router.post("/", async (req, res) => {
       }
     }
   } catch (error) {
-    return res.status(404).send("ERROR EN RUTA POST/tournaments", error);
+    console.log("ERROR EN RUTA POST/tournaments");
   }
 });
 
-// GET TOURNAMENTS _________________________________________
+//.........................................................................................//
+// GET /tournaments && GET /tournaments?name="..."
 router.get("/", async (req, res) => {
   try {
     let { name } = req.query;
@@ -51,8 +53,32 @@ router.get("/", async (req, res) => {
       return res.status(200).send(data);
     }
   } catch (error) {
-    return res.status(404).send("ERROR EN RUTA GET/tournaments");
+    console.log("ERROR EN RUTA GET/tournaments");
+
   }
 });
+
+//.........................................................................................//
+// GET /tournaments/:id
+router.get("/", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let data = await get_tournaments_db();
+
+    if (id) {
+      let data_tournament = data.find((tournament) => tournament.id == id);
+
+      data_tournament
+        ? res.status(200).send(data_tournament)
+        : res.status(404).send("No esta el detalle del torneo");
+    }
+  } catch (error) {
+    console.log("No esta el detalle del torneo");
+  }
+});
+
+//.........................................................................................//
+// DELETE /tournaments
+
 
 module.exports = router;

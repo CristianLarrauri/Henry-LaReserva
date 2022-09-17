@@ -25,5 +25,8 @@ module.exports = (sequelize) => {
     genre: {
       type: DataTypes.ENUM("Masculino", "Femenino", "Mixto"),
     },
+    description: {
+      type: DataTypes.TEXT,
+    },
   });
 };
