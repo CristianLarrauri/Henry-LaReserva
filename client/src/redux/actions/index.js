@@ -79,8 +79,8 @@ export const genderFilter = (payload) => {
     } catch (error) {
       console.log(error);
     }
-  };
-};
+  }
+}
 
 export const divFilter = (payload) => {
 	return async function (dispatch) {
@@ -94,6 +94,7 @@ export const divFilter = (payload) => {
 			console.log(error);
 		}
 	};
+}
 
 
 export const searchTournaments = (name) => {

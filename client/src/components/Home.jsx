@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Footer from './Footer';
 import styles from '../styles/Home.module.css';
