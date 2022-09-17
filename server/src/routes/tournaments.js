@@ -54,6 +54,7 @@ router.get("/", async (req, res) => {
     }
   } catch (error) {
     console.log("ERROR EN RUTA GET/tournaments");
+
   }
 });
 
@@ -75,5 +76,9 @@ router.get("/", async (req, res) => {
     console.log("No esta el detalle del torneo");
   }
 });
+
+//.........................................................................................//
+// DELETE /tournaments
+
 
 module.exports = router;
