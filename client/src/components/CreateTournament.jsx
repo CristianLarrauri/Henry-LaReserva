@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTournament } from '../redux/actions';
 import styles from '../styles/CreateTournament.module.css';
-import {IoIosArrowBack} from 'react-icons/io'
+import { IoIosArrowBack } from 'react-icons/io';
 
 export default function CreateTournament() {
 	const dispatch = useDispatch();
@@ -43,7 +43,6 @@ export default function CreateTournament() {
 				title: 'Error',
 				msg: 'Llene los campos correctamente'
 			});
-
 		} else {
 			dispatch(createTournament(input));
 			setPopUpError({
@@ -91,7 +90,12 @@ export default function CreateTournament() {
 	}
 
 	function validateSelect(select) {
-		if (select==='' || select==='Seleccione un genero' || select==='Seleccione una categoria') return true;
+		if (
+			select === '' ||
+			select === 'Seleccione un genero' ||
+			select === 'Seleccione una categoria'
+		)
+			return true;
 	}
 
 	function validateDescription(text) {
@@ -119,23 +123,31 @@ export default function CreateTournament() {
 
 	return (
 		<div>
-		<div className={styles.mainWrapper}>
-			<h1>Crear torneo</h1>
-			<div className={popUpError.title?styles.popUpOverlay:styles.popUpOverlay_hidden}>
-				<div className={popUpError.title?styles.popUp:styles.popUp_hidden}>
-					<h2>{popUpError.title}</h2>
-					<p>{popUpError.msg}</p>
-					<button onClick={() => setPopUpError({})} className={styles.okBtn}>Ok</button>
+			<div className={styles.mainWrapper}>
+				<h1>Crear torneo</h1>
+				<div
+					className={
+						popUpError.title ? styles.popUpOverlay : styles.popUpOverlay_hidden
+					}
+				>
+					<div
+						className={popUpError.title ? styles.popUp : styles.popUp_hidden}
+					>
+						<h2>{popUpError.title}</h2>
+						<p>{popUpError.msg}</p>
+						<button onClick={() => setPopUpError({})} className={styles.okBtn}>
+							Ok
+						</button>
+					</div>
 				</div>
-			</div>
 
-			<button className={styles.backBtn}>
-				<Link to='/home' className={styles.linkBack}>
-					<IoIosArrowBack/>
-					<p>Volver</p>
-				</Link>
-			</button>
-			<form className={styles.mainForm}>
+				<button className={styles.backBtn}>
+					<Link to="/home" className={styles.linkBack}>
+						<IoIosArrowBack />
+						<p>Volver</p>
+					</Link>
+				</button>
+				<form className={styles.mainForm}>
 					<div className={styles.infoSection}>
 						<label>Nombre del torneo: </label>
 						<input
@@ -145,8 +157,12 @@ export default function CreateTournament() {
 							name="name"
 							onChange={handleChange}
 						></input>
-						<div style={{left:'35%'}} className={formErrors.name?
-						styles.error_visible:styles.error_hidden}>
+						<div
+							style={{ left: '35%' }}
+							className={
+								formErrors.name ? styles.error_visible : styles.error_hidden
+							}
+						>
 							{formErrors.name}
 						</div>
 					</div>
@@ -160,8 +176,14 @@ export default function CreateTournament() {
 							name="amountOfTeams"
 						></input>
 
-						<div style={{left:'30%'}} className={formErrors.amountOfTeams?
-						styles.error_visible:styles.error_hidden}>
+						<div
+							style={{ left: '30%' }}
+							className={
+								formErrors.amountOfTeams
+									? styles.error_visible
+									: styles.error_hidden
+							}
+						>
 							{formErrors.amountOfTeams}
 						</div>
 					</div>
@@ -186,10 +208,17 @@ export default function CreateTournament() {
 							></input>
 						</div>
 
-						<div style={{left:'22%'}} className={formErrors.dateFinish ||
-						formErrors.dateInit?
-						styles.error_visible:styles.error_hidden}>
-							{formErrors.dateFinish?formErrors.dateFinish:formErrors.dateInit}
+						<div
+							style={{ left: '22%' }}
+							className={
+								formErrors.dateFinish || formErrors.dateInit
+									? styles.error_visible
+									: styles.error_hidden
+							}
+						>
+							{formErrors.dateFinish
+								? formErrors.dateFinish
+								: formErrors.dateInit}
 						</div>
 					</div>
 					<div className={styles.infoSection}>
@@ -206,8 +235,12 @@ export default function CreateTournament() {
 							<option>Mixto</option>
 						</select>
 
-						<div style={{left:'22%'}} className={formErrors.genre?
-						styles.error_visible:styles.error_hidden}>
+						<div
+							style={{ left: '22%' }}
+							className={
+								formErrors.genre ? styles.error_visible : styles.error_hidden
+							}
+						>
 							{formErrors.genre}
 						</div>
 					</div>
@@ -224,8 +257,12 @@ export default function CreateTournament() {
 							<option key={'Libre'}>Libre</option>
 							<option key={'Senior'}>Senior</option>
 						</select>
-						<div style={{left:'21%'}} className={formErrors.category?
-						styles.error_visible:styles.error_hidden}>
+						<div
+							style={{ left: '21%' }}
+							className={
+								formErrors.category ? styles.error_visible : styles.error_hidden
+							}
+						>
 							{formErrors.category}
 						</div>
 					</div>
@@ -240,20 +277,29 @@ export default function CreateTournament() {
 							onChange={handleChange}
 						></input>
 
-						<div style={{left:'20%'}} className={formErrors.description?
-						styles.error_visible:styles.error_hidden}>
+						<div
+							style={{ left: '20%' }}
+							className={
+								formErrors.description
+									? styles.error_visible
+									: styles.error_hidden
+							}
+						>
 							{formErrors.description}
 						</div>
-
 					</div>
-				
-				<button className={styles.sendBtn} type="submit" onClick={(e) => handleSubmit(e)}>
-					Inscribir
-				</button>
-			</form>
-		</div>
 
-		<Footer/>
+					<button
+						className={styles.sendBtn}
+						type="submit"
+						onClick={(e) => handleSubmit(e)}
+					>
+						Inscribir
+					</button>
+				</form>
+			</div>
+
+			<Footer />
 		</div>
 	);
 }

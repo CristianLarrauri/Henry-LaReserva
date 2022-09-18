@@ -11,7 +11,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<div>
-				{/* <Nav /> */}			
+				{/* <Nav /> */}
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
