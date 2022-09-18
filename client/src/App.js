@@ -6,16 +6,14 @@ import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
 import CreateTournament from './components/CreateTournament';
 
-
 import Error404 from './components/Error404';
-
 
 import Error404 from './components/Error404';
 
 function App() {
 	return (
 		<BrowserRouter>
-			<div>	
+			<div>
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
@@ -26,7 +24,7 @@ function App() {
 						component={PlayerInscription}
 					/>
 					<Route exact path="/create" component={CreateTournament} />
-					<Route exact path='/404' component={Error404}/>
+					<Route exact path="/404" component={Error404} />
 				</Switch>
 			</div>
 		</BrowserRouter>

@@ -3,20 +3,17 @@ import Footer from './Footer';
 import styles from '../styles/Home.module.css';
 import NextTournaments from './NextTournaments';
 import jugador from '../images/jugadorHome.png';
-import {FaClock} from 'react-icons/fa';
-import {MdLocationOn} from 'react-icons/md';
-import Filter from '../components/Filter';
+import { FaClock } from 'react-icons/fa';
+import { MdLocationOn } from 'react-icons/md';
 import TournamentCards from './TournamentCards';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTournaments } from '../redux/actions';
 import Nav from '../components/Nav';
-import {Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 export default function Home() {
-
 	// const [page,setPage] = useState(0)
 
 	// const dispatch = useDispatch()
@@ -28,12 +25,20 @@ export default function Home() {
 	// },[])
 
 	return (
-		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
-			<Nav/>
-			
+		<div
+			style={{
+				width: '100%',
+				minHeight: '100vh',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-between'
+			}}
+		>
+			<Nav />
+
 			<div className={styles.mainWrapper}>
 				<div className={styles.upperContainer}>
-					<NextTournaments/>
+					<NextTournaments />
 
 					<div className={styles.nextTournamentWrapper}>
 						<img src={jugador} alt="jugador.png" />
@@ -47,35 +52,31 @@ export default function Home() {
 
 							<div className={styles.infoContainer}>
 								<div>
-									<FaClock className={styles.icon}/>
+									<FaClock className={styles.icon} />
 									<p>00:00:00 AM</p>
 								</div>
 
 								<div>
-									<MdLocationOn className={styles.icon}/>
+									<MdLocationOn className={styles.icon} />
 									<p>Calle falsa 123</p>
 								</div>
 							</div>
 						</div>
 
 						<div className={styles.halfCircle}></div>
-						
+
 						<div className={styles.btnContainer}>
 							<button>
-								<Link to='/inscription'>
-									Inscribite
-								</Link>
+								<Link to="/inscription">Inscribite</Link>
 							</button>
 						</div>
 					</div>
 				</div>
 
-				<Filter/>
-				<TournamentCards/>
+				<TournamentCards />
 			</div>
 
-			<Footer/>
+			<Footer />
 		</div>
 	);
-
 }
