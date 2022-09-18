@@ -5,6 +5,7 @@
     background-color: white;
     width: 100%;
     min-height: 100vh;
+    margin-top: 30px;
 }
 
 .mainForm{
@@ -15,7 +16,7 @@
     width: 1200px;
     margin: 0;
     animation: formAppear 1s linear forwards;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .infoSection{
@@ -145,52 +146,6 @@
 .error_hidden{
     opacity: 0;
     transition-duration: 1s;
-}
-
-.popUpOverlay, .popUpOverlay_hidden{
-    position: absolute;
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgba(255, 255, 255, .2);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition-duration: .5s;
-}
-
-.popUpOverlay_hidden{
-    opacity: 0;
-    pointer-events: none;
-}
-
-.popUp_hidden{
-    opacity: 0;
-    pointer-events: none;
-}
-
-.popUp, .popUp_hidden{
-    background-color: #2DCC70;
-    width: 400px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    transition-duration: 1s;
-}
-
-
-.popUp h2, .popUp_hidden h2{
-    font-size: 2em;
-    font-weight: 500;
-}
-
-.okBtn{
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .mainWrapper h1{

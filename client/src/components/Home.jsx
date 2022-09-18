@@ -11,6 +11,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTournaments } from '../redux/actions';
+import Nav from '../components/Nav';
+import {Link} from 'react-router-dom';
 
 
 export default function Home() {
@@ -27,6 +29,8 @@ export default function Home() {
 
 	return (
 		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+			<Nav/>
+			
 			<div className={styles.mainWrapper}>
 				<div className={styles.upperContainer}>
 					<NextTournaments/>
@@ -57,7 +61,11 @@ export default function Home() {
 						<div className={styles.halfCircle}></div>
 						
 						<div className={styles.btnContainer}>
-							<button>Inscribite</button>
+							<button>
+								<Link to='/inscription'>
+									Inscribite
+								</Link>
+							</button>
 						</div>
 					</div>
 				</div>

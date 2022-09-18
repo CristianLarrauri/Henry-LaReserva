@@ -8,6 +8,7 @@
     min-width: 200px;
     border-radius: 200px;
     margin: 20px;
+    margin-top: 150px;
     transition-duration: .4s;
     animation: btnEnter .8s ease-out forwards;
 }

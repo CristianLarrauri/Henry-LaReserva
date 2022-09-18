@@ -5,10 +5,11 @@ import styles from '../styles/Error404.module.css';
 import Footer from '../components/Footer';
 import {IoIosArrowBack} from 'react-icons/io';
 
+
 export default function Error404() {
   return (
     <div className = "bg-gray-100 flex flex-nowrap w-5/5 flex-col justify-between">
-      
+
     <button className={styles.btn}>
       <Link to="/home" className="flex justify-center items-center">
         <IoIosArrowBack/>

@@ -5,7 +5,9 @@ import Home from './components/Home';
 import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
 import CreateTournament from './components/CreateTournament';
-import Nav from './components/Nav';
+
+
+import Error404 from './components/Error404';
 
 
 import Error404 from './components/Error404';
@@ -13,8 +15,7 @@ import Error404 from './components/Error404';
 function App() {
 	return (
 		<BrowserRouter>
-			<div>
-				{/* <Nav /> */}			
+			<div>	
 				<Switch>
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
