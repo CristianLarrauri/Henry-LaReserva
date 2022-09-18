@@ -6,8 +6,8 @@ import TeamInscription from "./components/TeamInscription";
 import PlayerInscription from "./components/PlayerInscription";
 import CreateTournament from "./components/CreateTournament";
 import AllTournaments from "./components/AllTournaments";
-
 import Error404 from "./components/Error404";
+import ComplexDetail from "./components/ComplexDetail";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
           />
           <Route exact path="/create" component={CreateTournament} />
           <Route exact path="/404" component={Error404} />
+          <Route exact path="/complex" component={ComplexDetail} />
         </Switch>
       </div>
     </BrowserRouter>
