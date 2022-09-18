@@ -53,6 +53,8 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournamentDetail: action.payload
 			};
+		default: 
+			return state;
 	}
 }
 

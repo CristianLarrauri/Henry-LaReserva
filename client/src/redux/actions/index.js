@@ -96,9 +96,6 @@ export const divFilter = (payload) => {
 
 };
 
-}
-
-
 
 export const searchTournaments = (name) => {
 	return async function (dispatch) {
