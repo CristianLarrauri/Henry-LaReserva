@@ -40,6 +40,30 @@ router.get("/", async (req, res) => {
     let { name } = req.query;
     let data = await get_tournaments_db();
 
+    if (req.query.genre) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          genre: req.query.genre,
+        },
+        Offset: req.query.page,
+        limit: 4,
+        order: [["name", "ASC"]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.category) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+        },
+        Offset: req.query.page,
+        limit: 4,
+        order: [["name", "ASC"]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
     if (name) {
       let data_tournament = data.find(
         (tournament) =>
