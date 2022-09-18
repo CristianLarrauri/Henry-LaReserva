@@ -97,6 +97,7 @@ export const tournamentDetails = (id) => {
 // 	};
 // };
 
+
 export const searchTournaments = (name) => {
 	return async function (dispatch) {
 		try {

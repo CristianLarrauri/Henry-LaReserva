@@ -1,0 +1,25 @@
+.btn{
+    position: absolute;
+    font-size: 2em;
+    font-weight: 500;
+    background-color: #2DCC70;
+    color: white;
+    padding: 10px;
+    min-width: 200px;
+    border-radius: 200px;
+    margin: 20px;
+    margin-top: 150px;
+    transition-duration: .4s;
+    animation: btnEnter .8s ease-out forwards;
+}
+
+.btn:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+@keyframes btnEnter{
+    from{
+        transform: translateX(-100%);
+    }
+}

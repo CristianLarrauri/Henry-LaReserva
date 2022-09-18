@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import styles from '../styles/TeamInscription.module.css';
+import Nav from '../components/Nav';
 
 export default function TeamInscription() {
 	return (
 		<div className={styles.mainWrapper}>
+			<Nav/>
 			<div className={styles.subMainWrapper}>
 				<h1>NavBar</h1>
 				<h2>Nombre del torneo</h2>
