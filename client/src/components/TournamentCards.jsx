@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTournaments } from '../redux/actions/index.js';
+import { Link } from 'react-router-dom';
 
 export default function TournamentCards() {
 	const dispatch = useDispatch();
 	const tournaments = useSelector((state) => state.tournaments);
+	console.log('tourn', tournaments);
 	const [page, setPage] = useState(0);
 
 	const handlePrev = (event) => {
@@ -131,13 +133,15 @@ export default function TournamentCards() {
 					? tournaments?.map((ele) => {
 							return (
 								<div>
-									<Card
-										key={ele.id}
-										name={ele.name}
-										dateInit={ele.dateInit}
-										genre={ele.genre}
-										category={ele.category}
-									/>
+									<Link to={`/details/${ele.id}`}>
+										<Card
+											key={ele.id}
+											name={ele.name}
+											dateInit={ele.dateInit}
+											genre={ele.genre}
+											category={ele.category}
+										/>
+									</Link>
 								</div>
 							);
 					  })

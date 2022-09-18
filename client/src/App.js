@@ -7,6 +7,7 @@ import PlayerInscription from './components/PlayerInscription';
 import CreateTournament from './components/CreateTournament';
 
 import Error404 from './components/Error404';
+import TournamentDetail from './components/TournamentDetails';
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 					/>
 					<Route exact path="/create" component={CreateTournament} />
 					<Route exact path="/404" component={Error404} />
+					<Route exact path="/details/:id" component={TournamentDetail} />
 				</Switch>
 			</div>
 		</BrowserRouter>
