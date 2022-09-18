@@ -1,9 +1,12 @@
 import React from 'react';
 import Footer from '../components/Footer';
+import Nav from '../components/Nav';
 
 export default function PlayerInscription() {
 	return (
 		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+			<Nav/>
+			
 			<div>
 				<h1>NavBar</h1>
 				<h1>Nombre: del torneo</h1>

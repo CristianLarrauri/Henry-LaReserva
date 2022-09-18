@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTournament } from '../redux/actions';
 import styles from '../styles/CreateTournament.module.css';
+import popUpStyles from '../styles/PopUpStyles.module.css';
 import {IoIosArrowBack} from 'react-icons/io'
+import Nav from '../components/Nav';
 
 export default function CreateTournament() {
 	const dispatch = useDispatch();
@@ -119,13 +121,14 @@ export default function CreateTournament() {
 
 	return (
 		<div>
+		<Nav/>
 		<div className={styles.mainWrapper}>
 			<h1>Crear torneo</h1>
-			<div className={popUpError.title?styles.popUpOverlay:styles.popUpOverlay_hidden}>
-				<div className={popUpError.title?styles.popUp:styles.popUp_hidden}>
+			<div className={popUpError.title?popUpStyles.popUpOverlay:popUpStyles.popUpOverlay_hidden}>
+				<div className={popUpError.title?popUpStyles.popUp:popUpStyles.popUp_hidden}>
 					<h2>{popUpError.title}</h2>
 					<p>{popUpError.msg}</p>
-					<button onClick={() => setPopUpError({})} className={styles.okBtn}>Ok</button>
+					<button onClick={() => setPopUpError({})} className={popUpStyles.okBtn}>Ok</button>
 				</div>
 			</div>
 
