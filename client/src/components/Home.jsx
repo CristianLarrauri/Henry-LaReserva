@@ -10,14 +10,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTournaments } from '../redux/actions';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-=======
 import Nav from '../components/Nav';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-
->>>>>>> 15d245e4f8176353afff3bfeab9e2db1e6b504d4
 export default function Home() {
 	// const [page,setPage] = useState(0)
 
@@ -30,7 +25,6 @@ export default function Home() {
 	// },[])
 
 	return (
-<<<<<<< HEAD
 		<div
 			style={{
 				width: '100%',
@@ -40,11 +34,8 @@ export default function Home() {
 				justifyContent: 'space-between'
 			}}
 		>
-=======
-		<div style={{width:'100%',minHeight:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
-			<Nav/>
-			
->>>>>>> 15d245e4f8176353afff3bfeab9e2db1e6b504d4
+			<Nav />
+
 			<div className={styles.mainWrapper}>
 				<div className={styles.upperContainer}>
 					<NextTournaments />
@@ -76,9 +67,7 @@ export default function Home() {
 
 						<div className={styles.btnContainer}>
 							<button>
-								<Link to='/inscription'>
-									Inscribite
-								</Link>
+								<Link to="/inscription">Inscribite</Link>
 							</button>
 						</div>
 					</div>
