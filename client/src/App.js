@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import TeamInscription from "./components/TeamInscription";
 import PlayerInscription from "./components/PlayerInscription";
 import CreateTournament from "./components/CreateTournament";
-
+import AllTournaments from "./components/AllTournaments";
 import Error404 from "./components/Error404";
 import ComplexDetail from "./components/ComplexDetail";
 
@@ -17,6 +17,7 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/inscription" component={TeamInscription} />
+          <Route exact path="/tournaments" component={AllTournaments} />
           <Route
             exact
             path="/inscription/players"
