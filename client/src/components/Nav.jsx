@@ -6,7 +6,7 @@ import { BiDownArrow } from "react-icons/bi";
 
 export default function Nav() {
   return (
-    <div className="flex flex-col justify-between items-center w-full bg-white xl:flex-row border-b-8">
+    <div className="flex flex-col justify-between items-center w-full bg-white xl:flex-row border-b-8 border-gray-200">
       <div>
         <Link to="/home">
           <img src={Logo} alt="logo.png" />
