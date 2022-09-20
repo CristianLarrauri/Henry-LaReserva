@@ -83,9 +83,9 @@ export default function AllTournaments() {
               onChange={(e) => handleFilterGenre(e)}
             >
               <option value="">Indistinto</option>
-              <option value="Masculino">Masculinos</option>
-              <option value="Femenino">Femeninos</option>
-              <option value="Mixto">Mixtos</option>
+              <option value="Male">Masculinos</option>
+              <option value="Female">Femeninos</option>
+              <option value="Mixed">Mixtos</option>
             </select>
             <select
               className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
@@ -94,7 +94,7 @@ export default function AllTournaments() {
             >
               <option value="">Indistinto</option>
               <option value="Sub20">Sub 20</option>
-              <option value="Libre">Libre</option>
+              <option value="Free">Libre</option>
               <option value="Senior">Senior</option>
             </select>
           </div>
