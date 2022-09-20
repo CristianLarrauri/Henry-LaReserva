@@ -1,8 +1,15 @@
 import React from 'react';
+import axios from 'axios';
+
+
+//AGREGAR EN LINEA 74 RUTA PARA INSCRIPCION
 
 export default function PlayerInscription() {
 
 	const [team, setTeam] = React.useState([])
+
+
+	//Estados locales para cada jugador que luego seran metidos al array "team"
 
 	const [player1, setPlayer1] = React.useState({
 		name:"",
@@ -45,13 +52,44 @@ export default function PlayerInscription() {
 		dni:0
 	})
 
+	//Estado que guardará el valor del boton checkbox
+
+	const [compromise, setCompromise] = React.useState(false)
+
 	const [errors, setErrors] = React.useState({})
 
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if(team.length < 8) {
+			alert('Faltan jugadores')
+		} else if(Object.values(errors).length>0){
+			alert('Faltan datos o hay datos incorrectos')
+		} else if(!compromise){
+			alert('Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo"')
+		} else {
+
+
+			//COLOCAR RUTA PARA INSCRIPCIÓN	
+	
+	
+	
+			axios.post(``)
+
+
+
+			alert('Equipo inscripto')
+			console.log(team)
+		}
+	}
+
+	//Las tres siguientes funciones son exclusivas del checkbox de compromise
+
+	const handleCompromiseChange = (e) => {
+		console.log('Valor target '+e.target.checked)
+		console.log('Valor compromise 1 '+compromise)
+		setCompromise(e.target.checked==1)
 		setTeam([
-			...team,
 			player1,
 			player2,
 			player3,
@@ -69,6 +107,7 @@ export default function PlayerInscription() {
 			...player1,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange2 = (e) => {
 		e.preventDefault()
@@ -76,6 +115,7 @@ export default function PlayerInscription() {
 			...player2,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange3 = (e) => {
 		e.preventDefault()
@@ -83,6 +123,7 @@ export default function PlayerInscription() {
 			...player3,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange4 = (e) => {
 		e.preventDefault()
@@ -90,6 +131,7 @@ export default function PlayerInscription() {
 			...player4,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange5 = (e) => {
 		e.preventDefault()
@@ -97,6 +139,7 @@ export default function PlayerInscription() {
 			...player5,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange6 = (e) => {
 		e.preventDefault()
@@ -104,6 +147,7 @@ export default function PlayerInscription() {
 			...player6,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange7 = (e) => {
 		e.preventDefault()
@@ -111,6 +155,7 @@ export default function PlayerInscription() {
 			...player7,
 			[e.target.name]: e.target.value
 		})
+
 	}
 	const handleChange8 = (e) => {
 		e.preventDefault()
@@ -118,6 +163,7 @@ export default function PlayerInscription() {
 			...player8,
 			[e.target.name]: e.target.value
 		})
+
 	}
 
 	const handleErrors1 = (e) => {
@@ -160,7 +206,7 @@ export default function PlayerInscription() {
 		setErrors(validate8(player8))
 	}
 
-	
+
 
 	const validate1 = (data) => {
 		let error = {}
@@ -428,123 +474,129 @@ export default function PlayerInscription() {
 				<div>
 					<h1>#1</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={e => handleChange1(e)} onKeyUp={handleErrors1}></input>
+					<input type="text" name='name' onChange={e => handleChange1(e)} onKeyUp={e => handleErrors1(e)}></input>
 					{errors.name1 ? <div><small>{errors.name1}</small></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={e => handleChange1(e)}  onKeyUp={handleErrors1}></input>
+					<input type="text" name='surname' onChange={e => handleChange1(e)}  onKeyUp={e => handleErrors1(e)}></input>
 					{errors.surname1 ? <div> <small>{errors.surname1}</small> <br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={e => handleChange1(e)}  onKeyUp={handleErrors1}></input>
+					<input type="number" name='dni' onChange={e => handleChange1(e)}  onKeyUp={e => handleErrors1(e)}></input>
 					{errors.dni1 ? <div><small>{errors.dni1}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#2</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange2}  onKeyUp={handleErrors2}></input>
+					<input type="text" name='name' onChange={handleChange2}  onKeyUp={e => handleErrors2(e)}></input>
 					{errors.name2 ? <div><small>{errors.name2}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange2}  onKeyUp={handleErrors2}></input>
+					<input type="text" name='surname' onChange={handleChange2}  onKeyUp={e => handleErrors2(e)}></input>
 					{errors.surname2 ? <div><small>{errors.surname2}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange2}  onKeyUp={handleErrors2}></input>
+					<input type="number" name='dni' onChange={handleChange2}  onKeyUp={e => handleErrors2(e)}></input>
 					{errors.dni2 ? <div><small>{errors.dni2}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#3</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange3}  onKeyUp={handleErrors3}></input>
+					<input type="text" name='name' onChange={handleChange3}  onKeyUp={e => handleErrors3(e)}></input>
 					{errors.name3 ? <div><small>{errors.name3}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange3}  onKeyUp={handleErrors3}></input>
+					<input type="text" name='surname' onChange={handleChange3}  onKeyUp={e => handleErrors3(e)}></input>
 					{errors.surname3 ? <div><small>{errors.surname3}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange3}  onKeyUp={handleErrors3}></input>
+					<input type="number" name='dni' onChange={handleChange3}  onKeyUp={e => handleErrors3(e)}></input>
 					{errors.dni3 ? <div><small>{errors.dni3}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#4</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange4}  onKeyUp={handleErrors4}></input>
+					<input type="text" name='name' onChange={handleChange4}  onKeyUp={e => handleErrors4(e)}></input>
 					{errors.name4 ? <div><small>{errors.name4}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange4}  onKeyUp={handleErrors4}></input>
+					<input type="text" name='surname' onChange={handleChange4}  onKeyUp={e => handleErrors4(e)}></input>
 					{errors.surname4 ? <div><small>{errors.surname4}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange4}  onKeyUp={handleErrors4}></input>
+					<input type="number" name='dni' onChange={handleChange4}  onKeyUp={e => handleErrors4(e)}></input>
 					{errors.dni4 ? <div><small>{errors.dni4}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#5</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange5}  onKeyUp={handleErrors5}></input>
+					<input type="text" name='name' onChange={handleChange5}  onKeyUp={e => handleErrors5(e)}></input>
 					{errors.name5 ? <div><small>{errors.name5}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange5}  onKeyUp={handleErrors5}></input>
+					<input type="text" name='surname' onChange={handleChange5}  onKeyUp={e => handleErrors5(e)}></input>
 					{errors.surname5 ? <div><small>{errors.surname5}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange5}  onKeyUp={handleErrors5}></input>
+					<input type="number" name='dni' onChange={handleChange5}  onKeyUp={e => handleErrors5(e)}></input>
 					{errors.dni5 ? <div><small>{errors.dni5}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#6</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange6}  onKeyUp={handleErrors6}></input>
+					<input type="text" name='name' onChange={handleChange6}  onKeyUp={e => handleErrors6(e)}></input>
 					{errors.name6 ? <div><small>{errors.name6}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange6}  onKeyUp={handleErrors6}></input>
+					<input type="text" name='surname' onChange={handleChange6}  onKeyUp={e => handleErrors6(e)}></input>
 					{errors.surname6 ? <div><small>{errors.surname6}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange6}  onKeyUp={handleErrors6}></input>
+					<input type="number" name='dni' onChange={handleChange6}  onKeyUp={e => handleErrors6(e)}></input>
 					{errors.dni6 ? <div><small>{errors.dni6}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#7</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange7}  onKeyUp={handleErrors7}></input>
+					<input type="text" name='name' onChange={handleChange7}  onKeyUp={e => handleErrors7(e)}></input>
 					{errors.name7 ? <div><small>{errors.name7}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange7}  onKeyUp={handleErrors7}></input>
+					<input type="text" name='surname' onChange={handleChange7}  onKeyUp={e => handleErrors7(e)}></input>
 					{errors.surname7 ? <div><small>{errors.surname7}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange7}  onKeyUp={handleErrors7}></input>
+					<input type="number" name='dni' onChange={handleChange7}  onKeyUp={e => handleErrors7(e)}></input>
 					{errors.dni7 ? <div><small>{errors.dni7}</small><br /></div> : false}
 					<br />
 				</div>
 				<div>
 					<h1>#8</h1>
 					<label>Nombre: </label>
-					<input type="text" name='name' onChange={handleChange8}  onKeyUp={handleErrors8}></input>
+					<input type="text" name='name' onChange={handleChange8}  onKeyUp={e => handleErrors8(e)}></input>
 					{errors.name8 ? <div><small>{errors.name8}</small><br /></div> : false}
 					<br />
 					<label>Apellido: </label>
-					<input type="text" name='surname' onChange={handleChange8}  onKeyUp={handleErrors8}></input>
+					<input type="text" name='surname' onChange={handleChange8}  onKeyUp={e => handleErrors8(e)}></input>
 					{errors.surname8 ? <div><small>{errors.surname8}</small><br /></div> : false}
 					<br />
 					<label>DNI: </label>
-					<input type="number" name='dni' onChange={handleChange8}  onKeyUp={handleErrors8}></input>
+					<input type="number" name='dni' onChange={handleChange8}  onKeyUp={e => handleErrors8(e)}></input>
 					{errors.dni8 ? <div><small>{errors.dni8}</small><br /></div> : false}
 					<br />
 				</div>
+				<h3><b>CONDICIÓN NECESARIA</b></h3>
+				<div> <p> Todos los datos suministrados deben <b>VERIDICOS</b>. En caso de que los datos no sean comprobables o incorrectos al momento de arrancar el partido, el equipo quedará <b>DESCALIFICADO.</b> </p></div>
+				<br />
+				<input type="checkbox" name='compromise' value={compromise} onChange={e=>handleCompromiseChange(e)}  /> Entiendo
+				{errors.compromise ? <div><small>{errors.compromise}</small></div> : false }
+				<br />
 				<div>
 					<button type="submit" onClick={handleSubmit}>Confirmar</button>
 				</div>
