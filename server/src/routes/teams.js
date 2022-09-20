@@ -4,7 +4,7 @@ const { create_teams, get_db_info } = require('../utils/utilsTeams');
 
 const router = Router();
 
-
+//ruta post para --> /teams
 router.post('/', async (req, res) => {
     let data = req.body;
     let data_teams = await Teams.findAll();
@@ -23,6 +23,8 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+// Ruta get para --> /teams y /teams?name=...
 router.get('/', async (req, res) => {
     try {
         const { name } = req.query;
@@ -39,6 +41,23 @@ router.get('/', async (req, res) => {
         }
     } catch (error) {
         console.log('Error en ruta get de teams', error);
+    }
+});
+
+//ruta delete para --> teams/:id
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        let team = await Teams.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        return res.status(200).send('Team deleted successfully');
+    } catch (error) {
+        console.log('Error at router.delete teams', error);
     }
 });
 

@@ -1,6 +1,33 @@
 const { Players, Teams, Tournaments } = require("../db");
+const preTournaments = require("../json/preTournaments.json");
 
-// CREATE TOURNAMENTS ______________________________
+//.........................................................................................//
+// PRELOAD TOURNAMENTS
+const preload_tournaments = async () => {
+  try {
+    let data = preTournaments.map((tournament) => {
+      return {
+        name: tournament.name,
+        amountOfTeams: tournament.amountOfTeams,
+        dateInit: tournament.dateInit,
+        dateFinish: tournament.dateFinish,
+        category: tournament.category,
+        genre: tournament.genre,
+        state: tournament.state,
+        description: tournament.description,
+      };
+    });
+
+    await Tournaments.bulkCreate(data);
+
+    return data;
+  } catch (error) {
+    console.log("ERROR EN preload_tournaments", error);
+  }
+};
+
+//.........................................................................................//
+// CREATE TOURNAMENTS
 const create_tournament = async (data) => {
   try {
     const {
@@ -10,6 +37,8 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      state,
+      description,
       teams,
     } = data;
 
@@ -20,6 +49,8 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      state,
+      description,
     });
 
     const teams_tournaments = await Teams.findAll({
@@ -34,21 +65,22 @@ const create_tournament = async (data) => {
   }
 };
 
-// GET TOURNAMENTS DB ______________________________
+//.........................................................................................//
+// GET TOURNAMENTS DB
 const get_tournaments_db = async () => {
   try {
     return await Tournaments.findAll({
-      include: {
-        model: Teams,
-        attributes: ["name"],
-        throught: {
-          attributes: [],
-        },
-      },
+      // include: {
+      //   model: Teams,
+      //   attributes: ["name"],
+      //   throught: {
+      //     attributes: [],
+      //   },
+      // },
     });
   } catch (error) {
     console.log("ERROR EN get_tournaments_db", error);
   }
 };
 
-module.exports = { create_tournament, get_tournaments_db };
+module.exports = { create_tournament, get_tournaments_db, preload_tournaments };

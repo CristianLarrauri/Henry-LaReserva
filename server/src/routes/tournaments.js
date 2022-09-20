@@ -4,10 +4,12 @@ const {
   create_tournament,
   get_tournaments_db,
 } = require("../utils/utilsTournaments");
+const { Op } = require("sequelize");
 
 const router = Router();
 
-// POST TOURNAMENTS _________________________________________
+//.........................................................................................//
+// POST /tournaments
 router.post("/", async (req, res) => {
   try {
     let data = req.body;
@@ -28,15 +30,105 @@ router.post("/", async (req, res) => {
       }
     }
   } catch (error) {
-    return res.status(404).send("ERROR EN RUTA POST/tournaments", error);
+    console.log("ERROR EN RUTA POST/tournaments");
   }
 });
 
-// GET TOURNAMENTS _________________________________________
+//.........................................................................................//
+// GET /tournaments && GET /tournaments?name="..."
 router.get("/", async (req, res) => {
   try {
     let { name } = req.query;
     let data = await get_tournaments_db();
+
+    if (req.query.genre && req.query.category && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          genre: req.query.genre,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.genre && req.query.category) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          genre: req.query.genre,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.genre && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          genre: req.query.genre,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.category && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.genre) {
+      let dataFilter = await Tournaments.findAll({
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+        where: {
+          genre: req.query.genre,
+        },
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.category) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
+
+    if (req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
     if (name) {
       let data_tournament = data.find(
@@ -48,10 +140,76 @@ router.get("/", async (req, res) => {
         ? res.status(200).send(data_tournament)
         : res.status(404).send("No se encontro el torneo");
     } else {
-      return res.status(200).send(data);
+      let data_total = await Tournaments.findAll({
+        offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+        // include: {
+        //   model: Teams,
+        //   attributes: ["name"],
+        //   through: {
+        //     attributes: [],
+        //   },
+        // },
+      });
+      return res.status(200).send(data_total);
     }
   } catch (error) {
-    return res.status(404).send("ERROR EN RUTA GET/tournaments");
+    console.log("ERROR EN RUTA GET/tournaments", error);
+  }
+});
+
+//.........................................................................................//
+// GET /tournaments/:id
+router.get("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let data = await get_tournaments_db();
+
+    if (id) {
+      let data_tournament = data.find((tournament) => tournament.id == id);
+
+      data_tournament
+        ? res.status(200).send(data_tournament)
+        : res.status(404).send("No esta el detalle del torneo");
+    }
+  } catch (error) {
+    console.log("No esta el detalle del torneo");
+  }
+});
+
+//.........................................................................................//
+// DELETE /tournaments
+router.delete("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+
+    if (id) {
+      let data = await Tournaments.destroy({
+        where: {
+          id,
+        },
+      });
+    }
+    return res.status(200).send("Tournament successfully deleted");
+  } catch (error) {
+    return res.status(400).send("ERROR EN DELETE/TOURNAMENTS", error);
+  }
+});
+
+//.........................................................................................//
+// PUT /tournaments
+router.put("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let editTournament = req.body;
+
+    let data = await Tournaments.update(editTournament, {
+      where: { id },
+    });
+    return res.status(200).send("Tournament successfully edited");
+  } catch (error) {
+    return res.status(400).send("ERROR EN PUT/TOURNAMENTS", error);
   }
 });
 

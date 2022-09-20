@@ -8,6 +8,7 @@
 .mainWrapper p{
     font-size: 1.1em;
     color: #959FA8;
+    margin-left: 10px;
 }
 
 .icon{
@@ -27,6 +28,7 @@
     width: 60%;
     justify-content: space-around;
     align-items: center;
+    margin-right: 10px;
 }
 
 .mainWrapper:hover{

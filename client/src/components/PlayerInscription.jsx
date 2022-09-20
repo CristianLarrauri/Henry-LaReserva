@@ -1,8 +1,13 @@
 import React from 'react';
+
 import axios from 'axios';
 
 
 //AGREGAR EN LINEA 74 RUTA PARA INSCRIPCION
+
+import Footer from '../components/Footer';
+import Nav from '../components/Nav';
+
 
 export default function PlayerInscription() {
 
@@ -466,6 +471,7 @@ export default function PlayerInscription() {
 	}
 
 	return (
+
 		<div>
 			<h1>NavBar</h1>
 			<h1>Nombre: del torneo</h1>
@@ -601,6 +607,7 @@ export default function PlayerInscription() {
 					<button type="submit" onClick={handleSubmit}>Confirmar</button>
 				</div>
 			</form>
+
 		</div>
 	);
 }

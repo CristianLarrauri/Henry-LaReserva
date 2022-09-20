@@ -70,7 +70,9 @@ export default function TeamInscription(props) {
 
 
 
+
 	return (
+
 		<div>
 			{/* <h2>Incripcion Torneo {tournament.name}</h2>
 			<img src={tournament.image} alt={tournament.name} />
@@ -91,6 +93,7 @@ export default function TeamInscription(props) {
 			<Link to="/inscription/players">
 				<button>Continua el registro</button>
 			</Link>
+
 		</div>
 	);
 }

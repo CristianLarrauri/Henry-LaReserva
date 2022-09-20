@@ -1,0 +1,169 @@
+.mainWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 30px;
+}
+
+.mainForm{
+    background-color: #F3F4F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1200px;
+    margin: 0;
+    animation: formAppear 1s linear forwards;
+    margin-top: 30px;
+}
+
+.infoSection{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    min-height: 50px;
+    position: relative;
+}
+
+.dateSection{
+    width: 80%;
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+    min-height: 50px;
+    position: relative;
+}
+
+.mainWrapper label{
+    color: #2DCC70;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.mainWrapper input, .mainWrapper select{
+    outline: none;
+    padding-left: 10px;
+    font-size: 1.1em;
+    color:rgba(0,0,0,.5);
+    font-weight: 500;
+}
+
+.stringInput{
+    background-color:#F3F4F7;
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-color: #2DCC70;
+    width: 50%;
+}
+
+.dropdownInput{
+    width: 50%;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.dateInput{
+    border-radius: 10px;
+    width: 45%;
+}
+
+.dateInputsWrapper{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sendBtn, .backBtn, .okBtn{
+    background-color: white;
+    color:#2DCC70;
+    width: 200px;
+    height: 60px;
+    font-weight: bolder;
+    border-radius: 60px;
+    transition-duration: .4s;
+}
+
+.sendBtn{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.sendBtn:hover{
+    transform: scale(1.1);
+    transition-duration: .4s;
+    background-color: #2DCC70;
+    color: white;
+}
+
+.backBtn{
+    position: absolute;
+    left: 1%;
+    background-color: #2DCC70;
+    color: white;
+    animation: buttonEnter 0.8s ease-out forwards;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.backBtn:hover, .okBtn:hover{
+    transition-duration: .4s;
+    transform: scale(1.1);
+}
+
+.linkBack{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkBack *{
+    margin-left: 10px;
+}
+
+.error_visible, .error_hidden{
+    background-color: darkred;
+    position: absolute;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    padding: 2px;
+    color: white;
+    box-shadow: 10px 10px 5px rgba(0,0,0,.3);
+    min-width: 12%;
+}
+
+.error_visible{
+    opacity: 1;
+    transition-duration: 1s;
+}
+
+.error_hidden{
+    opacity: 0;
+    transition-duration: 1s;
+}
+
+.mainWrapper h1{
+    font-size:2em;
+    font-weight: bolder;
+    color: #2DCC70;
+}
+
+
+@keyframes buttonEnter{
+    from{
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes formAppear{
+    from{
+        opacity: 0;
+    }
+}
+
