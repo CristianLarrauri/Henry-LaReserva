@@ -180,5 +180,37 @@ router.get("/:id", async (req, res) => {
 
 //.........................................................................................//
 // DELETE /tournaments
+router.delete("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+
+    if (id) {
+      let data = await Tournaments.destroy({
+        where: {
+          id,
+        },
+      });
+    }
+    return res.status(200).send("Tournament successfully deleted");
+  } catch (error) {
+    return res.status(400).send("ERROR EN DELETE/TOURNAMENTS", error);
+  }
+});
+
+//.........................................................................................//
+// PUT /tournaments
+router.put("/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let editTournament = req.body;
+
+    let data = await Tournaments.update(editTournament, {
+      where: { id },
+    });
+    return res.status(200).send("Tournament successfully edited");
+  } catch (error) {
+    return res.status(400).send("ERROR EN PUT/TOURNAMENTS", error);
+  }
+});
 
 module.exports = router;
