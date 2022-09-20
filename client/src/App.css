@@ -39,3 +39,11 @@
 		transform: rotate(360deg);
 	}
 }
+
+select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 1px;
+	text-overflow: '';
+	outline: none;
+}
