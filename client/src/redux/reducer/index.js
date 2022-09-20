@@ -3,6 +3,7 @@ import {
   GET_ALL_TOURNAMENTS,
   TOURNAMENT_DETAILS,
   SEARCH_TOURNAMENTS,
+  GET_TOURNAMENTS_HOME,
 } from "../actions/index.js";
 
 let initialState = {
@@ -12,6 +13,7 @@ let initialState = {
   players: [],
   users: [],
   userProfile: {},
+  tournamentsHome: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -26,7 +28,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         tournaments: action.payload,
       };
-
+      case GET_TOURNAMENTS_HOME:
+      return {
+        ...state,
+        tournamentsHome: action.payload,
+      };
     case SEARCH_TOURNAMENTS:
       return {
         ...state,
