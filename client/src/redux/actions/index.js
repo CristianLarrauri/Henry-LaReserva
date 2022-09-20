@@ -26,11 +26,18 @@ export const createTournament = (payload) => {
   };
 };
 
-export const getAllTournaments = (page, order, property, category, genre) => {
+export const getAllTournaments = (
+  page,
+  order,
+  property,
+  category,
+  genre,
+  state
+) => {
   return async (dispatch) => {
     try {
       const info = await axios.get(
-        `http://localhost:3001/tournaments?page=${page}&order=${order}&property=${property}&category=${category}&genre=${genre}`
+        `http://localhost:3001/tournaments?page=${page}&order=${order}&property=${property}&category=${category}&genre=${genre}&state=${state}`
       );
       dispatch({
         type: GET_ALL_TOURNAMENTS,
