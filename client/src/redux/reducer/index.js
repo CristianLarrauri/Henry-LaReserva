@@ -1,12 +1,9 @@
 import {
 	CREATE_TOURNAMENT,
 	GET_ALL_TOURNAMENTS,
-	NAME_SORT,
-	GENDER_FILTER,
-	DIV_FILTER,
 	TOURNAMENT_DETAILS,
 	SEARCH_TOURNAMENTS
-} from '../actions';
+} from '../actions/index.js';
 
 let initialState = {
 	tournaments: [],
@@ -24,25 +21,12 @@ function rootReducer(state = initialState, action) {
 				...state
 			};
 		case GET_ALL_TOURNAMENTS:
+			console.log('entrando', state.tournaments);
 			return {
 				...state,
 				tournaments: action.payload
 			};
-		case NAME_SORT:
-			return {
-				...state,
-				tournaments: action.payload
-			};
-		case GENDER_FILTER:
-			return {
-				...state,
-				tournaments: action.payload
-			};
-		case DIV_FILTER:
-			return {
-				...state,
-				tournaments: action.payload
-			};
+
 		case SEARCH_TOURNAMENTS:
 			return {
 				...state,
@@ -53,7 +37,7 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournamentDetail: action.payload
 			};
-		default: 
+		default:
 			return state;
 	}
 }

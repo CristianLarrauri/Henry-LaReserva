@@ -25,11 +25,13 @@ export const createTournament = (payload) => {
 	};
 };
 
-export const getAllTournaments = () => {
-	return async function (dispatch) {
+export const getAllTournaments = (page, order, property, category, genre) => {
+	return async (dispatch) => {
 		try {
-			const info = await axios.get('');
-			return dispatch({
+			const info = await axios.get(
+				`http://localhost:3001/tournaments?page=${page}&order=${order}&property=${property}&category=${category}&genre=${genre}`
+			);
+			dispatch({
 				type: GET_ALL_TOURNAMENTS,
 				payload: info.data
 			});
@@ -39,24 +41,24 @@ export const getAllTournaments = () => {
 	};
 };
 
-export const nameSort = (payload) => {
-	return async function (dispatch) {
-		try {
-			const info = await axios.get('', payload);
-			return dispatch({
-				type: NAME_SORT,
-				payload: info.data
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
-};
+// export const nameSort = (payload) => {
+// 	return async function (dispatch) {
+// 		try {
+// 			const info = await axios.get('', payload);
+// 			return dispatch({
+// 				type: NAME_SORT,
+// 				payload: info.data
+// 			});
+// 		} catch (error) {
+// 			console.log(error);
+// 		}
+// 	};
+// };
 
-export const tournamentDetails = (payload) => {
+export const tournamentDetails = (id) => {
 	return async function (dispatch) {
 		try {
-			const info = await axios.get('', payload);
+			const info = await axios.get(`http://localhost:3001/tournaments/${id}`);
 			return dispatch({
 				type: TOURNAMENT_DETAILS,
 				payload: info.data
@@ -67,34 +69,33 @@ export const tournamentDetails = (payload) => {
 	};
 };
 
-export const genderFilter = (payload) => {
-	return async function (dispatch) {
-		try {
-			const info = await axios.get('', payload);
-			return dispatch({
-				type: GENDER_FILTER,
-				payload: info.data
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
-};
+// export const genderFilter = (payload) => {
+// 	return async function (dispatch) {
+// 		try {
+// 			const info = await axios.get('', payload);
+// 			return dispatch({
+// 				type: GENDER_FILTER,
+// 				payload: info.data
+// 			});
+// 		} catch (error) {
+// 			console.log(error);
+// 		}
+// 	};
+// };
 
-export const divFilter = (payload) => {
-	return async function (dispatch) {
-		try {
-			const info = await axios.get('', payload);
-			return dispatch({
-				type: DIV_FILTER,
-				payload: info.data
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-};
+// export const divFilter = (payload) => {
+// 	return async function (dispatch) {
+// 		try {
+// 			const info = await axios.get('', payload);
+// 			return dispatch({
+// 				type: DIV_FILTER,
+// 				payload: info.data
+// 			});
+// 		} catch (error) {
+// 			console.log(error);
+// 		}
+// 	};
+// };
 
 
 export const searchTournaments = (name) => {
