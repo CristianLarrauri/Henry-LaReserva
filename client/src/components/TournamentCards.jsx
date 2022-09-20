@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTournaments } from '../redux/actions/index.js';
+import { Link } from 'react-router-dom';
 
 export default function TournamentCards() {
 	const dispatch = useDispatch();
 	const tournaments = useSelector((state) => state.tournaments);
+	console.log('tourn', tournaments);
 	const [page, setPage] = useState(0);
 
 	const handlePrev = (event) => {
@@ -60,15 +62,17 @@ export default function TournamentCards() {
 	}, [dispatch, page, order, property, category, genre]);
 
 	return (
-		<div>
-			<div>
-				<div className="flex container-xl px-[35%] py-[3%] border-2 rounded-lg mt-[10%] justify-center">
-					<div className="container">
-						<h3 className="text-md font-mono mt-1 items-center justify-between">
+		<div className='container-xl mt-5'>
+
+			{/*  CONTAINER DE FILTROS  */}
+			<div className='contianer-xl mb-[1%] mt[2%] border-2 border-black'>
+				<div className="flex container-xl border-2 rounded-lg justify-between items-center">
+					<div className="container ml-[10%] ">
+						<h3 className="text-md font-mono items-center justify-between">
 							Mostrar torneos:
 						</h3>
 						<select
-							className=" text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded-lg"
+							className=" text-md  bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded-lg"
 							name="genre"
 							onChange={(e) => handleFilterGenre(e)}
 						>
@@ -112,7 +116,7 @@ export default function TournamentCards() {
 					<div className="container">
 						<button
 							onClick={(e) => handleGetAllTournaments(e)}
-							className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg mt-[28%] ml-3"
+							className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg ml-3"
 						>
 							Quitar filtros
 						</button>
@@ -120,7 +124,8 @@ export default function TournamentCards() {
 				</div>
 			</div>
 
-			<div className="bg-red-500 ml-3 mr-3 rounded-lg mb-3 mt-5 justify-between items-center flex">
+			{/*  CONTAINER DE CARDS  */}
+			<div className="bg-red-500 rounded-lg mt-5 justify-between items-center flex">
 				<button
 					className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg ml-5"
 					onClick={(event) => handlePrev(event)}
@@ -131,13 +136,15 @@ export default function TournamentCards() {
 					? tournaments?.map((ele) => {
 							return (
 								<div>
-									<Card
-										key={ele.id}
-										name={ele.name}
-										dateInit={ele.dateInit}
-										genre={ele.genre}
-										category={ele.category}
-									/>
+									<Link to={`/details/${ele.id}`}>
+										<Card
+											key={ele.id}
+											name={ele.name}
+											dateInit={ele.dateInit}
+											genre={ele.genre}
+											category={ele.category}
+										/>
+									</Link>
 								</div>
 							);
 					  })
@@ -149,6 +156,7 @@ export default function TournamentCards() {
 					{'>>'}
 				</button>
 			</div>
+
 		</div>
 	);
 }
