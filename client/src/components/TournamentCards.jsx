@@ -37,23 +37,29 @@ export default function TournamentCards() {
 		setProperty('name');
 		setOrder(e.target.value);
 	};
+	const [valueCategory, setValueCategory] = useState('');
+	const [valueGenre, setValueGenre] = useState('');
 	const [category, setCategory] = useState('');
 	const [genre, setGenre] = useState('');
 
 	const handleFilterCategory = (e) => {
 		e.preventDefault();
 		setCategory(e.target.value);
+		setValueCategory(e.target.value);
 	};
 
 	const handleFilterGenre = (e) => {
 		e.preventDefault();
 		setGenre(e.target.value);
+		setValueGenre(e.target.value);
 	};
 
 	const handleGetAllTournaments = (e) => {
 		e.preventDefault();
 		setCategory('');
 		setGenre('');
+		setValueCategory('');
+		setValueGenre('');
 		setOrder('ASC');
 	};
 
@@ -62,10 +68,9 @@ export default function TournamentCards() {
 	}, [dispatch, page, order, property, category, genre]);
 
 	return (
-		<div className='container-xl mt-5'>
-
+		<div className="container-xl mt-5">
 			{/*  CONTAINER DE FILTROS  */}
-			<div className='contianer-xl mb-[1%] mt[2%] border-2 border-black'>
+			<div className="contianer-xl mb-[1%] mt[2%] border-2 border-black">
 				<div className="flex container-xl border-2 rounded-lg justify-between items-center">
 					<div className="container ml-[10%] ">
 						<h3 className="text-md font-mono items-center justify-between">
@@ -75,6 +80,7 @@ export default function TournamentCards() {
 							className=" text-md  bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded-lg"
 							name="genre"
 							onChange={(e) => handleFilterGenre(e)}
+							value={valueGenre}
 						>
 							<option value="">Indistinto</option>
 							<option value="Masculino">Masculinos</option>
@@ -85,6 +91,7 @@ export default function TournamentCards() {
 							className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
 							name="category"
 							onChange={(e) => handleFilterCategory(e)}
+							value={valueCategory}
 						>
 							<option value="">Indistinto</option>
 							<option value="Sub20">Sub 20</option>
@@ -156,7 +163,6 @@ export default function TournamentCards() {
 					{'>>'}
 				</button>
 			</div>
-
 		</div>
 	);
 }
