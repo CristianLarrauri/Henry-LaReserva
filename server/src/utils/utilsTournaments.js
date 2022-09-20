@@ -11,9 +11,10 @@ const preload_tournaments = async () => {
         amountOfTeams: tournament.amountOfTeams,
         dateInit: tournament.dateInit,
         dateFinish: tournament.dateFinish,
-        description: tournament.description,
         category: tournament.category,
         genre: tournament.genre,
+        state: tournament.state,
+        description: tournament.description,
       };
     });
 
@@ -36,6 +37,7 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      state,
       description,
       teams,
     } = data;
@@ -47,6 +49,7 @@ const create_tournament = async (data) => {
       dateFinish,
       category,
       genre,
+      state,
       description,
     });
 

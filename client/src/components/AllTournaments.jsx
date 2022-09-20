@@ -8,8 +8,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTournaments } from "../redux/actions/index.js";
 
-///IMPORTANTE!! Este componente hay que rearmarlo, solo va a quedar asi hasta la demo del lunes.
-
 export default function AllTournaments() {
   const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournaments);
@@ -19,16 +17,16 @@ export default function AllTournaments() {
     if (page <= 1) {
       setPage(0);
     } else {
-      setPage(page - 4);
+      setPage(page - 6);
     }
   };
 
   const handleNext = (event) => {
     event.preventDefault();
-    if (tournaments?.length < 4) {
+    if (tournaments?.length < 6) {
       return;
     } else {
-      setPage(page + 4);
+      setPage(page + 6);
     }
   };
 
@@ -41,6 +39,7 @@ export default function AllTournaments() {
   };
   const [category, setCategory] = useState("");
   const [genre, setGenre] = useState("");
+  const [state, setState] = useState("");
 
   const handleFilterCategory = (e) => {
     e.preventDefault();
@@ -51,6 +50,10 @@ export default function AllTournaments() {
     e.preventDefault();
     setGenre(e.target.value);
   };
+  const handleFilterState = (e) => {
+    e.preventDefault();
+    setState(e.target.value);
+  };
 
   const handleGetAllTournaments = (e) => {
     e.preventDefault();
@@ -59,8 +62,8 @@ export default function AllTournaments() {
     setOrder("ASC");
   };
   useEffect(() => {
-    dispatch(getAllTournaments(page, order, property, category, genre));
-  }, [dispatch, page, order, property, category, genre]);
+    dispatch(getAllTournaments(page, order, property, category, genre, state));
+  }, [dispatch, page, order, property, category, genre, state]);
 
   return (
     <div>
@@ -83,9 +86,9 @@ export default function AllTournaments() {
               onChange={(e) => handleFilterGenre(e)}
             >
               <option value="">Indistinto</option>
-              <option value="Masculino">Masculinos</option>
-              <option value="Femenino">Femeninos</option>
-              <option value="Mixto">Mixtos</option>
+              <option value="Male">Masculinos</option>
+              <option value="Female">Femeninos</option>
+              <option value="Mixed">Mixtos</option>
             </select>
             <select
               className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
@@ -94,8 +97,19 @@ export default function AllTournaments() {
             >
               <option value="">Indistinto</option>
               <option value="Sub20">Sub 20</option>
-              <option value="Libre">Libre</option>
+              <option value="Free">Libre</option>
               <option value="Senior">Senior</option>
+            </select>
+
+            <select
+              className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
+              name="state"
+              onChange={(e) => handleFilterState(e)}
+            >
+              <option value="">Indistinto</option>
+              <option value="Completed">Finalizados</option>
+              <option value="In Progress">Actual</option>
+              <option value="Comming Soon">Proximos</option>
             </select>
           </div>
 
