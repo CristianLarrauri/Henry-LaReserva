@@ -7,6 +7,7 @@ export const DIV_FILTER = "DIV_FILTER";
 export const SEARCH_TOURNAMENTS = "SEARCH_TOURNAMENTS";
 export const TOURNAMENT_DETAILS = "TOURNAMENT_DETAILS";
 export const TORNEITOS = "TORNEITOS";
+export const GET_TOURNAMENTS_HOME = "GET_TOURNAMENTS_HOME"
 
 export const createTournament = (payload) => {
   return async function (dispatch) {
@@ -117,3 +118,23 @@ export const searchTournaments = (name) => {
     }
   };
 };
+
+export const getTournamentsHome = (
+  page,
+  order,
+  property,
+) => {
+  return async (dispatch) => {
+    try {
+      const info = await axios.get(
+        `http://localhost:3001/home?page=${page}&order=${order}&property=${property}`
+      );
+      dispatch({
+        type: GET_TOURNAMENTS_HOME,
+        payload: info.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}; 
