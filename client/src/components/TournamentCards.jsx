@@ -42,23 +42,29 @@ export default function TournamentCards() {
 		setProperty('name');
 		setOrder(e.target.value);
 	};
+	const [valueCategory, setValueCategory] = useState('');
+	const [valueGenre, setValueGenre] = useState('');
 	const [category, setCategory] = useState('');
 	const [genre, setGenre] = useState('');
 
 	const handleFilterCategory = (e) => {
 		e.preventDefault();
 		setCategory(e.target.value);
+		setValueCategory(e.target.value);
 	};
 
 	const handleFilterGenre = (e) => {
 		e.preventDefault();
 		setGenre(e.target.value);
+		setValueGenre(e.target.value);
 	};
 
 	const handleGetAllTournaments = (e) => {
 		e.preventDefault();
 		setCategory('');
 		setGenre('');
+		setValueCategory('');
+		setValueGenre('');
 		setOrder('ASC');
 	};
 
@@ -78,6 +84,7 @@ export default function TournamentCards() {
 							hover:bg-green-700 hover:text-white duration-300 cursor-pointer"
 							name="category"
 							onChange={(e) => handleFilterCategory(e)}
+							value={valueCategory}
 						>
 							<option className='font-medium' value="">Indistinto</option>
 							<option className='font-medium' value="Sub20">Sub 20</option>
@@ -93,6 +100,7 @@ export default function TournamentCards() {
 							hover:bg-green-700 hover:text-white duration-300 cursor-pointer"
 							name="genre"
 							onChange={(e) => handleFilterGenre(e)}
+							value={valueGenre}
 						>
 							<option className='font-medium' value="">Indistinto</option>
 							<option className='font-medium' value="Masculino">Masculinos</option>
