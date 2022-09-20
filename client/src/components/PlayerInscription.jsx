@@ -155,7 +155,7 @@ export default function PlayerInscription() {
 			...player7,
 			[e.target.name]: e.target.value
 		})
-
+ 
 	}
 	const handleChange8 = (e) => {
 		e.preventDefault()
