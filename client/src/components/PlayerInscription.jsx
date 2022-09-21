@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPlayers } from '../redux/actions';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import popUpStyles from '../styles/PopUpStyles.module.css';
+import { Link } from 'react-router-dom';
 
 export default function PlayerInscription() {
 	const dispatch = useDispatch();
 	const [team, setTeam] = React.useState([]);
+	//Esto controla el popUp, si esta vacio no aparece, pero si tiene algo aparece el popUp
+	//Si queres usarlo setealo con el siguiente formato: {title: 'TituloPopUp', msg:'Mensaje del popUp'}
+	const [popUpError, setPopUpError] = useState({});
 
 	//Estados locales para cada jugador que luego seran metidos al array "team"
-
 	const [player1, setPlayer1] = React.useState({
 		name: '',
 		surname: '',
@@ -61,17 +65,15 @@ export default function PlayerInscription() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (team.length < 8) {
-			alert('Faltan jugadores');
+			setPopUpError({title:'Error!',msg:'Faltan jugadores.'})//Esto es un alert, en la linea 12 la explicacion
 		} else if (Object.values(errors).length > 0) {
-			alert('Faltan datos o hay datos incorrectos');
+			setPopUpError({title:'Error!', msg: 'Faltan datos o hay datos incorrectos.'});
 		} else if (!compromise) {
-			alert(
-				'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo"'
-			);
+			setPopUpError({title:'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".'});
 		} else {
 			dispatch(createPlayers(team));
-			alert('Equipo inscripto');
-			console.log(team);
+			setPopUpError({title:'Exito!', msg: 'Equipo inscripto correctamente.'});
+			/* console.log(team); */
 		}
 	};
 
@@ -415,11 +417,649 @@ export default function PlayerInscription() {
 	};
 
 	return (
-		<div>
-			<h1>NavBar</h1>
-			<h1>Nombre: del torneo</h1>
-			<h1>Incribe los miembros del equipo</h1>
-			<form>
+		<div className='w-full min-h-screen flex flex-col justify-between'>
+			<Nav/>
+
+			{/*Esto es el popUp*/}
+			<div
+				className={
+					popUpError.title
+					? popUpStyles.popUpOverlay
+					: popUpStyles.popUpOverlay_hidden
+				}>
+
+				<div className={popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+						<h2>{popUpError.title}</h2>
+						<p>{popUpError.msg}</p>
+						<button
+							onClick={() => setPopUpError({})}
+							className={popUpStyles.okBtn}
+						>
+							Ok
+						</button>
+					</div>
+			</div>
+
+
+			<div className='min-h-screen flex flex-col items-center relative'>
+
+				<button className='absolute w-[200px] h-[70px] bg-green-500
+				text-xl font-medium rounded-full left-3 top-6 text-white
+				hover:scale-110 duration-300 animate-appear'>
+					<Link to='/home'>
+						Volver
+					</Link>
+				</button>
+
+				<h2 className='text-3xl font-bold text-green-500 mb-10 mt-24 animate-appear'>Inscribi a tu equipo</h2>
+
+				<form className='bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] animate-appear'>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 1</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange1(e)}
+								onKeyUp={(e) => handleErrors1(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name1?{opacity:1}:{opacity:0}}>
+								<p>{errors.name1}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange1(e)}
+								onKeyUp={(e) => handleErrors1(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname1?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname1}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange1(e)}
+								onKeyUp={(e) => handleErrors1(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni1?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni1}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 2</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange2(e)}
+								onKeyUp={(e) => handleErrors2(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name2?{opacity:1}:{opacity:0}}>
+								<p>{errors.name2}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange2(e)}
+								onKeyUp={(e) => handleErrors2(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname2?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname2}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange2(e)}
+								onKeyUp={(e) => handleErrors2(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni2?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni2}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 3</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange3(e)}
+								onKeyUp={(e) => handleErrors3(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name3?{opacity:1}:{opacity:0}}>
+								<p>{errors.name3}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange3(e)}
+								onKeyUp={(e) => handleErrors3(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname3?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname3}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange3(e)}
+								onKeyUp={(e) => handleErrors3(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni3?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni3}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 4</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange4(e)}
+								onKeyUp={(e) => handleErrors4(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name4?{opacity:1}:{opacity:0}}>
+								<p>{errors.name4}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange4(e)}
+								onKeyUp={(e) => handleErrors4(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname4?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname4}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange4(e)}
+								onKeyUp={(e) => handleErrors4(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni4?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni4}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 5</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange5(e)}
+								onKeyUp={(e) => handleErrors5(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name5?{opacity:1}:{opacity:0}}>
+								<p>{errors.name5}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange5(e)}
+								onKeyUp={(e) => handleErrors5(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname5?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname5}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange5(e)}
+								onKeyUp={(e) => handleErrors5(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni5?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni5}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 6</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange6(e)}
+								onKeyUp={(e) => handleErrors6(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name6?{opacity:1}:{opacity:0}}>
+								<p>{errors.name6}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange6(e)}
+								onKeyUp={(e) => handleErrors6(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname6?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname6}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange6(e)}
+								onKeyUp={(e) => handleErrors6(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni6?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni6}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 7</h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange7(e)}
+								onKeyUp={(e) => handleErrors7(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name7?{opacity:1}:{opacity:0}}>
+								<p>{errors.name7}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange7(e)}
+								onKeyUp={(e) => handleErrors7(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname7?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname7}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange7(e)}
+								onKeyUp={(e) => handleErrors7(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni7?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni7}</p>
+							</div>
+						</div>
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador </h2>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange8(e)}
+								onKeyUp={(e) => handleErrors8(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.name8?{opacity:1}:{opacity:0}}>
+								<p>{errors.name8}</p>
+							</div>
+
+						</div>
+						
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange8(e)}
+								onKeyUp={(e) => handleErrors8(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.surname8?{opacity:1}:{opacity:0}}>
+								<p>{errors.surname8}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>		
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="number"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange8(e)}
+								onKeyUp={(e) => handleErrors8(e)}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+							style={errors.dni8?{opacity:1}:{opacity:0}}>
+								<p>{errors.dni8}</p>
+							</div>
+						</div>
+					</div>
+
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 flex items-center flex-col relative'>
+						<h3>
+							<b>CONDICIÓN NECESARIA</b>
+						</h3>
+
+						<p className='mt-3'>
+							Todos los datos suministrados deben <b>VERIDICOS</b>. En caso de que
+							los datos no sean comprobables o incorrectos al momento de arrancar
+							el partido, el equipo quedará <b>DESCALIFICADO.</b>
+						</p>
+
+
+						<div className='flex mt-6'>
+							<input
+								type="checkbox"
+								name="compromise"
+								className='w-[30px]'
+								value={compromise}
+								onChange={(e) => handleCompromiseChange(e)}
+							/>
+							<p className='ml-1 font-medium text-lg'>Entiendo y acepto las condiciones.</p>
+						</div>
+
+						<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-0 bottom-0 duration-300'
+							style={errors.compromise?{opacity:1}:{opacity:0}}>
+							<p>{errors.compromise}</p>
+						</div>
+
+						<button type="submit" onClick={handleSubmit}
+						className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar
+						</button>
+					</div>
+				<div>
+					
+			</div>
+
+			</form>
+
+			</div>
+			
+			<Footer/>
+		</div>
+	);
+}
+
+
+{/*CODIGO ORIGINAL DE MAURO, BORRAR MAS ADELANTE SI YA NO SIRVE*/}
+{/* <form>
 				<div>
 					<h1>#1</h1>
 					<label>Nombre: </label>
@@ -437,6 +1077,7 @@ export default function PlayerInscription() {
 						false
 					)}
 					<br />
+					
 					<label>Apellido: </label>
 					<input
 						type="text"
@@ -453,6 +1094,7 @@ export default function PlayerInscription() {
 						false
 					)}
 					<br />
+
 					<label>DNI: </label>
 					<input
 						type="number"
@@ -469,7 +1111,10 @@ export default function PlayerInscription() {
 						false
 					)}
 					<br />
+
 				</div>
+
+
 				<div>
 					<h1>#2</h1>
 					<label>Nombre: </label>
@@ -827,6 +1472,7 @@ export default function PlayerInscription() {
 					)}
 					<br />
 				</div>
+
 				<h3>
 					<b>CONDICIÓN NECESARIA</b>
 				</h3>
@@ -860,7 +1506,4 @@ export default function PlayerInscription() {
 						Confirmar
 					</button>
 				</div>
-			</form>
-		</div>
-	);
-}
+			</form> */}
