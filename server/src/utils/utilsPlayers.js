@@ -12,7 +12,6 @@ const preload_players = async () => {
     });
 
     await Players.bulkCreate(data);
-    
 
     return data;
   } catch (error) {
@@ -21,22 +20,16 @@ const preload_players = async () => {
 };
 
 const create_players = async (data) => {
+  const { name, surname, dni } = data;
   try {
-    const { name, surname, dni, teams } = data;
-
-    const new_players = await Players.create({
+    let new_players = await Players.create({
       name,
       surname,
       dni,
     });
-    const players_teams = await Teams.findAll({
-      where: { name: teams },
-    });
-    new_players.addTeams(players_teams);
-
     return new_players;
   } catch (error) {
-    console.log("ROMPO EN UTILISPLAYERS", error);
+    console.log("ERROR EN CREATE_PLAYER", error);
   }
 };
 
@@ -52,7 +45,7 @@ const players_db = async () => {
       },
     });
   } catch (error) {
-    console.log("ERROR EN UTILSGET", error);
+    console.log("ERROR EN PLAYERS DB", error);
   }
 };
 

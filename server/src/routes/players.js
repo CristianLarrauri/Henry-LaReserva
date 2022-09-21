@@ -7,20 +7,37 @@ const router = Router();
 router.post("/", async (req, res) => {
   try {
     const data = req.body;
-    let data_player = await Players.findAll();
-    if (!data.name || !data.surname || !data.dni) {
-      res.status(400).send("Faltan campos obligatorios");
-    }
-    if (data.name && data.surname && data.dni) {
-      let players = data_player.find((e) => e.dni == data.dni);
+    const data_player = await Players.findAll();
 
-      if (!players) {
+    if (!data) {
+      res.status(400).send("Faltan campos");
+    }
+    if (data) {
+      let player = data_player.filter((p) => p.dni === data.dni);
+
+      if (player.length) {
+        return res.status(400).send("Ya existe el jugador");
+      } else {
         create_players(data);
-        return res.status(200).send("Jugador creado con exito.");
-      } else if (players) {
-        res.status(400).send("El jugador ya existe");
+        return res.status(200).send(data);
       }
     }
+
+    // for (const e of data) {
+    //   let comparation = e.dni === data_player.dni;
+
+    //   if (comparation) {
+    //     res.status(400).send("Jugador existente");
+    //   } else {
+    //     create_players(data);
+    //     data_player.filter((e) => e.dni === data_player.dni);
+
+    // comparation.length
+    // ? res.status(200).send(comparation)
+    // : res.status(400).send("Ya existe este jugador");
+    //     res.status(200).send("Jugador creado con exito");
+    //   }
+    // }
   } catch (error) {
     console.log("ROMPO EN RUTA POST DE PLAYERS", error);
   }
