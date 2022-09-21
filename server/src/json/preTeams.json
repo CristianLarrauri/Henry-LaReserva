@@ -1,62 +1,77 @@
 [
   {
     "id": 11,
-    "name": "Manchester Not United"
+    "name": "Manchester Not United",
+    "points": 0
   },
   {
     "id": 12,
-    "name": "Man Blue"
+    "name": "Man Blue",
+    "points": 0
   },
   {
     "id": 10,
-    "name": "Los Magios"
+    "name": "Los Magios",
+    "points": 0
   },
   {
     "id": 2,
-    "name": "Riber Plate"
+    "name": "Riber Plate",
+    "points": 0
   },
   {
     "id": 15,
-    "name": "Arsenal"
+    "name": "Arsenal",
+    "points": 0
   },
   {
     "id": 13,
-    "name": "Liverpal"
+    "name": "Liverpal",
+    "points": 0
   },
   {
     "id": 5,
-    "name": "Rasin Club"
+    "name": "Rasin Club",
+    "points": 0
   },
   {
     "id": 8,
-    "name": "Rosario Central"
+    "name": "Rosario Central",
+    "points": 0
   },
   {
     "id": 6,
-    "name": "San Lorenzo de ?"
+    "name": "San Lorenzo de ?",
+    "points": 0
   },
   {
     "id": 4,
-    "name": "Independiente"
+    "name": "Independiente",
+    "points": 0
   },
   {
     "id": 1,
-    "name": "Boca Juniors"
+    "name": "Boca Juniors",
+    "points": 0
   },
   {
     "id": 3,
-    "name": "Talleres"
+    "name": "Talleres",
+    "points": 0
   },
   {
     "id": 14,
-    "name": "Aldosivi"
+    "name": "Aldosivi",
+    "points": 0
   },
   {
     "id": 9,
-    "name": "Newell's"
+    "name": "Newell's",
+    "points": 0
   },
   {
     "id": 7,
     "name": "Colon"
+  ,  "points": 0
   }
 ]

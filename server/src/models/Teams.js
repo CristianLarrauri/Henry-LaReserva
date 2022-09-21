@@ -6,5 +6,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    points: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    }
   });
 };

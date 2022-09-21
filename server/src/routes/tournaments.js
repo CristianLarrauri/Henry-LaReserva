@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Tournaments } = require("../db");
+const { Tournaments, Teams } = require("../db");
 const {
   create_tournament,
   get_tournaments_db,
@@ -144,13 +144,13 @@ router.get("/", async (req, res) => {
         offset: req.query.page,
         limit: 6,
         order: [[req.query.property, req.query.order]],
-        // include: {
-        //   model: Teams,
-        //   attributes: ["name"],
-        //   through: {
-        //     attributes: [],
-        //   },
-        // },
+        include: {
+          model: Teams,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
       });
       return res.status(200).send(data_total);
     }
