@@ -6,14 +6,25 @@ import { IoLogoWhatsapp } from 'react-icons/io';
 import { IoLocation } from 'react-icons/io5';
 import { SiGmail } from 'react-icons/si';
 import { Link } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import PopUp from './PopUp';
 
 export default function Landing() {
 	const [infoVisibility, setInfoVisibility] = useState([false, false, false]);
+	const [msg, setMsg] = useState({})
+
 
 	function changeInfoVisibility(target) {
 		let visibility = [...infoVisibility];
 		visibility[target] = !visibility[target];
 		setInfoVisibility(visibility);
+		if (target === 2){
+			setMsg({
+				title: 'Correo copiado al portapapeles', msg: 'Contactanos!'
+			})
+		}
+
+		
 	}
 
 	return (
@@ -118,8 +129,9 @@ export default function Landing() {
 					<button>Registrate</button>
 				</Link>
 			</div>
-
+			<PopUp msg={msg} />
 			<div className={styles.iconsContainer}>
+			<a href="https://wa.me/5492615110030" target="_blank">
 				<div className={styles.iconsSubContainer}>
 					<IoLogoWhatsapp
 						onClick={(e) => changeInfoVisibility(0)}
@@ -133,7 +145,7 @@ export default function Landing() {
 						1928374892
 					</p>
 				</div>
-
+				</a>
 				<div className={styles.iconsSubContainer}>
 					<IoLocation
 						onClick={(e) => changeInfoVisibility(1)}
@@ -149,10 +161,13 @@ export default function Landing() {
 				</div>
 
 				<div className={styles.iconsSubContainer}>
+					<CopyToClipboard text="emailfalso123@gmail.com" >
 					<SiGmail
 						onClick={(e) => changeInfoVisibility(2)}
 						className={styles.icons}
+						
 					/>
+					</CopyToClipboard>
 					<p
 						className={
 							infoVisibility[2] ? styles.visibleInfo : styles.hiddenInfo
@@ -160,6 +175,7 @@ export default function Landing() {
 					>
 						emailfalso123@gmail.com
 					</p>
+					
 				</div>
 			</div>
 
