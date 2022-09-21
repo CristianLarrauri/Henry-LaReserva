@@ -7,6 +7,7 @@ import { IoLocation } from 'react-icons/io5';
 import { SiGmail } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
+
 export default function Landing() {
 	const [infoVisibility, setInfoVisibility] = useState([false, false, false]);
 
@@ -117,6 +118,7 @@ export default function Landing() {
 				<Link to="/login">
 					<button>Registrate</button>
 				</Link>
+				
 			</div>
 
 			<div className={styles.iconsContainer}>

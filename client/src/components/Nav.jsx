@@ -3,6 +3,8 @@ import Logo from "../images/LaReservaLogo.png";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { BiDownArrow } from "react-icons/bi";
+import Profile from "./Profile";
+
 
 export default function Nav() {
   return (
@@ -32,7 +34,7 @@ export default function Nav() {
         <SearchBar />
 
         <div className="flex items-center mt-3 mb-3 mr-6">
-          <Link
+          {/* <Link
             to="/"
             className="min-w-[60px] h-[60px] rounded-full overflow-hidden mr-2 bg-green-600"
           ></Link>
@@ -42,7 +44,8 @@ export default function Nav() {
             <p className="text-stone-400">Rol</p>
           </Link>
 
-          <BiDownArrow className="mr-3" />
+          <BiDownArrow className="mr-3" /> */}
+          <Profile/>
         </div>
       </div>
     </div>
