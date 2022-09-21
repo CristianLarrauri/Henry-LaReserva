@@ -7,7 +7,7 @@ export default function Card({name,id,dateInit,genre,category}) {
         <div className={styles.card}>
 
             <div className={styles.front}>
-                <h2 className="font-bold text-3xl">{name ? name : "No existe su torneo"}</h2>
+                <h2 className="font-bold text-2xl mt-2">{name ? name : "No existe su torneo"}</h2>
 
                 <div className="w-[200px] h-[200px] rounded-full absolute 
                 left-0 right-0 ml-auto mr-auto top-0 bottom-0 mt-auto mb-auto overflow-hidden
