@@ -132,22 +132,6 @@ export default function TeamInscription(props) {
 
 
 			</div>
-
-			{/* <form>
-				<label>Nombre de tu equipo: </label>
-				<input type="text" value={team.name} name="name" onChange={e=>handleChange(e)} onKeyUp={e => handleError(e)}></input>
-				{formErrors.name ? (
-					<h4>
-						<small>{formErrors.name}</small>
-					</h4>
-				) : null}
-				<br />
-				<label>Escudo/bandera/imagen: </label>
-				<input type="text" value={team.image} name='image' placeholder='URL de la imagen' onChange={e=>handleChange(e)}></input>
-			</form>
-			<Link to="/inscription/players">
-				<button>Continua el registro</button>
-			</Link> */}
 			
 			<Footer/>
 		</div>
