@@ -61,4 +61,20 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+
+// Ruta PUT para que el admin pueda actualizar info de teams (tabla de posiciones)
+router.put('/:id', async (req, res) => {
+    try {
+        let { id } = req.params;
+        let editTeam = req.body;
+    
+        let data = await Teams.update(editTeam, {
+          where: { id },
+        });
+        return res.status(200).send("Team successfully updated");
+      } catch (error) {
+        return res.status(400).send("ERROR EN PUT/TEAMS", error);
+      }
+});
+
 module.exports = router;
