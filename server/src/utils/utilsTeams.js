@@ -1,4 +1,4 @@
-const { Teams, Players } = require("../db");
+const { Teams, Players, Tournaments } = require("../db");
 const preTeams = require("../json/preTeams.json");
 
 const preload_teams = async () => {
@@ -19,17 +19,22 @@ const preload_teams = async () => {
 
 const create_teams = async (data) => {
   try {
-    const { name, players } = data;
+    const { name, players, tournaments } = data;
 
     const new_teams = await Teams.create({
       name,
     });
 
     const players_relation = await Players.findAll({
-      where: { name: players },
+      where: { dni: players },
+    });
+
+    const tournaments_relation = await Tournaments.findAll({
+      where: { name: tournaments }
     });
 
     new_teams.addPlayers(players_relation);
+    new_teams.addTournaments(tournaments_relation);
     return new_teams;
   } catch (error) {
     console.log("error en create_teams function", error);
@@ -39,13 +44,7 @@ const create_teams = async (data) => {
 const get_db_info = async () => {
   try {
     return await Teams.findAll({
-      include: {
-        model: Players,
-        attributes: ["name", "surname", "dni"],
-        through: {
-          attributes: [],
-        },
-      },
+      include: [{ model: Players }, { model: Tournaments }]
     });
   } catch (error) {
     console.log("error en get_db_info", error);
