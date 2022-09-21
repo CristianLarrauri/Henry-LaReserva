@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Tournaments } = require("../db");
+const { Tournaments, Teams } = require("../db");
 const {
   create_tournament,
   get_tournaments_db,
