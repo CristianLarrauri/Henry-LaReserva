@@ -9,8 +9,7 @@ import AllTournaments from "./components/AllTournaments";
 import Error404 from "./components/Error404";
 import ComplexDetail from "./components/ComplexDetail";
 import TournamentDetail from "./components/TournamentDetails";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
+
 
 function App() {
   return (
@@ -19,8 +18,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/logout" component={Logout} />
           <Route exact path="/inscription" component={TeamInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
           <Route
