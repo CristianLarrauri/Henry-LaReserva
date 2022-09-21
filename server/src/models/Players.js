@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
     },
     dni: {
       type: DataTypes.INTEGER,
+
       allowNull: false,
     },
   });
