@@ -75,58 +75,5 @@ export default function Home() {
 			</div>
 			<Footer/>
 		</div>
-		/* <div
-			style={{
-				width: '100%',
-				minHeight: '100vh',
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'space-between'
-			}}
-		>
-			<Nav />
-
-			<div className={styles.mainWrapper}>
-				<div className={styles.upperContainer}>
-					<NextTournaments />
-
-					<div className={styles.nextTournamentWrapper}>
-						<img src={jugador} alt="jugador.png" />
-
-						<div className={styles.nextTournamentSubWrapper}>
-							<div>
-								<h2>Torneo</h2>
-								<h2>La</h2>
-								<h2>Reserva</h2>
-							</div>
-
-							<div className={styles.infoContainer}>
-								<div>
-									<FaClock className={styles.icon} />
-									<p>00:00:00 AM</p>
-								</div>
-
-								<div>
-									<MdLocationOn className={styles.icon} />
-									<p>Calle falsa 123</p>
-								</div>
-							</div>
-						</div>
-
-						<div className={styles.halfCircle}></div>
-
-						<div className={styles.btnContainer}>
-							<button>
-								<Link to="/inscription">Inscribite</Link>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<TournamentCards />
-			</div>
-
-			<Footer />
-		</div> */
 	);
 }
