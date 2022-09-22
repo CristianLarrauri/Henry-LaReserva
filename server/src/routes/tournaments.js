@@ -6,6 +6,22 @@ const {
 } = require("../utils/utilsTournaments");
 const { Op } = require("sequelize");
 
+// ------------------------------------------------------------
+// agregue esto pinu no te enojes :P
+const mercadopago = require("mercadopago");
+require("dotenv").config();
+
+mercadopago.configure({
+  access_token:
+    "APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227"
+});
+
+module.exports = {
+  mercadopago
+};
+
+// ----------------------------------------------------------------
+
 const router = Router();
 
 //.........................................................................................//
