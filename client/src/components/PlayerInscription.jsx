@@ -210,7 +210,7 @@ export default function PlayerInscription() {
 		if (!data.name) {
 			errors.name = 'Campo requerido'
 		}
-		if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			errors.name = 'El nombre debe estar formado solo por letras'
 		}
 		if (data.name.length < 3) {
@@ -333,7 +333,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name1 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name1 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name1 = 'El nombre debe contener más de 2 caracteres';
@@ -342,7 +342,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname1 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname1 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname1 = 'El apellido debe contener más de 2 caracteres';
@@ -364,7 +364,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name2 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name2 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name2 = 'El nombre debe contener más de 2 caracteres';
@@ -373,7 +373,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname2 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname2 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname2 = 'El apellido debe contener más de 2 caracteres';
@@ -394,7 +394,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name3 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name3 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name3 = 'El nombre debe contener más de 2 caracteres';
@@ -403,7 +403,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname3 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname3 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname3 = 'El apellido debe contener más de 2 caracteres';
@@ -424,7 +424,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name4 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name4 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name4 = 'El nombre debe contener más de 2 caracteres';
@@ -433,7 +433,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname4 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname4 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname4 = 'El apellido debe contener más de 2 caracteres';
@@ -454,7 +454,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name5 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name5 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name5 = 'El nombre debe contener más de 2 caracteres';
@@ -463,7 +463,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname5 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname5 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname5 = 'El apellido debe contener más de 2 caracteres';
@@ -484,7 +484,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name6 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name6 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name6 = 'El nombre debe contener más de 2 caracteres';
@@ -493,7 +493,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname6 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname6 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname6 = 'El apellido debe contener más de 2 caracteres';
@@ -514,7 +514,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name7 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name7 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name7 = 'El nombre debe contener más de 2 caracteres';
@@ -523,7 +523,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname7 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname7 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname7 = 'El apellido debe contener más de 2 caracteres';
@@ -544,7 +544,7 @@ export default function PlayerInscription() {
 		let error = {};
 		if (!data.name) {
 			error.name8 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
 			error.name8 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name8 = 'El nombre debe contener más de 2 caracteres';
@@ -553,7 +553,7 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname8 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
 			error.surname8 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname8 = 'El apellido debe contener más de 2 caracteres';
