@@ -16,13 +16,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     category: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("Sub20", "Free", "Senior"),
     },
     genre: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("Male", "Female", "Mixed"),
     },
     state: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("Completed", "In Progress", "Comming Soon"),
     },
     description: {
       type: DataTypes.TEXT,
