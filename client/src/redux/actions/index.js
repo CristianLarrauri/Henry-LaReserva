@@ -8,6 +8,8 @@ export const SEARCH_TOURNAMENTS = "SEARCH_TOURNAMENTS";
 export const TOURNAMENT_DETAILS = "TOURNAMENT_DETAILS";
 export const GET_TOURNAMENTS_HOME = "GET_TOURNAMENTS_HOME"
 export const CREATE_PLAYER = 'CREATE_PLAYER';
+export const GET_NEXT_FIVE_TOURNAMENTS = 'GET_NEXT_FIVE_TOURNAMENTS';
+export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
 
 
 export const createTournament = (payload) => {
@@ -111,3 +113,39 @@ export const getTournamentsHome = (
     }
   };
 }; 
+
+export function getNext5Tournaments(){
+	return async (dispatch) => {
+		try{
+			const nextTournaments = await axios.get(
+				'http://localhost:3001/next?index=1&limit=5'
+			);
+
+			dispatch({
+				type: GET_NEXT_FIVE_TOURNAMENTS,
+				payload: nextTournaments.data
+			});
+		}
+		catch(err){
+			console.error(err.message);
+		}
+	}
+}
+
+export function getNextTournament(){
+	return async (dispatch) => {
+		try{
+			const nextTournament = await axios.get(
+				'http://localhost:3001/next?index=0&limit=1'
+			);
+
+			dispatch({
+				type: GET_NEXT_TOURNAMENT,
+				payload: nextTournament.data
+			})
+		}
+		catch(err){
+			console.error(err.message);
+		}
+	}
+}
