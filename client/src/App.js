@@ -18,13 +18,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/inscription" component={TeamInscription} />
+          <Route exact path="/inscription" component={PlayerInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
-          <Route
-            exact
-            path="/inscription/players"
-            component={PlayerInscription}
-          />
           <Route exact path="/create" component={CreateTournament} />
           <Route exact path="/404" component={Error404} />
           <Route exact path="/details/:id" component={TournamentDetail} />

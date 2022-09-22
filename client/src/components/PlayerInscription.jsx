@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 export default function PlayerInscription() {
 	const dispatch = useDispatch();
-	const [team, setTeam] = React.useState([]);
 	//Esto controla el popUp, si esta vacio no aparece, pero si tiene algo aparece el popUp
 	//Si queres usarlo setealo con el siguiente formato: {title: 'TituloPopUp', msg:'Mensaje del popUp'}
 	const [popUpError, setPopUpError] = useState({});
@@ -60,24 +59,170 @@ export default function PlayerInscription() {
 
 	const [compromise, setCompromise] = React.useState(false);
 
-	const [errors, setErrors] = React.useState({});
+	const [confirm1, setConfirm1] = React.useState(false);
+	const [confirm2, setConfirm2] = React.useState(false);
+	const [confirm3, setConfirm3] = React.useState(false);
+	const [confirm4, setConfirm4] = React.useState(false);
+	const [confirm5, setConfirm5] = React.useState(false);
+	const [confirm6, setConfirm6] = React.useState(false);
+	const [confirm7, setConfirm7] = React.useState(false);
+	const [confirm8, setConfirm8] = React.useState(false);
+
+	const [errors1, setErrors1] = React.useState({});
+	const [errors2, setErrors2] = React.useState({});
+	const [errors3, setErrors3] = React.useState({});
+	const [errors4, setErrors4] = React.useState({});
+	const [errors5, setErrors5] = React.useState({});
+	const [errors6, setErrors6] = React.useState({});
+	const [errors7, setErrors7] = React.useState({});
+	const [errors8, setErrors8] = React.useState({});
+
+	const [team, setTeam] = useState({
+		name: "",
+		image: ""
+	});
+
+
+	const [formErrors, setFormErrors] = useState({})
+
+	const handleSubmit1 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors1).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player1.surname.length == 0 || player1.name.length == 0 || player1.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm1(true)
+		}
+	}
+
+	const handleSubmit2 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors2).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player2.surname.length == 0 || player2.name.length == 0 || player2.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm2(true)
+		}
+
+	}
+
+	const handleSubmit3 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors3).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player3.surname.length == 0 || player3.name.length == 0 || player3.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm3(true)
+		}
+	}
+
+	const handleSubmit4 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors4).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player4.surname.length == 0 || player4.name.length == 0 || player4.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm4(true)
+		}
+	}
+
+	const handleSubmit5 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors5).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player5.surname.length == 0 || player1.name.length == 0 || player5.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm5(true)
+		}
+	}
+
+	const handleSubmit6 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors6).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player6.surname.length == 0 || player6.name.length == 0 || player6.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm6(true)
+		}
+	}
+
+	const handleSubmit7 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors7).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player7.surname.length == 0 || player7.name.length == 0 || player7.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm7(true)
+		}
+	}
+
+	const handleSubmit8 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors8).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player8.surname.length == 0 || player8.name.length == 0 || player8.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm8(true)
+		}
+	}
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (team.length < 8) {
-			setPopUpError({title:'Error!',msg:'Faltan jugadores.'})//Esto es un alert, en la linea 12 la explicacion
-		} else if (Object.values(errors).length > 0) {
-			setPopUpError({title:'Error!', msg: 'Faltan datos o hay datos incorrectos.'});
+		if (!team.name) {
+			setPopUpError({ title: 'Error!', msg: 'Colocale un nombre a tu equipo!' })
+		} else if (Object.values(errors1).length > 0 || Object.values(errors2).length > 0 || Object.values(errors3).length > 0 || Object.values(errors4).length > 0 || Object.values(errors5).length > 0 || Object.values(errors6).length > 0 || Object.values(errors7).length > 0 || Object.values(errors8).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
+		} else if (Object.values(formErrors).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (!compromise) {
-			setPopUpError({title:'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".'});
+			setPopUpError({ title: 'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".' });
 		} else {
 			dispatch(createPlayers(team));
-			setPopUpError({title:'Exito!', msg: 'Equipo inscripto correctamente.'});
+			setPopUpError({ title: 'Exito!', msg: 'Equipo inscripto correctamente.' });
 			/* console.log(team); */
 		}
 	};
 
-	//Las tres siguientes funciones son exclusivas del checkbox de compromise
+	const handleChange = (e) => {
+		e.preventDefault();
+		setTeam({
+			...team,
+			[e.target.name]: e.target.value
+		});
+	};
+
+	const handleError = (e) => {
+		e.preventDefault();
+		setFormErrors(validate(team))
+	}
+
+	function validate(data) {
+		let errors = {}
+		if (!data.name) {
+			errors.name = 'Campo requerido'
+		}
+		if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+			errors.name = 'El nombre debe estar formado solo por letras'
+		}
+		if (data.name.length < 3) {
+			errors.name = 'El nombre debe tener por lo menos 3 caracteres'
+		}
+		if (data.name.length >= 18) {
+			errors.name = 'El nombre es demasiado largo (máx. 18 letras)'
+		}
+		return errors
+	}
+
+
 
 	const handleCompromiseChange = (e) => {
 		console.log('Valor target ' + e.target.checked);
@@ -153,43 +298,35 @@ export default function PlayerInscription() {
 	};
 
 	const handleErrors1 = (e) => {
-		e.preventDefault();
-		setErrors(validate1(player1));
+		setErrors1(validate1(player1));
 	};
 
 	const handleErrors2 = (e) => {
-		e.preventDefault();
-		setErrors(validate2(player2));
+		setErrors2(validate2(player2));
 	};
 
 	const handleErrors3 = (e) => {
-		e.preventDefault();
-		setErrors(validate3(player3));
+		setErrors3(validate3(player3));
 	};
 
 	const handleErrors4 = (e) => {
-		e.preventDefault();
-		setErrors(validate4(player4));
+		setErrors4(validate4(player4));
 	};
 
 	const handleErrors5 = (e) => {
-		e.preventDefault();
-		setErrors(validate5(player5));
+		setErrors5(validate5(player5));
 	};
 
 	const handleErrors6 = (e) => {
-		e.preventDefault();
-		setErrors(validate6(player6));
+		setErrors6(validate6(player6));
 	};
 
 	const handleErrors7 = (e) => {
-		e.preventDefault();
-		setErrors(validate7(player7));
+		setErrors7(validate7(player7));
 	};
 
 	const handleErrors8 = (e) => {
-		e.preventDefault();
-		setErrors(validate8(player8));
+		setErrors8(validate8(player8));
 	};
 
 	const validate1 = (data) => {
@@ -214,9 +351,12 @@ export default function PlayerInscription() {
 		}
 		if (!data.dni) {
 			error.dni1 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni1 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni1 = 'El dni debe tener 8 digitos';
-		}
+		} 
+
 		return error;
 	};
 
@@ -232,7 +372,7 @@ export default function PlayerInscription() {
 			error.name2 = 'El nombre no puede contener más de 10 caracteres';
 		}
 		if (!data.surname) {
-			error.surname = 'Campo requerido';
+			error.surname2 = 'Campo requerido';
 		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname2 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
@@ -242,6 +382,8 @@ export default function PlayerInscription() {
 		}
 		if (!data.dni) {
 			error.dni2 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni2 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni2 = 'El dni debe tener 8 digitos';
 		}
@@ -261,15 +403,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname3 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname3 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname3 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname3 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni3 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni3 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni3 = 'El dni debe tener 8 digitos';
 		}
@@ -289,15 +433,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname4 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname4 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname4 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname4 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni4 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni4 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni4 = 'El dni debe tener 8 digitos';
 		}
@@ -317,15 +463,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname5 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname5 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname5 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname5 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni5 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni5 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni5 = 'El dni debe tener 8 digitos';
 		}
@@ -337,7 +485,7 @@ export default function PlayerInscription() {
 		if (!data.name) {
 			error.name6 = 'Campo requerido';
 		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
-			error.name = 'El nombre debe estar solamente compuesto por letras';
+			error.name6 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name6 = 'El nombre debe contener más de 2 caracteres';
 		} else if (data.name.length >= 10) {
@@ -345,15 +493,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname6 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname6 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname6 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname6 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni6 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni6 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni6 = 'El dni debe tener 8 digitos';
 		}
@@ -373,15 +523,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname7 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname7 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname7 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname7 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni7 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni7 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni7 = 'El dni debe tener 8 digitos';
 		}
@@ -401,15 +553,17 @@ export default function PlayerInscription() {
 		}
 		if (!data.surname) {
 			error.surname8 = 'Campo requerido';
-		} else if (!/^[a-zA-Z\s]*$/.test(data.name)) {
+		} else if (!/^[a-zA-Z\s]*$/.test(data.surname)) {
 			error.surname8 = 'El apellido debe estar solamente compuesto por letras';
-		} else if (data.name.length <= 2) {
+		} else if (data.surname.length <= 2) {
 			error.surname8 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
+		} else if (data.surname.length >= 10) {
 			error.surname8 = 'El apellido no puede contener más de 10 caracteres';
 		}
 		if (!data.dni) {
 			error.dni8 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni8 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni8 = 'El dni debe tener 8 digitos';
 		}
@@ -418,26 +572,26 @@ export default function PlayerInscription() {
 
 	return (
 		<div className='w-full min-h-screen flex flex-col justify-between'>
-			<Nav/>
+			<Nav />
 
 			{/*Esto es el popUp*/}
 			<div
 				className={
 					popUpError.title
-					? popUpStyles.popUpOverlay
-					: popUpStyles.popUpOverlay_hidden
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
 				}>
 
 				<div className={popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-						<h2>{popUpError.title}</h2>
-						<p>{popUpError.msg}</p>
-						<button
-							onClick={() => setPopUpError({})}
-							className={popUpStyles.okBtn}
-						>
-							Ok
-						</button>
-					</div>
+					<h2>{popUpError.title}</h2>
+					<p>{popUpError.msg}</p>
+					<button
+						onClick={() => setPopUpError({})}
+						className={popUpStyles.okBtn}
+					>
+						Ok
+					</button>
+				</div>
 			</div>
 
 
@@ -455,6 +609,62 @@ export default function PlayerInscription() {
 
 				<form className='bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] animate-appear'>
 
+				<div className='w-full flex flex-col items-center'>
+
+						<div className='bg-gray-100 w-4/6 min-w-[330px] flex flex-col items-center'>
+
+							<div className='w-5/6 min-h-[160px] flex flex-col justify-end items-center
+					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between'>
+								<label className='text-2xl font-medium 
+						text-green-500 mb-2'>Nombre de tu equipo: </label>
+								<input type="text" value={team.name} name="name"
+									onChange={e => handleChange(e)} onKeyUp={e => handleError(e)}
+									placeholder='Nombre del equipo'
+									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
+						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
+
+								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
+									style={formErrors.name ? { opacity: 1 } : { opacity: 0 }}>
+									<p>{formErrors.name}</p>
+								</div>
+
+							</div>
+
+							<div className='w-5/6 min-h-[160px] flex flex-col justify-end items-center
+					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between
+					mt-10'>
+								<label className='text-2xl font-medium
+						text-green-500 mb-2'>Escudo/bandera/imagen: </label>
+								<input type="text" value={team.image} name='image'
+									placeholder='URL de la imagen' onChange={e => handleChange(e)}
+									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
+						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
+
+								{/*Agregar error de no imagen aca, solo necesitas reemplazar donde dice formsErrors.name
+						por formsErros.image o el nombre que le pongas*/}
+								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
+									style={formErrors.img ? { opacity: 1 } : { opacity: 0 }}>
+									<p>{formErrors.img}</p>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<b> Por favor, completá con los datos REALES de los jugadores.</b> <br /> Recordá que los datos serán pedidos por el personal de la cancha antes de iniciar el partido.
+						<br />
+						<br />
+						<b> A TENER EN CUENTA: </b>
+						<ul>
+							<li>En caso de ser extranjero y no contar con un dni argentino: Completa la casilla de dni del jugador con los primeros 8 digitos de su identificación en caso de que posea más o en caso contrario completalo con números CERO al final</li>
+						</ul>
+					</div>
+
 					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 1</h2>
 
@@ -470,16 +680,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
+								disabled={confirm1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name1?{opacity:1}:{opacity:0}}>
-								<p>{errors.name1}</p>
+								style={errors1.name1 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors1.name1}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -492,39 +703,48 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
+								disabled={confirm1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname1?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname1}</p>
+								style={errors1.surname1 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors1.surname1}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
+								disabled={confirm1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni1?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni1}</p>
+								style={errors1.dni1 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors1.dni1}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit1}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div>
+					{confirm1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 2</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -539,16 +759,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
+								disabled={confirm2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name2?{opacity:1}:{opacity:0}}>
-								<p>{errors.name2}</p>
+								style={errors2.name2 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors2.name2}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -561,39 +782,49 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
+								disabled={confirm2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname2?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname2}</p>
+								style={errors2.surname2 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors2.surname2}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
+								disabled={confirm2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni2?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni2}</p>
+								style={errors2.dni2 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors2.dni2}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit2}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm2 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 3</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -608,16 +839,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
+								disabled={confirm3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name3?{opacity:1}:{opacity:0}}>
-								<p>{errors.name3}</p>
+								style={errors3.name3 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors3.name3}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -630,39 +862,49 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
+								disabled={confirm3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname3?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname3}</p>
+								style={errors3.surname3 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors3.surname3}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
+								disabled={confirm3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni3?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni3}</p>
+								style={errors3.dni3 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors3.dni3}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit3}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm3 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 4</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -677,16 +919,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
+								disabled={confirm4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name4?{opacity:1}:{opacity:0}}>
-								<p>{errors.name4}</p>
+								style={errors4.name4 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors4.name4}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -699,39 +942,49 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
+								disabled={confirm4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname4?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname4}</p>
+								style={errors4.surname4 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors4.surname4}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
+								disabled={confirm4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni4?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni4}</p>
+								style={errors4.dni4 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors4.dni4}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit4}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm4 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 5</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -746,16 +999,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
+								disabled={confirm5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name5?{opacity:1}:{opacity:0}}>
-								<p>{errors.name5}</p>
+								style={errors5.name5 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors5.name5}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -768,39 +1022,49 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
+								disabled={confirm5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname5?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname5}</p>
+								style={errors5.surname5 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors5.surname5}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
+								disabled={confirm5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni5?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni5}</p>
+								style={errors5.dni5 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors5.dni5}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit5}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm5 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 6</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -815,16 +1079,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
+								disabled={confirm6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name6?{opacity:1}:{opacity:0}}>
-								<p>{errors.name6}</p>
+								style={errors6.name6 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors6.name6}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -837,39 +1102,49 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
+								disabled={confirm6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname6?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname6}</p>
+								style={errors6.surname6 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors6.surname6}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
+								disabled={confirm6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni6?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni6}</p>
+								style={errors6.dni6 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors6.dni6}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<button type="submit" onClick={handleSubmit6}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm6 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 7</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
@@ -884,16 +1159,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
+								disabled={confirm7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name7?{opacity:1}:{opacity:0}}>
-								<p>{errors.name7}</p>
+								style={errors7.name7 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors7.name7}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -906,40 +1182,50 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
+								disabled={confirm7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname7?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname7}</p>
+								style={errors7.surname7 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors7.surname7}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
+								disabled={confirm7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni7?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni7}</p>
+								style={errors7.dni7 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors7.dni7}</p>
 							</div>
 						</div>
-					</div>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
-						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador </h2>
+						<button type="submit" onClick={handleSubmit7}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
+
+					</div> : false}
+
+					{confirm7 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Jugador 8</h2>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
@@ -953,16 +1239,17 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
+								disabled={confirm8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.name8?{opacity:1}:{opacity:0}}>
-								<p>{errors.name8}</p>
+								style={errors8.name8 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors8.name8}</p>
 							</div>
 
 						</div>
-						
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -975,46 +1262,57 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
+								disabled={confirm8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.surname8?{opacity:1}:{opacity:0}}>
-								<p>{errors.surname8}</p>
+								style={errors8.surname8 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors8.surname8}</p>
 							</div>
 
 						</div>
 
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-						min-w-[320px]'>		
+						min-w-[320px]'>
 							<label className='text-2xl font-medium 
 							text-green-500 mb-3'>DNI: </label>
 							<input
-								type="number"
+								type="text"
 								name="dni"
 								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
+								disabled={confirm8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
-							style={errors.dni8?{opacity:1}:{opacity:0}}>
-								<p>{errors.dni8}</p>
+								style={errors8.dni8 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors8.dni8}</p>
 							</div>
 						</div>
-					</div>
 
+						<button type="submit" onClick={handleSubmit8}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Jugador
+						</button>
 
-					<div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 flex items-center flex-col relative'>
+					</div> : false}
+
+					
+
+					{confirm8 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 flex items-center flex-col relative'>
 						<h3>
 							<b>CONDICIÓN NECESARIA</b>
 						</h3>
 
 						<p className='mt-3'>
-							Todos los datos suministrados deben <b>VERIDICOS</b>. En caso de que
+							Todos los datos suministrados deben ser <b>VERIDICOS</b>. En caso de que
 							los datos no sean comprobables o incorrectos al momento de arrancar
 							el partido, el equipo quedará <b>DESCALIFICADO.</b>
 						</p>
@@ -1031,479 +1329,24 @@ export default function PlayerInscription() {
 							<p className='ml-1 font-medium text-lg'>Entiendo y acepto las condiciones.</p>
 						</div>
 
-						<div className='absolute bg-red-500 p-2 text-white font-medium
-							rounded-lg shadow shadow-black right-0 bottom-0 duration-300'
-							style={errors.compromise?{opacity:1}:{opacity:0}}>
-							<p>{errors.compromise}</p>
-						</div>
-
 						<button type="submit" onClick={handleSubmit}
-						className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
-							Confirmar
+							Confirmar Equipo
 						</button>
+					</div> : false}
+
+					<div>
+
 					</div>
-				<div>
-					
-			</div>
 
-			</form>
+				</form>
 
 			</div>
-			
-			<Footer/>
+
+			<Footer />
 		</div>
 	);
 }
 
-
-{/*CODIGO ORIGINAL DE MAURO, BORRAR MAS ADELANTE SI YA NO SIRVE*/}
-{/* <form>
-				<div>
-					<h1>#1</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={(e) => handleChange1(e)}
-						onKeyUp={(e) => handleErrors1(e)}
-					></input>
-					{errors.name1 ? (
-						<div>
-							<small>{errors.name1}</small>
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={(e) => handleChange1(e)}
-						onKeyUp={(e) => handleErrors1(e)}
-					></input>
-					{errors.surname1 ? (
-						<div>
-							{' '}
-							<small>{errors.surname1}</small> <br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={(e) => handleChange1(e)}
-						onKeyUp={(e) => handleErrors1(e)}
-					></input>
-					{errors.dni1 ? (
-						<div>
-							<small>{errors.dni1}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-
-				</div>
-
-
-				<div>
-					<h1>#2</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange2}
-						onKeyUp={(e) => handleErrors2(e)}
-					></input>
-					{errors.name2 ? (
-						<div>
-							<small>{errors.name2}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange2}
-						onKeyUp={(e) => handleErrors2(e)}
-					></input>
-					{errors.surname2 ? (
-						<div>
-							<small>{errors.surname2}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange2}
-						onKeyUp={(e) => handleErrors2(e)}
-					></input>
-					{errors.dni2 ? (
-						<div>
-							<small>{errors.dni2}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#3</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange3}
-						onKeyUp={(e) => handleErrors3(e)}
-					></input>
-					{errors.name3 ? (
-						<div>
-							<small>{errors.name3}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange3}
-						onKeyUp={(e) => handleErrors3(e)}
-					></input>
-					{errors.surname3 ? (
-						<div>
-							<small>{errors.surname3}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange3}
-						onKeyUp={(e) => handleErrors3(e)}
-					></input>
-					{errors.dni3 ? (
-						<div>
-							<small>{errors.dni3}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#4</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange4}
-						onKeyUp={(e) => handleErrors4(e)}
-					></input>
-					{errors.name4 ? (
-						<div>
-							<small>{errors.name4}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange4}
-						onKeyUp={(e) => handleErrors4(e)}
-					></input>
-					{errors.surname4 ? (
-						<div>
-							<small>{errors.surname4}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange4}
-						onKeyUp={(e) => handleErrors4(e)}
-					></input>
-					{errors.dni4 ? (
-						<div>
-							<small>{errors.dni4}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#5</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange5}
-						onKeyUp={(e) => handleErrors5(e)}
-					></input>
-					{errors.name5 ? (
-						<div>
-							<small>{errors.name5}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange5}
-						onKeyUp={(e) => handleErrors5(e)}
-					></input>
-					{errors.surname5 ? (
-						<div>
-							<small>{errors.surname5}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange5}
-						onKeyUp={(e) => handleErrors5(e)}
-					></input>
-					{errors.dni5 ? (
-						<div>
-							<small>{errors.dni5}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#6</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange6}
-						onKeyUp={(e) => handleErrors6(e)}
-					></input>
-					{errors.name6 ? (
-						<div>
-							<small>{errors.name6}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange6}
-						onKeyUp={(e) => handleErrors6(e)}
-					></input>
-					{errors.surname6 ? (
-						<div>
-							<small>{errors.surname6}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange6}
-						onKeyUp={(e) => handleErrors6(e)}
-					></input>
-					{errors.dni6 ? (
-						<div>
-							<small>{errors.dni6}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#7</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange7}
-						onKeyUp={(e) => handleErrors7(e)}
-					></input>
-					{errors.name7 ? (
-						<div>
-							<small>{errors.name7}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange7}
-						onKeyUp={(e) => handleErrors7(e)}
-					></input>
-					{errors.surname7 ? (
-						<div>
-							<small>{errors.surname7}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange7}
-						onKeyUp={(e) => handleErrors7(e)}
-					></input>
-					{errors.dni7 ? (
-						<div>
-							<small>{errors.dni7}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-				<div>
-					<h1>#8</h1>
-					<label>Nombre: </label>
-					<input
-						type="text"
-						name="name"
-						onChange={handleChange8}
-						onKeyUp={(e) => handleErrors8(e)}
-					></input>
-					{errors.name8 ? (
-						<div>
-							<small>{errors.name8}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>Apellido: </label>
-					<input
-						type="text"
-						name="surname"
-						onChange={handleChange8}
-						onKeyUp={(e) => handleErrors8(e)}
-					></input>
-					{errors.surname8 ? (
-						<div>
-							<small>{errors.surname8}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-					<label>DNI: </label>
-					<input
-						type="number"
-						name="dni"
-						onChange={handleChange8}
-						onKeyUp={(e) => handleErrors8(e)}
-					></input>
-					{errors.dni8 ? (
-						<div>
-							<small>{errors.dni8}</small>
-							<br />
-						</div>
-					) : (
-						false
-					)}
-					<br />
-				</div>
-
-				<h3>
-					<b>CONDICIÓN NECESARIA</b>
-				</h3>
-				<div>
-					{' '}
-					<p>
-						{' '}
-						Todos los datos suministrados deben <b>VERIDICOS</b>. En caso de que
-						los datos no sean comprobables o incorrectos al momento de arrancar
-						el partido, el equipo quedará <b>DESCALIFICADO.</b>{' '}
-					</p>
-				</div>
-				<br />
-				<input
-					type="checkbox"
-					name="compromise"
-					value={compromise}
-					onChange={(e) => handleCompromiseChange(e)}
-				/>{' '}
-				Entiendo
-				{errors.compromise ? (
-					<div>
-						<small>{errors.compromise}</small>
-					</div>
-				) : (
-					false
-				)}
-				<br />
-				<div>
-					<button type="submit" onClick={handleSubmit}>
-						Confirmar
-					</button>
-				</div>
-			</form> */}
