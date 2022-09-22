@@ -9,6 +9,7 @@ import AllTournaments from "./components/AllTournaments";
 import Error404 from "./components/Error404";
 import ComplexDetail from "./components/ComplexDetail";
 import TournamentDetail from "./components/TournamentDetails";
+import Formpago from "./components/Formpago.jsx";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/pago" component={Formpago} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/inscription" component={TeamInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
