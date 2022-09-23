@@ -1,14 +1,18 @@
-import axios from "axios";
-export const CREATE_TOURNAMENT = "CREATE_TOURNAMENT";
-export const GET_ALL_TOURNAMENTS = "GET_ALL_TOURNAMENTS";
-export const NAME_SORT = "NAME_SORT";
-export const GENDER_FILTER = "GENDER_FILTER";
-export const DIV_FILTER = "DIV_FILTER";
-export const SEARCH_TOURNAMENTS = "SEARCH_TOURNAMENTS";
-export const TOURNAMENT_DETAILS = "TOURNAMENT_DETAILS";
-export const GET_TOURNAMENTS_HOME = "GET_TOURNAMENTS_HOME"
+import axios from 'axios';
+export const CREATE_TOURNAMENT = 'CREATE_TOURNAMENT';
+export const GET_ALL_TOURNAMENTS = 'GET_ALL_TOURNAMENTS';
+export const NAME_SORT = 'NAME_SORT';
+export const GENDER_FILTER = 'GENDER_FILTER';
+export const DIV_FILTER = 'DIV_FILTER';
+export const SEARCH_TOURNAMENTS = 'SEARCH_TOURNAMENTS';
+export const TOURNAMENT_DETAILS = 'TOURNAMENT_DETAILS';
+export const GET_TOURNAMENTS_HOME = 'GET_TOURNAMENTS_HOME';
 export const CREATE_PLAYER = 'CREATE_PLAYER';
-
+export const GET_ALL_USERS = 'GET_ALL_USERS';
+export const CREATE_USER = 'CREATE_USER';
+export const BAN_USER = 'BAN_USER';
+export const TO_ADMIN = 'TO_ADMIN';
+export const GET_USER_DETAILS = 'GET_USER_DETAILS';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -92,22 +96,84 @@ export const searchTournaments = (name) => {
 	};
 };
 
-export const getTournamentsHome = (
-  page,
-  order,
-  property,
-) => {
-  return async (dispatch) => {
-    try {
-      const info = await axios.get(
-        `http://localhost:3001/home?page=${page}&order=${order}&property=${property}`
-      );
-      dispatch({
-        type: GET_TOURNAMENTS_HOME,
-        payload: info.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}; 
+export const getTournamentsHome = (page, order, property) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get(
+				`http://localhost:3001/home?page=${page}&order=${order}&property=${property}`
+			);
+			dispatch({
+				type: GET_TOURNAMENTS_HOME,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const getAllUsers = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get('http://localhost:3001/users', payload);
+			dispatch({
+				type: GET_ALL_USERS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const createUser = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.post('ruta', payload);
+			dispatch({
+				type: CREATE_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const banUser = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put('ruta');
+			dispatch({
+				type: BAN_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const toAdmin = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put('ruta');
+			dispatch({
+				type: TO_ADMIN,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const getUserDetails = (email) => {
+	return async function (dispatch) {
+		const info = await axios.get('ruta detail');
+		return dispatch({
+			type: GET_USER_DETAILS,
+			payload: info.data
+		});
+	};
+};
