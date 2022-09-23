@@ -20,13 +20,20 @@ const preload_players = async () => {
 };
 
 const create_players = async (data) => {
-  const { name, surname, dni } = data;
+  const { name, surname, dni, tournaments } = data;
   try {
     let new_players = await Players.create({
       name,
       surname,
       dni,
     });
+
+    let tournaments_relation = await Tournaments.findAll({
+      where: { name: tournaments },
+    });
+
+    new_players.addTournaments(tournaments_relation);
+
     return new_players;
   } catch (error) {
     console.log("ERROR EN CREATE_PLAYER", error);

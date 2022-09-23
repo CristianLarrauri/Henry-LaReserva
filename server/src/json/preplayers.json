@@ -1,279 +1,239 @@
 [
   {
-    "id": 1,
     "name": "Franco",
     "surname": "Bosco",
-    "dni": 33456786,
+    "dni": 40000000,
     "goals": 0
   },
   {
-    "id": 2,
     "name": "Juan",
     "surname": "Berraz",
-    "dni": 34456756,
+    "dni": 40000001,
     "goals": 0
   },
   {
-    "id": 3,
     "name": "Cristian",
     "surname": "Larrauri",
-    "dni": 39128368,
+    "dni": 40000002,
     "goals": 0
   },
   {
-    "id": 4,
     "name": "Braian",
     "surname": "Garcia",
-    "dni": 42456756,
+    "dni": 40000003,
     "goals": 0
   },
   {
-    "id": 5,
     "name": "Matias",
     "surname": "Franco",
-    "dni": 41234576,
+    "dni": 40000004,
     "goals": 0
   },
   {
-    "id": 6,
     "name": "Mauro",
     "surname": "Alos",
-    "dni": 38765321,
+    "dni": 40000005,
     "goals": 0
   },
   {
-    "id": 7,
     "name": "Nicolas",
     "surname": "Carballo",
-    "dni": 40765789,
+    "dni": 40000006,
     "goals": 0
   },
   {
-    "id": 8,
     "name": "Maximiliano",
     "surname": "Giagnorio",
-    "dni": 35768089,
+    "dni": 40000007,
     "goals": 0
   },
   {
-    "id": 9,
     "name": "David",
     "surname": "Etchepare",
-    "dni": 35768789,
+    "dni": 40000008,
     "goals": 0
   },
   {
-    "id": 10,
     "name": "Jorge",
     "surname": "Vega",
-    "dni": 37875369,
+    "dni": 40000009,
     "goals": 0
   },
   {
-    "id": 20,
     "dni": 10000008,
     "name": "Mati",
     "surname": "Catalan",
     "goals": 0
   },
   {
-    "id": 25,
     "dni": 20000003,
     "name": "Marcos",
     "surname": "Rojo",
     "goals": 0
   },
   {
-    "id": 26,
     "dni": 20000004,
     "name": "Oscar",
     "surname": "Romero",
     "goals": 0
   },
   {
-    "id": 27,
     "dni": 20000005,
     "name": "Sergio",
     "surname": "Romero",
     "goals": 0
   },
   {
-    "id": 39,
     "dni": 30000007,
     "name": "Javier",
     "surname": "Pinola",
     "goals": 0
   },
   {
-    "id": 17,
     "dni": 10000005,
     "name": "Diego",
     "surname": "Valoyes",
     "goals": 0
   },
   {
-    "id": 33,
     "dni": 30000001,
     "name": "Matias",
     "surname": "Suarez",
     "goals": 0
   },
   {
-    "id": 31,
     "dni": 20000009,
     "name": "Martin",
     "surname": "Payero",
     "goals": 0
   },
   {
-    "id": 34,
     "dni": 30000002,
     "name": "Pablo",
     "surname": "Solari",
     "goals": 0
   },
   {
-    "id": 12,
     "dni": 10000000,
     "name": "Guido",
     "surname": "Herrera",
     "goals": 0
   },
   {
-    "id": 18,
     "dni": 10000006,
     "name": "Rodrigo",
     "surname": "Garro",
     "goals": 0
   },
   {
-    "id": 15,
     "dni": 10000003,
     "name": "Julio",
     "surname": "Buffa",
     "goals": 0
   },
   {
-    "id": 40,
     "dni": 30000008,
     "name": "Rodrigo",
     "surname": "Aliendro",
     "goals": 0
   },
   {
-    "id": 13,
     "dni": 10000001,
     "name": "Rafa",
     "surname": "Perez",
     "goals": 0
   },
   {
-    "id": 21,
     "dni": 10000009,
     "name": "Pelo",
     "surname": "Santos",
     "goals": 0
   },
   {
-    "id": 19,
     "dni": 10000007,
     "name": "Rodrigo",
     "surname": "Villagra",
     "goals": 0
   },
   {
-    "id": 37,
     "dni": 30000005,
     "name": "Franco",
     "surname": "Armani",
     "goals": 0
   },
   {
-    "id": 32,
     "dni": 30000000,
     "name": "Miguel",
     "surname": "Borja",
     "goals": 0
   },
   {
-    "id": 24,
     "dni": 20000002,
     "name": "Exequiel",
     "surname": "Ceballos",
     "goals": 0
   },
   {
-    "id": 38,
     "dni": 30000006,
     "name": "Eze",
     "surname": "Barco",
     "goals": 0
   },
   {
-    "id": 28,
     "dni": 20000006,
     "name": "Frank",
     "surname": "Fabra",
     "goals": 0
   },
   {
-    "id": 30,
     "dni": 20000008,
     "name": "Alan",
     "surname": "Varela",
     "goals": 0
   },
   {
-    "id": 29,
     "dni": 20000007,
     "name": "Nico",
     "surname": "Orsini",
     "goals": 0
   },
   {
-    "id": 41,
     "dni": 30000009,
     "name": "Tomas",
     "surname": "Pochettino",
     "goals": 0
   },
   {
-    "id": 16,
     "dni": 10000004,
     "name": "Alan",
     "surname": "Franco",
     "goals": 0
   },
   {
-    "id": 36,
     "dni": 30000004,
     "name": "Enzo",
     "surname": "Perez",
     "goals": 0
   },
   {
-    "id": 23,
     "dni": 20000001,
     "name": "Agustin",
     "surname": "Rossi",
     "goals": 0
   },
   {
-    "id": 22,
     "dni": 20000000,
     "name": "Dario",
     "surname": "Benedetto",
     "goals": 0
   },
   {
-    "id": 14,
     "dni": 10000002,
     "name": "Enzo",
     "surname": "Diaz",
     "goals": 0
   },
   {
-    "id": 35,
     "dni": 30000003,
     "name": "Juanfer",
     "surname": "Quintero",
