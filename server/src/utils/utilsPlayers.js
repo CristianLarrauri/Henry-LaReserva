@@ -1,4 +1,4 @@
-const { Players, Teams } = require("../db");
+const { Players, Teams, Tournaments } = require("../db");
 const prePlayers = require("../json/prePlayers.json");
 
 const preload_players = async () => {
@@ -8,10 +8,13 @@ const preload_players = async () => {
         name: players.name,
         surname: players.surname,
         dni: players.dni,
+        tournaments: players.tournaments,
       };
     });
 
-    await Players.bulkCreate(data);
+    for (const player of data) {
+      create_players(player);
+    }
 
     return data;
   } catch (error) {
@@ -20,13 +23,20 @@ const preload_players = async () => {
 };
 
 const create_players = async (data) => {
-  const { name, surname, dni } = data;
+  const { name, surname, dni, tournaments } = data;
   try {
     let new_players = await Players.create({
       name,
       surname,
       dni,
     });
+
+    let tournaments_relation = await Tournaments.findAll({
+      where: { name: tournaments },
+    });
+
+    await new_players.addTournaments(tournaments_relation);
+
     return new_players;
   } catch (error) {
     console.log("ERROR EN CREATE_PLAYER", error);

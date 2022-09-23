@@ -23,7 +23,6 @@ export default function SearchBar() {
       setErrorPopUp(true);//Esto activa el popUp
     } else {
       dispatch(searchTournaments(name));
-      console.log(name);
     }
     setName("");
   }

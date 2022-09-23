@@ -43,3 +43,10 @@
 .card:hover .back{
     transform:rotateY(360deg);
 }
+
+@media(max-width: 640px){
+    .card{
+        width: 250px;
+        height: 300px;
+    }
+}

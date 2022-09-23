@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Tournaments } = require("../db");
+const { Tournaments, Teams } = require("../db");
 
 const router = Router();
 
@@ -8,10 +8,10 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     let data = await Tournaments.findAll({
-      where: { state: "In Progress" },
-      offset: req.query.page,
-      limit: 4,
-      order: [[req.query.property, req.query.order]],
+      where: { state: "Comming Soon" },
+      offset: req.query.index,
+      limit: req.query.limit,
+      order: [["dateInit", "ASC"]],
       // include: {
       //   model: Teams,
       //   attributes: ["name"],
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
     });
     return res.status(200).send(data);
   } catch (error) {
-    console.log("ERROR EN RUTA GET/home", error);
+    console.log("ERROR EN RUTA GET/next", error);
   }
 });
 

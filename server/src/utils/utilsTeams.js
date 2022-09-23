@@ -6,10 +6,14 @@ const preload_teams = async () => {
     let data = preTeams.map((teams) => {
       return {
         name: teams.name,
+        players: teams.players,
+        tournaments: teams.tournaments,
       };
     });
 
-    await Teams.bulkCreate(data);
+    for (const team of data) {
+      create_teams(team);
+    }
 
     return data;
   } catch (error) {
@@ -30,7 +34,7 @@ const create_teams = async (data) => {
     });
 
     const tournaments_relation = await Tournaments.findAll({
-      where: { name: tournaments }
+      where: { name: tournaments },
     });
 
     new_teams.addPlayers(players_relation);
@@ -44,7 +48,7 @@ const create_teams = async (data) => {
 const get_db_info = async () => {
   try {
     return await Teams.findAll({
-      include: [{ model: Players }, { model: Tournaments }]
+      include: [{ model: Players }, { model: Tournaments }],
     });
   } catch (error) {
     console.log("error en get_db_info", error);
