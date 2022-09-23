@@ -295,5 +295,16 @@
     "genre": "Mixed",
     "state": "Comming Soon",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
+  },
+  {
+    "id": 28,
+    "name": "Copa Libertadores",
+    "amountOfTeams": 10,
+    "dateInit": "2022-06-01",
+    "dateFinish": "2023-01-01",
+    "category": "Free",
+    "genre": "Male",
+    "state": "In Progress",
+    "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   }
 ]

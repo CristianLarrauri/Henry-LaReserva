@@ -41,6 +41,7 @@ router.get("/", async (req, res) => {
     let { name } = req.query;
     let data = await get_tournaments_db();
 
+    // filtros combinados (genre, category, state)
     if (req.query.genre && req.query.category && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -55,6 +56,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtros combinados (genre, category)
     if (req.query.genre && req.query.category) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -68,6 +70,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtros combinados (genre, state)
     if (req.query.genre && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -81,6 +84,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtros combinados (category, state)
     if (req.query.category && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -94,6 +98,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtro genre
     if (req.query.genre) {
       let dataFilter = await Tournaments.findAll({
         Offset: req.query.page,
@@ -106,6 +111,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtro category
     if (req.query.category) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -118,6 +124,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // filtro state
     if (req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
@@ -130,6 +137,7 @@ router.get("/", async (req, res) => {
       return res.status(200).send(dataFilter);
     }
 
+    // busqueda name o total
     if (name) {
       let data_tournament = data.find(
         (tournament) =>
