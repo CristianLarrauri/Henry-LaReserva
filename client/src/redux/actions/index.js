@@ -8,6 +8,7 @@ export const SEARCH_TOURNAMENTS = "SEARCH_TOURNAMENTS";
 export const TOURNAMENT_DETAILS = "TOURNAMENT_DETAILS";
 export const GET_TOURNAMENTS_HOME = "GET_TOURNAMENTS_HOME"
 export const CREATE_PLAYER = 'CREATE_PLAYER';
+export const GET_SCORERS_TABLE = "GET_SCORERS_TABLE";
 
 
 export const createTournament = (payload) => {
@@ -111,3 +112,16 @@ export const getTournamentsHome = (
     }
   };
 }; 
+
+export function getScorersTable(id){
+	return async (dispatch) => {
+		const data = await axios.get(
+			`http://localhost:3001/scorers/?tournament=${id}`
+		);
+
+		dispatch({
+			type: GET_SCORERS_TABLE,
+			payload: data.data
+		})
+	}
+}

@@ -4,10 +4,12 @@ import * as actions from '../redux/actions';
 import { NavLink } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Footer from './Footer';
+import ScorersTable from '../components/ScorersTable';
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;
 	const dispatch = useDispatch();
+
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
 	}, [dispatch]);
@@ -33,23 +35,13 @@ const TournamentDetail = (props) => {
 					</div>
 				</div>
 
-				<div className='w-5/6 mt-10 flex justify-between'>
+				<div className='bg-green-300 w-5/6 mt-10 flex justify-between'>
 					<div className='bg-gray-200 w-7/12'>
 						PONER LOS EQUIPOS DEL TORNEO ACA
-						{/* <h4>
-						{tournament.teams ? (
-							<ul>
-								{' '}
-								{tournament.teams.map((team) => (
-									<li>{team}</li>
-								))}
-							</ul>
-						) : null}
-						</h4> */} 
 					</div>
 
 					<div className='bg-gray-200 w-4/12'>
-						TABLA DE GOLEADORES ACA
+						<ScorersTable id = {id}/>
 					</div>
 
 				</div>

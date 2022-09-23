@@ -4,7 +4,8 @@ import {
   TOURNAMENT_DETAILS,
   SEARCH_TOURNAMENTS,
   GET_TOURNAMENTS_HOME,
-  CREATE_PLAYER
+  CREATE_PLAYER,
+  GET_SCORERS_TABLE
 } from "../actions/index.js";
 
 let initialState = {
