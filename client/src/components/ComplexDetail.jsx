@@ -13,19 +13,19 @@ export default function ComplexDetail() {
   return (
     <div>
       {/* <Nav /> */}
-      <div className="items-center justify-center flex flex-col">
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold mt-[-2px] py-2 px-4 rounded-lg ml-5 text-center">
-          <Link to="/home" >
+      <div className="items-center justify-center flex flex-col z-10">
+        <Link to="/home" >
+        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold mt-[3%] py-2 px-4 rounded-lg ml-5 text-center mb-[-4%]">
             <p>Home</p>
             <p>{"<<"}</p>
-          </Link>
         </button>
-        <img src={Logo} alt="" className="img-fluid w-[18%] h-[1%] mt-[-6%]" />
+        </Link>
+        <img src={Logo} alt="" className="img-fluid w-[18%] h-[1%] mt-[-2%]" />
       </div>
 
 
       {/* CONTAINER MAYOR */}
-      <div className="flex container-xl items-center w-full mt-[-5%] mb-5 border-4 justify-between max-h-full">
+      <div className="flex container-xl items-center w-full mt-[-5%] mb-5 border-4 justify-between max-h-full z-20">
 
 
         {/* CONTAINER VISION */}

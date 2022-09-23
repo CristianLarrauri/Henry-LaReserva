@@ -13,6 +13,8 @@ export const CREATE_USER = 'CREATE_USER';
 export const BAN_USER = 'BAN_USER';
 export const TO_ADMIN = 'TO_ADMIN';
 export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const GET_NEXT_FIVE_TOURNAMENTS = 'GET_NEXT_FIVE_TOURNAMENTS';
+export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -177,3 +179,37 @@ export const getUserDetails = (email) => {
 		});
 	};
 };
+
+export function getNext5Tournaments() {
+	return async (dispatch) => {
+		try {
+			const nextTournaments = await axios.get(
+				'http://localhost:3001/next?index=1&limit=5'
+			);
+
+			dispatch({
+				type: GET_NEXT_FIVE_TOURNAMENTS,
+				payload: nextTournaments.data
+			});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+}
+
+export function getNextTournament() {
+	return async (dispatch) => {
+		try {
+			const nextTournament = await axios.get(
+				'http://localhost:3001/next?index=0&limit=1'
+			);
+
+			dispatch({
+				type: GET_NEXT_TOURNAMENT,
+				payload: nextTournament.data
+			});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+}
