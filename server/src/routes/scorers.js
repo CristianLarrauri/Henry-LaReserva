@@ -1,12 +1,13 @@
 const { Router } = require("express");
-const { Teams, Tournaments } = require("../db");
+const { Op } = require("sequelize");
+const { Teams, Tournaments, Players } = require("../db");
 
 const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    let data = await Teams.findAll({
-      order: [["points", "DESC"]],
+    let data = await Players.findAll({
+      order: [["goals", "DESC"]],
       include: {
         model: Tournaments,
         where: { id: req.query.tournament },
@@ -19,7 +20,7 @@ router.get("/", async (req, res) => {
 
     res.status(200).send(data);
   } catch (error) {
-    console.log("Error en ruta get de positions", error);
+    res.status(404).send("Error en ruta get de goals", error);
   }
 });
 

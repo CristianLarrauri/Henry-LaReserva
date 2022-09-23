@@ -15,7 +15,6 @@ export default function TournamentCards() {
 	const dispatch = useDispatch();
 	const tournaments = useSelector((state) => state.tournamentsHome);
 
-	console.log('tourn', tournaments);
 	const [page, setPage] = useState(0);
 
 	const handlePrev = (event) => {
@@ -45,12 +44,12 @@ export default function TournamentCards() {
 	}, [dispatch, page, order, property]);
 
 	return (
-		<div className='w-full flex flex-col items-start'> {/*mainContainer*/}
+		<div className='w-full flex flex-col items-start mt-10'> {/*mainContainer*/}
 				
-			<div className='bg-white w-11/12 ml-6 rounded flex justify-between'>
+			<div className='bg-white w-11/12 rounded flex justify-between sm:ml-6'>
 
 				<button onClick={(event) => handlePrev(event)}
-				className="bg-green-700 w-[30px] flex justify-center items-center rounded
+				className="bg-green-700 min-w-[30px] flex justify-center items-center rounded
 				text-white shadow shadow-black active:bg-green-500">
 					<AiOutlineArrowLeft className='text-2xl'/>
 				</button>
@@ -76,7 +75,7 @@ export default function TournamentCards() {
 				</div>
 
 				<button onClick={(event) => handleNext(event)}
-				className="bg-green-700 w-[30px] flex justify-center items-center rounded
+				className="bg-green-700 min-w-[30px] flex justify-center items-center rounded
 				text-white shadow shadow-black active:bg-green-500">
 					<AiOutlineArrowRight/>
 				</button>

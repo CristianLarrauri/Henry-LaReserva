@@ -35,7 +35,9 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
+
 const { Teams, Players, Tournaments, Users } = sequelize.models;
+
 
 Teams.belongsToMany(Tournaments, { through: "teams_tournaments" });
 Tournaments.belongsToMany(Teams, { through: "teams_tournaments" });
@@ -45,6 +47,9 @@ Teams.belongsToMany(Players, { through: "players_teams" });
 
 Tournaments.belongsToMany(Players, { through: "tournaments_players" });
 Players.belongsToMany(Tournaments, { through: "tournaments_players" });
+
+Tournaments.hasMany(Buys); 
+Buys.belongsTo(Tournaments);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
