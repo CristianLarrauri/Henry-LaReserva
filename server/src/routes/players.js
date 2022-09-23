@@ -63,4 +63,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+
+  try {
+    let change_player = await Players.update(data, { where: { id } });
+    return res.send(change_player);
+  } catch (error) {
+    console.log("Rompo en route/put", error);
+  }
+});
+
 module.exports = router;
