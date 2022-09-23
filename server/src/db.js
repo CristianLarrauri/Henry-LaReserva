@@ -35,7 +35,9 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Teams, Players, Tournaments, Buys } = sequelize.models;
+
+const { Teams, Players, Tournaments, Users } = sequelize.models;
+
 
 Teams.belongsToMany(Tournaments, { through: "teams_tournaments" });
 Tournaments.belongsToMany(Teams, { through: "teams_tournaments" });
