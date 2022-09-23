@@ -10,6 +10,11 @@ import Error404 from "./components/Error404";
 import ComplexDetail from "./components/ComplexDetail";
 import TournamentDetail from "./components/TournamentDetails";
 
+import Formpago from "./components/Formpago.jsx";
+
+
+import About from "./components/About";
+
 
 function App() {
   return (
@@ -17,6 +22,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/pago" component={Formpago} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/inscription" component={TeamInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
@@ -29,6 +35,7 @@ function App() {
           <Route exact path="/404" component={Error404} />
           <Route exact path="/details/:id" component={TournamentDetail} />
           <Route exact path="/complex" component={ComplexDetail} />
+          <Route exact path="/about" component={About} />
         </Switch>
       </div>
     </BrowserRouter>
