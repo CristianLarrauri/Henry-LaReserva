@@ -13,7 +13,6 @@ export default function PlayerInscription() {
 	//Si queres usarlo setealo con el siguiente formato: {title: 'TituloPopUp', msg:'Mensaje del popUp'}
 	const [popUpError, setPopUpError] = useState({});
 
-	//Estados locales para cada jugador que luego seran metidos al array "team"
 	const [player1, setPlayer1] = React.useState({
 		name: '',
 		surname: '',
@@ -77,9 +76,12 @@ export default function PlayerInscription() {
 	const [errors7, setErrors7] = React.useState({});
 	const [errors8, setErrors8] = React.useState({});
 
+	const [shield, setShield] = React.useState()
+
+	const [teamName, setTeamName] = useState("")
 	const [team, setTeam] = useState({
-		name: "",
-		image: ""
+		name: teamName,
+		image: shield
 	});
 
 
@@ -93,6 +95,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm1(true)
+
+			//Agregar ruta de posteo jugador 1
+
 		}
 	}
 
@@ -104,6 +109,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm2(true)
+
+			//Agregar ruta de posteo jugador 2
+
 		}
 
 	}
@@ -116,6 +124,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm3(true)
+
+			//Agregar ruta de posteo jugador 3
+
 		}
 	}
 
@@ -127,6 +138,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm4(true)
+
+			//Agregar ruta de posteo jugador 4
+
 		}
 	}
 
@@ -138,6 +152,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm5(true)
+
+			//Agregar ruta de posteo jugador 5
+
 		}
 	}
 
@@ -149,6 +166,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm6(true)
+
+			//Agregar ruta de posteo jugador 6
+
 		}
 	}
 
@@ -160,6 +180,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm7(true)
+
+			//Agregar ruta de posteo jugador 7
+
 		}
 	}
 
@@ -171,13 +194,16 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm8(true)
+
+			//Agregar ruta de posteo jugador 7
+
 		}
 	}
 
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!team.name) {
+		if (!teamName) {
 			setPopUpError({ title: 'Error!', msg: 'Colocale un nombre a tu equipo!' })
 		} else if (Object.values(errors1).length > 0 || Object.values(errors2).length > 0 || Object.values(errors3).length > 0 || Object.values(errors4).length > 0 || Object.values(errors5).length > 0 || Object.values(errors6).length > 0 || Object.values(errors7).length > 0 || Object.values(errors8).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
@@ -185,38 +211,46 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (!compromise) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".' });
+		} else if (!shield) {
+			setPopUpError({ title: 'Error!', msg: 'Falta el escudo de tu equipo' });
 		} else {
+			setTeam({name: teamName, image: shield})
 			dispatch(createPlayers(team));
+			console.log(team)
 			setPopUpError({ title: 'Exito!', msg: 'Equipo inscripto correctamente.' });
 			/* console.log(team); */
 		}
 	};
 
+
+
+
+	const handleShield = (e) => {
+		setShield(e.target.files[0])
+	}
+
 	const handleChange = (e) => {
 		e.preventDefault();
-		setTeam({
-			...team,
-			[e.target.name]: e.target.value
-		});
+		setTeamName(e.target.value)
 	};
 
 	const handleError = (e) => {
 		e.preventDefault();
-		setFormErrors(validate(team))
+		setFormErrors(validate(teamName))
 	}
 
 	function validate(data) {
 		let errors = {}
-		if (!data.name) {
+		if (!data) {
 			errors.name = 'Campo requerido'
 		}
-		if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
+		if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data)) {
 			errors.name = 'El nombre debe estar formado solo por letras'
 		}
-		if (data.name.length < 3) {
+		if (data.length < 3) {
 			errors.name = 'El nombre debe tener por lo menos 3 caracteres'
 		}
-		if (data.name.length >= 18) {
+		if (data.length >= 18) {
 			errors.name = 'El nombre es demasiado largo (máx. 18 letras)'
 		}
 		return errors
@@ -617,7 +651,7 @@ export default function PlayerInscription() {
 					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between'>
 								<label className='text-2xl font-medium 
 						text-green-500 mb-2'>Nombre de tu equipo: </label>
-								<input type="text" value={team.name} name="name"
+								<input type="text" value={teamName} name="name"
 									onChange={e => handleChange(e)} onKeyUp={e => handleError(e)}
 									placeholder='Nombre del equipo'
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
@@ -636,18 +670,18 @@ export default function PlayerInscription() {
 					mt-10'>
 								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Escudo/bandera/imagen: </label>
-								<input type="text" value={team.image} name='image'
-									placeholder='URL de la imagen' onChange={e => handleChange(e)}
+								<input id='inputFile' type="file"  name='image'
+									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
 
 								{/*Agregar error de no imagen aca, solo necesitas reemplazar donde dice formsErrors.name
 						por formsErros.image o el nombre que le pongas*/}
-								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+								{/* <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
 						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
 									style={formErrors.img ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{formErrors.img}</p>
-								</div>
+								</div> */}
 
 							</div>
 
