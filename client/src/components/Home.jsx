@@ -23,7 +23,6 @@ export default function Home() {
 	return (
 		<div className='w-full min-h-screen flex flex-col justify-between bg-gray-200'>
 			<Nav/>
-			{nextTournaments.next[0]?console.log(nextTournaments.next[0]):null}
 			<div className='flex justify-start flex-col'>{/*div principal*/}
 
 				<div className='w-full flex flex-wrap justify-center md:flex-nowrap md:justify-start'>{/*div superior*/}

@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
   try {
     let data = await Players.findAll({
       order: [["goals", "DESC"]],
+      limit: 8,
       include: {
         model: Tournaments,
         where: { id: req.query.tournament },
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
 
     res.status(200).send(data);
   } catch (error) {
-    res.status(404).send("Error en ruta get de goals", error);
+    console.log("Error en la ruta de goals", error);
   }
 });
 

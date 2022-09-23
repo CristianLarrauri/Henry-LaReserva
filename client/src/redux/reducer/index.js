@@ -103,8 +103,6 @@ function rootReducer(state = initialState, action) {
 				nextTournaments: { ...state.nextTournaments, nextFive: action.payload }
 			};
 		case GET_NEXT_TOURNAMENT:
-			console.log('Estoy entrando la concha de tu hermana');
-
 			return {
 				...state,
 				nextTournaments: { ...state.nextTournaments, next: action.payload }
