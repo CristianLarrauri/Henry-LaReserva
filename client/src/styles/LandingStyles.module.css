@@ -1,0 +1,214 @@
+.mainWrapper{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #007330;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo{
+    animation: fill 0.5s ease forwards 2.4s;
+    z-index: 1;
+}
+
+.halfCircleRight, .halfCircleLeft{
+    background-color: #007B34;
+    position: fixed;
+    min-height: 100%;
+    min-width: 20vw;
+    top: 0;
+}
+
+.halfCircleLeft{
+    border-top-right-radius: 300px;
+    border-bottom-right-radius: 300px;
+    left: 0;
+}
+
+.halfCircleRight{
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 300px;
+    right: 0;
+}
+
+.btnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnContainer button{
+    min-width: 250px;
+    min-height: 100px;
+    border-radius: 100px;
+    border-style: none;
+    background-color: white;
+    font-size: 2em;
+    font-weight: bolder;
+    color:#007330;
+    margin: 20px;
+    transition: .4s;
+    animation: appear 3s ease-out forwards;
+}
+
+.btnContainer button:hover{
+    transform: scale(1.1);
+    color: white;
+    background-color: #009e42;
+    cursor: pointer;
+    transition: .4;
+}
+
+.ball{
+    position: fixed;
+    width: 200px;
+    bottom: 3%;
+    right: 0;
+    transform:rotate(359deg);
+    animation: rollingBall 3s ease-out;
+}
+
+.iconsContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 1;
+    animation: appear 3s ease-out forwards;
+}
+
+.icons{
+    width: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    margin-right: 40px;
+    margin-left: 40px;
+    transition-duration: .4s;
+    cursor: pointer;
+}
+
+.icons:hover{
+    transform: scale(1.1);
+    transition-duration: .4s;
+}
+
+.iconsSubContainer{
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.visibleInfo{
+    visibility: visible;
+    font-size: 2em;
+    transition-duration: .4s;
+}
+
+.hiddenInfo{
+    visibility: hidden;
+    transition-duration: .4s;
+}
+
+.logo path:nth-child(2){
+    stroke-dasharray: 292.864013671875;
+    stroke-dashoffset: 292.864013671875;
+    animation: line-anim 2s ease forwards;
+}
+.logo path:nth-child(3){
+    stroke-dasharray: 375.351318359375;
+    stroke-dashoffset: 375.351318359375;
+    animation: line-anim 2s ease forwards .2s;
+}
+.logo path:nth-child(4){
+    stroke-dasharray: 262.2548828125;
+    stroke-dashoffset: 262.2548828125;
+    animation: line-anim 2s ease forwards .4s;
+}
+
+.logo path:nth-child(5){
+    stroke-dasharray: 369.6015625;
+    stroke-dashoffset: 369.6015625;
+    animation: line-anim 2s ease forwards .6s;
+}
+
+.logo path:nth-child(6){
+    stroke-dasharray: 372.7219543457031;
+    stroke-dashoffset: 372.7219543457031;
+    animation: line-anim 2s ease forwards .8s;
+}
+
+.logo path:nth-child(7){
+    stroke-dasharray: 369.6019287109375;
+    stroke-dashoffset: 369.6019287109375;
+    animation: line-anim 2s ease forwards 1s;
+}
+
+.logo path:nth-child(8){
+    stroke-dasharray: 262.2548522949219;
+    stroke-dashoffset: 262.2548522949219;
+    animation: line-anim 2s ease forwards 1.2s;
+}
+
+.logo path:nth-child(9){
+    stroke-dasharray: 341.3567810058594;
+    stroke-dashoffset: 341.3567810058594;
+    animation: line-anim 2s ease forwards 1.4s;
+}
+
+.logo path:nth-child(10){
+    stroke-dasharray: 375.3522033691406;
+    stroke-dashoffset: 375.3522033691406;
+    animation: line-anim 2s ease forwards 1.6s;
+}
+
+@keyframes line-anim{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fill{
+    from{
+        fill: transparent;
+    }
+    to{
+        fill: white;
+    }
+}
+
+@keyframes rollingBall{
+    from{
+        transform:rotate(0deg);
+        right: 100%;
+    }
+}
+
+@keyframes appear{
+    from{
+        opacity: 0;
+    }
+}
+
+@media(max-width:760px){
+    .logo{
+        width: 300px;
+    }
+
+    .btnContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .iconsContainer{
+        flex-direction: column;
+    }
+    
+    .ball{
+        position: unset;
+        width: 100px;
+        animation: appear 3s ease-in forwards;
+    }
+}
+
+

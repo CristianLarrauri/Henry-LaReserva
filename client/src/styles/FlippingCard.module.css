@@ -1,0 +1,52 @@
+.card{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.card div{
+    position: absolute;
+    display: flex;
+    backface-visibility: hidden;
+    transition-duration: 1s;
+    background-color: #15803d;
+    display: flex;
+    justify-content: center;
+    color: white;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
+}
+
+.front{
+    transform:rotateY(0deg);
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem;
+}
+
+.back{
+    transform:rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    border-radius: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover .front{
+    transform:rotateY(180deg);
+}
+
+.card:hover .back{
+    transform:rotateY(360deg);
+}
+
+@media(max-width: 640px){
+    .card{
+        width: 250px;
+        height: 300px;
+    }
+}

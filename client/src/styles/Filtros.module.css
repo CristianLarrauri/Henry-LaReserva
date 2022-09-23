@@ -1,0 +1,11 @@
+.mainWrapper {
+	background-color: teal;
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.mainWrapper h2 {
+	color: white;
+	font-size: 2em;
+}

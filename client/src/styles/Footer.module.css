@@ -1,0 +1,84 @@
+@import url('https://fonts.google.com/specimen/Roboto');
+
+.mainWrapper{
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    border-style: solid;
+    border-color: rgb(229 231 235);
+    border-top-width: 15px;
+}
+
+.subWrapper{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.section{
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 10px;
+}
+
+.section h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: #2D2D2D;
+    margin-bottom: 20px;
+}
+
+
+.iconWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.greenIcon{
+    color: #2DCC70;
+    font-size: 1.4em;
+    margin-right: 5px;
+}
+
+.link{
+    font-size: 1.3em;
+}
+
+.link:hover{
+    color: #007330;
+}
+
+.iconContact{
+    font-size: 2em;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.underBar{
+    background-color: #007330;
+    width: 100%;
+    margin-top: 30px;
+    height: 60px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width:932px){
+    .subWrapper{
+        flex-direction: column;
+    }
+}
