@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Los Magios",
     "points": 0,
-    "tournament": ["Copa Libertadores"],
+    "tournaments": ["Copa Libertadores"],
     "players": [
       40000000, 40000001, 40000002, 40000003, 40000004, 40000005, 40000006,
       40000007, 40000008, 40000009
@@ -13,7 +13,7 @@
     "id": 2,
     "name": "Riber Plate",
     "points": 0,
-    "tournament": ["Copa Libertadores"],
+    "tournaments": ["Copa Libertadores"],
     "players": [
       30000000, 30000001, 30000002, 30000003, 30000004, 30000005, 30000006,
       30000007, 30000008, 30000009
@@ -23,7 +23,7 @@
     "id": 3,
     "name": "Talleres de America",
     "points": 0,
-    "tournament": ["Copa Libertadores"],
+    "tournaments": ["Copa Libertadores"],
     "players": [
       10000000, 10000001, 10000002, 10000003, 10000004, 10000005, 10000006,
       10000007, 10000008, 10000009
@@ -33,7 +33,7 @@
     "id": 4,
     "name": "Boquita",
     "points": 0,
-    "tournament": ["Copa Libertadores"],
+    "tournaments": ["Copa Libertadores"],
     "players": [
       20000000, 20000001, 20000002, 20000003, 20000004, 20000005, 20000006,
       20000007, 20000008, 20000009

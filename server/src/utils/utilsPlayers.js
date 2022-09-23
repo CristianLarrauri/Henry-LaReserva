@@ -8,10 +8,13 @@ const preload_players = async () => {
         name: players.name,
         surname: players.surname,
         dni: players.dni,
+        tournaments: players.tournaments,
       };
     });
 
-    await Players.bulkCreate(data);
+    for (const player of data) {
+      create_players(player);
+    }
 
     return data;
   } catch (error) {
@@ -32,7 +35,7 @@ const create_players = async (data) => {
       where: { name: tournaments },
     });
 
-    new_players.addTournaments(tournaments_relation);
+    await new_players.addTournaments(tournaments_relation);
 
     return new_players;
   } catch (error) {
