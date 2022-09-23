@@ -14,9 +14,9 @@ app.use(morgan('dev'));
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
+    preload_tournaments();
     preload_players();
     preload_teams();
-    preload_tournaments();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });

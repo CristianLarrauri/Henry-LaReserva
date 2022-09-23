@@ -70,13 +70,22 @@ const create_tournament = async (data) => {
 const get_tournaments_db = async () => {
   try {
     return await Tournaments.findAll({
-      include: {
-        model: Teams,
-        attributes: ["name"],
-        throught: {
-          attributes: [],
+      include: [
+        {
+          model: Teams,
+          order: [["points", "DESC"]],
+          throught: {
+            attributes: [],
+          },
         },
-      },
+        {
+          model: Players,
+          order: [["goals", "DESC"]],
+          throught: {
+            attributes: [],
+          },
+        },
+      ],
     });
   } catch (error) {
     console.log("ERROR EN get_tournaments_db", error);

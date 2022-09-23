@@ -1,10 +1,13 @@
+import NextTournaments from "../../components/NextTournaments.jsx";
 import {
   CREATE_TOURNAMENT,
   GET_ALL_TOURNAMENTS,
   TOURNAMENT_DETAILS,
   SEARCH_TOURNAMENTS,
   GET_TOURNAMENTS_HOME,
-  CREATE_PLAYER
+  CREATE_PLAYER,
+  GET_NEXT_FIVE_TOURNAMENTS,
+  GET_NEXT_TOURNAMENT
 } from "../actions/index.js";
 
 let initialState = {
@@ -14,7 +17,8 @@ let initialState = {
   players: [],
   users: [],
   userProfile: {},
-  tournamentsHome: []
+  tournamentsHome: [],
+  nextTournaments: {next: [], nextFive: []}
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,7 +53,6 @@ function rootReducer(state = initialState, action) {
         tournamentDetail: action.payload,
       };
 		case GET_ALL_TOURNAMENTS:
-			console.log('entrando', state.tournaments);
 			return {
 				...state,
 				tournaments: action.payload
@@ -65,7 +68,17 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournamentDetail: action.payload
 			};
-
+    case GET_NEXT_FIVE_TOURNAMENTS:
+      return {
+        ...state, 
+        nextTournaments: {...state.nextTournaments, nextFive: action.payload}}
+    case GET_NEXT_TOURNAMENT:
+      console.log('Estoy entrando la concha de tu hermana');
+      
+      return {
+        ...state,
+        nextTournaments: {...state.nextTournaments, next: action.payload}
+      }
 		default:
 			return state;
 	}
