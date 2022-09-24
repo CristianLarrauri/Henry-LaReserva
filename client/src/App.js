@@ -14,6 +14,7 @@ import FormPago from "./components/MP/FormPago";
 
 
 import About from "./components/About";
+import BotonPago from "./components/MP/BotonPago";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Landing} />
-          <Route exact path="/pago" component={FormPago} />
+          <Route exact path="/pago" component={BotonPago} />
           <Route exact path="/home" component={Home} />
           <Route exact path="/inscription" component={PlayerInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
