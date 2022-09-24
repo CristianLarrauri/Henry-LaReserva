@@ -7,7 +7,7 @@ import Footer from './Footer';
 import ScorersTable from '../components/ScorersTable';
 import TeamsTable from '../components/TeamsTable';
 import {BsCalendarDate, BsGenderFemale, BsGenderMale, BsGenderAmbiguous, BsFillPersonFill} from 'react-icons/bs';
-import {BiCategoryAlt} from 'react-icons/bi'
+import {BiCategoryAlt, BiArrowBack} from 'react-icons/bi'
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;
@@ -22,7 +22,7 @@ const TournamentDetail = (props) => {
 	return (
 		<div className='bg-white w-full min-h-screen flex flex-col justify-between items-center'>
 			<Nav/>
-			<div className='w-full min-h-screen flex flex-col items-center relative'>
+			<div className='w-full min-h-screen flex flex-col items-center relative animate-appear'>
 
 				<div className='bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center'>{/*info container*/}
 
@@ -90,6 +90,16 @@ const TournamentDetail = (props) => {
 					</div>
 
 				</div>
+
+
+				<Link to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+								hover:scale-110 duration-300 text-white
+								flex justify-center items-center animate-appear'>
+									<p className='text-xl font-bold flex items-center justify-center'>
+                    <BiArrowBack className="mr-3"/>
+                    Volver
+                  </p>
+				</Link>
 
 			</div>
 
