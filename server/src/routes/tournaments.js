@@ -13,11 +13,11 @@ require("dotenv").config();
 
 mercadopago.configure({
   access_token:
-    "APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227"
+    "APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227",
 });
 
 module.exports = {
-  mercadopago
+  mercadopago,
 };
 
 // ----------------------------------------------------------------
@@ -155,9 +155,8 @@ router.get("/", async (req, res) => {
 
     // busqueda name o total
     if (name) {
-      let data_tournament = data.find(
-        (tournament) =>
-          tournament.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+      let data_tournament = data.find((ele) =>
+        ele.name.toLowerCase().includes(name.toLowerCase())
       );
 
       data_tournament
