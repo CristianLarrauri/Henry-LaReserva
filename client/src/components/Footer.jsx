@@ -50,23 +50,35 @@ export default function Footer() {
 
           <div className={styles.iconWrapper}>
             <AiFillInstagram className={styles.iconContact} />
-            <Link className={styles.link} to="/">
+            <a
+              className={styles.link}
+              href="https://instagram.com"
+              target="_blank"
+            >
               Instagram
-            </Link>
+            </a>
           </div>
 
           <div className={styles.iconWrapper}>
             <AiFillTwitterCircle className={styles.iconContact} />
-            <Link className={styles.link} to="/">
+            <a
+              className={styles.link}
+              href="https://twitter.com"
+              target="_blank"
+            >
               Twitter
-            </Link>
+            </a>
           </div>
 
           <div className={styles.iconWrapper}>
             <AiFillFacebook className={styles.iconContact} />
-            <Link className={styles.link} to="/">
+            <a
+              className={styles.link}
+              href="https://facebook.com"
+              target="_blank"
+            >
               Facebook
-            </Link>
+            </a>
           </div>
         </div>
       </div>
