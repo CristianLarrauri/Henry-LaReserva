@@ -10,9 +10,11 @@ import Nav from '../components/Nav';
 import { useParams } from 'react-router-dom';
 import { modifyTournaments, tournamentDetails } from '../redux/actions';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function ModifyTournaments() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const params = useParams();
 	const [popUpError, setPopUpError] = useState({});
 	const id = params.id;
@@ -85,15 +87,17 @@ export default function ModifyTournaments() {
 				title: 'Exito!',
 				msg: 'Torneo modificado correctamente.'
 			});
-			setInput({
-				name: '',
-				amountOfTeams: 0,
-				dateInit: '',
-				dateFinish: '',
-				genre: '',
-				category: '',
-				description: ''
-			});
+			alert('torneo modificado correctamente');
+			history.push('/admin');
+			// setInput({
+			// 	name: '',
+			// 	amountOfTeams: 0,
+			// 	dateInit: '',
+			// 	dateFinish: '',
+			// 	genre: '',
+			// 	category: '',
+			// 	description: ''
+			// });
 		}
 	};
 
@@ -108,7 +112,7 @@ export default function ModifyTournaments() {
 	});
 
 	function validateName(str) {
-		if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
+		// if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
 		if (str[0] === ' ') return true;
 	}
 

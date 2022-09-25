@@ -8,9 +8,11 @@ import styles from '../styles/CreateTournament.module.css';
 import popUpStyles from '../styles/PopUpStyles.module.css';
 import { IoIosArrowBack } from 'react-icons/io';
 import Nav from '../components/Nav';
+import { useHistory } from 'react-router-dom';
 
 export default function CreateTournament() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [popUpError, setPopUpError] = useState({});
 
 	const [input, setInput] = useState({
@@ -51,15 +53,17 @@ export default function CreateTournament() {
 				title: 'Exito!',
 				msg: 'Torneo creado correctamente.'
 			});
-			setInput({
-				name: '',
-				amountOfTeams: 0,
-				dateInit: '',
-				dateFinish: '',
-				genre: '',
-				category: '',
-				description: ''
-			});
+			alert('Torneo creado correctamente');
+			history.push('/admin');
+			// setInput({
+			// 	name: '',
+			// 	amountOfTeams: 0,
+			// 	dateInit: '',
+			// 	dateFinish: '',
+			// 	genre: '',
+			// 	category: '',
+			// 	description: ''
+			// });
 		}
 	};
 
@@ -74,7 +78,7 @@ export default function CreateTournament() {
 	});
 
 	function validateName(str) {
-		if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
+		// if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
 		if (str.length < 1) return true;
 		if (str[0] === ' ') return true;
 	}
