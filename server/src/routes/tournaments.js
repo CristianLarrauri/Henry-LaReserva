@@ -1,23 +1,25 @@
-const { Router } = require("express");
-const { Tournaments, Teams } = require("../db");
+const { Router } = require('express');
+const { Tournaments, Teams } = require('../db');
 const {
-  create_tournament,
-  get_tournaments_db,
-} = require("../utils/utilsTournaments");
-const { Op } = require("sequelize");
+	create_tournament,
+	get_tournaments_db
+} = require('../utils/utilsTournaments');
+const { Op } = require('sequelize');
 
 // ------------------------------------------------------------
 // agregue esto pinu no te enojes :P
-const mercadopago = require("mercadopago");
-require("dotenv").config();
+const mercadopago = require('mercadopago');
+require('dotenv').config();
 
 mercadopago.configure({
-  access_token:
-    "APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227",
+
+	access_token:
+		'APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227'
 });
 
 module.exports = {
-  mercadopago,
+	mercadopago
+
 };
 
 // ----------------------------------------------------------------
@@ -26,32 +28,33 @@ const router = Router();
 
 //.........................................................................................//
 // POST /tournaments
-router.post("/", async (req, res) => {
-  try {
-    let data = req.body;
-    let data_db = await Tournaments.findAll();
+router.post('/', async (req, res) => {
+	try {
+		let data = req.body;
+		let data_db = await Tournaments.findAll();
 
-    if (!data.name) {
-      return res.status(404).send("Faltan datos requeridos");
-    }
-    if (data.name) {
-      let tournament = data_db.find(
-        (tournament) => tournament.name === data.name
-      );
-      if (tournament) {
-        return res.status(404).send("El torneo ya existe");
-      } else {
-        create_tournament(data);
-        return res.status(200).send("Torneo creado con exito");
-      }
-    }
-  } catch (error) {
-    console.log("ERROR EN RUTA POST/tournaments");
-  }
+		if (!data.name) {
+			return res.status(404).send('Faltan datos requeridos');
+		}
+		if (data.name) {
+			let tournament = data_db.find(
+				(tournament) => tournament.name === data.name
+			);
+			if (tournament) {
+				return res.status(404).send('El torneo ya existe');
+			} else {
+				create_tournament(data);
+				return res.status(200).send('Torneo creado con exito');
+			}
+		}
+	} catch (error) {
+		console.log('ERROR EN RUTA POST/tournaments');
+	}
 });
 
 //.........................................................................................//
 // GET /tournaments && GET /tournaments?name="..."
+
 router.get("/", async (req, res) => {
   try {
     let { name } = req.query;
@@ -184,56 +187,56 @@ router.get("/", async (req, res) => {
 
 //.........................................................................................//
 // GET /tournaments/:id
-router.get("/:id", async (req, res) => {
-  try {
-    let { id } = req.params;
-    let data = await get_tournaments_db();
+router.get('/:id', async (req, res) => {
+	try {
+		let { id } = req.params;
+		let data = await get_tournaments_db();
 
-    if (id) {
-      let data_tournament = data.find((tournament) => tournament.id == id);
+		if (id) {
+			let data_tournament = data.find((tournament) => tournament.id == id);
 
-      data_tournament
-        ? res.status(200).send(data_tournament)
-        : res.status(404).send("No esta el detalle del torneo");
-    }
-  } catch (error) {
-    console.log("No esta el detalle del torneo");
-  }
+			data_tournament
+				? res.status(200).send(data_tournament)
+				: res.status(404).send('No esta el detalle del torneo');
+		}
+	} catch (error) {
+		console.log('No esta el detalle del torneo');
+	}
 });
 
 //.........................................................................................//
 // DELETE /tournaments
-router.delete("/:id", async (req, res) => {
-  try {
-    let { id } = req.params;
+router.delete('/:id', async (req, res) => {
+	try {
+		let { id } = req.params;
 
-    if (id) {
-      let data = await Tournaments.destroy({
-        where: {
-          id,
-        },
-      });
-    }
-    return res.status(200).send("Tournament successfully deleted");
-  } catch (error) {
-    return res.status(400).send("ERROR EN DELETE/TOURNAMENTS", error);
-  }
+		if (id) {
+			let data = await Tournaments.destroy({
+				where: {
+					id
+				}
+			});
+		}
+		return res.status(200).send('Tournament successfully deleted');
+	} catch (error) {
+		return res.status(400).send('ERROR EN DELETE/TOURNAMENTS', error);
+	}
 });
 
 //.........................................................................................//
 // PUT /tournaments
-router.put("/:id", async (req, res) => {
-  try {
-    let { id } = req.params;
-    let editTournament = req.body;
+router.put('/:id', async (req, res) => {
+	try {
+		let { id } = req.params;
+		let editTournament = req.body;
 
-    let data = await Tournaments.update(editTournament, {
-      where: { id },
-    });
-    return res.status(200).send("Tournament successfully edited");
-  } catch (error) {
-    return res.status(400).send("ERROR EN PUT/TOURNAMENTS", error);
-  }
+		let data = await Tournaments.update(editTournament, {
+			where: { id }
+		});
+		return res.status(200).send('Tournament successfully edited');
+	} catch (error) {
+		return res.status(400).send('ERROR EN PUT/TOURNAMENTS', error);
+	}
 });
 
 module.exports = router;

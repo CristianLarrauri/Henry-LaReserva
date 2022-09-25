@@ -9,13 +9,18 @@ export const TOURNAMENT_DETAILS = "TOURNAMENT_DETAILS";
 export const GET_TOURNAMENTS_HOME = "GET_TOURNAMENTS_HOME";
 export const CREATE_PLAYER = "CREATE_PLAYER";
 export const GET_SCORERS_TABLE = "GET_SCORERS_TABLE";
-export const GET_ALL_USERS = "GET_ALL_USERS";
-export const CREATE_USER = "CREATE_USER";
-export const BAN_USER = "BAN_USER";
-export const TO_ADMIN = "TO_ADMIN";
-export const GET_USER_DETAILS = "GET_USER_DETAILS";
-export const GET_NEXT_FIVE_TOURNAMENTS = "GET_NEXT_FIVE_TOURNAMENTS";
-export const GET_NEXT_TOURNAMENT = "GET_NEXT_TOURNAMENT";
+
+export const GET_ALL_USERS = 'GET_ALL_USERS';
+export const CREATE_USER = 'CREATE_USER';
+export const BAN_USER = 'BAN_USER';
+export const TO_ADMIN = 'TO_ADMIN';
+export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const GET_NEXT_FIVE_TOURNAMENTS = 'GET_NEXT_FIVE_TOURNAMENTS';
+export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
+export const GET_TOURNAMENTS_ADMIN = 'GET_TOURNAMENTS_ADMIN';
+export const DELETE_TOURNAMENT = 'DELETE_TOURNAMENT';
+export const MODIFY_TOURNAMENTS = 'MODIFY_TOURNAMENTS';
+
 
 export const createTournament = (payload) => {
   return async function (dispatch) {
@@ -33,6 +38,37 @@ export const createTournament = (payload) => {
       console.log(error);
     }
   };
+};
+
+export const modifyTournaments = (
+	id,
+	name,
+	amountOfTeams,
+	dateInit,
+	dateFinish,
+	genre,
+	category,
+	description
+) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/tournaments/${id}`, {
+				name,
+				amountOfTeams,
+				dateInit,
+				dateFinish,
+				genre,
+				category,
+				description
+			});
+			return dispatch({
+				type: MODIFY_TOURNAMENTS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
 export const createPlayers = (payload) => {
@@ -70,6 +106,18 @@ export const getAllTournaments = (
       console.log(error);
     }
   };
+};
+
+export const getTournamentsAdmin = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get('http://localhost:3001/tournaments/panel');
+			return dispatch({
+				type: GET_TOURNAMENTS_ADMIN,
+				payload: info.data
+			});
+		} catch (error) {}
+	};
 };
 
 export const tournamentDetails = (id) => {
@@ -130,55 +178,60 @@ export const getAllUsers = (payload) => {
 };
 
 export const createUser = (payload) => {
-  return async (dispatch) => {
-    try {
-      const info = await axios.post("ruta", payload);
-      dispatch({
-        type: CREATE_USER,
-        payload: info.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+	return async (dispatch) => {
+		try {
+			const info = await axios.post(
+				'http://localhost:3001/users/post',
+				payload
+			);
+			dispatch({
+				type: CREATE_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
-export const banUser = (payload) => {
-  return async (dispatch) => {
-    try {
-      const info = await axios.put("ruta");
-      dispatch({
-        type: BAN_USER,
-        payload: info.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const banUser = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/users/ban/${id}`);
+			dispatch({
+				type: BAN_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
-export const toAdmin = (payload) => {
-  return async (dispatch) => {
-    try {
-      const info = await axios.put("ruta");
-      dispatch({
-        type: TO_ADMIN,
-        payload: info.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const toAdmin = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/users/admin/${id}`);
+			dispatch({
+				type: TO_ADMIN,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 };
 
 export const getUserDetails = (email) => {
-  return async function (dispatch) {
-    const info = await axios.get("ruta detail");
-    return dispatch({
-      type: GET_USER_DETAILS,
-      payload: info.data,
-    });
-  };
+	return async function (dispatch) {
+		const info = await axios.get(`http://localhost:3001/users/${email}`);
+		return dispatch({
+			type: GET_USER_DETAILS,
+			payload: info.data
+		});
+	};
+
 };
 
 export function getNext5Tournaments() {
@@ -199,18 +252,38 @@ export function getNext5Tournaments() {
 }
 
 export function getNextTournament() {
-  return async (dispatch) => {
-    try {
-      const nextTournament = await axios.get(
-        "http://localhost:3001/next?index=0&limit=1"
-      );
 
-      dispatch({
-        type: GET_NEXT_TOURNAMENT,
-        payload: nextTournament.data,
-      });
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+	return async (dispatch) => {
+		try {
+			const nextTournament = await axios.get(
+				'http://localhost:3001/next?index=0&limit=1'
+			);
+
+			dispatch({
+				type: GET_NEXT_TOURNAMENT,
+				payload: nextTournament.data
+			});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
 }
+
+export function deleteTournament(id) {
+	return async (dispatch) => {
+		try {
+			const info = await axios.delete(
+				`http://localhost:3001/tournaments/${id}`
+			);
+			dispatch({
+				type: DELETE_TOURNAMENT,
+				payload: info.data
+			});
+		} catch (error) {}
+	};
+}
+
+}
+
+
