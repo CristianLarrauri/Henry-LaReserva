@@ -12,11 +12,15 @@ import {
 	TO_ADMIN,
 	GET_USER_DETAILS,
 	GET_NEXT_FIVE_TOURNAMENTS,
-	GET_NEXT_TOURNAMENT
+	GET_NEXT_TOURNAMENT,
+	GET_TOURNAMENTS_ADMIN,
+	DELETE_TOURNAMENT,
+	MODIFY_TOURNAMENTS
 } from '../actions/index.js';
 
 let initialState = {
 	tournaments: [],
+	tournamentsAdmin: [],
 	tournamentDetail: {},
 	teams: [],
 	players: [],
@@ -38,6 +42,11 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				tournaments: action.payload
+			};
+		case GET_TOURNAMENTS_ADMIN:
+			return {
+				...state,
+				tournamentsAdmin: action.payload
 			};
 		case CREATE_PLAYER:
 			return {
@@ -70,6 +79,15 @@ function rootReducer(state = initialState, action) {
 				tournaments: [action.payload]
 			};
 		case TOURNAMENT_DETAILS:
+			return {
+				...state,
+				tournamentDetail: action.payload
+			};
+		case DELETE_TOURNAMENT:
+			return {
+				...state
+			};
+		case MODIFY_TOURNAMENTS:
 			return {
 				...state,
 				tournamentDetail: action.payload
