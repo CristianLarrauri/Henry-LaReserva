@@ -7,7 +7,9 @@ import Footer from './Footer';
 import ScorersTable from '../components/ScorersTable';
 import TeamsTable from '../components/TeamsTable';
 import {BsCalendarDate, BsGenderFemale, BsGenderMale, BsGenderAmbiguous, BsFillPersonFill} from 'react-icons/bs';
+
 import {BiCategoryAlt, BiArrowBack} from 'react-icons/bi'
+
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;

@@ -233,6 +233,7 @@ export default function AllTournaments() {
                   </p>
 				</Link>
 
+
       </div>
 
       <Footer />
