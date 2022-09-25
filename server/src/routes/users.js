@@ -33,7 +33,7 @@ router.get('/:email', async (req, res) => {
 		if (user) {
 			return res.status(200).json(user);
 		} else {
-			return res.status(200).json({ message: 'Email noy found' });
+			return res.status(400).json({ message: 'Email noy found' });
 		}
 	} catch (error) {
 		console.log('Rompo en Get/:email', error);
