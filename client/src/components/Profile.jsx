@@ -7,6 +7,14 @@ export default function Profile() {
 
     const {loginWithRedirect, logout, user, isLoading} = useAuth0();
 
+    useEffect(() => {
+        //Idea para el login
+
+        //Preguntar si el usuario esta logeado (!isLoading && user)
+        //Si el usuario esta logeado agarrar su mail y preguntar en el backend si el email existe
+        //Si el email existe no hacer nada
+        //Si el email no existe crear el usuario en la db
+    })
     
     return (
        <div>
