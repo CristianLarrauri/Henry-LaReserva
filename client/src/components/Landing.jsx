@@ -7,20 +7,16 @@ import { IoLocation } from "react-icons/io5";
 import { SiGmail } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import PopUp from "./PopUp";
+import popUpStyles from '../styles/PopUpStyles.module.css';
 
 export default function Landing() {
-  const [infoVisibility, setInfoVisibility] = useState([false, false, false]);
-  const [msg, setMsg] = useState({});
+  const [popUpError, setPopUpError] = useState({});
 
-  function changeInfoVisibility(target) {
-    let visibility = [...infoVisibility];
-    visibility[target] = !visibility[target];
-    setInfoVisibility(visibility);
+  function redirectTo(target) {
     if (target === 2) {
-      setMsg({
-        title: "Correo copiado al portapapeles",
-        msg: "Contactanos!",
+      setPopUpError({
+        title: "Contactanos!",
+        msg: "Correo copiado al portapapeles",
       });
     }
   }
@@ -127,51 +123,55 @@ export default function Landing() {
           <button>Registrate</button>
         </Link>
       </div>
-      <PopUp msg={msg} />
+
+      <div
+					className={
+						popUpError.title
+							? popUpStyles.popUpOverlay
+							: popUpStyles.popUpOverlay_hidden
+					}
+				>
+					<div
+						className={
+							popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden
+						}
+					>
+						<h2>{popUpError.title}</h2>
+						<p>{popUpError.msg}</p>
+						<button
+							onClick={() => setPopUpError({})}
+							className={popUpStyles.okBtn}
+						>
+							Ok
+						</button>
+					</div>
+				</div>
+
       <div className={styles.iconsContainer}>
         <a href="https://wa.me/5492615110030" target="_blank">
           <div className={styles.iconsSubContainer}>
             <IoLogoWhatsapp
-              onClick={(e) => changeInfoVisibility(0)}
+              onClick={(e) => redirectTo(0)}
               className={styles.icons}
             />
-            <p
-              className={
-                infoVisibility[0] ? styles.visibleInfo : styles.hiddenInfo
-              }
-            >
-              1928374892
-            </p>
           </div>
         </a>
+        <a href={'https://www.google.com.ar/maps/place/Estadio+Alberto+J.+Armando/data=!4m7!3m6!1s0x95a334b6925e5473:0x1ca5b2748858b40d!8m2!3d-34.6356109!4d-58.3647563!16zL20vMDNmMDZw!19sChIJc1RekrY0o5URDbRYiHSypRw?authuser=0&hl=es&rclk=1'} 
+        target='_blank'>
         <div className={styles.iconsSubContainer}>
           <IoLocation
-            onClick={(e) => changeInfoVisibility(1)}
+            onClick={(e) => redirectTo(1)}
             className={styles.icons}
           />
-          <p
-            className={
-              infoVisibility[1] ? styles.visibleInfo : styles.hiddenInfo
-            }
-          >
-            Calle falsa 123
-          </p>
         </div>
-
+      </a>
         <div className={styles.iconsSubContainer}>
           <CopyToClipboard text="emailfalso123@gmail.com">
             <SiGmail
-              onClick={(e) => changeInfoVisibility(2)}
+              onClick={(e) => redirectTo(2)}
               className={styles.icons}
             />
           </CopyToClipboard>
-          <p
-            className={
-              infoVisibility[2] ? styles.visibleInfo : styles.hiddenInfo
-            }
-          >
-            emailfalso123@gmail.com
-          </p>
         </div>
       </div>
 

@@ -7,7 +7,7 @@ export default function TeamsTable({id}){
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/teams?tournament=${id}`)
+        axios.get(`http://localhost:3001/positions?tournament=${id}`)
         .then(data => setTeams(data.data));
     }, []);
 
