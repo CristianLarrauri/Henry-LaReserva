@@ -39,26 +39,36 @@ export default function AllTournaments() {
   };
   const [category, setCategory] = useState("");
   const [genre, setGenre] = useState("");
+  const [valueCategory, setValueCategory] = useState("");
+  const [valueGenre, setValueGenre] = useState("");
   const [state, setState] = useState("");
+  const [valueState, setValueState] = useState("");
 
   const handleFilterCategory = (e) => {
     e.preventDefault();
     setCategory(e.target.value);
+    setValueCategory(e.target.value);
   };
 
   const handleFilterGenre = (e) => {
     e.preventDefault();
     setGenre(e.target.value);
+    setValueGenre(e.target.value);
   };
   const handleFilterState = (e) => {
     e.preventDefault();
     setState(e.target.value);
+    setValueState(e.target.value);
   };
 
   const handleGetAllTournaments = (e) => {
     e.preventDefault();
+    setState("");
     setCategory("");
     setGenre("");
+    setValueCategory("");
+    setValueGenre("");
+    setValueState("");
     setOrder("ASC");
   };
   useEffect(() => {
@@ -84,7 +94,12 @@ export default function AllTournaments() {
               className=" text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded-lg"
               name="genre"
               onChange={(e) => handleFilterGenre(e)}
+              value={valueGenre}
             >
+              {" "}
+              <option disabled value="">
+                Genero
+              </option>
               <option value="">Indistinto</option>
               <option value="Male">Masculinos</option>
               <option value="Female">Femeninos</option>
@@ -94,7 +109,11 @@ export default function AllTournaments() {
               className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
               name="category"
               onChange={(e) => handleFilterCategory(e)}
+              value={valueCategory}
             >
+              <option disabled value="">
+                Categoria
+              </option>
               <option value="">Indistinto</option>
               <option value="Sub20">Sub 20</option>
               <option value="Free">Libre</option>
@@ -105,7 +124,12 @@ export default function AllTournaments() {
               className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
               name="state"
               onChange={(e) => handleFilterState(e)}
+              value={valueState}
             >
+              {" "}
+              <option disabled value="">
+                Status
+              </option>
               <option value="">Indistinto</option>
               <option value="Completed">Finalizados</option>
               <option value="In Progress">Actual</option>
