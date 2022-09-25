@@ -1,5 +1,6 @@
-import NextTournaments from '../../components/NextTournaments.jsx';
+import NextTournaments from "../../components/NextTournaments.jsx";
 import {
+
 	CREATE_TOURNAMENT,
 	GET_ALL_TOURNAMENTS,
 	TOURNAMENT_DETAILS,
@@ -12,11 +13,15 @@ import {
 	TO_ADMIN,
 	GET_USER_DETAILS,
 	GET_NEXT_FIVE_TOURNAMENTS,
-	GET_NEXT_TOURNAMENT
+	GET_NEXT_TOURNAMENT,
+	GET_TOURNAMENTS_ADMIN,
+	DELETE_TOURNAMENT,
+	MODIFY_TOURNAMENTS
 } from '../actions/index.js';
 
 let initialState = {
 	tournaments: [],
+	tournamentsAdmin: [],
 	tournamentDetail: {},
 	teams: [],
 	players: [],
@@ -38,6 +43,11 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				tournaments: action.payload
+			};
+		case GET_TOURNAMENTS_ADMIN:
+			return {
+				...state,
+				tournamentsAdmin: action.payload
 			};
 		case CREATE_PLAYER:
 			return {
@@ -74,6 +84,15 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournamentDetail: action.payload
 			};
+		case DELETE_TOURNAMENT:
+			return {
+				...state
+			};
+		case MODIFY_TOURNAMENTS:
+			return {
+				...state,
+				tournamentDetail: action.payload
+			};
 		case GET_ALL_USERS:
 			return {
 				...state,
@@ -97,19 +116,20 @@ function rootReducer(state = initialState, action) {
 				userDetail: action.payload
 			};
 
-		case GET_NEXT_FIVE_TOURNAMENTS:
-			return {
-				...state,
-				nextTournaments: { ...state.nextTournaments, nextFive: action.payload }
-			};
-		case GET_NEXT_TOURNAMENT:
-			return {
-				...state,
-				nextTournaments: { ...state.nextTournaments, next: action.payload }
-			};
-		default:
-			return state;
-	}
+
+    case GET_NEXT_FIVE_TOURNAMENTS:
+      return {
+        ...state,
+        nextTournaments: { ...state.nextTournaments, nextFive: action.payload },
+      };
+    case GET_NEXT_TOURNAMENT:
+      return {
+        ...state,
+        nextTournaments: { ...state.nextTournaments, next: action.payload },
+      };
+    default:
+      return state;
+  }
 }
 
 export default rootReducer;

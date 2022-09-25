@@ -6,6 +6,7 @@ const preload_teams = async () => {
     let data = preTeams.map((teams) => {
       return {
         name: teams.name,
+        points: teams.points,
         players: teams.players,
         tournaments: teams.tournaments,
       };
@@ -23,10 +24,11 @@ const preload_teams = async () => {
 
 const create_teams = async (data) => {
   try {
-    const { name, players, tournaments } = data;
+    const { name, players, tournaments, points } = data;
 
     const new_teams = await Teams.create({
       name,
+      points,
     });
 
     const players_relation = await Players.findAll({
