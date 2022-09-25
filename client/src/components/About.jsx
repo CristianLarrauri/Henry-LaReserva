@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import icon from "../images/tournamentIcon_1.png";
 
 export default function About() {
   return (
@@ -27,147 +28,122 @@ export default function About() {
         {/* Buscar logos de todas las tecnologias que usamos y listarlas */}
       </div>
       <div>
-        <div>
-          <p>
-            {" "}
-            Franco Bosco
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/FranBosco" target="_blank">
-              Github
-            </a>
-
-            <a href="https://www.linkedin.com/in/??/" target="_blank">
-              Linkedin
-            </a>
-          </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
         </div>
 
-        <div>
-          <p>
-            {" "}
-            Cristian Larrauri
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/CristianLarrauri" target="_blank">
-              Github
-            </a>
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">Franco Bosco</h2>
 
-            <a href="https://www.linkedin.com/in/??/" target="_blank">
-              Linkedin
-            </a>
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/FranBosco" target="_blank">
+                Github
+              </a>
+            </div>
           </div>
         </div>
-
-        <div>
-          <p>
-            {" "}
-            Braian Emanuel Garcia
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/braiangarcia99" target="_blank">
-              Github
-            </a>
-
-            <a href="https://www.linkedin.com/in/??/" target="_blank">
-              Linkedin
-            </a>
-          </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
         </div>
 
-        <div>
-          <p>
-            {" "}
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">Cristian Larrauri</h2>
+
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/CristianLarrauri" target="_blank">
+                Github
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
+        </div>
+
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">Braian Garcia</h2>
+
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/braiangarcia99" target="_blank">
+                Github
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
+        </div>
+
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">
             Maximiliano Giagnorio
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/mxgiagnorio" target="_blank">
-              Github
-            </a>
+          </h2>
 
-            <a
-              href="https://www.linkedin.com/in/maximiliano-giagnorio/"
-              target="_blank"
-            >
-              Linkedin
-            </a>
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/mxgiagnorio" target="_blank">
+                Github
+              </a>
+            </div>
           </div>
         </div>
-
-        <div>
-          <p>
-            {" "}
-            Mauro Alós
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/MauroDavid512" target="_blank">
-              Github
-            </a>
-
-            <a href="https://www.linkedin.com/in/??/" target="_blank">
-              Linkedin
-            </a>
-          </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
         </div>
 
-        <div>
-          <p>
-            {" "}
-            Nicolas Carballo
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/Neiko1210" target="_blank">
-              Github
-            </a>
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">Mauro Alós</h2>
 
-            <a
-              href="https://www.linkedin.com/in/nicolas-carballo-5265a422b/"
-              target="_blank"
-            >
-              Linkedin
-            </a>
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/MauroDavid512" target="_blank">
+                Github
+              </a>
+            </div>
           </div>
         </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
+        </div>
 
-        <div>
-          <p>
-            {" "}
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">Nicolas Carballo</h2>
+
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/Neiko1210" target="_blank">
+                Github
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
+          <img src={icon} alt="icon" className="h-full w-full" />
+        </div>
+
+        <div className="w-9/12">
+          <h2 className="text-gray-800 font-bold mb-2">
             Juan Manuel Berraz Montyn
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
-            <a href="https://github.com/BerrazMontyn" target="_blank">
-              Github
-            </a>
+          </h2>
 
-            <a
-              href="https://www.linkedin.com/in/juan-manuel-berraz-montyn-b25962194/"
-              target="_blank"
-            >
-              Linkedin
-            </a>
+          <div className="flex justify-between font-medium text-gray-800">
+            <div className="flex flex-col items-center">
+              <a href="https://github.com/BerrazMontyn" target="_blank">
+                Github
+              </a>
+            </div>
           </div>
         </div>
-
-        <div>
-          <p>
-            {" "}
-            Matias Franco
-            <span>Full Stack Developer</span>
-          </p>
-          <div>
+      </div>
+      <div className="w-9/12">
+        <h2 className="text-gray-800 font-bold mb-2">Matias Franco</h2>
+        <div className="flex justify-between font-medium text-gray-800">
+          <div className="flex flex-col items-center">
             <a href="https://github.com/MatiasFranco289" target="_blank">
               Github
-            </a>
-
-            <a href="https://www.linkedin.com/in/??/" target="_blank">
-              Linkedin
             </a>
           </div>
         </div>
