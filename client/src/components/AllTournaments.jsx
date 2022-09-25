@@ -144,7 +144,7 @@ export default function AllTournaments() {
         </div>
       </div>
 
-      <div className="bg-red-500 ml-3 mr-3 rounded-lg mb-3 mt-5 justify-between items-center flex">
+      <div className="bg-red-500 ml-3 mr-3 rounded-lg mb-3 mt-5 justify-center items-center flex w-4/6 flex-wrap">
         <button
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg ml-5"
           onClick={(event) => handlePrev(event)}

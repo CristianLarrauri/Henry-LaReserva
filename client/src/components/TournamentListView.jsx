@@ -7,7 +7,7 @@ import {BsFillPersonFill} from 'react-icons/bs';
 
 export default function ({name, id, dateInit, category, genre}) {
 	return (
-		<Link to={`/inscription?id=${id}`} className='min-w-[300px] my-3 flex justify-between bg-gray-100 px-2 py-1 sm:w-[360px] hover:bg-gray-300'>
+		<Link to={`/details/${id}`} className='min-w-[300px] my-3 flex justify-between bg-gray-100 px-2 py-1 sm:w-[360px] hover:bg-gray-300'>
 			<div className='w-[60px] h-[60px] rounded-full overflow-hidden mt-2'>
 				<img src={icon} alt="icon" className="h-full w-full"/>
 			</div>
