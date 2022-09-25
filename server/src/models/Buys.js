@@ -2,13 +2,13 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("buys", {
-    id: {
+    payment_id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    total: {
-      type: DataTypes.INTEGER,
+    payment_status: {
+      type: DataTypes.STRING,
       allowNull: false
     },
   },

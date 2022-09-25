@@ -1,80 +1,100 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from "react-router-dom";
-// import axios from 'axios';
-// const FORM_ID = 'payment-form';
-// import FormPago from './FormPago';
+// import React, { useState } from "react";
+// import BotonPago from "./BotonPago";
 
-// export default function BotonPago({ data }) {
-//   // let usuario
-//   // if(user){
-//   //     usuario = {
-//   //       name: user.username || "alex",
-//   //       surname: user.surname || "jonatan",
-//   //       email: user.email,
-//   //     };
-//   // }
-//   //   console.log(usuario,"hola")
-//   // const { id } = useParams(); // id de producto
-//   const [preferenceId, setPreferenceId] = useState(null);
+// export default function FormPago(){
+//     const [pagar,setPagar] = useState(true)
 
-//   useEffect(() => {
-//     // luego de montarse el componente, le pedimos al backend el preferenceId
-//     axios
-//       .get("http://localhost:3001/checkout")
-//       .then((order) => {
-//         setPreferenceId(order.data);
-//       });
-//   }, []);
+//     const [datos,setDatos] = useState({
+//         nombre:"Nico",
+//         apellido:"Perez",
+//         telefono:"25143898123",
+//         añadirinfo:"holas",
+//         ciudad:"Mendoza",
+//         estado:"Cuyo",
+//         postal:"5511",
+//         recordar: false,
+//         number:"1245",
+//         email:"carballonicolas1210@gmail.com",
+//         Barrio:"Aconcagua",
+//         street_number:"1214",
+//         floor:"12",
+//         apartment:"15",
+//         pictureUrl:""
+//     })
 
-//   useEffect(() => {
-//     if (preferenceId) {
-//       // con el preferenceId en mano, inyectamos el script de mercadoPago
-//       const script = document.createElement("script");
-//       script.type = "text/javascript";
-//       script.src =
-//         "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-//       script.setAttribute("data-preference-id", preferenceId);
-//       const form = document.getElementById(FORM_ID);
-//       form.appendChild(script);
-//     }
-//   }, [preferenceId]);
+//     const handleSubmit = async(e) => {
+// 		e.preventDefault();
+// 		setPagar(false)
+// 	};
 
 
-import React, { useEffect, useState } from "react";
-import FormPago from "./FormPago.jsx";
-import { useDispatch, useSelector } from "react-redux";
+//     return (
+//         <div>
+//             <form onSubmit={handleSubmit}>
+//             <label>Nombre</label>
+//             <input name="nombre" type="text"></input>
 
-import axios from "axios";
-function BotonPago() {
-  const dispatch = useDispatch();
-  const mpData = useSelector((state) => state.mpData);
-  const [datos, setDatos] = useState("");
+//             <button type="submit" className="botoncomprar">Solicitar Pago</button>
+//             {(pagar) ? null: <BotonPago data={datos}/>}
+//             </form>
+//         </div>
+//     )
+// }
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/checkout`)
-      .then((data) => {
-        setDatos(data?.data);
-      })
-      .catch((err) => console.error(err));
-  }
-    , []);
+import React, { useState } from "react";
+import { useEffect } from "react";
+
+export default function BotonPago({ productos, data }) {
+    useEffect(() => {
+        const script = document.createElement("script"); //Crea un elemento html script
+
+        const attr_data_preference = document.createAttribute("data-preference-id"); //Crea un nodo atribute
+        attr_data_preference.value = data.id; //Le asigna como valor el id que devuelve MP
+
+        //Agrega atributos al elemento script
+        script.src =
+            "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+        script.setAttributeNode(attr_data_preference);
 
 
-  const productos = [
-    { title: "Torneo Incripcion", price: 1 },
-  ];
-  return (
-    <div className="">
-      {!datos ? (
-        <p>Aguarde un momento....</p>
-      ) : (
-        <FormPago productos={productos} data={datos} />
-      )}
-    </div>
-  );
+        //Agrega el script como nodo hijo del elemento form
+        document.getElementById("form1").appendChild(script);
+        return () => {
+            //Elimina el script como nodo hijo del elemento form
+            document.getElementById("form1").removeChild(script);
+        };
+
+    }, [data]);
+    return (
+        <div >
+            <div ></div>
+            <div >
+                <div >
+
+                    <form id='form1'>
+                        <div ></div>
+
+                        <h4>Resumen de cuenta</h4>
+                        <div  >
+                            <div ></div>
+                            <div ></div>
+
+                            <div >
+                                {productos?.map((producto, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <ul className="ul_mp_cont">
+                                                <li>{producto.title}</li>
+                                                <li>{'$' + producto.price}</li>
+                                            </ul>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    )
 }
-
-export default BotonPago;
-
-
