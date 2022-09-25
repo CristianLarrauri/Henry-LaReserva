@@ -284,6 +284,5 @@ export function deleteTournament(id) {
 	};
 }
 
-}
 
 
