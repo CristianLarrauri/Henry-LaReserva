@@ -3,7 +3,7 @@
     "name": "Franco",
     "surname": "Bosco",
     "dni": 40000000,
-    "goals": 0,
+    "goals": 19,
     "tournaments": ["Copa Libertadores"]
   },
   {
@@ -24,7 +24,7 @@
     "name": "Braian",
     "surname": "Garcia",
     "dni": 40000003,
-    "goals": 0,
+    "goals": 6,
     "tournaments": ["Copa Libertadores"]
   },
   {
@@ -59,7 +59,7 @@
     "name": "David",
     "surname": "Etchepare",
     "dni": 40000008,
-    "goals": 0,
+    "goals": 2,
     "tournaments": ["Copa Libertadores"]
   },
   {
@@ -143,14 +143,14 @@
     "dni": 10000006,
     "name": "Rodrigo",
     "surname": "Garro",
-    "goals": 0,
+    "goals": 16,
     "tournaments": ["Copa Libertadores"]
   },
   {
     "dni": 10000003,
     "name": "Julio",
     "surname": "Buffa",
-    "goals": 0,
+    "goals": 1,
     "tournaments": ["Copa Libertadores"]
   },
   {

@@ -88,66 +88,47 @@ export default function AllTournaments() {
         <Link to="/home">
           <p>Volver</p>
         </Link>
-      </button> */}
 
-      <div className="min-h-screen flex flex-col items-center">{/*main section*/}
+      </button>
 
-        <div className="bg-white w-5/6 flex justify-around flex-wrap mt-6 animate-appear">{/*filtros*/}
-
-          <div className="flex items-center p-2 m-2">
-
-            <h2 className="text-xl font-medium mr-2">Genero:</h2>
-
-              <select
-                className="bg-gray-200 text-center rounded text-xl p-2 cursor-pointer hover:bg-gray-300 font-medium"
-                name="genre"
-                onChange={(e) => handleFilterGenre(e)}
-                value={valueGenre}>
-                  
-                <option value="">
-                  Indistinto
-                </option>
-                <option value="Male">Masculinos</option>
-                <option value="Female">Femeninos</option>
-                <option value="Mixed">Mixtos</option>
-              </select>
-          </div>
-
-          <div className="flex items-center p-2 m-2">
-
-            <h2 className="text-xl font-medium mr-2">Categoria</h2>
+      <div>
+        <div className="flex container-xl px-[35%] py-[3%] border-2 rounded-lg mt-[10%] justify-center">
+          <div className="container">
+            <h3 className="text-md font-mono mt-1 items-center justify-between">
+              Todos los torneos:
+            </h3>
+            <select
+              className=" text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-3 rounded-lg"
+              name="genre"
+              onChange={(e) => handleFilterGenre(e)}
+            >
+              <option value="">Indistinto</option>
+              <option value="Masculino">Masculinos</option>
+              <option value="Femenino">Femeninos</option>
+              <option value="Mixto">Mixtos</option>
+            </select>
+            <select
+              className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
+              name="category"
+              onChange={(e) => handleFilterCategory(e)}
+            >
+              <option value="">Indistinto</option>
+              <option value="Sub20">Sub 20</option>
+              <option value="Libre">Libre</option>
+              <option value="Senior">Senior</option>
+            </select>
 
             <select
-                  className="bg-gray-200 text-center rounded text-xl p-2 cursor-pointer hover:bg-gray-300 font-medium"
-                  name="category"
-                  onChange={(e) => handleFilterCategory(e)}
-                  value={valueCategory}
-                >
-                  <option value="">
-                    Indistinto
-                  </option>
-                  <option value="Sub20">Sub 20</option>
-                  <option value="Free">Libre</option>
-                  <option value="Senior">Senior</option>
-              </select>
-          </div>
-          
-          <div className="flex items-center p-2 m-2">
-            <h2 className="text-xl font-medium mr-2">Status: </h2>
+              className="text-md mt-5 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded-lg"
+              name="state"
+              onChange={(e) => handleFilterState(e)}
+            >
+              <option value="">Indistinto</option>
+              <option value="Finalizado">Finalizados</option>
+              <option value="En curso">Actual</option>
+              <option value="Proximo">Proximos</option>
+            </select>
 
-            <select
-                className="bg-gray-200 text-center rounded text-xl p-2 cursor-pointer hover:bg-gray-300 font-medium"
-                name="state"
-                onChange={(e) => handleFilterState(e)}
-                value={valueState}
-              >
-                <option value="">
-                  Indistinto
-                </option>
-                <option value="Completed">Finalizados</option>
-                <option value="In Progress">Actual</option>
-                <option value="Comming Soon">Proximos</option>
-              </select>
           </div>
 
             

@@ -9,6 +9,7 @@ const preload_players = async () => {
         surname: players.surname,
         dni: players.dni,
         tournaments: players.tournaments,
+        goals: players.goals,
       };
     });
 
@@ -23,12 +24,13 @@ const preload_players = async () => {
 };
 
 const create_players = async (data) => {
-  const { name, surname, dni, tournaments } = data;
+  const { name, surname, dni, tournaments, goals } = data;
   try {
     let new_players = await Players.create({
       name,
       surname,
       dni,
+      goals,
     });
 
     let tournaments_relation = await Tournaments.findAll({
