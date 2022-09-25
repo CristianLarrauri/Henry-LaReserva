@@ -13,8 +13,8 @@ ReactDOM.render(
     <BrowserRouter>
       <React.StrictMode>
         <Auth0Provider
-          domain="dev-2-czh40l.us.auth0.com"
-          clientId="Vm4kafaVcbYUQRFNqrK1GjIXtnUqaPKp"
+          domain="dev-spt1ynm1.us.auth0.com"
+          clientId="mkZe8iRlQFUWM8U9VlTxYQ0gpyaW0V7T"
           redirectUri={window.location.href}
         >
           <App />
@@ -23,7 +23,6 @@ ReactDOM.render(
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
-
 );
 
 // If you want to start measuring performance in your app, pass a function
