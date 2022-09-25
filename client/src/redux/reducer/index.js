@@ -1,5 +1,6 @@
-import NextTournaments from '../../components/NextTournaments.jsx';
+import NextTournaments from "../../components/NextTournaments.jsx";
 import {
+
 	CREATE_TOURNAMENT,
 	GET_ALL_TOURNAMENTS,
 	TOURNAMENT_DETAILS,
@@ -115,19 +116,20 @@ function rootReducer(state = initialState, action) {
 				userDetail: action.payload
 			};
 
-		case GET_NEXT_FIVE_TOURNAMENTS:
-			return {
-				...state,
-				nextTournaments: { ...state.nextTournaments, nextFive: action.payload }
-			};
-		case GET_NEXT_TOURNAMENT:
-			return {
-				...state,
-				nextTournaments: { ...state.nextTournaments, next: action.payload }
-			};
-		default:
-			return state;
-	}
+
+    case GET_NEXT_FIVE_TOURNAMENTS:
+      return {
+        ...state,
+        nextTournaments: { ...state.nextTournaments, nextFive: action.payload },
+      };
+    case GET_NEXT_TOURNAMENT:
+      return {
+        ...state,
+        nextTournaments: { ...state.nextTournaments, next: action.payload },
+      };
+    default:
+      return state;
+  }
 }
 
 export default rootReducer;

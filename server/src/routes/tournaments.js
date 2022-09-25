@@ -12,12 +12,14 @@ const mercadopago = require('mercadopago');
 require('dotenv').config();
 
 mercadopago.configure({
+
 	access_token:
 		'APP_USR-943877230059034-092202-de89def63c7dbdb08fd4752f4e60622d-1202964227'
 });
 
 module.exports = {
 	mercadopago
+
 };
 
 // ----------------------------------------------------------------
@@ -52,147 +54,135 @@ router.post('/', async (req, res) => {
 
 //.........................................................................................//
 // GET /tournaments && GET /tournaments?name="..."
-router.get('/', async (req, res) => {
-	try {
-		let { name } = req.query;
-		let data = await get_tournaments_db();
 
-		// filtros combinados (genre, category, state)
-		if (req.query.genre && req.query.category && req.query.state) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					category: req.query.category,
-					genre: req.query.genre,
-					state: req.query.state
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+router.get("/", async (req, res) => {
+  try {
+    let { name } = req.query;
+    let data = await get_tournaments_db();
 
-		// filtros combinados (genre, category)
-		if (req.query.genre && req.query.category) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					category: req.query.category,
-					genre: req.query.genre
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtros combinados (genre, category, state)
+    if (req.query.genre && req.query.category && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          genre: req.query.genre,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// filtros combinados (genre, state)
-		if (req.query.genre && req.query.state) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					genre: req.query.genre,
-					state: req.query.state
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtros combinados (genre, category)
+    if (req.query.genre && req.query.category) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          genre: req.query.genre,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// filtros combinados (category, state)
-		if (req.query.category && req.query.state) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					category: req.query.category,
-					state: req.query.state
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtros combinados (genre, state)
+    if (req.query.genre && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          genre: req.query.genre,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// filtro genre
-		if (req.query.genre) {
-			let dataFilter = await Tournaments.findAll({
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]],
-				where: {
-					genre: req.query.genre
-				}
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtros combinados (category, state)
+    if (req.query.category && req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// filtro category
-		if (req.query.category) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					category: req.query.category
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtro genre
+    if (req.query.genre) {
+      let dataFilter = await Tournaments.findAll({
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+        where: {
+          genre: req.query.genre,
+        },
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// filtro state
-		if (req.query.state) {
-			let dataFilter = await Tournaments.findAll({
-				where: {
-					state: req.query.state
-				},
-				Offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]]
-			});
-			return res.status(200).send(dataFilter);
-		}
+    // filtro category
+    if (req.query.category) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          category: req.query.category,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-		// busqueda name o total
-		if (name) {
-			let data_tournament = data.find(
-				(tournament) =>
-					tournament.name.toLocaleLowerCase() === name.toLocaleLowerCase()
-			);
+    // filtro state
+    if (req.query.state) {
+      let dataFilter = await Tournaments.findAll({
+        where: {
+          state: req.query.state,
+        },
+        Offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+      });
+      return res.status(200).send(dataFilter);
+    }
 
-			data_tournament
-				? res.status(200).send(data_tournament)
-				: res.status(404).send('No se encontro el torneo');
-		} else {
-			let data_total = await Tournaments.findAll({
-				offset: req.query.page,
-				limit: 6,
-				order: [[req.query.property, req.query.order]],
-				include: {
-					model: Teams,
-					attributes: ['name'],
-					through: {
-						attributes: []
-					}
-				}
-			});
-			return res.status(200).send(data_total);
-		}
-	} catch (error) {
-		console.log('ERROR EN RUTA GET/tournaments', error);
-	}
-});
+    // busqueda name o total
+    if (name) {
+      let data_tournament = data.find((ele) =>
+        ele.name.toLowerCase().includes(name.toLowerCase())
+      );
 
-//-------------------------------------------------------------------------------------------------
-// GET para panel de admin
-router.get('/panel', async (req, res) => {
-	try {
-		let data = await get_tournaments_db();
-
-		res.status(200).send(data);
-	} catch (error) {
-		console.log('No hay torneos');
-	}
+      data_tournament
+        ? res.status(200).send(data_tournament)
+        : res.status(404).send("No se encontro el torneo");
+    } else {
+      let data_total = await Tournaments.findAll({
+        offset: req.query.page,
+        limit: 6,
+        order: [[req.query.property, req.query.order]],
+        include: {
+          model: Teams,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+      return res.status(200).send(data_total);
+    }
+  } catch (error) {
+    console.log("ERROR EN RUTA GET/tournaments", error);
+  }
 });
 
 //.........................................................................................//

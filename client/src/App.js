@@ -13,10 +13,14 @@ import ModifyTournaments from './components/ModifyTournament';
 import Formpago from './components/Formpago.jsx';
 import About from './components/About';
 import DashBoardAdmin from './components/DashBoardAdmin';
+import Auth0ProviderWithHistory from './auth0Provider';
+
 
 function App() {
 
   return (
+
+ <Auth0ProviderWithHistory>
     <BrowserRouter>
       <div>
         <Switch>
@@ -36,6 +40,8 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
+    </Auth0ProviderWithHistory>
+
   );
 }
 

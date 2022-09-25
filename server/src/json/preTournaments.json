@@ -6,8 +6,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
-    "genre": "Male",
-    "state": "Completed",
+    "genre": "Masculino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -17,8 +17,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
-    "genre": "Mixed",
-    "state": "Completed",
+    "genre": "Mixto",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -27,9 +27,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "Free",
-    "genre": "Mixed",
-    "state": "Completed",
+    "category": "Libre",
+    "genre": "Mixto",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -38,9 +38,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "Free",
-    "genre": "Male",
-    "state": "Completed",
+    "category": "Libre",
+    "genre": "Masculino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -49,9 +49,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "Free",
-    "genre": "Female",
-    "state": "Completed",
+    "category": "Libre",
+    "genre": "Femenino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -61,8 +61,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
-    "genre": "Male",
-    "state": "Completed",
+    "genre": "Masculino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -72,8 +72,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
-    "genre": "Female",
-    "state": "Completed",
+    "genre": "Femenino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -83,8 +83,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
-    "genre": "Female",
-    "state": "Completed",
+    "genre": "Femenino",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -94,8 +94,8 @@
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
-    "genre": "Mixed",
-    "state": "Completed",
+    "genre": "Mixto",
+    "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -105,8 +105,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
-    "genre": "Male",
-    "state": "In Progress",
+    "genre": "Masculino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -116,8 +116,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
-    "genre": "Mixed",
-    "state": "In Progress",
+    "genre": "Mixto",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -126,9 +126,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "Free",
-    "genre": "Mixed",
-    "state": "In Progress",
+    "category": "Libre",
+    "genre": "Mixto",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -137,9 +137,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "Free",
-    "genre": "Male",
-    "state": "In Progress",
+    "category": "Libre",
+    "genre": "Masculino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -148,9 +148,9 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "Free",
-    "genre": "Female",
-    "state": "In Progress",
+    "category": "Libre",
+    "genre": "Femenino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -160,8 +160,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
-    "genre": "Male",
-    "state": "In Progress",
+    "genre": "Masculino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -171,8 +171,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
-    "genre": "Female",
-    "state": "In Progress",
+    "genre": "Femenino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -182,8 +182,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
-    "genre": "Female",
-    "state": "In Progress",
+    "genre": "Femenino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -193,8 +193,8 @@
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
-    "genre": "Mixed",
-    "state": "In Progress",
+    "genre": "Mixto",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -204,8 +204,8 @@
     "dateInit": "2023-01-01",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
-    "genre": "Male",
-    "state": "Comming Soon",
+    "genre": "Masculino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -215,8 +215,8 @@
     "dateInit": "2023-01-05",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
-    "genre": "Mixed",
-    "state": "Comming Soon",
+    "genre": "Mixto",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -225,9 +225,9 @@
     "amountOfTeams": 7,
     "dateInit": "2023-01-10",
     "dateFinish": "2023-06-01",
-    "category": "Free",
-    "genre": "Mixed",
-    "state": "Comming Soon",
+    "category": "Libre",
+    "genre": "Mixto",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -236,9 +236,9 @@
     "amountOfTeams": 7,
     "dateInit": "2023-01-15",
     "dateFinish": "2023-06-01",
-    "category": "Free",
-    "genre": "Male",
-    "state": "Comming Soon",
+    "category": "Libre",
+    "genre": "Masculino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -247,9 +247,9 @@
     "amountOfTeams": 7,
     "dateInit": "2023-01-20",
     "dateFinish": "2023-06-01",
-    "category": "Free",
-    "genre": "Female",
-    "state": "Comming Soon",
+    "category": "Libre",
+    "genre": "Femenino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -259,8 +259,8 @@
     "dateInit": "2023-01-25",
     "dateFinish": "2023-06-01",
     "category": "Senior",
-    "genre": "Male",
-    "state": "Comming Soon",
+    "genre": "Masculino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -270,8 +270,8 @@
     "dateInit": "2023-02-01",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
-    "genre": "Female",
-    "state": "Comming Soon",
+    "genre": "Femenino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -281,8 +281,8 @@
     "dateInit": "2023-02-05",
     "dateFinish": "2023-06-01",
     "category": "Senior",
-    "genre": "Female",
-    "state": "Comming Soon",
+    "genre": "Femenino",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -292,8 +292,8 @@
     "dateInit": "2023-02-10",
     "dateFinish": "2023-06-01",
     "category": "Senior",
-    "genre": "Mixed",
-    "state": "Comming Soon",
+    "genre": "Mixto",
+    "state": "Proximo",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   },
   {
@@ -302,9 +302,9 @@
     "amountOfTeams": 10,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "Free",
-    "genre": "Male",
-    "state": "In Progress",
+    "category": "Libre",
+    "genre": "Masculino",
+    "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
   }
 ]
