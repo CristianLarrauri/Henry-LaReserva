@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Los Magios",
-    "points": 0,
+    "points": 10,
     "tournaments": ["Copa Libertadores"],
     "players": [
       40000000, 40000001, 40000002, 40000003, 40000004, 40000005, 40000006,
@@ -22,7 +22,7 @@
   {
     "id": 3,
     "name": "Talleres de America",
-    "points": 0,
+    "points": 20,
     "tournaments": ["Copa Libertadores"],
     "players": [
       10000000, 10000001, 10000002, 10000003, 10000004, 10000005, 10000006,
@@ -32,7 +32,7 @@
   {
     "id": 4,
     "name": "Boquita",
-    "points": 0,
+    "points": 15,
     "tournaments": ["Copa Libertadores"],
     "players": [
       20000000, 20000001, 20000002, 20000003, 20000004, 20000005, 20000006,
