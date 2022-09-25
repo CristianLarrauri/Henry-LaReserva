@@ -59,15 +59,14 @@ export default function TournamentCards() {
 						? tournaments?.map((ele) => {
 								return (
 									<div>
-										<Link to={`/details/${ele.id}`}>
-											<Card
-												key={ele.id}
-												name={ele.name}
-												dateInit={ele.dateInit}
-												genre={ele.genre}
-												category={ele.category}
-											/>
-										</Link>
+										<Card
+											key={ele.id}
+											name={ele.name}
+											dateInit={ele.dateInit}
+											genre={ele.genre}
+											category={ele.category}
+											id={ele.id}
+										/>
 									</div>
 								);
 						})
