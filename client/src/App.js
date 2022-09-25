@@ -11,10 +11,10 @@ import ComplexDetail from "./components/ComplexDetail";
 import TournamentDetail from "./components/TournamentDetails";
 import Auth0ProviderWithHistory from './auth0Provider';
 
-import Formpago from "./components/Formpago.jsx";
 
 
 import About from "./components/About";
+
 
 
 function App() {

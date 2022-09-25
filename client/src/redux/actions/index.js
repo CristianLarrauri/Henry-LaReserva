@@ -16,6 +16,24 @@ export const TO_ADMIN = "TO_ADMIN";
 export const GET_USER_DETAILS = "GET_USER_DETAILS";
 export const GET_NEXT_FIVE_TOURNAMENTS = "GET_NEXT_FIVE_TOURNAMENTS";
 export const GET_NEXT_TOURNAMENT = "GET_NEXT_TOURNAMENT";
+export const PRODUCT_TO_BUY = "PRODUCT_TO_BUY";
+
+
+export const getProductToBuy = (id) => {
+  if (id) {
+    return async function (dispatch) {
+      let productToBuy = await axios.get(`/products/${id}`);
+      // console.log(productToBuy.data);
+      return dispatch({
+        type: PRODUCT_TO_BUY,
+        payload: productToBuy.data,
+      });
+    };
+  }
+  return {
+    type: PRODUCT_TO_BUY,
+  };
+};
 
 export const createTournament = (payload) => {
   return async function (dispatch) {

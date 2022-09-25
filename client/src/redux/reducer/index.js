@@ -13,6 +13,7 @@ import {
   GET_USER_DETAILS,
   GET_NEXT_FIVE_TOURNAMENTS,
   GET_NEXT_TOURNAMENT,
+  PRODUCT_TO_BUY,
 } from "../actions/index.js";
 
 let initialState = {
@@ -29,6 +30,11 @@ let initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case PRODUCT_TO_BUY:
+      return {
+        ...state,
+      }
+    
     case CREATE_TOURNAMENT:
       return {
         ...state,
