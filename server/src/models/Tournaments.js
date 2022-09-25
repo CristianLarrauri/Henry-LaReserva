@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     category: {
-      type: DataTypes.ENUM("Sub20", "Libre", "+30"),
+      type: DataTypes.ENUM("Sub20", "Libre", "Senior"),
     },
     genre: {
       type: DataTypes.ENUM("Masculino", "Femenino", "Mixto"),

@@ -98,7 +98,7 @@ export default function AllTournaments() {
               <option value="">Indistinto</option>
               <option value="Sub20">Sub 20</option>
               <option value="Libre">Libre</option>
-              <option value="+30">+30</option>
+              <option value="Senior">Senior</option>
             </select>
 
             <select

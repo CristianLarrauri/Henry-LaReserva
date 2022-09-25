@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     let data = await Tournaments.findAll({
-      where: { state: "Comming Soon" },
+      where: { state: "Finalizado" },
       offset: req.query.index,
       limit: req.query.limit,
       order: [["dateInit", "ASC"]],

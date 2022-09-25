@@ -60,7 +60,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Masculino",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -82,7 +82,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Femenino",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -93,7 +93,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Mixto",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -159,7 +159,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Masculino",
     "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -181,7 +181,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Femenino",
     "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -192,7 +192,7 @@
     "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Mixto",
     "state": "En curso",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -258,7 +258,7 @@
     "amountOfTeams": 7,
     "dateInit": "2023-01-25",
     "dateFinish": "2023-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Masculino",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -280,7 +280,7 @@
     "amountOfTeams": 7,
     "dateInit": "2023-02-05",
     "dateFinish": "2023-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Femenino",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
@@ -291,7 +291,7 @@
     "amountOfTeams": 7,
     "dateInit": "2023-02-10",
     "dateFinish": "2023-06-01",
-    "category": "+30",
+    "category": "Senior",
     "genre": "Mixto",
     "state": "Finalizado",
     "description": "Ganar no es lo más importante, es lo único. Ser segundo no vale. ¿Vos sabes quién pisó América después de colón? yo no. No tiene bebida alcohólica, tiene Gatorei"
