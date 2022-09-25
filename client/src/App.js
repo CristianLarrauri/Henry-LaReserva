@@ -29,7 +29,6 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/pago" component={Formpago} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/inscription" component={TeamInscription} />
           <Route exact path="/inscription" component={PlayerInscription} />
           <Route exact path="/tournaments" component={AllTournaments} />
           <Route exact path="/create" component={CreateTournament} />
