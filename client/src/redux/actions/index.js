@@ -8,6 +8,7 @@ export const SEARCH_TOURNAMENTS = 'SEARCH_TOURNAMENTS';
 export const TOURNAMENT_DETAILS = 'TOURNAMENT_DETAILS';
 export const GET_TOURNAMENTS_HOME = 'GET_TOURNAMENTS_HOME';
 export const CREATE_PLAYER = 'CREATE_PLAYER';
+export const GET_SCORERS_TABLE = "GET_SCORERS_TABLE";
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CREATE_USER = 'CREATE_USER';
 export const BAN_USER = 'BAN_USER';
@@ -261,6 +262,7 @@ export function getNextTournament() {
 			console.error(err.message);
 		}
 	};
+
 }
 
 export function deleteTournament(id) {
@@ -276,3 +278,6 @@ export function deleteTournament(id) {
 		} catch (error) {}
 	};
 }
+
+}
+
