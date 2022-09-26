@@ -1,7 +1,11 @@
-const { Players, Teams, Tournaments } = require("../db");
-const prePlayers = require("../json/prePlayers.json");
+
+const { Players, Teams, Tournaments } = require('../db');
+const prePlayers = require('../json/prePlayers.json');
+
+
 
 const preload_players = async () => {
+
   try {
     let data = prePlayers.map((players) => {
       return {
@@ -46,19 +50,19 @@ const create_players = async (data) => {
 };
 
 const players_db = async () => {
-  try {
-    return await Players.findAll({
-      include: {
-        model: Teams,
-        attributes: ["name"],
-        through: {
-          attributes: [],
-        },
-      },
-    });
-  } catch (error) {
-    console.log("ERROR EN PLAYERS DB", error);
-  }
+	try {
+		return await Players.findAll({
+			include: {
+				model: Teams,
+				attributes: ['name'],
+				through: {
+					attributes: []
+				}
+			}
+		});
+	} catch (error) {
+		console.log('ERROR EN PLAYERS DB', error);
+	}
 };
 
 module.exports = { create_players, players_db, preload_players };
