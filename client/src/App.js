@@ -25,13 +25,13 @@ function App() {
 	const dispatch = useDispatch();
 	const { user, isAuthenticated, isLoading } = useAuth0();
 	const userDetail = useSelector((state) => state.userDetail);
+	console.log('det', userDetail);
 	console.log('aaa', isLoading, user);
-
 	const admin = userDetail.admin;
 	const ban = userDetail.ban;
 
 	useEffect(() => {
-		if (!isLoading && userDetail) dispatch(getUserDetails(userDetail.email));
+		if (!isLoading && user) dispatch(getUserDetails(user.email));
 	});
 
 	return (
@@ -46,14 +46,8 @@ function App() {
 						<Route exact path="/ban" component={Ban} />
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
-						{/* {!isLoading && !user ? (
-							<Route exact path="/inscription" component={Home} />
-						) : ( */}
 						<Route exact path="/inscription" component={PlayerInscription} />
-						{/* )} */}
-
 						<Route exact path="/pago" component={Formpago} />
-
 						<Route exact path="/admin" component={DashBoardAdmin} />
 						<Route
 							exact
