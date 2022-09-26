@@ -166,11 +166,11 @@ router.get('/', async (req, res) => {
 
 		// busqueda name o total
 		if (name) {
-			let data_tournament = data.find((ele) =>
+			let data_tournament = data.filter((ele) =>
 				ele.name.toLowerCase().includes(name.toLowerCase())
 			);
 
-			data_tournament
+			data_tournament.length > 0
 				? res.status(200).send(data_tournament)
 				: res.status(404).send('No se encontro el torneo');
 		} else {
