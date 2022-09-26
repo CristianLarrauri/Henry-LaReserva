@@ -41,72 +41,39 @@
 
 // ---------------------------------------------------------------
 
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import BotonPago from "./BotonPago";
-
-// import axios from "axios";
-// function FormPago() {
-//   const dispatch = useDispatch();
-//   const mpData = useSelector((state) => state.mpData);
-//   const [datos, setDatos] = useState("");
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:3001/checkout`)
-//       .then((data) => {
-//         setDatos(data?.data);
-//       })
-//       .catch((err) => console.error(err));
-//   }
-//     , []);
-
-
-//   const productos = [
-//     { title: "Torneo Incripcion", price: 1 },
-//   ];
-//   return (
-//     <div className="">
-//       {!datos ? (
-//         <p>Aguarde un momento....</p>
-//       ) : (
-//         <BotonPago productos={productos} data={datos} />
-//       )}
-//     </div>
-//   );
-// }
-
-// export default FormPago;
-
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import BotonPago from "./BotonPago";
+
 import axios from "axios";
-const FORM_ID = "payment-form";
-
-export default function BuyProducts({ data }) {
-  
-  const [preferenceId, setPreferenceId] = useState(null);
+function FormPago() {
+  const dispatch = useDispatch();
+  const mpData = useSelector((state) => state.mpData);
+  const [datos, setDatos] = useState("");
 
   useEffect(() => {
-    // luego de montarse el componente, le pedimos al backend el preferenceId
     axios
-      .post("http://localhost:3001/checkout", data)
-      .then((order) => {
-        setPreferenceId(order.data);
-      });
-  }, []);
+      .get(`http://localhost:3001/checkout`)
+      .then((data) => {
+        setDatos(data?.data);
+      })
+      .catch((err) => console.error(err));
+  }
+    , []);
 
-  useEffect(() => {
-    if (preferenceId) {
-      // con el preferenceId en mano, inyectamos el script de mercadoPago
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src =
-        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      script.setAttribute("data-preference-id", preferenceId);
-      const form = document.getElementById(FORM_ID);
-      form.appendChild(script);
-    }
-  }, [preferenceId]);
 
-  return <form id={FORM_ID} method="GET" />;
+  const productos = [
+    { title: "Torneo Inscripcion", price: 1 },
+  ];
+  return (
+    <div className="">
+      {!datos ? (
+        <p>Aguarde un momento....</p>
+      ) : (
+        <BotonPago productos={productos} data={datos} />
+      )}
+    </div>
+  );
 }
+
+export default FormPago;
