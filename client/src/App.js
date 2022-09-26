@@ -10,7 +10,7 @@ import Ban from './components/Ban';
 import ComplexDetail from './components/ComplexDetail';
 import TournamentDetail from './components/TournamentDetails';
 import ModifyTournaments from './components/ModifyTournament';
-import Formpago from './components/Formpago.jsx';
+import FormPago from './components/MP/FormPago';
 import About from './components/About';
 import DashBoardAdmin from './components/DashBoardAdmin';
 import Auth0ProviderWithHistory from './auth0Provider';
@@ -47,7 +47,7 @@ function App() {
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
 						<Route exact path="/inscription" component={PlayerInscription} />
-						<Route exact path="/pago" component={Formpago} />
+						<Route exact path="/pago" component={FormPago} />
 						<Route exact path="/admin" component={DashBoardAdmin} />
 						<Route
 							exact
