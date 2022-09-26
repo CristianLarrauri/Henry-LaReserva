@@ -84,7 +84,7 @@ export default function AllTournaments() {
   return (
     <div className="bg-gray-100 w-full min-h-screen flex flex-col justify-between ">
       <Nav />
-      {/* <button>
+      /* <button>
         <Link to="/home">
           <p>Volver</p>
         </Link>
