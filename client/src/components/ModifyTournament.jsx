@@ -3,29 +3,52 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTournament } from '../redux/actions';
 import styles from '../styles/CreateTournament.module.css';
 import popUpStyles from '../styles/PopUpStyles.module.css';
 import { IoIosArrowBack } from 'react-icons/io';
 import Nav from '../components/Nav';
+import { useParams } from 'react-router-dom';
+import { modifyTournaments, tournamentDetails } from '../redux/actions';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-export default function CreateTournament() {
+export default function ModifyTournaments() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const params = useParams();
 	const [popUpError, setPopUpError] = useState({});
+	const id = params.id;
 
+	// const tournamentToModify = useSelector((state) => state.tournamentDetail);
+	// console.log('tm', tournamentToModify);
 	const [input, setInput] = useState({
 		name: '',
-		amountOfTeams: '',
+		amountOfTeams: 0,
 		dateInit: '',
 		dateFinish: '',
 		genre: '',
-		category: ''
+		category: '',
+		description: ''
 	});
 
+	useEffect(() => {
+		axios.get(`http://localhost:3001/tournaments/${id}`).then((data) =>
+			setInput({
+				name: data.data.name,
+				amountOfTeams: data.data.amountOfTeams,
+				dateInit: data.data.dateInit,
+				dateFinish: data.data.dateFinish,
+				genre: data.data.genre,
+				category: data.data.category,
+				description: data.data.description
+			})
+		);
+
+		dispatch(tournamentDetails(id));
+	}, []);
+	console.log('input', input);
+
 	const handleChange = (e) => {
-		e.preventDefault();
 		setInput({
 			...input,
 			[e.target.name]: e.target.value
@@ -48,12 +71,23 @@ export default function CreateTournament() {
 				msg: 'Llene los campos correctamente'
 			});
 		} else {
-			dispatch(createTournament(input));
+			dispatch(
+				modifyTournaments(
+					id,
+					input.name,
+					input.amountOfTeams,
+					input.dateInit,
+					input.dateFinish,
+					input.genre,
+					input.category,
+					input.description
+				)
+			);
 			setPopUpError({
 				title: 'Exito!',
-				msg: 'Torneo creado correctamente.'
+				msg: 'Torneo modificado correctamente.'
 			});
-			alert('Torneo creado correctamente');
+			alert('torneo modificado correctamente');
 			history.push('/admin');
 			// setInput({
 			// 	name: '',
@@ -68,27 +102,23 @@ export default function CreateTournament() {
 	};
 
 	const [formErrors, setFormErrors] = useState({
-		name: 'Nombre invalido',
-		amountOfTeams: 'Cantidad inadecuada',
-		dateFinish: 'Ingrese una fecha de finalizacion',
-		dateInit: 'Ingrese una fecha de inicio',
-		genre: 'Seleccione el genero del torneo',
-		category: 'Seleccione la categoria del torneo',
-		description: 'Ingrese una descripcion del torneo'
+		name: '',
+		amountOfTeams: '',
+		dateFinish: '',
+		dateInit: '',
+		genre: '',
+		category: '',
+		description: ''
 	});
 
 	function validateName(str) {
 		// if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
-		if (str.length < 1) return true;
 		if (str[0] === ' ') return true;
 	}
 
 	function validateAmount(num) {
 		if (isNaN(num)) return true;
 		if (num < 8 || num > 40) return true;
-		if (num.indexOf('.') !== -1) return true;
-		if (num.indexOf(',') !== -1) return true;
-		if (num.indexOf('-') !== -1) return true;
 	}
 
 	function validateDate(str) {
@@ -97,16 +127,15 @@ export default function CreateTournament() {
 
 	function validateSelect(select) {
 		if (
-			select === '' ||
 			select === 'Seleccione un genero' ||
 			select === 'Seleccione una categoria'
 		)
 			return true;
 	}
 
-	function validateDescription(text) {
-		if (!text) return true;
-	}
+	// function validateDescription(text) {
+	// 	if (text.length > 20000) return true;
+	// }
 
 	function validate(data) {
 		let errors = {};
@@ -122,16 +151,17 @@ export default function CreateTournament() {
 			errors.genre = 'Seleccione el genero del torneo';
 		if (validateSelect(data.category))
 			errors.category = 'Seleccione la categoria del torneo';
-		if (validateDescription(data.description))
-			errors.description = 'Ingrese una descripcion del torneo';
+		// if (validateDescription(data.description))
+		// 	errors.description = 'Ingrese una descripcion del torneo';
 		return errors;
 	}
 
 	return (
 		<div>
+			{console.log('data', input)};
 			<Nav />
 			<div className={styles.mainWrapper}>
-				<h1>Crear torneo</h1>
+				<h1>Modificar torneo "{input.name}"</h1>
 				<div
 					className={
 						popUpError.title
@@ -169,7 +199,7 @@ export default function CreateTournament() {
 							type="text"
 							value={input.name}
 							name="name"
-							onChange={handleChange}
+							onChange={(e) => handleChange(e)}
 						></input>
 						<div
 							style={{ left: '35%' }}
@@ -210,7 +240,7 @@ export default function CreateTournament() {
 								placeholder="DD/MM/AA"
 								value={input.dateInit}
 								name="dateInit"
-								onChange={handleChange}
+								onChange={(e) => handleChange(e)}
 							></input>
 							<input
 								className={styles.dateInput}
@@ -218,7 +248,7 @@ export default function CreateTournament() {
 								placeholder="DD/MM/AA"
 								value={input.dateFinish}
 								name="dateFinish"
-								onChange={handleChange}
+								onChange={(e) => handleChange(e)}
 							></input>
 						</div>
 
@@ -244,9 +274,9 @@ export default function CreateTournament() {
 							onChange={(e) => handleChange(e)}
 						>
 							<option>Seleccione un genero</option>
-							<option>Masculino</option>
-							<option>Femenino</option>
-							<option>Mixto</option>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Mixed</option>
 						</select>
 
 						<div
@@ -268,7 +298,7 @@ export default function CreateTournament() {
 						>
 							<option>Seleccione una categoria</option>
 							<option key={'Sub20'}>Sub20</option>
-							<option key={'Libre'}>Libre</option>
+							<option key={'Libre'}>Free</option>
 							<option key={'Senior'}>Senior</option>
 						</select>
 						<div
@@ -288,10 +318,10 @@ export default function CreateTournament() {
 							type="text"
 							value={input.description}
 							name="description"
-							onChange={handleChange}
+							onChange={(e) => handleChange(e)}
 						></input>
 
-						<div
+						{/* <div
 							style={{ left: '20%' }}
 							className={
 								formErrors.description
@@ -300,7 +330,7 @@ export default function CreateTournament() {
 							}
 						>
 							{formErrors.description}
-						</div>
+						</div> */}
 					</div>
 
 					<button
@@ -308,11 +338,10 @@ export default function CreateTournament() {
 						type="submit"
 						onClick={(e) => handleSubmit(e)}
 					>
-						Inscribir
+						Modificar
 					</button>
 				</form>
 			</div>
-
 			<Footer />
 		</div>
 	);

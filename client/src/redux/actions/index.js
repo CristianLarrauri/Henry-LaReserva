@@ -8,7 +8,8 @@ export const SEARCH_TOURNAMENTS = 'SEARCH_TOURNAMENTS';
 export const TOURNAMENT_DETAILS = 'TOURNAMENT_DETAILS';
 export const GET_TOURNAMENTS_HOME = 'GET_TOURNAMENTS_HOME';
 export const CREATE_PLAYER = 'CREATE_PLAYER';
-export const GET_SCORERS_TABLE = "GET_SCORERS_TABLE";
+export const GET_SCORERS_TABLE = 'GET_SCORERS_TABLE';
+
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CREATE_USER = 'CREATE_USER';
 export const BAN_USER = 'BAN_USER';
@@ -16,6 +17,9 @@ export const TO_ADMIN = 'TO_ADMIN';
 export const GET_USER_DETAILS = 'GET_USER_DETAILS';
 export const GET_NEXT_FIVE_TOURNAMENTS = 'GET_NEXT_FIVE_TOURNAMENTS';
 export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
+export const GET_TOURNAMENTS_ADMIN = 'GET_TOURNAMENTS_ADMIN';
+export const DELETE_TOURNAMENT = 'DELETE_TOURNAMENT';
+export const MODIFY_TOURNAMENTS = 'MODIFY_TOURNAMENTS';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -27,6 +31,37 @@ export const createTournament = (payload) => {
 
 			return dispatch({
 				type: CREATE_TOURNAMENT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const modifyTournaments = (
+	id,
+	name,
+	amountOfTeams,
+	dateInit,
+	dateFinish,
+	genre,
+	category,
+	description
+) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/tournaments/${id}`, {
+				name,
+				amountOfTeams,
+				dateInit,
+				dateFinish,
+				genre,
+				category,
+				description
+			});
+			return dispatch({
+				type: MODIFY_TOURNAMENTS,
 				payload: info.data
 			});
 		} catch (error) {
@@ -72,6 +107,18 @@ export const getAllTournaments = (
 	};
 };
 
+export const getTournamentsAdmin = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get('http://localhost:3001/tournaments/panel');
+			return dispatch({
+				type: GET_TOURNAMENTS_ADMIN,
+				payload: info.data
+			});
+		} catch (error) {}
+	};
+};
+
 export const tournamentDetails = (id) => {
 	return async function (dispatch) {
 		try {
@@ -90,7 +137,7 @@ export const searchTournaments = (name) => {
 	return async function (dispatch) {
 		try {
 			const info = await axios.get(
-				'http://localhost:3001/tournaments?name=' + name
+				`http://localhost:3001/tournaments?name=${name}`
 			);
 			return dispatch({ type: SEARCH_TOURNAMENTS, payload: info.data });
 		} catch (error) {
@@ -132,7 +179,10 @@ export const getAllUsers = (payload) => {
 export const createUser = (payload) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.post('ruta', payload);
+			const info = await axios.post(
+				'http://localhost:3001/users/post',
+				payload
+			);
 			dispatch({
 				type: CREATE_USER,
 				payload: info.data
@@ -143,10 +193,10 @@ export const createUser = (payload) => {
 	};
 };
 
-export const banUser = (payload) => {
+export const banUser = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put('ruta');
+			const info = await axios.put(`http://localhost:3001/users/ban/${id}`);
 			dispatch({
 				type: BAN_USER,
 				payload: info.data
@@ -157,10 +207,10 @@ export const banUser = (payload) => {
 	};
 };
 
-export const toAdmin = (payload) => {
+export const toAdmin = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put('ruta');
+			const info = await axios.put(`http://localhost:3001/users/admin/${id}`);
 			dispatch({
 				type: TO_ADMIN,
 				payload: info.data
@@ -173,7 +223,7 @@ export const toAdmin = (payload) => {
 
 export const getUserDetails = (email) => {
 	return async function (dispatch) {
-		const info = await axios.get('ruta detail');
+		const info = await axios.get(`http://localhost:3001/users/${email}`);
 		return dispatch({
 			type: GET_USER_DETAILS,
 			payload: info.data
@@ -212,5 +262,19 @@ export function getNextTournament() {
 		} catch (err) {
 			console.error(err.message);
 		}
+	};
+}
+
+export function deleteTournament(id) {
+	return async (dispatch) => {
+		try {
+			const info = await axios.delete(
+				`http://localhost:3001/tournaments/${id}`
+			);
+			dispatch({
+				type: DELETE_TOURNAMENT,
+				payload: info.data
+			});
+		} catch (error) {}
 	};
 }

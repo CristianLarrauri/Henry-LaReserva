@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import notFoundImg from '../images/NotFound.png';
 import styles from '../styles/Error404.module.css';
-import Footer from '../components/Footer';
+import Footer from './Footer';
 import { IoIosArrowBack } from 'react-icons/io';
 import Nav from './Nav';
 
@@ -13,7 +13,7 @@ export default function Error404() {
 			<button className={styles.btn}>
 				<Link to="/home" className="flex justify-center items-center">
 					<IoIosArrowBack />
-					<p>Volver</p>
+					<p>Usuario Baneado</p>
 				</Link>
 			</button>
 
