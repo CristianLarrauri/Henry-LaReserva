@@ -46,8 +46,8 @@ Teams.belongsToMany(Players, { through: 'players_teams' });
 Tournaments.belongsToMany(Players, { through: 'tournaments_players' });
 Players.belongsToMany(Tournaments, { through: 'tournaments_players' });
 
-Tournaments.hasMany(Buys);
-Buys.belongsTo(Tournaments);
+// Tournaments.hasMany(Buys);
+// Buys.belongsTo(Tournaments);
 
 // Users.hasMany(Buys); descomentar cuando se mergee a developer
 // Buys.belongsTo(Users);

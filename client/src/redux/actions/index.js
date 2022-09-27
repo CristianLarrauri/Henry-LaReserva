@@ -278,3 +278,38 @@ export function deleteTournament(id) {
 		} catch (error) {}
 	};
 }
+
+// --------------------------------------------------
+// Aqui todas las actions necesarias para MercadoPago
+
+export function postOrder(tournamentId) {
+    return async function (dispatch) {
+        try {
+            const newOrder = await axios({
+                method: "post",
+                url: "/order",
+                data: { tournamentId },
+            });
+            return dispatch({
+                type: "NEW_ORDER",
+                payload: newOrder.data,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+}
+
+export function getMercadoPago(orderId) {
+    return async function (dispatch) {
+        try {
+            const mp = await axios.get(`/mercadopago/${orderId}`);
+            return dispatch({
+                type: "MP_DATA",
+                payload: mp.data,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+}

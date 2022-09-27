@@ -28,7 +28,9 @@ let initialState = {
 	userProfile: {},
 	tournamentsHome: [],
 	userDetail: [],
-	nextTournaments: { next: [], nextFive: [] }
+	nextTournaments: { next: [], nextFive: [] },
+	order: "",
+	mpData: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -125,6 +127,23 @@ function rootReducer(state = initialState, action) {
 				...state,
 				nextTournaments: { ...state.nextTournaments, next: action.payload }
 			};
+
+		// MercadoPago
+		case "MP_DATA":
+			return {
+				...state,
+				mpData: action.payload
+			}
+		case "NEW_ORDER":
+			return {
+				...state,
+				order: action.payload
+			}
+		case "CREATE_ORDER":
+			return {
+				...state,
+				order: action.payload
+			}
 		default:
 			return state;
 	}
