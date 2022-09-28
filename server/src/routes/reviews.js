@@ -8,7 +8,11 @@ const router = Router();
 // Ruta GET que trae todas las reseñas que estén en base de datos
 router.get("/", async (req, res) => {
     try {
-        const resenias = await Reviews.findAll();
+        const resenias = await Reviews.findAll({
+            order: [["date", "DESC"]],
+            Offset: req.query.page,
+            limit: 5
+        });
 
         res.status(200).send(resenias);
 
@@ -42,14 +46,14 @@ router.put('/:id', async (req, res) => {
         let editReview = req.body;
 
         let data = await Reviews.update(editReview, {
-          where: { id },
+            where: { id },
         });
         return res.status(200).send("Review successfully updated");
 
-      } catch (error) {
+    } catch (error) {
 
         return res.status(400).send("ERROR EN PUT/REVIEWS", error);
-      }
+    }
 });
 
 
