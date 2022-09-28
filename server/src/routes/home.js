@@ -8,7 +8,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     let data = await Tournaments.findAll({
-      where: { state: "En curso" },
+      where: { state: "En curso", enabled: true },
       offset: req.query.page,
       limit: 4,
       order: [[req.query.property, req.query.order]],
