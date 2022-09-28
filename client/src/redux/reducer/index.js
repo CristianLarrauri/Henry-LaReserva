@@ -1,6 +1,5 @@
-import NextTournaments from "../../components/NextTournaments.jsx";
+import NextTournaments from '../../components/NextTournaments.jsx';
 import {
-
 	CREATE_TOURNAMENT,
 	GET_ALL_TOURNAMENTS,
 	TOURNAMENT_DETAILS,
@@ -11,12 +10,12 @@ import {
 	CREATE_USER,
 	BAN_USER,
 	TO_ADMIN,
-	GET_USER_DETAILS,
 	GET_NEXT_FIVE_TOURNAMENTS,
 	GET_NEXT_TOURNAMENT,
 	GET_TOURNAMENTS_ADMIN,
 	DELETE_TOURNAMENT,
-	MODIFY_TOURNAMENTS
+	MODIFY_TOURNAMENTS,
+	SET_ACTUAL_USER
 } from '../actions/index.js';
 
 let initialState = {
@@ -28,8 +27,14 @@ let initialState = {
 	users: [],
 	userProfile: {},
 	tournamentsHome: [],
-	userDetail: [],
-	nextTournaments: { next: [], nextFive: [] }
+	nextTournaments: { next: [], nextFive: [] },
+	order: "",
+	mpData: [],
+	actualUser: {
+		username: undefined,
+		ban: undefined,
+		admin: undefined,
+	}
 };
 
 function rootReducer(state = initialState, action) {
@@ -61,7 +66,7 @@ function rootReducer(state = initialState, action) {
 		case SEARCH_TOURNAMENTS:
 			return {
 				...state,
-				tournaments: [action.payload]
+				tournaments: action.payload
 			};
 		case TOURNAMENT_DETAILS:
 			return {
@@ -110,26 +115,41 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state
 			};
-		case GET_USER_DETAILS:
+		case GET_NEXT_FIVE_TOURNAMENTS:
 			return {
 				...state,
-				userDetail: action.payload
+				nextTournaments: { ...state.nextTournaments, nextFive: action.payload }
+			};
+		case GET_NEXT_TOURNAMENT:
+			return {
+				...state,
+				nextTournaments: { ...state.nextTournaments, next: action.payload }
 			};
 
-
-    case GET_NEXT_FIVE_TOURNAMENTS:
-      return {
-        ...state,
-        nextTournaments: { ...state.nextTournaments, nextFive: action.payload },
-      };
-    case GET_NEXT_TOURNAMENT:
-      return {
-        ...state,
-        nextTournaments: { ...state.nextTournaments, next: action.payload },
-      };
-    default:
-      return state;
-  }
+		// MercadoPago
+		case "MP_DATA":
+			return {
+				...state,
+				mpData: action.payload
+			}
+		case "NEW_ORDER":
+			return {
+				...state,
+				order: action.payload
+			}
+		case "CREATE_ORDER":
+			return {
+				...state,
+				order: action.payload
+			}
+		case SET_ACTUAL_USER:
+			return {
+				...state,
+				actualUser: action.payload
+			}
+		default:
+			return state;
+	}
 }
 
 export default rootReducer;

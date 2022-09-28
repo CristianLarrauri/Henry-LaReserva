@@ -20,6 +20,7 @@ export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
 export const GET_TOURNAMENTS_ADMIN = 'GET_TOURNAMENTS_ADMIN';
 export const DELETE_TOURNAMENT = 'DELETE_TOURNAMENT';
 export const MODIFY_TOURNAMENTS = 'MODIFY_TOURNAMENTS';
+export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -277,4 +278,50 @@ export function deleteTournament(id) {
 			});
 		} catch (error) {}
 	};
+}
+
+// --------------------------------------------------
+// Aqui todas las actions necesarias para MercadoPago
+
+export function postOrder(tournamentId) {
+    return async function (dispatch) {
+        try {
+            const newOrder = await axios({
+                method: "post",
+                url: "/order",
+                data: { tournamentId },
+            });
+            return dispatch({
+                type: "NEW_ORDER",
+                payload: newOrder.data,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+}
+
+export function getMercadoPago(orderId) {
+    return async function (dispatch) {
+        try {
+            const mp = await axios.get(`/mercadopago/${orderId}`);
+            return dispatch({
+                type: "MP_DATA",
+                payload: mp.data,
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+}
+
+export function setActualUser(username, ban, admin){
+	return {
+		type: SET_ACTUAL_USER,
+		payload: {
+			username: username,
+			ban: ban,
+			admin: admin
+		}
+	}
 }

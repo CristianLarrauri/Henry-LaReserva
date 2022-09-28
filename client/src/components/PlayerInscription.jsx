@@ -214,7 +214,7 @@ export default function PlayerInscription() {
 		} else if (!shield) {
 			setPopUpError({ title: 'Error!', msg: 'Falta el escudo de tu equipo' });
 		} else {
-			setTeam({name: teamName, image: shield})
+			setTeam({ name: teamName, image: shield })
 			dispatch(createPlayers(team));
 			console.log(team)
 			setPopUpError({ title: 'Exito!', msg: 'Equipo inscripto correctamente.' });
@@ -389,7 +389,7 @@ export default function PlayerInscription() {
 			error.dni1 = 'El DNI solo puede estar compuesto por números'
 		} else if (data.dni.toString().length !== 8) {
 			error.dni1 = 'El dni debe tener 8 digitos';
-		} 
+		}
 
 		return error;
 	};
@@ -631,19 +631,19 @@ export default function PlayerInscription() {
 
 			<div className='min-h-screen flex flex-col items-center relative'>
 
-				<button className='absolute w-[200px] h-[70px] bg-green-500
+				<Link to='/home'>
+					<button className='absolute w-[200px] h-[70px] bg-green-500
 				text-xl font-medium rounded-full left-3 top-6 text-white
 				hover:scale-110 duration-300 animate-appear'>
-					<Link to='/home'>
 						Volver
-					</Link>
-				</button>
+					</button>
+				</Link>
 
 				<h2 className='text-3xl font-bold text-green-500 mb-10 mt-24 animate-appear'>Inscribi a tu equipo</h2>
 
 				<form className='bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] animate-appear'>
 
-				<div className='w-full flex flex-col items-center'>
+					<div className='w-full flex flex-col items-center'>
 
 						<div className='bg-gray-100 w-4/6 min-w-[330px] flex flex-col items-center'>
 
@@ -670,7 +670,7 @@ export default function PlayerInscription() {
 					mt-10'>
 								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Escudo/bandera/imagen: </label>
-								<input id='inputFile' type="file"  name='image'
+								<input id='inputFile' type="file" name='image'
 									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
@@ -1338,7 +1338,7 @@ export default function PlayerInscription() {
 
 					</div> : false}
 
-					
+
 
 					{confirm8 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 flex items-center flex-col relative'>
 						<h3>
