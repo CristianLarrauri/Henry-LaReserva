@@ -20,6 +20,7 @@ export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
 export const GET_TOURNAMENTS_ADMIN = 'GET_TOURNAMENTS_ADMIN';
 export const DELETE_TOURNAMENT = 'DELETE_TOURNAMENT';
 export const MODIFY_TOURNAMENTS = 'MODIFY_TOURNAMENTS';
+export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -312,4 +313,15 @@ export function getMercadoPago(orderId) {
             console.log(e);
         }
     };
+}
+
+export function setActualUser(username, ban, admin){
+	return {
+		type: SET_ACTUAL_USER,
+		payload: {
+			username: username,
+			ban: ban,
+			admin: admin
+		}
+	}
 }
