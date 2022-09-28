@@ -70,11 +70,12 @@ const TournamentDetail = (props) => {
 						</div>
 
 						<div className='w-full flex justify-center items-center'>
-							<Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+							{tournament.state === 'Proximo' ? <Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
 								flex justify-center items-center'>
 									<p className='text-xl font-bold'>Inscribite</p>
-							</Link>
+							</Link> : false }
+							
 						</div>
 					</div>
 
