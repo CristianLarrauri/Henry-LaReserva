@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
       order: [["points", "DESC"]],
       include: {
         model: Tournaments,
-        where: { id: req.query.tournament },
+        where: { id: req.query.tournament, enabled: true },
         attributes: ["name"],
         through: {
           attributes: [],
