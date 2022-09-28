@@ -71,7 +71,6 @@ const get_tournaments_db = async () => {
   try {
     return await Tournaments.findAll({
       where: {
-        state: req.query.state,
         enabled: true,
       },
       include: [

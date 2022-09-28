@@ -73,10 +73,10 @@ router.get("/", async (req, res) => {
     if (req.query.genre && req.query.category && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
+          enabled: true,
           category: req.query.category,
           genre: req.query.genre,
           state: req.query.state,
-          enabled: true,
         },
         Offset: req.query.page,
         limit: 6,
@@ -89,9 +89,9 @@ router.get("/", async (req, res) => {
     if (req.query.genre && req.query.category) {
       let dataFilter = await Tournaments.findAll({
         where: {
+          enabled: true,
           category: req.query.category,
           genre: req.query.genre,
-          enabled: true,
         },
         Offset: req.query.page,
         limit: 6,
@@ -104,9 +104,9 @@ router.get("/", async (req, res) => {
     if (req.query.genre && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
+          enabled: true,
           genre: req.query.genre,
           state: req.query.state,
-          enabled: true,
         },
         Offset: req.query.page,
         limit: 6,
@@ -119,9 +119,9 @@ router.get("/", async (req, res) => {
     if (req.query.category && req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
+          enabled: true,
           category: req.query.category,
           state: req.query.state,
-          enabled: true,
         },
         Offset: req.query.page,
         limit: 6,
@@ -137,8 +137,8 @@ router.get("/", async (req, res) => {
         limit: 6,
         order: [[req.query.property, req.query.order]],
         where: {
-          genre: req.query.genre,
           enabled: true,
+          genre: req.query.genre,
         },
       });
       return res.status(200).send(dataFilter);
@@ -148,8 +148,8 @@ router.get("/", async (req, res) => {
     if (req.query.category) {
       let dataFilter = await Tournaments.findAll({
         where: {
-          category: req.query.category,
           enabled: true,
+          category: req.query.category,
         },
         Offset: req.query.page,
         limit: 6,
@@ -162,8 +162,8 @@ router.get("/", async (req, res) => {
     if (req.query.state) {
       let dataFilter = await Tournaments.findAll({
         where: {
-          state: req.query.state,
           enabled: true,
+          state: req.query.state,
         },
         Offset: req.query.page,
         limit: 6,
@@ -183,13 +183,12 @@ router.get("/", async (req, res) => {
         : res.status(404).send("No se encontro el torneo");
     } else {
       let data_total = await Tournaments.findAll({
+        where: {
+          enabled: true,
+        },
         offset: req.query.page,
         limit: 6,
         order: [[req.query.property, req.query.order]],
-        where: {
-          state: req.query.state,
-          enabled: true,
-        },
         include: {
           model: Teams,
           attributes: ["name"],
