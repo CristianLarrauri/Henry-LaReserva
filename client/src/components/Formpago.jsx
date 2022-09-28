@@ -1,20 +1,51 @@
-import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0, User } from "@auth0/auth0-react"
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../redux/actions"
 import axios from 'axios';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer'
 
+import { useEffect } from "react";
+import { Link, useHistory } from 'react-router-dom';
+import {getUserDetails} from '../redux/actions/index';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
+
 export default function Formpago(props) {
 	let { id } = props.match.params
-	// const dispatch = useDispatch();
-	// React.useEffect(() => {
-	// 	dispatch(actions.tournamentDetail(id));
-	// }, [dispatch]);
 
-	// const tournament = useSelector(state => state.tournament)
+
+
+
+	const { user, isAuthenticated, isLoading } = useAuth0();
+	const history = useHistory();
+	const userDetail = useSelector((state) => state.userDetail);
+	const dispatch = useDispatch();
+	const [userEmail, setUserEmail] = useState('');
+
+	useEffect(() => {
+		console.log('Email: '+userEmail);
+		axios.get(`http://localhost:3001/users/${userEmail}`)
+		.then(data => {
+			if(data.data.ban){
+				console.log('Estoy re baneado');
+				history.push('/home');//Lo mando a home
+			}
+		});
+	},[userEmail]);//Esto se correo cuando el email cambie/El email solo cambia si el user esta logeado
+
+	if(!isLoading && userEmail===''){//Si no esta cargando y 
+		if(!isAuthenticated){//Si no esta logeado
+			history.push('/home');//Lo mando a home
+		}
+		else{//Si esta logeado
+			setUserEmail(user.email);//Guardo su email en un estado para obligar al elemento a recargarse
+		}
+	}
+
+
+
 
 	const [team, setTeam] = useState({
 		name: "",

@@ -25,7 +25,6 @@ function App() {
 	const dispatch = useDispatch();
 	const { user, isAuthenticated, isLoading } = useAuth0();
 	const userDetail = useSelector((state) => state.userDetail);
-	console.log('aaa', isLoading, user);
 
 	const admin = userDetail.admin;
 	const ban = userDetail.ban;
@@ -46,14 +45,11 @@ function App() {
 						<Route exact path="/ban" component={Ban} />
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
-						{/* {!isLoading && !user ? (
-							<Route exact path="/inscription" component={Home} />
-						) : ( */}
-						<Route exact path="/inscription" component={PlayerInscription} />
-						{/* )} */}
 
-						<Route exact path="/pago" component={Formpago} />
+						<Route exact path="/inscription" component={PlayerInscription} />{/*Baneo/Logeado */}
+						<Route exact path="/pago" component={Formpago} />{/*Baneo/Logeado */}
 
+            {/*Logeado/Admin */}
 						<Route exact path="/admin" component={DashBoardAdmin} />
 						<Route
 							exact
