@@ -3,7 +3,7 @@ const router = Router();
 const nodemailer = require("nodemailer")
 const { EMAIL_RESERVA,CONTRA_RESERVA } = process.env;
 
-router.post("/", async (req, res) => {
+const send_mail = async (req, res) => {
 
         const {email, option} = req.body
         
@@ -18,23 +18,28 @@ router.post("/", async (req, res) => {
             }
         })
 
-        const mailOptions = {
-            from: `${EMAIL_RESERVA}`,
-            to: email,
-            subject: "Enviado desde nodemailer",
-            text:"Inscripcion Completada."
+        
+        if(option === "Pago"){
+            const mailOptions = {
+                from: `${EMAIL_RESERVA}`,
+                to: email,
+                subject: "Enviado desde nodemailer",
+                text:"Su pago ha sido procesado con exito."
+            }
+            transporter.sendMail(mailOptions, (error,info)=>{
+                if(error){
+                    res.status(500).send(error.message)
+                } else{
+                    console.log("Email enviado", info.response)
+                    res.status(200).json(info)
+                }
+            })
+        } else if (option === "Campeon"){
+            
         }
 
-        transporter.sendMail(mailOptions, (error,info)=>{
-            if(error){
-                res.status(500).send(error.message)
-            } else{
-                console.log("Email enviado", info.response)
-                res.status(200).json(info)
-            }
-        })
 
     
-});
+};
 
-module.exports = router;
+module.exports = {send_mail};
