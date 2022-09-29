@@ -31,9 +31,6 @@ export default function PlayerInscription() {
 	const handleChangeSelect = (e) => {
 		e.preventDefault()
 		setSelectValue(e.target.value)
-		console.log(e.target.value)
-		console.log(id)
-		console.log(selectValue)
 	}
 
 
@@ -138,12 +135,17 @@ export default function PlayerInscription() {
 
 
 
-	const [shield, setShield] = React.useState()
+	const [shield, setShield] = React.useState("")
+	
+
+
 
 	const [teamName, setTeamName] = useState("")
 	const [team, setTeam] = useState({
-		name: teamName,
-		image: shield
+		name: "",
+		players: [],
+		image: "",
+		tournaments: []
 	});
 
 	const [addScrub1, setAddScrub1] = useState(false)
@@ -212,7 +214,7 @@ export default function PlayerInscription() {
 			setConfirm1(true)
 			setEdit1(true)
 
-			//Agregar ruta de posteo jugador 1
+			dispatch(createPlayers(player1));
 
 		}
 	}
@@ -228,7 +230,7 @@ export default function PlayerInscription() {
 			setEdit2(true)
 
 
-			//Agregar ruta de posteo jugador 2
+			dispatch(createPlayers(player2));
 
 		}
 
@@ -243,7 +245,9 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm3(true)
 			setEdit3(true)
-			//Agregar ruta de posteo jugador 3
+			
+
+			dispatch(createPlayers(player3));
 
 		}
 	}
@@ -256,8 +260,9 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm4(true)
+			setEdit4(true)
 
-			//Agregar ruta de posteo jugador 4
+			dispatch(createPlayers(player4));
 
 		}
 	}
@@ -271,7 +276,8 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm5(true)
 			setEdit5(true)
-			//Agregar ruta de posteo jugador 5
+			
+			dispatch(createPlayers(player5));
 
 		}
 	}
@@ -285,7 +291,8 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm6(true)
 			setEdit6(true)
-			//Agregar ruta de posteo jugador 6
+
+			dispatch(createPlayers(player6));
 
 		}
 	}
@@ -299,7 +306,8 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm7(true)
 			setEdit7(true)
-			//Agregar ruta de posteo jugador 7
+
+			dispatch(createPlayers(player7));
 
 		}
 	}
@@ -313,7 +321,9 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm8(true)
 			setEdit8(true)
-			//Agregar ruta de posteo jugador 8
+
+
+			dispatch(createPlayers(player8));
 
 		}
 	}
@@ -327,7 +337,8 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm9(true)
 			setEdit9(true)
-			//Agregar ruta de posteo jugador 9 (suplente)
+
+			dispatch(createPlayers(player9));
 
 		}
 	}
@@ -341,7 +352,8 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm10(true)
 			setEdit10(true)
-			//Agregar ruta de posteo jugador 10 (suplente)
+
+			dispatch(createPlayers(player10));
 
 		}
 	}
@@ -533,19 +545,32 @@ export default function PlayerInscription() {
 		} else if (addScrub2 && Object.values(errors10).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos' });
 		} else {
-			setTeam({ name: teamName, image: shield })
-			dispatch(createPlayers(team));
-			console.log(team)
+			let selectTournament = nextTournaments.find(e => e.id == selectValue)
+			setTeam({ ...team, name: teamName, image: shield, players: [player1.dni, player2.dni, player3.dni, player4.dni, player5.dni, player6.dni, player7.dni, player8.dni, player9.dni, player10.dni], tournaments: selectTournament.name })
+			dispatch(actions.createTeam(team))
 			setPopUpError({ title: 'Exito!', msg: 'Equipo inscripto correctamente.' });
-			/* console.log(team); */
 		}
 	};
 
 
+	const [loading, setLoading] = React.useState(1)
 
-
-	const handleShield = (e) => {
-		setShield(e.target.files[0])
+	const handleShield = async (e) => {
+		const files = e.target.files;
+		const data = new FormData();
+		data.append("file", files[0]);
+		data.append("upload_preset", "ReservaTeams");
+		setLoading(2);
+		const res = await fetch(
+			"https://api.cloudinary.com/v1_1/maurodavid/image/upload",
+			{
+				method: "POST",
+				body: data,
+			}
+		)
+		const file = await res.json();
+		setShield(file.secure_url)
+		setLoading(0)
 	}
 
 	const handleChange = (e) => {
@@ -578,8 +603,6 @@ export default function PlayerInscription() {
 
 
 	const handleCompromiseChange = (e) => {
-		console.log('Valor target ' + e.target.checked);
-		console.log('Valor compromise 1 ' + compromise);
 		setCompromise(e.target.checked == 1);
 		setTeam([
 			player1,
@@ -1108,6 +1131,8 @@ export default function PlayerInscription() {
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
 
+						{loading===2 ? <p>Cargando imagen...</p> : false }
+						{loading===0 ? <img src={shield} alt="" /> : false }
 							</div>
 
 						</div>
@@ -2105,7 +2130,7 @@ export default function PlayerInscription() {
 							<p className='ml-1 font-medium text-lg'>Entiendo y acepto las condiciones.</p>
 						</div>
 
-						<button type="submit" onClick={handleSubmit}
+						<button type="submit" onClick={e=> handleSubmit(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
