@@ -60,7 +60,7 @@ function App() {
 						<Route exact path="/details/:id" component={TournamentDetail} />
 						<Route exact path="/loading" component={Loading} />
 
-						{/*LOGEADO Y NO BANEADO*/}
+						{/* LOGEADO Y NO BANEADO*/}
 						{(userInfo.ban===true && <Route exact path="/pago" component={Ban}/>) ||
 						 (userInfo.ban===false && <Route exact path="/pago" component={FormPago}/>) ||
 						 (userInfo.ban===undefined) && <Route exact path="/pago" component={Loading}/> ||

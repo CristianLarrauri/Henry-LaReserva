@@ -2,7 +2,7 @@ const { Reviews } = require("../db");
 
 const create_review = async (data) => {
     try {
-        const { nombreUsuario, comentario, calificacionComplejo, date } = data;
+        const { nombreUsuario, comentario, calificacionComplejo } = data;
 
         const new_reviews = await Reviews.create({
             nombreUsuario, comentario, calificacionComplejo, date
