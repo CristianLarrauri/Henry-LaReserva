@@ -9,7 +9,6 @@ export const TOURNAMENT_DETAILS = 'TOURNAMENT_DETAILS';
 export const GET_TOURNAMENTS_HOME = 'GET_TOURNAMENTS_HOME';
 export const CREATE_PLAYER = 'CREATE_PLAYER';
 export const GET_SCORERS_TABLE = 'GET_SCORERS_TABLE';
-
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CREATE_USER = 'CREATE_USER';
 export const BAN_USER = 'BAN_USER';
@@ -20,6 +19,10 @@ export const GET_NEXT_TOURNAMENT = 'GET_NEXT_TOURNAMENT';
 export const GET_TOURNAMENTS_ADMIN = 'GET_TOURNAMENTS_ADMIN';
 export const DELETE_TOURNAMENT = 'DELETE_TOURNAMENT';
 export const MODIFY_TOURNAMENTS = 'MODIFY_TOURNAMENTS';
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const POST_REVIEWS = 'POST_REVIEWS';
+export const DELETE_REVIEWS = 'DELETE_REVIEWS';
+export const GET_ID_REVIEW = 'GET_ID_REVIEW';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -283,33 +286,92 @@ export function deleteTournament(id) {
 // Aqui todas las actions necesarias para MercadoPago
 
 export function postOrder(tournamentId) {
-    return async function (dispatch) {
-        try {
-            const newOrder = await axios({
-                method: "post",
-                url: "/order",
-                data: { tournamentId },
-            });
-            return dispatch({
-                type: "NEW_ORDER",
-                payload: newOrder.data,
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
+	return async function (dispatch) {
+		try {
+			const newOrder = await axios({
+				method: 'post',
+				url: '/order',
+				data: { tournamentId }
+			});
+			return dispatch({
+				type: 'NEW_ORDER',
+				payload: newOrder.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
 }
 
 export function getMercadoPago(orderId) {
-    return async function (dispatch) {
-        try {
-            const mp = await axios.get(`/mercadopago/${orderId}`);
-            return dispatch({
-                type: "MP_DATA",
-                payload: mp.data,
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    };
+	return async function (dispatch) {
+		try {
+			const mp = await axios.get(`/mercadopago/${orderId}`);
+			return dispatch({
+				type: 'MP_DATA',
+				payload: mp.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+/* -----------------------------------------Necesarias para reviews------------------------------------------------------------------------------*/
+
+export function getReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get(`http://localhost:3001/reviews`);
+			console.log('info', info.data);
+			return dispatch({
+				type: 'GET_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function postReviews(payload) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.post(`http://localhost:3001/reviews`, payload);
+			return dispatch({
+				type: 'POST_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function deleteReviews(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.delete(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: 'DELETE_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function getIdReview(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: 'GET_ID_REVIEW',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
 }

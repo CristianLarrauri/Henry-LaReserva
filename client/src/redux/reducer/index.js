@@ -15,7 +15,11 @@ import {
 	GET_NEXT_TOURNAMENT,
 	GET_TOURNAMENTS_ADMIN,
 	DELETE_TOURNAMENT,
-	MODIFY_TOURNAMENTS
+	MODIFY_TOURNAMENTS,
+	GET_REVIEWS,
+	POST_REVIEWS,
+	DELETE_REVIEWS,
+	GET_ID_REVIEW
 } from '../actions/index.js';
 
 let initialState = {
@@ -29,8 +33,10 @@ let initialState = {
 	tournamentsHome: [],
 	userDetail: [],
 	nextTournaments: { next: [], nextFive: [] },
-	order: "",
+	order: '',
 	mpData: [],
+	allReviews: [],
+	idReview: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -129,21 +135,40 @@ function rootReducer(state = initialState, action) {
 			};
 
 		// MercadoPago
-		case "MP_DATA":
+		case 'MP_DATA':
 			return {
 				...state,
 				mpData: action.payload
-			}
-		case "NEW_ORDER":
+			};
+		case 'NEW_ORDER':
 			return {
 				...state,
 				order: action.payload
-			}
-		case "CREATE_ORDER":
+			};
+		case 'CREATE_ORDER':
 			return {
 				...state,
 				order: action.payload
-			}
+			};
+
+		case GET_REVIEWS:
+			return {
+				...state,
+				allReviews: action.payload
+			};
+		case POST_REVIEWS:
+			return {
+				...state
+			};
+		case DELETE_REVIEWS:
+			return {
+				...state
+			};
+		case GET_ID_REVIEW:
+			return {
+				...state,
+				idReview: action.payload
+			};
 		default:
 			return state;
 	}

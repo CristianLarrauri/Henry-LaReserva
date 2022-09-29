@@ -18,6 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails } from './redux/actions';
+import Reviews from './components/Reviews';
 
 function App() {
 	//!isLoading && !user(NO LOGUEADO)
@@ -31,7 +32,7 @@ function App() {
 	const ban = userDetail.ban;
 
 	useEffect(() => {
-		if (!isLoading && user) dispatch(getUserDetails(user.email));
+		if (!isLoading && user) dispatch(user.email);
 	});
 
 	return (
@@ -55,6 +56,7 @@ function App() {
 							component={ModifyTournaments}
 						/>
 						<Route exact path="/create" component={CreateTournament} />
+						<Route exact path="/reviews" component={Reviews} />
 					</Switch>
 				</div>
 			</BrowserRouter>
