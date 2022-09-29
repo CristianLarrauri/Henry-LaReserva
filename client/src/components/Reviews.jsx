@@ -9,61 +9,64 @@ import {
 	getReviews,
 	postReviews,
 	deleteReviews,
-	getUserDetails
+	getIdReview
 } from '../redux/actions';
-import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Reviews() {
 	const dispatch = useDispatch();
-	const { user, isAuthenticated, isLoading } = useAuth0();
 	const allReviews = useSelector((state) => state.allReviews);
-	const userDetail = useSelector((state) => state.userDetail);
-
-	console.log('allr', allReviews);
+	const userDetail = useSelector((state) => state.actualUser);
 
 	const [review, setReview] = useState({
 		id: '',
-		nombreUsuario: !isLoading && user ? user.email : '', // error
+		nombreUsuario: '',
 		comentario: '',
 		calificacionComplejo: 0
 	});
 
-	const [rating, setRating] = useState(0);
+	useEffect(() => {
+		dispatch(getReviews());
+	}, []);
 
+	useEffect(() => {
+		if (userDetail.username !== undefined) {
+			setReview({
+				nombreUsuario: userDetail.username,
+				comentario: '',
+				calificacionComplejo: 0
+			});
+		}
+	}, [userDetail]);
+
+	const [rating, setRating] = useState(0);
 	const ratingChanged = (newRating) => {
-		setRating(newRating);
 		setReview({
 			...review,
-			nombreUsuario: user ? user.email : '',
-			calificacionComplejo: rating
+			calificacionComplejo: newRating
 		});
+		setRating(newRating);
 	};
 
 	const handleChange = (e) => {
 		setReview({
 			...review,
-			nombreUsuario: user ? user.email : '',
 			comentario: e.target.value
 		});
 	};
 
 	const handleDeleteReview = (e) => {
-		dispatch(deleteReviews(e.target.value.id));
-		console.log('etv', e.target.value);
+		dispatch(deleteReviews(e.target.value));
+		console.log('etar', e.target.value);
 		alert('el comentario ha sido borrado');
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(postReviews(review));
+		console.log('reviewSubmited', review);
 		alert('se ha guardado tu comentario');
 	};
 
-	useEffect(() => {
-		dispatch(getReviews());
-		if (!isLoading && user) dispatch(getUserDetails(user.email));
-		// dispatch(getUserDetails(user.email));
-	}, []);
 	//----------------funcionalidad del promedio de puntuacion-----------------------------------------------------
 	let puntuacion = allReviews.map((p) => p.calificacionComplejo);
 	let totalpuntos = 0;
@@ -74,8 +77,6 @@ export default function Reviews() {
 	//-------------------------------------------------------------------------------------------------------------
 	return (
 		<div>
-			{console.log('review', review)}
-			{console.log('ud', userDetail)}
 			<Nav />
 			<h2>
 				Puntuacion : {promedio}/5 - {puntuacion.length} reseñas
@@ -86,20 +87,15 @@ export default function Reviews() {
 					? allReviews?.map((ele) => {
 							return (
 								<div value={ele.id}>
-									<h1>{ele.id}</h1>
 									<h1>Usuario: {ele.nombreUsuario}</h1>
 									<p>{ele.comentario}</p>
 									<h2>Puntuacion: {ele.calificacionComplejo}</h2>
 									<p>Fecha de reseña: {ele.date}</p>
-									{/* {ele.nombreUsuario === user.email ? (
-										<button>Modificar Comentario</button>
-									) : (
-										''
-									)} */}
-
 									{userDetail.admin === true ? (
-										// ||	userDetail.email === user.email
-										<button onClick={handleDeleteReview}>
+										<button
+											onClick={(e) => handleDeleteReview(e)}
+											value={ele.id}
+										>
 											Eliminar Comentario
 										</button>
 									) : (
@@ -113,22 +109,28 @@ export default function Reviews() {
 
 			<form>
 				<h1>Deja tu opinion sobre nosotros</h1>
+				<h2>{userDetail.username}</h2>
 				<StarsRating
 					value={review.calificacionComplejo}
 					name="calificacionComplejo"
 					count={5}
 					size={30}
 					color2={'#ffd700'}
-					onChange={ratingChanged}
+					onChange={(e) => ratingChanged(e)}
 				/>
 				<h2>Tu puntuacion: {rating}</h2>
 				<input
 					name="comentario"
+					value={review.comentario}
 					type="text"
 					placeholder="deja tu comentario aqui"
 					onChange={(e) => handleChange(e)}
 				></input>
-				<button type="submit" onClick={(e) => handleSubmit(e)}>
+				<button
+					type="submit"
+					onClick={(e) => handleSubmit(e)}
+					value={review.id}
+				>
 					Envia tu comentario
 				</button>
 			</form>

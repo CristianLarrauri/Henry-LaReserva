@@ -23,6 +23,7 @@ export const GET_REVIEWS = 'GET_REVIEWS';
 export const POST_REVIEWS = 'POST_REVIEWS';
 export const DELETE_REVIEWS = 'DELETE_REVIEWS';
 export const GET_ID_REVIEW = 'GET_ID_REVIEW';
+export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -118,7 +119,9 @@ export const getTournamentsAdmin = (payload) => {
 				type: GET_TOURNAMENTS_ADMIN,
 				payload: info.data
 			});
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 };
 
@@ -372,6 +375,17 @@ export function getIdReview(id) {
 			});
 		} catch (e) {
 			console.log(e);
+		}
+	};
+}
+
+export function setActualUser(username, ban, admin) {
+	return {
+		type: SET_ACTUAL_USER,
+		payload: {
+			username: username,
+			ban: ban,
+			admin: admin
 		}
 	};
 }

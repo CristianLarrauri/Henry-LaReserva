@@ -89,15 +89,6 @@ export default function ModifyTournaments() {
 			});
 			alert('torneo modificado correctamente');
 			history.push('/admin');
-			// setInput({
-			// 	name: '',
-			// 	amountOfTeams: 0,
-			// 	dateInit: '',
-			// 	dateFinish: '',
-			// 	genre: '',
-			// 	category: '',
-			// 	description: ''
-			// });
 		}
 	};
 

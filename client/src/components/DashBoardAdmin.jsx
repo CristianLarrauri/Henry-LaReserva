@@ -8,13 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 import {
 	getAllUsers,
-	createUser,
 	banUser,
 	toAdmin,
 	getUserDetails,
-	getAllTournaments,
 	getTournamentsAdmin,
-	modifyTournaments,
 	deleteTournament
 } from '../redux/actions';
 
@@ -78,7 +75,7 @@ export default function DashBoardAdmin() {
 							<option>Ver usuarios</option>
 							{allUsers?.map((e) => (
 								<option key={e.id} value={e.id}>
-									{e.name}, {e.email}
+									{e.name}, {e.email}, {e.id}
 								</option>
 							))}
 						</select>
