@@ -71,27 +71,15 @@ const TournamentDetail = (props) => {
 						</div>
 
 
-						{/* SI EL TORNEO ESTA EN CURSO O FINALIZADO NO SE PUEDE INSCRIBIR */}
-						{
-							tournament.state === "Proximo" ?
-								(
-									<div className='w-full flex justify-center items-center'>
-										<Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-											hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
-											flex justify-center items-center'>
-											<p className='text-xl font-bold'>Inscribite</p>
-										</Link>
-									</div>
-								) :
-								<div className='w-full flex justify-center items-center'>
-									<h3 className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								text-white
-								flex justify-center items-center text-xl font-bold'>
-										Inscripcion Deshabilitada
-									</h3>
-								</div>
+						<div className='w-full flex justify-center items-center'>
+							{tournament.state === 'Proximo' ? <Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
+								flex justify-center items-center'>
+									<p className='text-xl font-bold'>Inscribite</p>
+							</Link> : false }
+							
+						</div>
 
-						}
 					</div>
 
 				</div>

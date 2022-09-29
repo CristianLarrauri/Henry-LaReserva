@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPlayers } from '../redux/actions';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import popUpStyles from '../styles/PopUpStyles.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import * as actions from '../redux/actions'
+import queryString from 'query-string'
+
 
 export default function PlayerInscription() {
 	const dispatch = useDispatch();
+
+	const id = queryString.parse(useLocation().search).id
+
+	const [selectValue, setSelectValue] = React.useState("undefined")
+
+
+
+	React.useEffect(() => {
+		dispatch(actions.getTournamentsAdmin());
+		if (id) {
+			setSelectValue(id)
+		}
+	}, [])
+
+
+
+	const handleChangeSelect = (e) => {
+		e.preventDefault()
+		setSelectValue(e.target.value)
+		console.log(e.target.value)
+		console.log(id)
+		console.log(selectValue)
+	}
+
+
+
+	let allTournaments = useSelector(state => state.tournamentsAdmin)
+	let nextTournaments = allTournaments.filter(e => e.state === "Proximo")
+
 	//Esto controla el popUp, si esta vacio no aparece, pero si tiene algo aparece el popUp
 	//Si queres usarlo setealo con el siguiente formato: {title: 'TituloPopUp', msg:'Mensaje del popUp'}
 	const [popUpError, setPopUpError] = useState({});
@@ -53,6 +85,16 @@ export default function PlayerInscription() {
 		surname: '',
 		dni: 0
 	});
+	const [player9, setPlayer9] = React.useState({
+		name: '',
+		surname: '',
+		dni: 0
+	});
+	const [player10, setPlayer10] = React.useState({
+		name: '',
+		surname: '',
+		dni: 0
+	});
 
 	//Estado que guardará el valor del boton checkbox
 
@@ -66,6 +108,19 @@ export default function PlayerInscription() {
 	const [confirm6, setConfirm6] = React.useState(false);
 	const [confirm7, setConfirm7] = React.useState(false);
 	const [confirm8, setConfirm8] = React.useState(false);
+	const [confirm9, setConfirm9] = React.useState(false);
+	const [confirm10, setConfirm10] = React.useState(false);
+
+	const [edit1, setEdit1] = React.useState(false);
+	const [edit2, setEdit2] = React.useState(false);
+	const [edit3, setEdit3] = React.useState(false);
+	const [edit4, setEdit4] = React.useState(false);
+	const [edit5, setEdit5] = React.useState(false);
+	const [edit6, setEdit6] = React.useState(false);
+	const [edit7, setEdit7] = React.useState(false);
+	const [edit8, setEdit8] = React.useState(false);
+	const [edit9, setEdit9] = React.useState(false);
+	const [edit10, setEdit10] = React.useState(false);
 
 	const [errors1, setErrors1] = React.useState({});
 	const [errors2, setErrors2] = React.useState({});
@@ -75,6 +130,13 @@ export default function PlayerInscription() {
 	const [errors6, setErrors6] = React.useState({});
 	const [errors7, setErrors7] = React.useState({});
 	const [errors8, setErrors8] = React.useState({});
+	const [errors9, setErrors9] = React.useState({});
+	const [errors10, setErrors10] = React.useState({});
+	const [errorSelect, setErrorSelect] = React.useState({});
+
+
+
+
 
 	const [shield, setShield] = React.useState()
 
@@ -84,8 +146,61 @@ export default function PlayerInscription() {
 		image: shield
 	});
 
+	const [addScrub1, setAddScrub1] = useState(false)
+
+	const [addScrub2, setAddScrub2] = useState(false)
 
 	const [formErrors, setFormErrors] = useState({})
+
+	const handleDisabled1 = (e) => {
+		e.preventDefault()
+		setEdit1(false)
+	}
+	
+	const handleDisabled2 = (e) => {
+		e.preventDefault()
+		setEdit2(false)
+	}
+	
+	const handleDisabled3 = (e) => {
+		e.preventDefault()
+		setEdit3(false)
+	}
+	
+	const handleDisabled4 = (e) => {
+		e.preventDefault()
+		setEdit4(false)
+	}
+	
+	const handleDisabled5 = (e) => {
+		e.preventDefault()
+		setEdit5(false)
+	}
+	
+	const handleDisabled6 = (e) => {
+		e.preventDefault()
+		setEdit6(false)
+	}
+	
+	const handleDisabled7 = (e) => {
+		e.preventDefault()
+		setEdit7(false)
+	}
+	
+	const handleDisabled8 = (e) => {
+		e.preventDefault()
+		setEdit8(false)
+	}
+	
+	const handleDisabled9 = (e) => {
+		e.preventDefault()
+		setEdit9(false)
+	}
+	
+	const handleDisabled10 = (e) => {
+		e.preventDefault()
+		setEdit10(false)
+	}
 
 	const handleSubmit1 = (e) => {
 		e.preventDefault()
@@ -95,6 +210,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm1(true)
+			setEdit1(true)
 
 			//Agregar ruta de posteo jugador 1
 
@@ -109,6 +225,8 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm2(true)
+			setEdit2(true)
+
 
 			//Agregar ruta de posteo jugador 2
 
@@ -124,7 +242,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm3(true)
-
+			setEdit3(true)
 			//Agregar ruta de posteo jugador 3
 
 		}
@@ -152,7 +270,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm5(true)
-
+			setEdit5(true)
 			//Agregar ruta de posteo jugador 5
 
 		}
@@ -166,7 +284,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm6(true)
-
+			setEdit6(true)
 			//Agregar ruta de posteo jugador 6
 
 		}
@@ -180,7 +298,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm7(true)
-
+			setEdit7(true)
 			//Agregar ruta de posteo jugador 7
 
 		}
@@ -194,12 +312,211 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setConfirm8(true)
-
-			//Agregar ruta de posteo jugador 7
+			setEdit8(true)
+			//Agregar ruta de posteo jugador 8
 
 		}
 	}
 
+	const handleSubmit9 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors9).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player9.surname.length == 0 || player9.name.length == 0 || player9.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm9(true)
+			setEdit9(true)
+			//Agregar ruta de posteo jugador 9 (suplente)
+
+		}
+	}
+
+	const handleSubmit10 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors10).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player10.surname.length == 0 || player10.name.length == 0 || player10.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm10(true)
+			setEdit10(true)
+			//Agregar ruta de posteo jugador 10 (suplente)
+
+		}
+	}
+
+	const handlePut1 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors1).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player1.surname.length == 0 || player1.name.length == 0 || player1.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm1(true)
+			setEdit1(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut2 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors2).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player2.surname.length == 0 || player2.name.length == 0 || player2.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm2(true)
+			setEdit2(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut3 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors3).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player3.surname.length == 0 || player3.name.length == 0 || player3.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm3(true)
+			setEdit3(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+
+	const handlePut4 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors4).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player4.surname.length == 0 || player4.name.length == 0 || player4.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm4(true)
+			setEdit4(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+
+	const handlePut5 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors5).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player5.surname.length == 0 || player5.name.length == 0 || player1.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm5(true)
+			setEdit5(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut6 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors1).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player6.surname.length == 0 || player6.name.length == 0 || player6.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm6(true)
+			setEdit6(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut7 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors7).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player7.surname.length == 0 || player7.name.length == 0 || player7.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm7(true)
+			setEdit7(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut8 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors8).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player8.surname.length == 0 || player8.name.length == 0 || player8.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm8(true)
+			setEdit8(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut9 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors9).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player9.surname.length == 0 || player9.name.length == 0 || player9.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm9(true)
+			setEdit9(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handlePut10 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors10).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player10.surname.length == 0 || player10.name.length == 0 || player10.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setConfirm10(true)
+			setEdit10(true)
+			//Agregar ruta de edicion jugador 1
+
+		}
+
+	}
+
+	const handleAddScrub1 = (e) => {
+		e.preventDefault()
+		setAddScrub1(true)
+	}
+
+	const handleAddScrub2 = (e) => {
+		e.preventDefault()
+		setAddScrub2(true)
+	}
+
+	const deleteScrub1 = (e) => {
+		e.preventDefault()
+		setAddScrub1(false)
+	}
+
+	const deleteScrub2 = (e) => {
+		e.preventDefault()
+		setAddScrub2(false)
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -211,8 +528,10 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (!compromise) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".' });
-		} else if (!shield) {
-			setPopUpError({ title: 'Error!', msg: 'Falta el escudo de tu equipo' });
+		} else if (addScrub1 && Object.values(errors9).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos' });
+		} else if (addScrub2 && Object.values(errors10).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos' });
 		} else {
 			setTeam({ name: teamName, image: shield })
 			dispatch(createPlayers(team));
@@ -280,6 +599,7 @@ export default function PlayerInscription() {
 			...player1,
 			[e.target.name]: e.target.value
 		});
+
 	};
 	const handleChange2 = (e) => {
 		e.preventDefault();
@@ -331,6 +651,22 @@ export default function PlayerInscription() {
 		});
 	};
 
+	const handleChange9 = (e) => {
+		e.preventDefault();
+		setPlayer9({
+			...player9,
+			[e.target.name]: e.target.value
+		});
+	};
+
+	const handleChange10 = (e) => {
+		e.preventDefault();
+		setPlayer10({
+			...player10,
+			[e.target.name]: e.target.value
+		});
+	};
+
 	const handleErrors1 = (e) => {
 		setErrors1(validate1(player1));
 	};
@@ -362,6 +698,23 @@ export default function PlayerInscription() {
 	const handleErrors8 = (e) => {
 		setErrors8(validate8(player8));
 	};
+
+	const handleErrors9 = (e) => {
+		setErrors9(validate9(player9));
+	};
+
+	const handleErrors10 = (e) => {
+		setErrors10(validate10(player10));
+	};
+
+	const handleErrorSelect = (e) => {
+		if(e.target.value === 'undefined') {
+			setErrorSelect({...errorSelect, errorSelect: "Elige un torneo para la inscripción"})
+		} else {
+			setErrorSelect({})
+		}
+	}
+
 
 	const validate1 = (data) => {
 		let error = {};
@@ -604,6 +957,66 @@ export default function PlayerInscription() {
 		return error;
 	};
 
+	const validate9 = (data) => {
+		let error = {};
+		if (!data.name) {
+			error.name9 = 'Campo requerido';
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
+			error.name9 = 'El nombre debe estar solamente compuesto por letras';
+		} else if (data.name.length <= 2) {
+			error.name9 = 'El nombre debe contener más de 2 caracteres';
+		} else if (data.name.length >= 10) {
+			error.name9 = 'El nombre no puede contener más de 10 caracteres';
+		}
+		if (!data.surname) {
+			error.surname9 = 'Campo requerido';
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
+			error.surname9 = 'El apellido debe estar solamente compuesto por letras';
+		} else if (data.surname.length <= 2) {
+			error.surname9 = 'El apellido debe contener más de 2 caracteres';
+		} else if (data.surname.length >= 10) {
+			error.surname9 = 'El apellido no puede contener más de 10 caracteres';
+		}
+		if (!data.dni) {
+			error.dni9 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni9 = 'El DNI solo puede estar compuesto por números'
+		} else if (data.dni.toString().length !== 8) {
+			error.dni9 = 'El dni debe tener 8 digitos';
+		}
+		return error;
+	};
+
+	const validate10 = (data) => {
+		let error = {};
+		if (!data.name) {
+			error.name10 = 'Campo requerido';
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.name)) {
+			error.name10 = 'El nombre debe estar solamente compuesto por letras';
+		} else if (data.name.length <= 2) {
+			error.name10 = 'El nombre debe contener más de 2 caracteres';
+		} else if (data.name.length >= 10) {
+			error.name10 = 'El nombre no puede contener más de 10 caracteres';
+		}
+		if (!data.surname) {
+			error.surname10 = 'Campo requerido';
+		} else if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1]*(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/.test(data.surname)) {
+			error.surname10 = 'El apellido debe estar solamente compuesto por letras';
+		} else if (data.surname.length <= 2) {
+			error.surname10 = 'El apellido debe contener más de 2 caracteres';
+		} else if (data.surname.length >= 10) {
+			error.surname10 = 'El apellido no puede contener más de 10 caracteres';
+		}
+		if (!data.dni) {
+			error.dni10 = 'Campo requerido';
+		} else if (!/^[0-9]*$/.test(data.dni)) {
+			error.dni10 = 'El DNI solo puede estar compuesto por números'
+		} else if (data.dni.toString().length !== 8) {
+			error.dni10 = 'El dni debe tener 8 digitos';
+		}
+		return error;
+	};
+
 	return (
 		<div className='w-full min-h-screen flex flex-col justify-between'>
 			<Nav />
@@ -631,12 +1044,12 @@ export default function PlayerInscription() {
 
 			<div className='min-h-screen flex flex-col items-center relative'>
 
-				<Link to='/home'>
-					<button className='absolute w-[200px] h-[70px] bg-green-500
+
+			<Link to='/home'>
+				<button className='absolute w-[200px] h-[70px] bg-green-500
 				text-xl font-medium rounded-full left-3 top-6 text-white
-				hover:scale-110 duration-300 animate-appear'>
-						Volver
-					</button>
+				hover:scale-110 duration-300 animate-appear'>Volver</button>
+
 				</Link>
 
 				<h2 className='text-3xl font-bold text-green-500 mb-10 mt-24 animate-appear'>Inscribi a tu equipo</h2>
@@ -649,7 +1062,29 @@ export default function PlayerInscription() {
 
 							<div className='w-5/6 min-h-[160px] flex flex-col justify-end items-center
 					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between'>
+
+
+						
+
+
 								<label className='text-2xl font-medium 
+						text-green-500 mb-2'>Torneo: </label>
+								<select name="tournament" value={selectValue} onChange={e => handleChangeSelect(e)} onClick={e=> handleErrorSelect(e)}>
+									<option value="undefined" >Elegir torneo</option>
+									{nextTournaments.map(e => <option value={e.id}>{e.name}</option>)}
+								</select>
+								
+								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
+									style={errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }}>
+									<p>{errorSelect.errorSelect}</p>
+								</div>
+								
+
+
+							
+
+								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Nombre de tu equipo: </label>
 								<input type="text" value={teamName} name="name"
 									onChange={e => handleChange(e)} onKeyUp={e => handleError(e)}
@@ -674,14 +1109,6 @@ export default function PlayerInscription() {
 									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
-
-								{/*Agregar error de no imagen aca, solo necesitas reemplazar donde dice formsErrors.name
-						por formsErros.image o el nombre que le pongas*/}
-								{/* <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
-						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
-									style={formErrors.img ? { opacity: 1 } : { opacity: 0 }}>
-									<p>{formErrors.img}</p>
-								</div> */}
 
 							</div>
 
@@ -714,7 +1141,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
-								disabled={confirm1}
+								disabled={edit1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -737,7 +1164,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
-								disabled={confirm1}
+								disabled={edit1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -760,7 +1187,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange1(e)}
 								onKeyUp={(e) => handleErrors1(e)}
-								disabled={confirm1}
+								disabled={edit1}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -770,12 +1197,28 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit1}
+						{!edit1&&!confirm1 ? <button type="submit" onClick={handleSubmit1}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit1&&confirm1 ? <button onClick={handleDisabled1}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit1&&confirm1 ? <button onClick={handlePut1}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
+						
+						
 
 					</div>
 					{confirm1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
@@ -793,7 +1236,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
-								disabled={confirm2}
+								disabled={edit2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -816,7 +1259,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
-								disabled={confirm2}
+								disabled={edit2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -839,7 +1282,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange2(e)}
 								onKeyUp={(e) => handleErrors2(e)}
-								disabled={confirm2}
+								disabled={edit2}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -849,12 +1292,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit2}
+						{!edit2&&!confirm2 ? <button type="submit" onClick={handleSubmit2}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit2&&confirm2 ? <button onClick={handleDisabled2}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit2&&confirm2 ? <button onClick={handlePut2}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -873,7 +1330,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
-								disabled={confirm3}
+								disabled={edit3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -896,7 +1353,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
-								disabled={confirm3}
+								disabled={edit3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -919,7 +1376,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange3(e)}
 								onKeyUp={(e) => handleErrors3(e)}
-								disabled={confirm3}
+								disabled={edit3}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -929,12 +1386,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit3}
+						{!edit3&&!confirm3 ? <button type="submit" onClick={handleSubmit3}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit3&&confirm3 ? <button onClick={handleDisabled3}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit3&&confirm3 ? <button onClick={handlePut3}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -953,7 +1424,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
-								disabled={confirm4}
+								disabled={edit4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -976,7 +1447,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
-								disabled={confirm4}
+								disabled={edit4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -999,7 +1470,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange4(e)}
 								onKeyUp={(e) => handleErrors4(e)}
-								disabled={confirm4}
+								disabled={edit4}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1009,12 +1480,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit4}
+						{!edit4&&!confirm4 ? <button type="submit" onClick={handleSubmit4}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit4&&confirm4 ? <button onClick={handleDisabled4}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit4&&confirm4 ? <button onClick={handlePut4}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -1033,7 +1518,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
-								disabled={confirm5}
+								disabled={edit5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1056,7 +1541,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
-								disabled={confirm5}
+								disabled={edit5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1079,7 +1564,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange5(e)}
 								onKeyUp={(e) => handleErrors5(e)}
-								disabled={confirm5}
+								disabled={edit5}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1089,12 +1574,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit5}
+						{!edit5&&!confirm5 ? <button type="submit" onClick={handleSubmit5}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit5&&confirm5 ? <button onClick={handleDisabled5}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit5&&confirm5 ? <button onClick={handlePut5}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -1113,7 +1612,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
-								disabled={confirm6}
+								disabled={edit6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1136,7 +1635,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
-								disabled={confirm6}
+								disabled={edit6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1159,7 +1658,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange6(e)}
 								onKeyUp={(e) => handleErrors6(e)}
-								disabled={confirm6}
+								disabled={edit6}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1169,12 +1668,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit6}
+						{!edit6&&!confirm6 ? <button type="submit" onClick={handleSubmit6}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit6&&confirm6 ? <button onClick={handleDisabled6}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit6&&confirm6 ? <button onClick={handlePut6}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -1193,7 +1706,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
-								disabled={confirm7}
+								disabled={edit7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1216,7 +1729,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
-								disabled={confirm7}
+								disabled={edit7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1239,7 +1752,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange7(e)}
 								onKeyUp={(e) => handleErrors7(e)}
-								disabled={confirm7}
+								disabled={edit7}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1249,12 +1762,26 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit7}
+						{!edit7&&!confirm7 ? <button type="submit" onClick={handleSubmit7}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit7&&confirm7 ? <button onClick={handleDisabled7}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit7&&confirm7 ? <button onClick={handlePut7}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
 
@@ -1273,7 +1800,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
-								disabled={confirm8}
+								disabled={edit8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1296,7 +1823,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
-								disabled={confirm8}
+								disabled={edit8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1319,7 +1846,7 @@ export default function PlayerInscription() {
 								outline-none pl-2 min-w-[300px]'
 								onChange={(e) => handleChange8(e)}
 								onKeyUp={(e) => handleErrors8(e)}
-								disabled={confirm8}
+								disabled={edit8}
 							></input>
 
 							<div className='absolute bg-red-500 p-2 text-white font-medium
@@ -1329,14 +1856,233 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						<button type="submit" onClick={handleSubmit8}
+						{!edit8&&!confirm8 ? <button type="submit" onClick={handleSubmit8}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button>
+						</button> : false}
+						
+						{edit8&&confirm8 ? <button onClick={handleDisabled8}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Jugador
+						</button> : false}
+
+						{!edit8&&confirm8 ? <button onClick={handlePut8}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
 
 					</div> : false}
+
+					{confirm8 && !addScrub1? <button onClick={handleAddScrub1}>Agregar suplente (opcional)</button> : false}
+
+					{addScrub1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 1</h2>
+						<button onClick={deleteScrub1}
+							className='bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							X
+						</button>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange9(e)}
+								onKeyUp={(e) => handleErrors9(e)}
+								disabled={edit9}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors9.name9 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors9.name9}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange9(e)}
+								onKeyUp={(e) => handleErrors9(e)}
+								disabled={edit9}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors9.surname9 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors9.surname9}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="text"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange9(e)}
+								onKeyUp={(e) => handleErrors9(e)}
+								disabled={edit9}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors9.dni9 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors9.dni9}</p>
+							</div>
+						</div>
+
+						{!edit9&&!confirm9 ? <button type="submit" onClick={handleSubmit9}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Suplente
+						</button> : false}
+						
+						{edit9&&confirm9 ? <button onClick={handleDisabled9}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Suplente
+						</button> : false}
+
+						{!edit9&&confirm9 ? <button onClick={handlePut9}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
+					</div> : false}
+
+
+					{confirm9&& !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
+
+					{addScrub2 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
+						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 2</h2>
+
+						<button onClick={deleteScrub2}
+							className='bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							X
+						</button>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Nombre: </label>
+							<input
+								type="text"
+								name="name"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+								onChange={(e) => handleChange10(e)}
+								onKeyUp={(e) => handleErrors10(e)}
+								disabled={edit10}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors10.name10 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors10.name10}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>Apellido: </label>
+							<input
+								type="text"
+								name="surname"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange10(e)}
+								onKeyUp={(e) => handleErrors10(e)}
+								disabled={edit10}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors10.surname10 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors10.surname10}</p>
+							</div>
+
+						</div>
+
+						<div className='flex flex-col justify-end items-center h-[140px]
+						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+						min-w-[320px]'>
+							<label className='text-2xl font-medium 
+							text-green-500 mb-3'>DNI: </label>
+							<input
+								type="text"
+								name="dni"
+								className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+								outline-none pl-2 min-w-[300px]'
+								onChange={(e) => handleChange10(e)}
+								onKeyUp={(e) => handleErrors10(e)}
+								disabled={edit10}
+							></input>
+
+							<div className='absolute bg-red-500 p-2 text-white font-medium
+							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
+								style={errors10.dni10 ? { opacity: 1 } : { opacity: 0 }}>
+								<p>{errors10.dni10}</p>
+							</div>
+						</div>
+
+						{!edit10&&!confirm10 ? <button type="submit" onClick={handleSubmit10}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar Suplente
+						</button> : false}
+						
+						{edit10&&confirm10 ? <button onClick={handleDisabled10}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Editar Suplente
+						</button> : false}
+
+						{!edit10&&confirm10 ? <button onClick={handlePut10}
+							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300'>
+							Confirmar edición
+						</button> : false}
+					</div> : false}
+
 
 
 
