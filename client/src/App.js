@@ -59,9 +59,7 @@ function App() {
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
 						<Route exact path="/loading" component={Loading} />
-
 						{/* LOGEADO Y NO BANEADO*/}
-						<Route exact path="/reviews" component={Reviews} />
 						{(userInfo.ban === true && (
 							<Route exact path="/pago" component={Ban} />
 						)) ||
@@ -90,6 +88,17 @@ function App() {
 							)) ||
 							(userInfo.ban === 'dc' && (
 								<Route exact path="/inscription" component={Home} />
+							))}
+
+						{/*NO BANEADO*/}
+						{(userInfo.ban === true && (
+							<Route exact path="/reviews" component={Ban} />
+						)) ||
+							((userInfo.ban === false || userInfo.ban==='dc') && (
+								<Route exact path="/reviews" component={Reviews} />
+							)) ||
+							(userInfo.ban === undefined && (
+								<Route exact path="/reviews" component={Loading} />
 							))}
 
 						{/*ADMIN*/}
