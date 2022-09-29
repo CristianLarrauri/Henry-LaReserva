@@ -94,7 +94,7 @@ function App() {
 							))}
 
 						{/*ADMIN*/}
-						{(userInfo.admin === false && (
+						{(userInfo.admin === true && (
 							<Route exact path="/admin" component={DashBoardAdmin} />
 						)) ||
 							(userInfo.admin === undefined && (
