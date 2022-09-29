@@ -35,7 +35,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Teams, Players, Tournaments, Users, Buys } = sequelize.models;
+const { Teams, Players, Tournaments, Users, Buys, Reviews } = sequelize.models;
 
 Teams.belongsToMany(Tournaments, { through: 'teams_tournaments' });
 Tournaments.belongsToMany(Teams, { through: 'teams_tournaments' });
@@ -46,8 +46,8 @@ Teams.belongsToMany(Players, { through: 'players_teams' });
 Tournaments.belongsToMany(Players, { through: 'tournaments_players' });
 Players.belongsToMany(Tournaments, { through: 'tournaments_players' });
 
-Tournaments.hasMany(Buys);
-Buys.belongsTo(Tournaments);
+// Tournaments.hasMany(Buys);
+// Buys.belongsTo(Tournaments);
 
 // Users.hasMany(Buys); descomentar cuando se mergee a developer
 // Buys.belongsTo(Users);
