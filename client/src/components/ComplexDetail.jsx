@@ -16,17 +16,22 @@ import Vestuario2 from "../images/Vestuario_002.jpg"
 import Vestuario3 from "../images/Vestuario_003.jpg"
 import { useEffect } from "react";
 import { useState } from "react";
+import { BiSleepy } from "react-icons/bi";
 
 
 export default function ComplexDetail() {
   const [offset, setOffset] = useState(0);
+  console.log(offset);
 
   useEffect(() => {
-    setTimeout(() => {
-      if(offset > 800){setOffset(0)}else{setOffset(offset+800)}
-    },3000);
+    handleCarrusel();
   },[offset])
 
+  async function handleCarrusel(){
+    setTimeout(() => {
+      if(offset > 800){setOffset(0)}else{setOffset(offset+800)}
+    },3000)
+  }
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-between items-center bg-white text-center">
@@ -54,7 +59,8 @@ export default function ComplexDetail() {
 
             
             <div className="w-[300px] overflow-hidden mt-6">
-              <div className={`flex translate-x-[-${offset/2-offset/8}px] duration-300`}>
+              <div className={`flex duration-500`}
+              style={{transform: `translate(-${offset/2-offset/8}px,0px)`}}>
                 <img src={Brindis1} alt='Brindis.jpg' />
                 <img src={Brindis2} alt='Brindis.jpg' />
                 <img src={Brindis3} alt='Brindis.jpg' />
@@ -67,7 +73,7 @@ export default function ComplexDetail() {
             
             <div className="w-[300px] h-[400px] flex overflow-hidden lg:w-[800px]
             sm:w-[600px]">
-              <div className={`flex translate-x-[-${offset}px] duration-300`}>
+              <div className={`flex duration-500`} style={{transform: `translate(-${offset}px,0px)`}}>
                 <img className="min-w-[800px] h-full" src={Cancha1} alt="cancha.png" />
                 <img className="min-w-[800px] h-full" src={Cancha2} alt="cancha.png" />
                 <img className="min-w-[800px] h-full" src={Cancha3} alt="cancha.png" />
@@ -95,10 +101,10 @@ export default function ComplexDetail() {
         
         {/*Vestuario section*/}
         <div>
-
         </div>
           <div className="bg-blue-300 w-[200px] h-[600px] overflow-hidden m-3">
-            <div className={`flex w-[200px] h-full translate-x-[-${offset/4}px] duration-300`}>
+            <div className={`flex w-[200px] h-full duration-500`}
+            style={{transform:`translate(-${offset/4}px,0px)`}}>
               <img className="w-full h-full" src={Vestuario1} alt="vestuario.png" />
               <img className="w-full h-full" src={Vestuario2} alt="vestuario.png" />
               <img className="w-full h-full" src={Vestuario3} alt="vestuario.png" />
