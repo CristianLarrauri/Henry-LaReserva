@@ -93,6 +93,8 @@ export default function PlayerInscription() {
 		dni: 0
 	});
 
+	const [final, setFinal] = React.useState(false)
+
 	//Estado que guardará el valor del boton checkbox
 
 	const [compromise, setCompromise] = React.useState(false);
@@ -136,8 +138,9 @@ export default function PlayerInscription() {
 
 
 	const [shield, setShield] = React.useState("")
-	
 
+	const [errorShield, setErrorShield] = React.useState("")
+	
 
 
 	const [teamName, setTeamName] = useState("")
@@ -538,6 +541,8 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (Object.values(formErrors).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
+		} else if (!errorShield) {
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (!compromise) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".' });
 		} else if (addScrub1 && Object.values(errors9).length > 0) {
@@ -547,10 +552,15 @@ export default function PlayerInscription() {
 		} else {
 			let selectTournament = nextTournaments.find(e => e.id == selectValue)
 			setTeam({ ...team, name: teamName, image: shield, players: [player1.dni, player2.dni, player3.dni, player4.dni, player5.dni, player6.dni, player7.dni, player8.dni, player9.dni, player10.dni], tournaments: selectTournament.name })
-			dispatch(actions.createTeam(team))
-			setPopUpError({ title: 'Exito!', msg: 'Equipo inscripto correctamente.' });
+			setFinal(true)
+			
 		}
 	};
+
+	const handleFinal = () => {
+		dispatch(actions.createTeam(team))
+		setFinal(false)
+	}
 
 
 	const [loading, setLoading] = React.useState(1)
@@ -569,8 +579,18 @@ export default function PlayerInscription() {
 			}
 		)
 		const file = await res.json();
-		setShield(file.secure_url)
-		setLoading(0)
+		let array = file.secure_url.split(".")
+		let format = array[array.length -1]
+		console.log(format)
+		if(format === "jpg" || format === "png"){
+			setErrorShield("")
+			setShield(file.secure_url)
+		    setLoading(0)
+		}else{
+			setErrorShield("Solo se admiten archivos formato jpeg o png")
+			setLoading(1)
+		}
+		
 	}
 
 	const handleChange = (e) => {
@@ -604,16 +624,6 @@ export default function PlayerInscription() {
 
 	const handleCompromiseChange = (e) => {
 		setCompromise(e.target.checked == 1);
-		setTeam([
-			player1,
-			player2,
-			player3,
-			player4,
-			player5,
-			player6,
-			player7,
-			player8
-		]);
 	};
 
 	const handleChange1 = (e) => {
@@ -1064,6 +1074,31 @@ export default function PlayerInscription() {
 				</div>
 			</div>
 
+			<div
+				className={
+					final
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+				<div className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Estás seguro?</h2>
+					<p>Si está todo bien, haz click en pagar inscripción</p>
+					<button
+						onClick={() => handleFinal()}
+						className={popUpStyles.okBtn}
+					>
+						Pagar inscripción
+					</button>
+					<button
+						onClick={() => setFinal(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
 
 			<div className='min-h-screen flex flex-col items-center relative'>
 
@@ -1130,9 +1165,16 @@ export default function PlayerInscription() {
 									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
+						{loading === 1 ? <small>{"(opcional)"}</small> : false}
 
 						{loading===2 ? <p>Cargando imagen...</p> : false }
 						{loading===0 ? <img src={shield} alt="" /> : false }
+						 <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
+									style={errorShield ? { opacity: 1 } : { opacity: 0 }}>
+									<p>{errorShield}</p>
+								</div>
+
 							</div>
 
 						</div>
