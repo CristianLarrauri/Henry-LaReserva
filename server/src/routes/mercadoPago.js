@@ -3,12 +3,11 @@ require("dotenv").config();
 const { Router } = require("express");
 const { Buys, PaymentDetails } = require("../db.js");
 const router = Router();
-const { ACCESS_TOKEN } = process.env;
 const ruta_deploy = "https://lareserva-frontend.herokuapp.com/mercadopago/pagos";
 const ruta_local = "http://localhost:3000/home";
 
 mercadopago.configure({
-  access_token: ACCESS_TOKEN,
+  access_token: "APP_USR-7524599252648515-092900-07714b653693c1b7d69fb5206b345993-1202964248",
 });
 
 router.get("/", (req, res) => {
