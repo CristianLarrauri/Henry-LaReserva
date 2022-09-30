@@ -1,46 +1,3 @@
-// import React, { useState } from "react";
-// import BotonPago from "./BotonPago";
-
-// export default function FormPago(){
-//     const [pagar,setPagar] = useState(true)
-
-//     const [datos,setDatos] = useState({
-//         nombre:"Nico",
-//         apellido:"Perez",
-//         telefono:"25143898123",
-//         añadirinfo:"holas",
-//         ciudad:"Mendoza",
-//         estado:"Cuyo",
-//         postal:"5511",
-//         recordar: false,
-//         number:"1245",
-//         email:"carballonicolas1210@gmail.com",
-//         Barrio:"Aconcagua",
-//         street_number:"1214",
-//         floor:"12",
-//         apartment:"15",
-//         pictureUrl:""
-//     })
-
-//     const handleSubmit = async(e) => {
-// 		e.preventDefault();
-// 		setPagar(false)
-// 	};
-
-
-//     return (
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//             <label>Nombre</label>
-//             <input name="nombre" type="text"></input>
-
-//             <button type="submit" className="botoncomprar">Solicitar Pago</button>
-//             {(pagar) ? null: <BotonPago data={datos}/>}
-//             </form>
-//         </div>
-//     )
-// }
-
 import React, { useState } from "react";
 import { useEffect } from "react";
 
@@ -52,8 +9,9 @@ export default function BotonPago({ productos, data }) {
         attr_data_preference.value = data.id; //Le asigna como valor el id que devuelve MP
 
         //Agrega atributos al elemento script
-        script.src =
-            "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+        script.type = 'text/javascript';
+        script.src = 'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
+        // script.crossorigin="anonymous";
         script.setAttributeNode(attr_data_preference);
 
 
@@ -67,30 +25,21 @@ export default function BotonPago({ productos, data }) {
     }, [data]);
     return (
         <div >
-            <div ></div>
             <div >
                 <div >
-
                     <form id='form1'>
-                        <div ></div>
-
                         <h4>Resumen de cuenta</h4>
-                        <div  >
-                            <div ></div>
-                            <div ></div>
-
-                            <div >
-                                {productos?.map((producto, i) => {
-                                    return (
-                                        <div key={i}>
-                                            <ul className="ul_mp_cont">
-                                                <li>{producto.title}</li>
-                                                <li>{'$' + producto.price}</li>
-                                            </ul>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                        <div>
+                            {productos?.map((producto, i) => {
+                                return (
+                                    <div key={i}>
+                                        <ul className="ul_mp_cont">
+                                            <li>{producto.title}</li>
+                                            <li>{'$' + producto.price}</li>
+                                        </ul>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </form>
                 </div>

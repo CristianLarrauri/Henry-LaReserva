@@ -5,9 +5,10 @@ const { Buys, PaymentDetails } = require("../db.js");
 const router = Router();
 const ruta_deploy = "https://lareserva-frontend.herokuapp.com/mercadopago/pagos";
 const ruta_local = "http://localhost:3000/home";
+const { ACCESS_TOKEN } = process.env;
 
 mercadopago.configure({
-  access_token: "APP_USR-7524599252648515-092900-07714b653693c1b7d69fb5206b345993-1202964248",
+  access_token: ACCESS_TOKEN,
 });
 
 router.get("/", (req, res) => {
@@ -86,7 +87,7 @@ router.get("/pagos", async (req, res) => {
 
 // //Busco información de una orden de pago
 router.get("/pagos/:id", (req, res) => {
-  const mp = new mercadopago(access_token);
+  const mp = new mercadopago(ACCESS_TOKEN);
   const id = req.params.id;
   console.info("Buscando el id", id);
   mp.get(`/v1/payments/search`, { status: "pending" }) //{"external_reference":id})
