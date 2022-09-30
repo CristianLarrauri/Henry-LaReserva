@@ -541,17 +541,24 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (Object.values(formErrors).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
-		} else if (!errorShield) {
+		} else if (errorShield) {
 			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (!compromise) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, lee atentamente la condicion final y tilda la casilla "Entiendo".' });
 		} else if (addScrub1 && Object.values(errors9).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos' });
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else if (addScrub2 && Object.values(errors10).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos' });
+			setPopUpError({ title: 'Error!', msg: 'Faltan datos o hay datos incorrectos.' });
 		} else {
 			let selectTournament = nextTournaments.find(e => e.id == selectValue)
-			setTeam({ ...team, name: teamName, image: shield, players: [player1.dni, player2.dni, player3.dni, player4.dni, player5.dni, player6.dni, player7.dni, player8.dni, player9.dni, player10.dni], tournaments: selectTournament.name })
+			let players = [player1.dni, player2.dni, player3.dni, player4.dni, player5.dni, player6.dni, player7.dni, player8.dni]
+			if(player9.name.length > 0 && addScrub1){
+				players.push(player9)
+			}
+			if(player10.name.length > 0 && addScrub2){
+				players.push(player10)
+			}
+			setTeam({ ...team, name: teamName, image: shield, players: [...players], tournaments: selectTournament.name })
 			setFinal(true)
 			
 		}
