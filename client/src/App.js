@@ -2,7 +2,6 @@ import './App.css';
 import Landing from './components/Landing';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from './components/Home';
-import TeamInscription from './components/TeamInscription';
 import PlayerInscription from './components/PlayerInscription';
 import CreateTournament from './components/CreateTournament';
 import AllTournaments from './components/AllTournaments';
