@@ -140,10 +140,11 @@ export default function PlayerInscription() {
 	const [shield, setShield] = React.useState("")
 
 	const [errorShield, setErrorShield] = React.useState("")
-	
+
 
 
 	const [teamName, setTeamName] = useState("")
+
 	const [team, setTeam] = useState({
 		name: "",
 		players: [],
@@ -161,47 +162,47 @@ export default function PlayerInscription() {
 		e.preventDefault()
 		setEdit1(false)
 	}
-	
+
 	const handleDisabled2 = (e) => {
 		e.preventDefault()
 		setEdit2(false)
 	}
-	
+
 	const handleDisabled3 = (e) => {
 		e.preventDefault()
 		setEdit3(false)
 	}
-	
+
 	const handleDisabled4 = (e) => {
 		e.preventDefault()
 		setEdit4(false)
 	}
-	
+
 	const handleDisabled5 = (e) => {
 		e.preventDefault()
 		setEdit5(false)
 	}
-	
+
 	const handleDisabled6 = (e) => {
 		e.preventDefault()
 		setEdit6(false)
 	}
-	
+
 	const handleDisabled7 = (e) => {
 		e.preventDefault()
 		setEdit7(false)
 	}
-	
+
 	const handleDisabled8 = (e) => {
 		e.preventDefault()
 		setEdit8(false)
 	}
-	
+
 	const handleDisabled9 = (e) => {
 		e.preventDefault()
 		setEdit9(false)
 	}
-	
+
 	const handleDisabled10 = (e) => {
 		e.preventDefault()
 		setEdit10(false)
@@ -248,7 +249,7 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm3(true)
 			setEdit3(true)
-			
+
 
 			dispatch(createPlayers(player3));
 
@@ -279,7 +280,7 @@ export default function PlayerInscription() {
 		} else {
 			setConfirm5(true)
 			setEdit5(true)
-			
+
 			dispatch(createPlayers(player5));
 
 		}
@@ -552,15 +553,15 @@ export default function PlayerInscription() {
 		} else {
 			let selectTournament = nextTournaments.find(e => e.id == selectValue)
 			let players = [player1.dni, player2.dni, player3.dni, player4.dni, player5.dni, player6.dni, player7.dni, player8.dni]
-			if(player9.name.length > 0 && addScrub1){
+			if (player9.name.length > 0 && addScrub1) {
 				players.push(player9)
 			}
-			if(player10.name.length > 0 && addScrub2){
+			if (player10.name.length > 0 && addScrub2) {
 				players.push(player10)
 			}
 			setTeam({ ...team, name: teamName, image: shield, players: [...players], tournaments: selectTournament.name })
 			setFinal(true)
-			
+
 		}
 	};
 
@@ -575,29 +576,42 @@ export default function PlayerInscription() {
 	const handleShield = async (e) => {
 		const files = e.target.files;
 		const data = new FormData();
+		let size = 0
+		if (files) {
+			size += files[0].size
+		}
+		console.log(size)
 		data.append("file", files[0]);
 		data.append("upload_preset", "ReservaTeams");
 		setLoading(2);
-		const res = await fetch(
-			"https://api.cloudinary.com/v1_1/maurodavid/image/upload",
-			{
-				method: "POST",
-				body: data,
+		try {
+			const res = await fetch(
+				"https://api.cloudinary.com/v1_1/maurodavid/image/upload",
+				{
+					method: "POST",
+					body: data,
+				}
+			)
+			const file = await res.json();
+			let array = file.secure_url.split(".")
+			let format = array[array.length - 1]
+			console.log(format)
+			if (size > 2000000) {
+				setErrorShield("El archivo es demasiado grande")
+			} else {
+				if (format === "jpg" || format === "png") {
+					setErrorShield("")
+					setShield(file.secure_url)
+					setLoading(0)
+				} else {
+					setErrorShield("Solo se admiten archivos formato jpeg o png")
+					setLoading(1)
+				}
 			}
-		)
-		const file = await res.json();
-		let array = file.secure_url.split(".")
-		let format = array[array.length -1]
-		console.log(format)
-		if(format === "jpg" || format === "png"){
-			setErrorShield("")
-			setShield(file.secure_url)
-		    setLoading(0)
-		}else{
+		} catch (error) {
 			setErrorShield("Solo se admiten archivos formato jpeg o png")
 			setLoading(1)
 		}
-		
 	}
 
 	const handleChange = (e) => {
@@ -626,8 +640,6 @@ export default function PlayerInscription() {
 		}
 		return errors
 	}
-
-
 
 	const handleCompromiseChange = (e) => {
 		setCompromise(e.target.checked == 1);
@@ -748,8 +760,8 @@ export default function PlayerInscription() {
 	};
 
 	const handleErrorSelect = (e) => {
-		if(e.target.value === 'undefined') {
-			setErrorSelect({...errorSelect, errorSelect: "Elige un torneo para la inscripción"})
+		if (e.target.value === 'undefined') {
+			setErrorSelect({ ...errorSelect, errorSelect: "Elige un torneo para la inscripción" })
 		} else {
 			setErrorSelect({})
 		}
@@ -1109,8 +1121,8 @@ export default function PlayerInscription() {
 
 			<div className='min-h-screen flex flex-col items-center relative'>
 
-			<Link to='/home'>
-				<button className='absolute w-[200px] h-[70px] bg-green-500
+				<Link to='/home'>
+					<button className='absolute w-[200px] h-[70px] bg-green-500
 				text-xl font-medium rounded-full left-3 top-6 text-white
 				hover:scale-110 duration-300 animate-appear'>Volver</button>
 				</Link>
@@ -1127,25 +1139,25 @@ export default function PlayerInscription() {
 					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between'>
 
 
-						
+
 
 
 								<label className='text-2xl font-medium 
 						text-green-500 mb-2'>Torneo: </label>
-								<select name="tournament" value={selectValue} onChange={e => handleChangeSelect(e)} onClick={e=> handleErrorSelect(e)}>
+								<select name="tournament" value={selectValue} onChange={e => handleChangeSelect(e)} onClick={e => handleErrorSelect(e)}>
 									<option value="undefined" >Elegir torneo</option>
 									{nextTournaments.map(e => <option value={e.id}>{e.name}</option>)}
 								</select>
-								
+
 								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
 						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
 									style={errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{errorSelect.errorSelect}</p>
 								</div>
-								
 
 
-							
+
+
 
 								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Nombre de tu equipo: </label>
@@ -1172,11 +1184,12 @@ export default function PlayerInscription() {
 									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
-						{loading === 1 ? <small>{"(opcional)"}</small> : false}
+						<br />
+								{loading === 1 ? <small>{"(opcional)"}</small> : false}
 
-						{loading===2 ? <p>Cargando imagen...</p> : false }
-						{loading===0 ? <img src={shield} alt="" /> : false }
-						 <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+								{loading === 2 ? <p>Cargando imagen...</p> : false}
+								{loading === 0 ? <img className= "h-[200px]" src={shield} alt="" /> : false}
+								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
 						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
 									style={errorShield ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{errorShield}</p>
@@ -1269,28 +1282,28 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit1&&!confirm1 ? <button type="submit" onClick={handleSubmit1}
+						{!edit1 && !confirm1 ? <button type="submit" onClick={handleSubmit1}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit1&&confirm1 ? <button onClick={handleDisabled1}
+
+						{edit1 && confirm1 ? <button onClick={handleDisabled1}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit1&&confirm1 ? <button onClick={handlePut1}
+						{!edit1 && confirm1 ? <button onClick={handlePut1}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar edición
 						</button> : false}
-						
-						
+
+
 
 					</div>
 					{confirm1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
@@ -1364,21 +1377,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit2&&!confirm2 ? <button type="submit" onClick={handleSubmit2}
+						{!edit2 && !confirm2 ? <button type="submit" onClick={handleSubmit2}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit2&&confirm2 ? <button onClick={handleDisabled2}
+
+						{edit2 && confirm2 ? <button onClick={handleDisabled2}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit2&&confirm2 ? <button onClick={handlePut2}
+						{!edit2 && confirm2 ? <button onClick={handlePut2}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1458,21 +1471,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit3&&!confirm3 ? <button type="submit" onClick={handleSubmit3}
+						{!edit3 && !confirm3 ? <button type="submit" onClick={handleSubmit3}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit3&&confirm3 ? <button onClick={handleDisabled3}
+
+						{edit3 && confirm3 ? <button onClick={handleDisabled3}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit3&&confirm3 ? <button onClick={handlePut3}
+						{!edit3 && confirm3 ? <button onClick={handlePut3}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1552,21 +1565,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit4&&!confirm4 ? <button type="submit" onClick={handleSubmit4}
+						{!edit4 && !confirm4 ? <button type="submit" onClick={handleSubmit4}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit4&&confirm4 ? <button onClick={handleDisabled4}
+
+						{edit4 && confirm4 ? <button onClick={handleDisabled4}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit4&&confirm4 ? <button onClick={handlePut4}
+						{!edit4 && confirm4 ? <button onClick={handlePut4}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1646,21 +1659,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit5&&!confirm5 ? <button type="submit" onClick={handleSubmit5}
+						{!edit5 && !confirm5 ? <button type="submit" onClick={handleSubmit5}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit5&&confirm5 ? <button onClick={handleDisabled5}
+
+						{edit5 && confirm5 ? <button onClick={handleDisabled5}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit5&&confirm5 ? <button onClick={handlePut5}
+						{!edit5 && confirm5 ? <button onClick={handlePut5}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1740,21 +1753,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit6&&!confirm6 ? <button type="submit" onClick={handleSubmit6}
+						{!edit6 && !confirm6 ? <button type="submit" onClick={handleSubmit6}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit6&&confirm6 ? <button onClick={handleDisabled6}
+
+						{edit6 && confirm6 ? <button onClick={handleDisabled6}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit6&&confirm6 ? <button onClick={handlePut6}
+						{!edit6 && confirm6 ? <button onClick={handlePut6}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1834,21 +1847,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit7&&!confirm7 ? <button type="submit" onClick={handleSubmit7}
+						{!edit7 && !confirm7 ? <button type="submit" onClick={handleSubmit7}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit7&&confirm7 ? <button onClick={handleDisabled7}
+
+						{edit7 && confirm7 ? <button onClick={handleDisabled7}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit7&&confirm7 ? <button onClick={handlePut7}
+						{!edit7 && confirm7 ? <button onClick={handlePut7}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1928,21 +1941,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit8&&!confirm8 ? <button type="submit" onClick={handleSubmit8}
+						{!edit8 && !confirm8 ? <button type="submit" onClick={handleSubmit8}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
 						</button> : false}
-						
-						{edit8&&confirm8 ? <button onClick={handleDisabled8}
+
+						{edit8 && confirm8 ? <button onClick={handleDisabled8}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Jugador
 						</button> : false}
 
-						{!edit8&&confirm8 ? <button onClick={handlePut8}
+						{!edit8 && confirm8 ? <button onClick={handlePut8}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -1951,7 +1964,7 @@ export default function PlayerInscription() {
 
 					</div> : false}
 
-					{confirm8 && !addScrub1? <button onClick={handleAddScrub1}>Agregar suplente (opcional)</button> : false}
+					{confirm8 && !addScrub1 ? <button onClick={handleAddScrub1}>Agregar suplente (opcional)</button> : false}
 
 					{addScrub1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 1</h2>
@@ -2030,21 +2043,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit9&&!confirm9 ? <button type="submit" onClick={handleSubmit9}
+						{!edit9 && !confirm9 ? <button type="submit" onClick={handleSubmit9}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Suplente
 						</button> : false}
-						
-						{edit9&&confirm9 ? <button onClick={handleDisabled9}
+
+						{edit9 && confirm9 ? <button onClick={handleDisabled9}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Suplente
 						</button> : false}
 
-						{!edit9&&confirm9 ? <button onClick={handlePut9}
+						{!edit9 && confirm9 ? <button onClick={handlePut9}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -2052,7 +2065,7 @@ export default function PlayerInscription() {
 						</button> : false}
 					</div> : false}
 
-					{confirm9&& !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
+					{confirm9 && !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
 
 					{addScrub2 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 2</h2>
@@ -2132,21 +2145,21 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit10&&!confirm10 ? <button type="submit" onClick={handleSubmit10}
+						{!edit10 && !confirm10 ? <button type="submit" onClick={handleSubmit10}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Suplente
 						</button> : false}
-						
-						{edit10&&confirm10 ? <button onClick={handleDisabled10}
+
+						{edit10 && confirm10 ? <button onClick={handleDisabled10}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Editar Suplente
 						</button> : false}
 
-						{!edit10&&confirm10 ? <button onClick={handlePut10}
+						{!edit10 && confirm10 ? <button onClick={handlePut10}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
@@ -2179,7 +2192,7 @@ export default function PlayerInscription() {
 							<p className='ml-1 font-medium text-lg'>Entiendo y acepto las condiciones.</p>
 						</div>
 
-						<button type="submit" onClick={e=> handleSubmit(e)}
+						<button type="submit" onClick={e => handleSubmit(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
