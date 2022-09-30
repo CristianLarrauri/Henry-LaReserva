@@ -11,12 +11,16 @@ import {
 	CREATE_USER,
 	BAN_USER,
 	TO_ADMIN,
-	GET_USER_DETAILS,
 	GET_NEXT_FIVE_TOURNAMENTS,
 	GET_NEXT_TOURNAMENT,
 	GET_TOURNAMENTS_ADMIN,
 	DELETE_TOURNAMENT,
-	MODIFY_TOURNAMENTS
+	MODIFY_TOURNAMENTS,
+	SET_ACTUAL_USER,
+	GET_REVIEWS,
+	POST_REVIEWS,
+	DELETE_REVIEWS,
+	GET_ID_REVIEW
 } from '../actions/index.js';
 
 let initialState = {
@@ -28,8 +32,17 @@ let initialState = {
 	users: [],
 	userProfile: {},
 	tournamentsHome: [],
-	userDetail: [],
-	nextTournaments: { next: [], nextFive: [] }
+	nextTournaments: { next: [], nextFive: [] },
+	order: '',
+	mpData: [],
+	allReviews: [],
+	idReview: {},
+	actualUser: {
+		username: undefined,
+		ban: undefined,
+		admin: undefined,
+		email: undefined
+	}
 };
 
 function rootReducer(state = initialState, action) {
@@ -114,12 +127,6 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state
 			};
-		case GET_USER_DETAILS:
-			return {
-				...state,
-				userDetail: action.payload
-			};
-
 		case GET_NEXT_FIVE_TOURNAMENTS:
 			return {
 				...state,
@@ -129,6 +136,47 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				nextTournaments: { ...state.nextTournaments, next: action.payload }
+			};
+
+		// MercadoPago
+		case 'MP_DATA':
+			return {
+				...state,
+				mpData: action.payload
+			};
+		case 'NEW_ORDER':
+			return {
+				...state,
+				order: action.payload
+			};
+		case 'CREATE_ORDER':
+			return {
+				...state,
+				order: action.payload
+			};
+
+		case GET_REVIEWS:
+			return {
+				...state,
+				allReviews: action.payload
+			};
+		case POST_REVIEWS:
+			return {
+				...state
+			};
+		case DELETE_REVIEWS:
+			return {
+				...state
+			};
+		case GET_ID_REVIEW:
+			return {
+				...state,
+				idReview: action.payload
+			};
+		case SET_ACTUAL_USER:
+			return {
+				...state,
+				actualUser: action.payload
 			};
 		default:
 			return state;

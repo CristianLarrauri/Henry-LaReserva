@@ -44,8 +44,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BotonPago from "./BotonPago";
-
 import axios from "axios";
+
+
 function FormPago() {
   const dispatch = useDispatch();
   const mpData = useSelector((state) => state.mpData);
@@ -53,7 +54,7 @@ function FormPago() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/checkout`)
+      .get(`http://localhost:3001/mercadopago`)
       .then((data) => {
         setDatos(data?.data);
       })

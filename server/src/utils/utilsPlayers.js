@@ -1,8 +1,5 @@
-
-const { Players, Teams, Tournaments } = require('../db');
-const prePlayers = require('../json/prePlayers.json');
-
-
+const { Players, Teams, Tournaments } = require("../db");
+const prePlayers = require("../json/preplayers.json");
 
 const preload_players = async () => {
 

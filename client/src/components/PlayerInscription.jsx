@@ -1121,10 +1121,13 @@ export default function PlayerInscription() {
 
 			<div className='min-h-screen flex flex-col items-center relative'>
 
+
 				<Link to='/home'>
 					<button className='absolute w-[200px] h-[70px] bg-green-500
+
 				text-xl font-medium rounded-full left-3 top-6 text-white
 				hover:scale-110 duration-300 animate-appear'>Volver</button>
+
 				</Link>
 
 				<h2 className='text-3xl font-bold text-green-500 mb-10 mt-24 animate-appear'>Inscribi a tu equipo</h2>
@@ -2065,7 +2068,9 @@ export default function PlayerInscription() {
 						</button> : false}
 					</div> : false}
 
+
 					{confirm9 && !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
+
 
 					{addScrub2 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 2</h2>
@@ -2166,6 +2171,7 @@ export default function PlayerInscription() {
 							Confirmar edición
 						</button> : false}
 					</div> : false}
+
 
 
 
