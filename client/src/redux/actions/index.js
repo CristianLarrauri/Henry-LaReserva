@@ -9,6 +9,7 @@ export const TOURNAMENT_DETAILS = 'TOURNAMENT_DETAILS';
 export const GET_TOURNAMENTS_HOME = 'GET_TOURNAMENTS_HOME';
 export const CREATE_PLAYER = 'CREATE_PLAYER';
 export const GET_SCORERS_TABLE = 'GET_SCORERS_TABLE';
+export const CREATE_TEAM = 'CREATE_TEAM';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
 export const CREATE_USER = 'CREATE_USER';
 export const BAN_USER = 'BAN_USER';
@@ -80,6 +81,20 @@ export const createPlayers = (payload) => {
 			const info = await axios.post('http://localhost:3001/players', payload);
 			return dispatch({
 				type: CREATE_PLAYER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const createTeam = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.post('http://localhost:3001/teams', payload);
+			return dispatch({
+				type: CREATE_TEAM,
 				payload: info.data
 			});
 		} catch (error) {

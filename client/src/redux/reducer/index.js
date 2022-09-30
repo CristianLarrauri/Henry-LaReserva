@@ -6,6 +6,7 @@ import {
 	SEARCH_TOURNAMENTS,
 	GET_TOURNAMENTS_HOME,
 	CREATE_PLAYER,
+	CREATE_TEAM,
 	GET_ALL_USERS,
 	CREATE_USER,
 	BAN_USER,
@@ -62,6 +63,10 @@ function rootReducer(state = initialState, action) {
 				tournamentsAdmin: action.payload
 			};
 		case CREATE_PLAYER:
+			return {
+				...state
+			};
+		case CREATE_TEAM:
 			return {
 				...state
 			};
