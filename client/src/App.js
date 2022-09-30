@@ -94,7 +94,7 @@ function App() {
 						{(userInfo.ban === true && (
 							<Route exact path="/reviews" component={Ban} />
 						)) ||
-							((userInfo.ban === false || userInfo.ban==='dc') && (
+							((userInfo.ban === false || userInfo.ban === 'dc') && (
 								<Route exact path="/reviews" component={Reviews} />
 							)) ||
 							(userInfo.ban === undefined && (
@@ -111,12 +111,13 @@ function App() {
 
 						{(userInfo.admin === true && (
 							<Route
-								exactpath="/admin/modify/:id"
+								exact
+								path="/admin/modify/:id"
 								component={ModifyTournaments}
 							/>
 						)) ||
 							(userInfo.admin === undefined && (
-								<Route exactpath="/admin/modify/:id" component={Loading} />
+								<Route exact path="/admin/modify/:id" component={Loading} />
 							)) || <Route exact path="/admin/modify/:id" component={Home} />}
 
 						{(userInfo.admin === true && (
