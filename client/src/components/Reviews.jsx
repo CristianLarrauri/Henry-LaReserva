@@ -11,11 +11,16 @@ import {
 	deleteReviews,
 	getIdReview
 } from '../redux/actions';
+import {IoStarSharp, IoStarHalf} from 'react-icons/io5';
+import popUpStyles from '../styles/PopUpStyles.module.css';
+import { Link } from 'react-router-dom';
+import {BiArrowBack} from 'react-icons/bi';
 
 export default function Reviews() {
 	const dispatch = useDispatch();
 	const allReviews = useSelector((state) => state.allReviews);
 	const userDetail = useSelector((state) => state.actualUser);
+	const [popUpError, setPopUpError] = useState({});
 
 	const [review, setReview] = useState({
 		id: '',
@@ -56,16 +61,36 @@ export default function Reviews() {
 
 	const handleDeleteReview = (e) => {
 		dispatch(deleteReviews(e.target.value));
-		console.log('etar', e.target.value);
-		alert('el comentario ha sido borrado');
+		/* console.log('etar', e.target.value); */
+
+		setPopUpError({
+			title: 'Exito',
+			msg: 'El comentario ha sido borrado'
+		})
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(postReviews(review));
-		console.log('reviewSubmited', review);
-		alert('se ha guardado tu comentario');
+		/* console.log('reviewSubmited', review); */
+		setPopUpError({
+			title: 'Gracias!',
+			msg: 'Se ha guardado tu comentario.'
+		})
 	};
+
+	function drawStars(calification){
+		const Intstars = Math.floor(calification);
+		const middleStars = calification - Math.floor(calification);
+		let totalStars = [];
+
+		for(let f=0;f<Intstars;f++){
+			totalStars.push(<IoStarSharp className='text-xl text-green-700'/>)
+		}
+
+		if(middleStars >= .5) totalStars.push(<IoStarHalf className='text-xl text-green-700'/>)
+		return totalStars;
+	}
 
 	//----------------funcionalidad del promedio de puntuacion-----------------------------------------------------
 	let puntuacion = allReviews.map((p) => p.calificacionComplejo);
@@ -76,66 +101,152 @@ export default function Reviews() {
 	let promedio = (totalpuntos / puntuacion.length).toFixed(2);
 	//-------------------------------------------------------------------------------------------------------------
 	return (
-		<div>
+		<div className='min-h-screen w-full flex flex-col justify-between items-center bg-white'>
 			<Nav />
-			<h2>
-				Puntuacion : {promedio}/5 - {puntuacion.length} reseñas
-			</h2>
-			<h2>Reseñas anteriores</h2>
-			<div>
-				{allReviews
-					? allReviews?.map((ele) => {
-							return (
-								<div value={ele.id}>
-									<h1>Usuario: {ele.nombreUsuario}</h1>
-									<p>{ele.comentario}</p>
-									<h2>Puntuacion: {ele.calificacionComplejo}</h2>
-									<p>Fecha de reseña: {ele.date}</p>
-									{userDetail.admin === true ? (
-										<button
-											onClick={(e) => handleDeleteReview(e)}
-											value={ele.id}
-										>
-											Eliminar Comentario
-										</button>
-									) : (
-										''
-									)}
-								</div>
-							);
-					  })
-					: 'No se encontaron reseñas'}
+				<div
+					className={
+						popUpError.title
+							? popUpStyles.popUpOverlay
+							: popUpStyles.popUpOverlay_hidden
+					}>
+					<div
+						className={
+							popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden
+						}
+					>
+						<h2>{popUpError.title}</h2>
+						<p>{popUpError.msg}</p>
+						<button
+							onClick={() => {setPopUpError({});window.location.reload(false)}}
+							className={popUpStyles.okBtn}
+						>
+							Ok
+						</button>
+					</div>
+				</div>
+
+			<div className='mt-10 w-full flex justify-around items-center flex-wrap'>
+
+				<div className='text-center bg-gray-100 p-3 shadow shadow-gray-700'>
+					<h2 className='text-gray-700 text-3xl font-bold'>Reseñas</h2>
+					
+					<div className='text-center'>
+						<h2 className='text-gray-700 text-xl font-medium'>
+							{isNaN(promedio)?
+							'No hay datos suficientes.': `Promedio : ${promedio}/5 estrellas`}
+							
+						</h2>
+
+						<h2 className='text-gray-700 text-xl font-medium'>
+							{puntuacion.length} reseñas
+						</h2>
+					</div>
+					
+					{allReviews.length
+						? allReviews?.map((ele) => {
+								return (
+									<div value={ele.id} className='bg-white w-[300px] text-left my-3 break-words 
+									p-3 sm:w-[600px] shadow shadow-gray-700 hover:shadow-gray-100 duration-300'>
+										<h1 className='font-medium text-xl'>{ele.nombreUsuario}</h1>
+										<div className='flex mt-1'>{/*Stars wrapper*/}
+											{drawStars(ele.calificacionComplejo)}
+										</div>
+										<p className='text-lg my-2'>{ele.comentario}</p>
+										<p className='font-medium'>{ele.date}</p>
+										{userDetail.admin === true ? (
+											<button
+												onClick={(e) => handleDeleteReview(e)}
+												value={ele.id}
+												className="bg-green-500 text-white p-3 rounded-full font-medium 
+												hover:bg-green-700 duration-300 hover:scale-110 my-3 ml-2"
+											>
+												Eliminar Comentario
+											</button>
+										) : null}
+									</div>
+								);
+						})
+						: 
+						<div className='bg-white w-[300px] text-left my-3 break-words 
+						p-3 sm:w-[600px] shadow shadow-gray-700 hover:shadow-gray-100
+						duration-300 text-center'>
+							<h1 className='font-medium text-xl'>{'No se encontraron reseñas :('}</h1>
+						</div>
+						}
+				</div>
+
+				<div className='p-6 bg-gray-100 m-6 shadow-gray-700 shadow'>
+					{userDetail.username===undefined?
+					<div className='bg-white w-[300px] text-left my-3 break-words 
+					p-3 sm:w-[600px] shadow shadow-gray-700 hover:shadow-gray-100
+					duration-300 text-center'>
+						<div className='w-full text-center'>
+							<h2 className='text-2xl font-bold mb-3'>Deja tu opinion!</h2>
+						</div>
+						<h2 className='font-medium text-xl text-red-700'>{'Espere por favor..'}</h2>
+					</div>
+					:userDetail.username==='dc'?
+					<div className='bg-white w-[300px] text-left my-3 break-words 
+					p-3 sm:w-[600px] shadow shadow-gray-700 hover:shadow-gray-100
+					duration-300 text-center'>
+						<div className='w-full text-center'>
+							<h2 className='text-2xl font-bold mb-3'>Deja tu opinion!</h2>
+						</div>
+						<h2 className='font-medium text-xl text-red-700'>{'Necesitas estar conectado para dejar una reseña'}</h2>
+					</div>:
+				<form className='text-gray-700 flex flex-col items-center'>
+					<h1 className='text-2xl font-bold mb-3'>Deja tu opinion!</h1>
+
+					<div className='w-full'>
+						<h2 className='text-xl font-medium mb-1'>{userDetail.username+':'}</h2>
+					</div>
+					
+					
+					<textarea
+						name="comentario"
+						value={review.comentario}
+						type="text"
+						placeholder="Deja tu comentario aqui."
+						onChange={(e) => handleChange(e)}
+						className='w-[600px] min-h-[200px] outline-none p-1
+						bg-white shadow shadow-gray-700 hover:shadow-gray-100 duration-300'
+					></textarea>
+
+					<StarsRating
+						value={review.calificacionComplejo}
+						name="calificacionComplejo"
+						count={5}
+						size={30}
+						color2={'#15803d'}
+						onChange={(e) => ratingChanged(e)}
+					/>
+					
+					<button
+						type="submit"
+						onClick={(e) => handleSubmit(e)}
+						value={review.id}
+						className="bg-green-500 text-white p-3 rounded-full font-medium 
+						hover:bg-green-700 duration-300 hover:tex-green-700
+						hover:scale-110 my-3 ml-2 min-w-[200px]"
+					>
+						Enviar
+					</button>
+				</form>}
+				</div>
 			</div>
 
-			<form>
-				<h1>Deja tu opinion sobre nosotros</h1>
-				<h2>{userDetail.username}</h2>
-				<StarsRating
-					value={review.calificacionComplejo}
-					name="calificacionComplejo"
-					count={5}
-					size={30}
-					color2={'#ffd700'}
-					onChange={(e) => ratingChanged(e)}
-				/>
-				<h2>Tu puntuacion: {rating}</h2>
-				<input
-					name="comentario"
-					value={review.comentario}
-					type="text"
-					placeholder="deja tu comentario aqui"
-					onChange={(e) => handleChange(e)}
-				></input>
-				<button
-					type="submit"
-					onClick={(e) => handleSubmit(e)}
-					value={review.id}
-				>
-					Envia tu comentario
-				</button>
-			</form>
+				<Link to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+								hover:scale-110 duration-300 text-white
+								flex justify-center items-center animate-appear'>
+					<p className='text-xl font-bold flex items-center justify-center'>
+						<BiArrowBack className="mr-3" />
+						Volver
+					</p>
+				</Link>
 
 			<Footer />
 		</div>
 	);
 }
+
+
