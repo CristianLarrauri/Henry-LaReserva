@@ -45,52 +45,62 @@ export default function PlayerInscription() {
 	const [player1, setPlayer1] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player2, setPlayer2] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player3, setPlayer3] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player4, setPlayer4] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player5, setPlayer5] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player6, setPlayer6] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player7, setPlayer7] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player8, setPlayer8] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player9, setPlayer9] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 	const [player10, setPlayer10] = React.useState({
 		name: '',
 		surname: '',
-		dni: 0
+		dni: 0,
+		tournaments:[]
 	});
 
 	const [final, setFinal] = React.useState(false)
@@ -567,6 +577,7 @@ export default function PlayerInscription() {
 
 	const handleFinal = () => {
 		dispatch(actions.createTeam(team))
+		console.log(team)
 		setFinal(false)
 	}
 
@@ -647,75 +658,95 @@ export default function PlayerInscription() {
 
 	const handleChange1 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer1({
 			...player1,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 
 	};
 	const handleChange2 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer2({
 			...player2,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange3 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer3({
 			...player3,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange4 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer4({
 			...player4,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange5 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer5({
 			...player5,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange6 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer6({
 			...player6,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange7 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer7({
 			...player7,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 	const handleChange8 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer8({
 			...player8,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 
 	const handleChange9 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer9({
 			...player9,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 
 	const handleChange10 = (e) => {
 		e.preventDefault();
+		let selectTournament = nextTournaments.find(e => e.id == selectValue)
 		setPlayer10({
 			...player10,
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			tournaments: [selectTournament.name]
 		});
 	};
 
@@ -2068,9 +2099,7 @@ export default function PlayerInscription() {
 						</button> : false}
 					</div> : false}
 
-
 					{confirm9 && !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
-
 
 					{addScrub2 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
 						<h2 className='text-2xl text-green-500 font-medium mt-4'>Suplente 2</h2>
@@ -2171,7 +2200,6 @@ export default function PlayerInscription() {
 							Confirmar edición
 						</button> : false}
 					</div> : false}
-
 
 
 
