@@ -20,6 +20,7 @@ import Reviews from './components/Reviews';
 import { useEffect, useState } from 'react';
 import Login from './components/Login';
 import Loading from './components/Loading';
+import PanelUser from './components/PanelUser';
 
 function App() {
 	const actualUser = useSelector((state) => state.actualUser);
@@ -88,6 +89,20 @@ function App() {
 							)) ||
 							(userInfo.ban === 'dc' && (
 								<Route exact path="/inscription" component={Home} />
+							))}
+
+
+						{(userInfo.ban === true && (
+							<Route exact path="/panel" component={Ban} />
+						)) ||
+							(userInfo.ban === false && (
+								<Route exact path="/panel" component={PanelUser} />
+							)) ||
+							(userInfo.ban === undefined && (
+								<Route exact path="/panel" component={Loading} />
+							)) ||
+							(userInfo.ban === 'dc' && (
+								<Route exact path="/panel" component={Home} />
 							))}
 
 						{/*NO BANEADO*/}
