@@ -43,6 +43,9 @@
 
 import React, { useState } from "react";
 import { useEffect } from "react";
+import Nav from '../Nav';
+import Footer from '../Footer';
+import mercadoLogo from '../../images/MercadoPago.png';
 
 export default function BotonPago({ productos, data }) {
     useEffect(() => {
@@ -66,35 +69,49 @@ export default function BotonPago({ productos, data }) {
 
     }, [data]);
     return (
-        <div >
-            <div ></div>
-            <div >
-                <div >
+        <div className="min-h-screen flex flex-col items-center
+        justify-between bg-gray-100">
+            <Nav/>
 
-                    <form id='form1'>
-                        <div ></div>
+            <div>
 
+            <div className="bg-white rounded-lg shadow shadow-gray-700 overflow-hidden animate-appear">{/*Formulario section*/}
+
+                <div className="bg-white w-[300px] h-[60px] p-3
+                rounded-t-lg z-20 mb-5 shadow-lg shadow-gray-300 sm:w-[600px]">
+                    <img src={mercadoLogo} alt="logo.png" className="h-full"/>
+                </div>
+                    
+
+                <form id='form1' className="bg-white flex flex-col
+                overflow-hidden p-3">
+
+                    <div className="w-full text-center text-gray-700
+                    text-2xl font-bold my-4">
                         <h4>Resumen de cuenta</h4>
-                        <div  >
-                            <div ></div>
-                            <div ></div>
+                    </div>
 
-                            <div >
-                                {productos?.map((producto, i) => {
-                                    return (
-                                        <div key={i}>
-                                            <ul className="ul_mp_cont">
-                                                <li>{producto.title}</li>
-                                                <li>{'$' + producto.price}</li>
-                                            </ul>
-                                        </div>
-                                    )
-                                })}
+
+
+                    {productos?.map((producto, i) => {
+                        return (
+                            <div key={i} className='my-3'>
+                                <ul className="ul_mp_cont flex justify-between
+                                font-medium text-gray-700">
+                                    <li>{producto.title}</li>
+                                    <li>{'$' + producto.price}</li>
+                                </ul>
                             </div>
-                        </div>
-                    </form>
+                        )
+                    })}
+                            
+                       
+                </form>
+
                 </div>
             </div>
+
+            <Footer/>
         </div>
     )
 }

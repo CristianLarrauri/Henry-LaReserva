@@ -45,6 +45,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BotonPago from "./BotonPago";
 import axios from "axios";
+import Loading from '../Loading';
 
 
 function FormPago() {
@@ -69,7 +70,7 @@ function FormPago() {
   return (
     <div className="">
       {!datos ? (
-        <p>Aguarde un momento....</p>
+        <Loading/>
       ) : (
         <BotonPago productos={productos} data={datos} />
       )}
