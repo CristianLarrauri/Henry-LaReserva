@@ -68,16 +68,16 @@ function App() {
 						{(userInfo.ban === true && (
 							<Route exact path="/pago" component={Ban} />
 						)) ||
-							(userInfo.ban === false && (
-								<Route exact path="/pago" component={FormPago} />
-							)) ||
-							(userInfo.ban === undefined && (
-								<Route exact path="/pago" component={Loading} />
-							)) ||
-							(userInfo.ban === 'dc' && (
-								<Route exact path='/pago'
-								render={(props) => <Login {...props} authed={false} to={'/pago'}/>}/>
-							))}
+						(userInfo.ban === false && (
+							<Route exact path="/pago" component={FormPago} />
+						)) ||
+						(userInfo.ban === undefined && (
+							<Route exact path="/pago" component={Loading} />
+						)) ||
+						(userInfo.ban === 'dc' && (
+							<Route exact path='/pago'
+							render={(props) => <Login {...props} authed={false} to={'/pago'}/>}/>
+						))}
 						
 						{/*Inscripciones*/}
 						{(userInfo.ban === true && (
