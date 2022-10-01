@@ -37,7 +37,6 @@ export default function Profile() {
 	useEffect(() => {
 		if(!isLoading && user && actualUser.username===undefined){//Si la pagina cargo con el usuario ya logeado y todavia no tengo su info en la redux store
 			//Pido la info del usuario a mi db
-			console.log('Ya estoy logeado')
 			axios.get(`http://localhost:3001/users/${user.email}`)
 			.then(info => {
 				dispatch(setActualUser(info.data.name,info.data.ban,info.data.admin))//Hago un dispatch guardando la info que ahora App.js podra acceder
