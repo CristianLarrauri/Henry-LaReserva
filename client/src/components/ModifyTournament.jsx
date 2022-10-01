@@ -149,7 +149,6 @@ export default function ModifyTournaments() {
 
 	return (
 		<div>
-			{console.log('data', input)};
 			<Nav />
 			<div className={styles.mainWrapper}>
 				<h1>Modificar torneo "{input.name}"</h1>

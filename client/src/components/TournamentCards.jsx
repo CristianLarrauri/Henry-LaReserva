@@ -51,13 +51,15 @@ export default function TournamentCards() {
 			<div className="bg-white w-11/12 rounded flex justify-between sm:ml-6">
 				<button
 					onClick={(event) => handlePrev(event)}
-					className="bg-green-700 min-w-[30px] flex justify-center items-center rounded
-				text-white shadow shadow-black active:bg-green-500"
+					className="bg-green-700 min-w-[30px] max-w-[30px] flex 
+					justify-center items-center rounded text-white shadow
+					shadow-black active:bg-green-500"
 				>
 					<AiOutlineArrowLeft className="text-2xl" />
 				</button>
 
-				<div className="w-11/12 flex justify-center flex-wrap md:justify-between">
+				<div className="w-11/12 flex justify-center flex-wrap 
+				md:justify-center">
 					{tournaments
 						? tournaments?.map((ele) => {
 								return (
@@ -78,7 +80,7 @@ export default function TournamentCards() {
 
 				<button
 					onClick={(event) => handleNext(event)}
-					className="bg-green-700 min-w-[30px] flex justify-center items-center rounded
+					className="bg-green-700 min-w-[30px] max-w-[30px] flex justify-center items-center rounded
 				text-white shadow shadow-black active:bg-green-500"
 				>
 					<AiOutlineArrowRight />

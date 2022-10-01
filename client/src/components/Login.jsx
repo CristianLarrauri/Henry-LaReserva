@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setActualUser } from '../redux/actions/index';
 
-export default function Login(){
-    const {isLoading, user} = useAuth0();
+export default function Login(props){
+    const {isLoading, user, loginWithRedirect} = useAuth0();
     const history = useHistory();
 	const dispatch = useDispatch();
 
@@ -16,6 +16,11 @@ export default function Login(){
 		//Si el usuario esta logeado agarrar su mail y preguntar en el backend si el email existe
 		//Si el email existe no hacer nada
 		//Si el email no existe crear el usuario en la db
+		console.log(props.to);
+		if(!props.authed) loginWithRedirect({
+			redirectUri: `http://localhost:3000${props.to}`
+		});
+
         if(!isLoading && user){
 			axios.post('http://localhost:3001/users/post', {
 				email: user.email,
@@ -37,7 +42,6 @@ export default function Login(){
 
     return(
         <div>
-            
         </div>
     );
 }

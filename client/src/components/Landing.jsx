@@ -7,10 +7,12 @@ import { IoLocation } from "react-icons/io5";
 import { SiGmail } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useAuth0 } from "@auth0/auth0-react";
 import popUpStyles from '../styles/PopUpStyles.module.css';
 
 export default function Landing() {
   const [popUpError, setPopUpError] = useState({});
+  const {loginWithRedirect} = useAuth0();
 
   function redirectTo(target) {
     if (target === 2) {
@@ -120,7 +122,9 @@ export default function Landing() {
           <button>Ingresar</button>
         </Link>
         <Link to="/">
-          <button>Registrate</button>
+          <button onClick={() => loginWithRedirect({
+            redirectUri: 'http://localhost:3000/login'
+          })}>Registrate</button>
         </Link>
       </div>
 

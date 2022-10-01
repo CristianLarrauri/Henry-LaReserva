@@ -15,12 +15,14 @@ import {IoStarSharp, IoStarHalf} from 'react-icons/io5';
 import popUpStyles from '../styles/PopUpStyles.module.css';
 import { Link } from 'react-router-dom';
 import {BiArrowBack} from 'react-icons/bi';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Reviews() {
 	const dispatch = useDispatch();
 	const allReviews = useSelector((state) => state.allReviews);
 	const userDetail = useSelector((state) => state.actualUser);
 	const [popUpError, setPopUpError] = useState({});
+	const {loginWithRedirect} = useAuth0();
 
 	const [review, setReview] = useState({
 		id: '',
@@ -188,11 +190,21 @@ export default function Reviews() {
 					:userDetail.username==='dc'?
 					<div className='bg-white w-[300px] text-left my-3 break-words 
 					p-3 sm:w-[600px] shadow shadow-gray-700 hover:shadow-gray-100
-					duration-300 text-center'>
+					duration-300 flex flex-col items-center'>
 						<div className='w-full text-center'>
 							<h2 className='text-2xl font-bold mb-3'>Deja tu opinion!</h2>
 						</div>
 						<h2 className='font-medium text-xl text-red-700'>{'Necesitas estar conectado para dejar una reseña'}</h2>
+
+						<button className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+								hover:scale-110 duration-300 text-white
+								flex justify-center items-center animate-appear
+								font-medium text-lg'
+								onClick={() => loginWithRedirect({
+									redirectUri: 'http://localhost:3000/reviews'
+								})}>
+									Conectate
+						</button>
 					</div>:
 				<form className='text-gray-700 flex flex-col items-center'>
 					<h1 className='text-2xl font-bold mb-3'>Deja tu opinion!</h1>
