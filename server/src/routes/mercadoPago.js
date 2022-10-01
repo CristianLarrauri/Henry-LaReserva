@@ -2,6 +2,7 @@ const mercadopago = require("mercadopago");
 require("dotenv").config();
 const { Router } = require("express");
 const { Buys, PaymentDetails } = require("../db.js");
+const { find_by_email } = require("../utils/users.js");
 const router = Router();
 const ruta_deploy = "https://lareserva-frontend.herokuapp.com/mercadopago/pagos";
 const ruta_local = "http://localhost:3000/home";
@@ -21,6 +22,14 @@ router.get("/", (req, res) => {
         quantity: 1,
       },
     ],
+    // payer: {
+    //   first_name: "Test",
+    //   last_name: "Test",
+    //   phone: {
+    //     area_code: "11",
+    //     number: 987654321
+    //   },
+    // },
     external_reference: `1`,
     payment_methods: {
       excluded_payment_types: [
@@ -45,6 +54,7 @@ router.get("/", (req, res) => {
 
     .then(function (response) {
       global.id = response.body.id;
+      // email = response.body.payer.email;
       res.json({ id: global.id });
     })
     .catch(function (error) {

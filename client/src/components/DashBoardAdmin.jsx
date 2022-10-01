@@ -8,13 +8,10 @@ import { useHistory } from 'react-router-dom';
 
 import {
 	getAllUsers,
-	createUser,
 	banUser,
 	toAdmin,
 	getUserDetails,
-	getAllTournaments,
 	getTournamentsAdmin,
-	modifyTournaments,
 	deleteTournament
 } from '../redux/actions';
 
@@ -59,9 +56,6 @@ export default function DashBoardAdmin() {
 		setTournamentValue('');
 	};
 
-	//admin de usuarios: Listar usuarios, Banear usuarios,
-	//admin de torneos: Eliminar, modificar, crear
-	//admin de reseñas: eliminar
 	return (
 		<div className="min-h-screen flex flex-col justify-between items-center">
 			<Nav />
@@ -81,7 +75,7 @@ export default function DashBoardAdmin() {
 							<option>Ver usuarios</option>
 							{allUsers?.map((e) => (
 								<option key={e.id} value={e.id}>
-									{e.name}, {e.email}
+									{e.name}, {e.email}, {e.id}
 								</option>
 							))}
 						</select>
@@ -131,9 +125,17 @@ export default function DashBoardAdmin() {
 						</button>
 					</Link>
 				</div>
-				{/* <div>
-					<h2 className="text-medium">Administacion de reseñas</h2>
-				</div> */}
+				<div className="flex flex-col items-center">
+					<h2 className="text-xl font-medium">Administacion de reseñas: </h2>
+					<Link to="/reviews">
+						<button
+							className="bg-green-300 font-medium p-3 rounded-full
+					hover:scale-110 hover:text-white duration-300"
+						>
+							Ver reseñas
+						</button>
+					</Link>
+				</div>
 			</div>
 
 			<Footer />
