@@ -1,10 +1,6 @@
 import React from "react";
-import Logo from "../images/logosinfondo.png";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
-import Birra from "../images/Birra.png"
 import Cancha1 from "../images/Cancha001.jpg"
 import Cancha2 from "../images/Cancha002.jpg"
 import Cancha3 from "../images/Cancha003.jpg"
@@ -16,7 +12,6 @@ import Vestuario2 from "../images/Vestuario_002.jpg"
 import Vestuario3 from "../images/Vestuario_003.jpg"
 import { useEffect } from "react";
 import { useState } from "react";
-import { BiSleepy } from "react-icons/bi";
 
 
 export default function ComplexDetail() {

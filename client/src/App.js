@@ -20,9 +20,11 @@ import Reviews from './components/Reviews';
 import { useEffect, useState } from 'react';
 import Login from './components/Login';
 import Loading from './components/Loading';
+import PanelUser from './components/PanelUser';
 
 function App() {
 	const actualUser = useSelector((state) => state.actualUser);
+	const {loginWithRedirect} = useAuth0();
 	const [userInfo, setUserInfo] = useState({
 		username: undefined,
 		ban: undefined,
@@ -54,21 +56,19 @@ function App() {
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/about" component={About} />
 						<Route exact path="/complex" component={ComplexDetail} />
-						<Route exact path="/login" component={Login} />
 						<Route exact path="/ban" component={Ban} />
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
 						<Route exact path="/loading" component={Loading} />
-<<<<<<< HEAD
-						<Route exact path="/pago" component={FormPago}/>
 
 						{/* LOGEADO Y NO BANEADO*/}
-						{/* {(userInfo.ban===true && <Route exact path="/pago" component={Ban}/>) ||
+						{(userInfo.ban===true && <Route exact path="/pago" component={Ban}/>) ||
 						 (userInfo.ban===false && <Route exact path="/pago" component={FormPago}/>) ||
 						 (userInfo.ban===undefined) && <Route exact path="/pago" component={Loading}/> ||
-						 (userInfo.ban==='dc') && <Route exact path="/pago" component={Home}/>} */}
-=======
+						 (userInfo.ban==='dc') && <Route exact path="/pago" component={Home}/>}
 						{/* LOGEADO Y NO BANEADO*/}
+
+						{/*Pasarela pagos*/}
 						{(userInfo.ban === true && (
 							<Route exact path="/pago" component={Ban} />
 						)) ||
@@ -79,9 +79,11 @@ function App() {
 								<Route exact path="/pago" component={Loading} />
 							)) ||
 							(userInfo.ban === 'dc' && (
-								<Route exact path="/pago" component={Home} />
+								<Route exact path='/pago'
+								render={(props) => <Login {...props} authed={false} to={'/pago'}/>}/>
 							))}
-
+						
+						{/*Inscripciones*/}
 						{(userInfo.ban === true && (
 							<Route exact path="/inscription" component={Ban} />
 						)) ||
@@ -96,45 +98,84 @@ function App() {
 								<Route exact path="/inscription" component={Loading} />
 							)) ||
 							(userInfo.ban === 'dc' && (
-								<Route exact path="/inscription" component={Home} />
+								<Route exact path='/inscription'
+								render={(props) => <Login {...props} authed={false} to={'/inscription'}/>}/>
+							))}
+
+						{/*Panel usuario*/}
+						{(userInfo.ban === true && (
+							<Route exact path="/panel" component={Ban} />
+						)) ||
+							(userInfo.ban === false && (
+								<Route exact path="/panel" component={PanelUser} />
+							)) ||
+							(userInfo.ban === undefined && (
+								<Route exact path="/panel" component={Loading} />
+							)) ||
+							(userInfo.ban === 'dc' && (
+								<Route exact path='/panel'
+								render={(props) => <Login {...props} authed={false} to={'/panel'}/>}/>
 							))}
 
 						{/*NO BANEADO*/}
+
+						{/*Reviews*/}
 						{(userInfo.ban === true && (
 							<Route exact path="/reviews" component={Ban} />
 						)) ||
-							((userInfo.ban === false || userInfo.ban==='dc') && (
+							((userInfo.ban === false || userInfo.ban === 'dc') && (
 								<Route exact path="/reviews" component={Reviews} />
 							)) ||
 							(userInfo.ban === undefined && (
 								<Route exact path="/reviews" component={Loading} />
 							))}
->>>>>>> fa91197019dc80a0b3f984c77319a7ba3bcccdeb
 
-						{/*ADMIN*/}
+
+						{/*Panel admin*/}
 						{(userInfo.admin === true && (
 							<Route exact path="/admin" component={DashBoardAdmin} />
 						)) ||
-							(userInfo.admin === undefined && (
-								<Route exact path="/admin" component={Loading} />
-							)) || <Route exact path="/admin" component={Home} />}
+						(userInfo.admin === undefined && (
+							<Route exact path="/admin" component={Loading} />
+						)) || 
+						(userInfo.admin==='dc' && (
+							<Route exact path='/admin'
+							render={(props) => <Login {...props} authed={false} to={'/admin'}/>}/>
+						)) ||
+						(<Route exact path="/admin" component={Home}/>)
+						}
 
+						{/*Admin/Modify*/}
 						{(userInfo.admin === true && (
 							<Route
-								exactpath="/admin/modify/:id"
+								exact path="/admin/modify/:id"
 								component={ModifyTournaments}
 							/>
 						)) ||
-							(userInfo.admin === undefined && (
-								<Route exactpath="/admin/modify/:id" component={Loading} />
-							)) || <Route exact path="/admin/modify/:id" component={Home} />}
+						(userInfo.admin === undefined && (
+							<Route exact path="/admin/modify/:id" component={Loading} />
+						)) || 
+						(userInfo.admin==='dc' && (
+							<Route exact path='/admin/modify/:id'
+							render={(props) => <Login {...props} authed={false} to={'/admin/modify/:id'}/>}/>
+						)) ||
+						(<Route exact path="/admin/modify/:id" component={Home} />)
+						}
 
+						{/*Crear torneo*/}
 						{(userInfo.admin === true && (
 							<Route exact path="/create" component={CreateTournament} />
 						)) ||
-							(userInfo.admin === undefined && (
-								<Route exact path="/create" component={Loading} />
-							)) || <Route exact path="/create" component={Home} />}
+						(userInfo.admin === undefined && (
+							<Route exact path="/create" component={Loading} />
+						)) || 
+						(userInfo.admin === 'dc' && (
+							<Route exact path='/create'
+							render={(props) => <Login {...props} authed={false} to={'/create'}/>}/>
+						)) ||
+						(<Route exact path="/create" component={Home} />)
+						}
+
 					</Switch>
 				</div>
 			</BrowserRouter>

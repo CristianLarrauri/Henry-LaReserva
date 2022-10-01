@@ -9,8 +9,7 @@ router.get('/', async (req, res) => {
 	try {
 		const resenias = await Reviews.findAll({
 			order: [['id', 'DESC']],
-			Offset: req.query.page,
-			limit: 5
+			Offset: req.query.page
 		});
 
 		res.status(200).send(resenias);

@@ -67,7 +67,7 @@ export default function Profile() {
 			{!isLoading &&
 				user && ( //PONER ACA LAS COSAS QUE SE TIENEN QUE VER SI ESTAS CONECTADO
 					<div className='flex items-center relative' ref={wrapperRef}> 
-						<Link to='/panel' className='flex items-center'>
+						<Link to={actualUser.admin?"/admin":"/panel"} className='flex items-center'>
 							<div className='h-[50px] w-[50px] rounded-full overflow-hidden'>
 								<img src={user.picture} alt="" />
 							</div>
@@ -82,7 +82,9 @@ export default function Profile() {
 						absolute bottom-[-85px] right-0 duration-300 text-lg font-medium
 						text-gray-700 p-2 z-50' 
 						style={visibility?{opacity:'1'}:{opacity:'0'}}>
-							<Link to='/panel' className='mb-2 hover:text-green-700 duration-300'>Panel de usuario</Link>
+							{actualUser.admin===true?<Link to='/admin' className='mb-2 hover:text-green-700 duration-300'>Panel admin</Link>:
+							<Link to='/panel' className='mb-2 hover:text-green-700 duration-300'>Panel de usuario</Link>}
+
 							<button className='hover:text-green-700 duration-300'
 							onClick={() => logout({returnTo: 'http://localhost:3000/home'})}>Desconectarse</button>
 						</div>
