@@ -27,7 +27,6 @@ export default function BotonPago({ productos, data }) {
 
     }, [data]);
     return (
-<<<<<<< HEAD
         <div className="min-h-screen flex flex-col items-center
         justify-between bg-gray-100">
             <Nav/>
@@ -67,26 +66,6 @@ export default function BotonPago({ productos, data }) {
                        
                 </form>
 
-=======
-        <div >
-            <div >
-                <div >
-                    <form id='form1'>
-                        <h4>Resumen de cuenta</h4>
-                        <div>
-                            {productos?.map((producto, i) => {
-                                return (
-                                    <div key={i}>
-                                        <ul className="ul_mp_cont">
-                                            <li>{producto.title}</li>
-                                            <li>{'$' + producto.price}</li>
-                                        </ul>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </form>
->>>>>>> 0f26acce9118f84d34c0fdf351814b7ea7e2142b
                 </div>
             </div>
 
