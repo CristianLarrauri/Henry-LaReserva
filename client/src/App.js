@@ -119,7 +119,7 @@ function App() {
 						{(userInfo.ban === true && (
 							<Route exact path="/reviews" component={Ban} />
 						)) ||
-							((userInfo.ban === false || userInfo.ban==='dc') && (
+							((userInfo.ban === false || userInfo.ban === 'dc') && (
 								<Route exact path="/reviews" component={Reviews} />
 							)) ||
 							(userInfo.ban === undefined && (
