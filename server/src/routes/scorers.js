@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
       limit: 8,
       include: {
         model: Tournaments,
-        where: { id: req.query.tournament },
+        where: { id: req.query.tournament, enabled: true },
         attributes: ["name"],
         through: {
           attributes: [],

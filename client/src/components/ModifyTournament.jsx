@@ -89,15 +89,6 @@ export default function ModifyTournaments() {
 			});
 			alert('torneo modificado correctamente');
 			history.push('/admin');
-			// setInput({
-			// 	name: '',
-			// 	amountOfTeams: 0,
-			// 	dateInit: '',
-			// 	dateFinish: '',
-			// 	genre: '',
-			// 	category: '',
-			// 	description: ''
-			// });
 		}
 	};
 
@@ -158,7 +149,6 @@ export default function ModifyTournaments() {
 
 	return (
 		<div>
-			{console.log('data', input)};
 			<Nav />
 			<div className={styles.mainWrapper}>
 				<h1>Modificar torneo "{input.name}"</h1>
@@ -273,7 +263,7 @@ export default function ModifyTournaments() {
 							value={input.genre}
 							onChange={(e) => handleChange(e)}
 						>
-							<option>Seleccione un genero</option>
+							<option>{input.genre}</option>
 							<option>Male</option>
 							<option>Female</option>
 							<option>Mixed</option>
@@ -296,7 +286,7 @@ export default function ModifyTournaments() {
 							value={input.category}
 							onChange={(e) => handleChange(e)}
 						>
-							<option>Seleccione una categoria</option>
+							<option>{input.category}</option>
 							<option key={'Sub20'}>Sub20</option>
 							<option key={'Libre'}>Free</option>
 							<option key={'Senior'}>Senior</option>

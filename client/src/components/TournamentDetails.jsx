@@ -6,9 +6,9 @@ import Nav from '../components/Nav';
 import Footer from './Footer';
 import ScorersTable from '../components/ScorersTable';
 import TeamsTable from '../components/TeamsTable';
-import {BsCalendarDate, BsGenderFemale, BsGenderMale, BsGenderAmbiguous, BsFillPersonFill} from 'react-icons/bs';
+import { BsCalendarDate, BsGenderFemale, BsGenderMale, BsGenderAmbiguous, BsFillPersonFill } from 'react-icons/bs';
 
-import {BiCategoryAlt, BiArrowBack} from 'react-icons/bi'
+import { BiCategoryAlt, BiArrowBack } from 'react-icons/bi'
 
 
 const TournamentDetail = (props) => {
@@ -17,13 +17,14 @@ const TournamentDetail = (props) => {
 
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
+		console.log(tournament)
 	}, [dispatch]);
 
 	let tournament = useSelector((state) => state.tournamentDetail);
 
 	return (
 		<div className='bg-white w-full min-h-screen flex flex-col justify-between items-center'>
-			<Nav/>
+			<Nav />
 			<div className='w-full min-h-screen flex flex-col items-center relative animate-appear'>
 
 				<div className='bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center'>{/*info container*/}
@@ -34,48 +35,51 @@ const TournamentDetail = (props) => {
 
 						<div className='w-full flex justify-between my-3 flex-wrap'>
 							<div className='flex items-center my-1'>
-								<BsCalendarDate className='text-2xl'/>
+								<BsCalendarDate className='text-2xl' />
 								<p className='font-medium text-xl ml-3'>{`Desde: ${tournament.dateInit}`}</p>
 							</div>
 
 							<div className='flex items-center my-1'>
-								<BsCalendarDate className='text-2xl'/>
+								<BsCalendarDate className='text-2xl' />
 								<p className='font-medium text-xl ml-3'>{`Hasta: ${tournament.dateFinish}`}</p>
 							</div>
 						</div>
 
 						<div className='flex justify-between mt-6 flex-wrap'>
 							<div className='flex my-1'>
-								<BiCategoryAlt  className='text-2xl'/>
-								<p className='font-medium text-xl ml-3'>{`Categoria: ${tournament.category==='Free'?
-								'Libre':tournament.category==='Sub20'?'Sub20':'Senior'}`}</p>
+								<BiCategoryAlt className='text-2xl' />
+								<p className='font-medium text-xl ml-3'>{`Categoria: ${tournament.category === 'Free' ?
+									'Libre' : tournament.category === 'Sub20' ? 'Sub20' : 'Senior'}`}</p>
 							</div>
-							
+
 							<div className='flex my-1'>
-								{tournament.genre==="Male"?
-								<BsGenderMale className='text-2xl'/>:tournament.genre==='Female'?
-								<BsGenderFemale className='text-2xl'/>:<BsGenderAmbiguous className='text-2xl'/>}
-								<p className='font-medium text-xl ml-3'>{`Genero: ${tournament.genre==="Male"?'Masculino':
-								tournament.genre==='Female'?'Femenino':'Mixto'}`}</p>
+								{tournament.genre === "Male" ?
+									<BsGenderMale className='text-2xl' /> : tournament.genre === 'Female' ?
+										<BsGenderFemale className='text-2xl' /> : <BsGenderAmbiguous className='text-2xl' />}
+								<p className='font-medium text-xl ml-3'>{`Genero: ${tournament.genre === "Male" ? 'Masculino' :
+									tournament.genre === 'Female' ? 'Femenino' : 'Mixto'}`}</p>
 							</div>
-							
+
 							<div className='flex my-1'>
-								<BsFillPersonFill className='text-2xl'/>
+								<BsFillPersonFill className='text-2xl' />
 								<p className='font-medium text-xl ml-3'>{`Cantidad: ${tournament.amountOfTeams}`}</p>
 							</div>
 						</div>
-						
+
 						<div className='text-left mt-10'>
 							<h3 className='font-medium text-xl ml-3'>Descripcion: {tournament.description}</h3>
 						</div>
 
+
 						<div className='w-full flex justify-center items-center'>
-							<Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+							{tournament.state === 'Proximo' ? <Link to={`/inscription?id=${id}`} className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
 								flex justify-center items-center'>
 									<p className='text-xl font-bold'>Inscribite</p>
-							</Link>
+							</Link> : false }
+							
 						</div>
+
 					</div>
 
 				</div>
@@ -84,11 +88,11 @@ const TournamentDetail = (props) => {
 					lg:flex-row lg:justify-between lg:items-start'>
 
 					<div className='bg-gray-100 w-7/12 h-full min-h-[150px] p-5 m-3 min-w-[340px]'>
-						<TeamsTable id = {id}/>
+						<TeamsTable id={id} />
 					</div>
 
 					<div className='w-2/6 h-full min-h-[220px] min-w-[340px] m-3 bg-gray-100 p-5'>
-						<ScorersTable id = {id}/>
+						<ScorersTable id={id} />
 					</div>
 
 				</div>
@@ -97,15 +101,15 @@ const TournamentDetail = (props) => {
 				<Link to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:scale-110 duration-300 text-white
 								flex justify-center items-center animate-appear'>
-									<p className='text-xl font-bold flex items-center justify-center'>
-                    <BiArrowBack className="mr-3"/>
-                    Volver
-                  </p>
+					<p className='text-xl font-bold flex items-center justify-center'>
+						<BiArrowBack className="mr-3" />
+						Volver
+					</p>
 				</Link>
 
 			</div>
 
-			<Footer/>
+			<Footer />
 		</div>
 	);
 };
