@@ -70,21 +70,39 @@ const create_tournament = async (data) => {
 const get_tournaments_db = async () => {
   try {
     return await Tournaments.findAll({
-      where: {
-        enabled: true,
-      },
-      include: [
-        {
-          model: Teams,
-        },
-        {
-          model: Players,
-        },
-      ],
+      where: { enabled: true },
+      include: [{ model: Teams }, { model: Players }],
     });
   } catch (error) {
     console.log("ERROR EN get_tournaments_db", error);
   }
 };
 
-module.exports = { create_tournament, get_tournaments_db, preload_tournaments };
+const get_tournaments_disabled = async () => {
+  try {
+    return await Tournaments.findAll({
+      where: { enabled: true },
+      include: [{ model: Teams }, { model: Players }],
+    });
+  } catch (error) {
+    console.log("ERROR EN get_tournaments_db", error);
+  }
+};
+
+const get_tournaments_panel = async () => {
+  try {
+    return await Tournaments.findAll({
+      include: [{ model: Teams }, { model: Players }],
+    });
+  } catch (error) {
+    console.log("ERROR EN get_tournaments_panel", error);
+  }
+};
+
+module.exports = {
+  create_tournament,
+  get_tournaments_db,
+  preload_tournaments,
+  get_tournaments_panel,
+  get_tournaments_disabled,
+};
