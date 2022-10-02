@@ -1,269 +1,566 @@
 [
-	{
-		"name": "Franco",
-		"surname": "Bosco",
-		"dni": 40000000,
-		"goals": 19,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Juan",
-		"surname": "Berraz",
-		"dni": 40000001,
-		"goals": 13,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Cristian",
-		"surname": "Larrauri",
-		"dni": 40000002,
-		"goals": 1,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Braian",
-		"surname": "Garcia",
-		"dni": 40000003,
-		"goals": 16,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Matias",
-		"surname": "Franco",
-		"dni": 40000004,
-		"goals": 13,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Mauro",
-		"surname": "Alos",
-		"dni": 40000005,
-		"goals": 5,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Nicolas",
-		"surname": "Carballo",
-		"dni": 40000006,
-		"goals": 10,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"name": "Maximiliano",
-		"surname": "Giagnorio",
-		"dni": 40000007,
-		"goals": 8,
-		"tournaments": ["Copa Libertadores"]
-	},
+  {
+    "name": "Franco",
+    "surname": "Bosco",
+    "dni": 40000000,
+    "goals": 19,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Juan",
+    "surname": "Berraz",
+    "dni": 40000001,
+    "goals": 16,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Cristian",
+    "surname": "Larrauri",
+    "dni": 40000002,
+    "goals": 4,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Braian",
+    "surname": "Garcia",
+    "dni": 40000003,
+    "goals": 15,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Matias",
+    "surname": "Franco",
+    "dni": 40000004,
+    "goals": 10,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Mauro",
+    "surname": "Alos",
+    "dni": 40000005,
+    "goals": 9,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Nicolas",
+    "surname": "Carballo",
+    "dni": 40000006,
+    "goals": 7,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Maximiliano",
+    "surname": "Giagnorio",
+    "dni": 40000007,
+    "goals": 7,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Toni",
+    "surname": "Tralice",
+    "dni": 40000008,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Franco",
+    "surname": "Etcheverry",
+    "dni": 40000009,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000008,
+    "name": "Mati",
+    "surname": "Catalan",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000003,
+    "name": "Marcos",
+    "surname": "Rojo",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000004,
+    "name": "Oscar",
+    "surname": "Romero",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000005,
+    "name": "Sergio",
+    "surname": "Romero",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000007,
+    "name": "Javier",
+    "surname": "Pinola",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000005,
+    "name": "Diego",
+    "surname": "Valoyes",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000001,
+    "name": "Matias",
+    "surname": "Suarez",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000009,
+    "name": "Martin",
+    "surname": "Payero",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000002,
+    "name": "Pablo",
+    "surname": "Solari",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000000,
+    "name": "Guido",
+    "surname": "Herrera",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000006,
+    "name": "Rodrigo",
+    "surname": "Garro",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000003,
+    "name": "Julio",
+    "surname": "Buffa",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000008,
+    "name": "Rodrigo",
+    "surname": "Aliendro",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000001,
+    "name": "Rafa",
+    "surname": "Perez",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000009,
+    "name": "Pelo",
+    "surname": "Santos",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000007,
+    "name": "Rodrigo",
+    "surname": "Villagra",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000005,
+    "name": "Franco",
+    "surname": "Armani",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000000,
+    "name": "Miguel",
+    "surname": "Borja",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000002,
+    "name": "Exequiel",
+    "surname": "Ceballos",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000006,
+    "name": "Eze",
+    "surname": "Barco",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000006,
+    "name": "Frank",
+    "surname": "Fabra",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000008,
+    "name": "Alan",
+    "surname": "Varela",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000007,
+    "name": "Nico",
+    "surname": "Orsini",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000009,
+    "name": "Tomas",
+    "surname": "Pochettino",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000004,
+    "name": "Alan",
+    "surname": "Franco",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000004,
+    "name": "Enzo",
+    "surname": "Perez",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000001,
+    "name": "Agustin",
+    "surname": "Rossi",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 20000000,
+    "name": "Dario",
+    "surname": "Benedetto",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 10000002,
+    "name": "Enzo",
+    "surname": "Diaz",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "dni": 30000003,
+    "name": "Juanfer",
+    "surname": "Quintero",
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
 
-	{
-		"dni": 10000008,
-		"name": "Mati",
-		"surname": "Catalan",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000003,
-		"name": "Marcos",
-		"surname": "Rojo",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000004,
-		"name": "Oscar",
-		"surname": "Romero",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000005,
-		"name": "Sergio",
-		"surname": "Romero",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000007,
-		"name": "Javier",
-		"surname": "Pinola",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000005,
-		"name": "Diego",
-		"surname": "Valoyes",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000001,
-		"name": "Matias",
-		"surname": "Suarez",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000009,
-		"name": "Martin",
-		"surname": "Payero",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000002,
-		"name": "Pablo",
-		"surname": "Solari",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000000,
-		"name": "Guido",
-		"surname": "Herrera",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000006,
-		"name": "Rodrigo",
-		"surname": "Garro",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000003,
-		"name": "Julio",
-		"surname": "Buffa",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000008,
-		"name": "Rodrigo",
-		"surname": "Aliendro",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000001,
-		"name": "Rafa",
-		"surname": "Perez",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000009,
-		"name": "Pelo",
-		"surname": "Santos",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000007,
-		"name": "Rodrigo",
-		"surname": "Villagra",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000005,
-		"name": "Franco",
-		"surname": "Armani",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000000,
-		"name": "Miguel",
-		"surname": "Borja",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000002,
-		"name": "Exequiel",
-		"surname": "Ceballos",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000006,
-		"name": "Eze",
-		"surname": "Barco",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000006,
-		"name": "Frank",
-		"surname": "Fabra",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000008,
-		"name": "Alan",
-		"surname": "Varela",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000007,
-		"name": "Nico",
-		"surname": "Orsini",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000009,
-		"name": "Tomas",
-		"surname": "Pochettino",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000004,
-		"name": "Alan",
-		"surname": "Franco",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000004,
-		"name": "Enzo",
-		"surname": "Perez",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000001,
-		"name": "Agustin",
-		"surname": "Rossi",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 20000000,
-		"name": "Dario",
-		"surname": "Benedetto",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 10000002,
-		"name": "Enzo",
-		"surname": "Diaz",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	},
-	{
-		"dni": 30000003,
-		"name": "Juanfer",
-		"surname": "Quintero",
-		"goals": 0,
-		"tournaments": ["Copa Libertadores"]
-	}
+  {
+    "name": "Diego",
+    "surname": "Godin",
+    "dni": 50000000,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Lucas",
+    "surname": "Pratto",
+    "dni": 50000001,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Lucas",
+    "surname": "Orellano",
+    "dni": 50000002,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Lucas",
+    "surname": "Janson",
+    "dni": 50000003,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Walter",
+    "surname": "Bou",
+    "dni": 50000004,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Maximo",
+    "surname": "Perrone",
+    "dni": 50000005,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Lucas",
+    "surname": "Hoyos",
+    "dni": 50000006,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Leo",
+    "surname": "Jara",
+    "dni": 50000007,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Julian",
+    "surname": "Fernandez",
+    "dni": 50000008,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Leo",
+    "surname": "Burian",
+    "dni": 50000009,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+
+  {
+    "name": "Mauro",
+    "surname": "Zarate",
+    "dni": 60000000,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Gonzalo",
+    "surname": "Bergessio",
+    "dni": 60000001,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Vicente",
+    "surname": "Taborda",
+    "dni": 60000002,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Ignacio",
+    "surname": "Schor",
+    "dni": 60000003,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Ayrton",
+    "surname": "Costa",
+    "dni": 60000004,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Juanchi",
+    "surname": "Esquivel",
+    "dni": 60000005,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Carlos",
+    "surname": "Villalba",
+    "dni": 60000006,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Mauro",
+    "surname": "Bogado",
+    "dni": 60000007,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Ivan",
+    "surname": "Gomez",
+    "dni": 60000008,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Ramiro",
+    "surname": "Gonzalez",
+    "dni": 60000009,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+
+  {
+    "name": "Ricky",
+    "surname": "Centurion",
+    "dni": 70000000,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Seba",
+    "surname": "Torrico",
+    "dni": 70000001,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Adam",
+    "surname": "Bareiro",
+    "dni": 70000002,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Gonzalo",
+    "surname": "Maroni",
+    "dni": 70000003,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Gordo",
+    "surname": "Ortigoza",
+    "dni": 70000004,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Cristian",
+    "surname": "Barrios",
+    "dni": 70000005,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Fede",
+    "surname": "Gattoni",
+    "dni": 70000006,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Nico",
+    "surname": "Blandi",
+    "dni": 70000007,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Francisco",
+    "surname": "Peruzzi",
+    "dni": 70000008,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Eze",
+    "surname": "Cerutti",
+    "dni": 70000009,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+
+  {
+    "name": "Enzo",
+    "surname": "Copetti",
+    "dni": 80000000,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Emiliano",
+    "surname": "Vecchio",
+    "dni": 80000001,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Edwin",
+    "surname": "Cardona",
+    "dni": 80000002,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Johan",
+    "surname": "Carbonero",
+    "dni": 80000003,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Gabriel",
+    "surname": "Hauche",
+    "dni": 80000004,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Leo",
+    "surname": "Sigali",
+    "dni": 80000005,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Leo",
+    "surname": "Miranda",
+    "dni": 80000006,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Ivan",
+    "surname": "Pillud",
+    "dni": 80000007,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Facu",
+    "surname": "Mura",
+    "dni": 80000008,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  },
+  {
+    "name": "Gaston",
+    "surname": "Gomez",
+    "dni": 80000009,
+    "goals": 0,
+    "tournaments": ["Copa Libertadores"]
+  }
 ]

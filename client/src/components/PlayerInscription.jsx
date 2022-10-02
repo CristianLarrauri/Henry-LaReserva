@@ -17,8 +17,6 @@ export default function PlayerInscription() {
 
 	const [selectValue, setSelectValue] = React.useState("undefined")
 
-
-
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
 		if (id) {
@@ -27,16 +25,14 @@ export default function PlayerInscription() {
 	}, [])
 
 
+	let allTournaments = useSelector(state => state.tournamentsAdmin)
+	let nextTournaments = allTournaments.filter(e => e.state === "Proximo")
+
 
 	const handleChangeSelect = (e) => {
 		e.preventDefault()
 		setSelectValue(e.target.value)
 	}
-
-
-
-	let allTournaments = useSelector(state => state.tournamentsAdmin)
-	let nextTournaments = allTournaments.filter(e => e.state === "Proximo")
 
 	//Esto controla el popUp, si esta vacio no aparece, pero si tiene algo aparece el popUp
 	//Si queres usarlo setealo con el siguiente formato: {title: 'TituloPopUp', msg:'Mensaje del popUp'}
@@ -46,61 +42,61 @@ export default function PlayerInscription() {
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player2, setPlayer2] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player3, setPlayer3] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player4, setPlayer4] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player5, setPlayer5] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player6, setPlayer6] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player7, setPlayer7] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player8, setPlayer8] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player9, setPlayer9] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 	const [player10, setPlayer10] = React.useState({
 		name: '',
 		surname: '',
 		dni: 0,
-		tournaments:[]
+		tournaments: []
 	});
 
 	const [final, setFinal] = React.useState(false)
@@ -109,16 +105,16 @@ export default function PlayerInscription() {
 
 	const [compromise, setCompromise] = React.useState(false);
 
-	const [confirm1, setConfirm1] = React.useState(false);
-	const [confirm2, setConfirm2] = React.useState(false);
-	const [confirm3, setConfirm3] = React.useState(false);
-	const [confirm4, setConfirm4] = React.useState(false);
-	const [confirm5, setConfirm5] = React.useState(false);
-	const [confirm6, setConfirm6] = React.useState(false);
-	const [confirm7, setConfirm7] = React.useState(false);
-	const [confirm8, setConfirm8] = React.useState(false);
-	const [confirm9, setConfirm9] = React.useState(false);
-	const [confirm10, setConfirm10] = React.useState(false);
+	const [popUp1, setPopUp1] = useState(false);
+	const [popUp2, setPopUp2] = useState(false);
+	const [popUp3, setPopUp3] = useState(false);
+	const [popUp4, setPopUp4] = useState(false);
+	const [popUp5, setPopUp5] = useState(false);
+	const [popUp6, setPopUp6] = useState(false);
+	const [popUp7, setPopUp7] = useState(false);
+	const [popUp8, setPopUp8] = useState(false);
+	const [popUp9, setPopUp9] = useState(false);
+	const [popUp10, setPopUp10] = useState(false);
 
 	const [edit1, setEdit1] = React.useState(false);
 	const [edit2, setEdit2] = React.useState(false);
@@ -143,15 +139,20 @@ export default function PlayerInscription() {
 	const [errors10, setErrors10] = React.useState({});
 	const [errorSelect, setErrorSelect] = React.useState({});
 
-
-
-
+	const [confirm1, setConfirm1] = React.useState(false);
+	const [confirm2, setConfirm2] = React.useState(false);
+	const [confirm3, setConfirm3] = React.useState(false);
+	const [confirm4, setConfirm4] = React.useState(false);
+	const [confirm5, setConfirm5] = React.useState(false);
+	const [confirm6, setConfirm6] = React.useState(false);
+	const [confirm7, setConfirm7] = React.useState(false);
+	const [confirm8, setConfirm8] = React.useState(false);
+	const [confirm9, setConfirm9] = React.useState(false);
+	const [confirm10, setConfirm10] = React.useState(false);
 
 	const [shield, setShield] = React.useState("")
 
 	const [errorShield, setErrorShield] = React.useState("")
-
-
 
 	const [teamName, setTeamName] = useState("")
 
@@ -173,356 +174,216 @@ export default function PlayerInscription() {
 		setEdit1(false)
 	}
 
-	const handleDisabled2 = (e) => {
-		e.preventDefault()
-		setEdit2(false)
-	}
-
-	const handleDisabled3 = (e) => {
-		e.preventDefault()
-		setEdit3(false)
-	}
-
-	const handleDisabled4 = (e) => {
-		e.preventDefault()
-		setEdit4(false)
-	}
-
-	const handleDisabled5 = (e) => {
-		e.preventDefault()
-		setEdit5(false)
-	}
-
-	const handleDisabled6 = (e) => {
-		e.preventDefault()
-		setEdit6(false)
-	}
-
-	const handleDisabled7 = (e) => {
-		e.preventDefault()
-		setEdit7(false)
-	}
-
-	const handleDisabled8 = (e) => {
-		e.preventDefault()
-		setEdit8(false)
-	}
-
-	const handleDisabled9 = (e) => {
-		e.preventDefault()
-		setEdit9(false)
-	}
-
-	const handleDisabled10 = (e) => {
-		e.preventDefault()
-		setEdit10(false)
-	}
-
-	const handleSubmit1 = (e) => {
+	const handlePopUp1 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors1).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player1.surname.length == 0 || player1.name.length == 0 || player1.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm1(true)
-			setEdit1(true)
-
-			dispatch(createPlayers(player1));
-
+			setPopUp1(true)
 		}
 	}
 
-	const handleSubmit2 = (e) => {
+
+	const handleSubmit1 = (e) => {
+		e.preventDefault()
+		setConfirm1(true)
+		setEdit1(true)
+		setPopUp1(false)
+		dispatch(createPlayers(player1));
+		
+	}
+
+	const handlePopUp2 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors2).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player2.surname.length == 0 || player2.name.length == 0 || player2.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm2(true)
-			setEdit2(true)
-
-
-			dispatch(createPlayers(player2));
-
+			setPopUp2(true)
 		}
-
 	}
 
-	const handleSubmit3 = (e) => {
+
+	const handleSubmit2 = (e) => {
+		e.preventDefault()
+		setConfirm2(true)
+		setEdit2(true)
+		setPopUp2(false)
+		dispatch(createPlayers(player2));
+		
+	}
+
+	const handlePopUp3 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors3).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player3.surname.length == 0 || player3.name.length == 0 || player3.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm3(true)
-			setEdit3(true)
-
-
-			dispatch(createPlayers(player3));
-
+			setPopUp3(true)
 		}
 	}
 
-	const handleSubmit4 = (e) => {
+
+	const handleSubmit3 = (e) => {
+		e.preventDefault()
+		setConfirm3(true)
+		setEdit3(true)
+		setPopUp3(false)
+		dispatch(createPlayers(player3));
+		
+	}
+
+	const handlePopUp4 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors4).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player4.surname.length == 0 || player4.name.length == 0 || player4.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm4(true)
-			setEdit4(true)
-
-			dispatch(createPlayers(player4));
-
+			setPopUp4(true)
 		}
 	}
 
-	const handleSubmit5 = (e) => {
+
+	const handleSubmit4 = (e) => {
+		e.preventDefault()
+		setConfirm4(true)
+		setEdit4(true)
+		setPopUp4(false)
+		dispatch(createPlayers(player4));
+		
+	}
+
+	const handlePopUp5 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors5).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player5.surname.length == 0 || player1.name.length == 0 || player5.dni == 0) {
+		} else if (player5.surname.length == 0 || player5.name.length == 0 || player5.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm5(true)
-			setEdit5(true)
-
-			dispatch(createPlayers(player5));
-
+			setPopUp5(true)
 		}
 	}
 
-	const handleSubmit6 = (e) => {
+
+	const handleSubmit5 = (e) => {
+		e.preventDefault()
+		setConfirm5(true)
+		setEdit5(true)
+		setPopUp5(false)
+		dispatch(createPlayers(player5));
+		
+	}
+
+	const handlePopUp6 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors6).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player6.surname.length == 0 || player6.name.length == 0 || player6.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm6(true)
-			setEdit6(true)
-
-			dispatch(createPlayers(player6));
-
+			setPopUp6(true)
 		}
 	}
 
-	const handleSubmit7 = (e) => {
+
+	const handleSubmit6 = (e) => {
+		e.preventDefault()
+		setConfirm6(true)
+		setEdit6(true)
+		setPopUp6(false)
+		dispatch(createPlayers(player6));
+		
+	}
+
+	const handlePopUp7 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors7).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
 		} else if (player7.surname.length == 0 || player7.name.length == 0 || player7.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm7(true)
-			setEdit7(true)
+			setPopUp7(true)
+		}
+	}
 
-			dispatch(createPlayers(player7));
 
+	const handleSubmit7 = (e) => {
+		e.preventDefault()
+		setConfirm7(true)
+		setEdit7(true)
+		setPopUp7(false)
+		dispatch(createPlayers(player7));
+		
+	}
+
+	const handlePopUp8 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors8).length > 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
+		} else if (player8.surname.length == 0 || player8.name.length == 0 || player8.dni == 0) {
+			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
+		} else {
+			setPopUp8(true)
 		}
 	}
 
 	const handleSubmit8 = (e) => {
 		e.preventDefault()
-		if (Object.values(errors8).length > 0) {
+		setConfirm8(true)
+		setEdit8(true)
+		setPopUp8(false)
+		dispatch(createPlayers(player8));
+		
+	}
+
+	const handlePopUp9 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors9).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player8.surname.length == 0 || player8.name.length == 0 || player8.dni == 0) {
+		} else if (player9.surname.length == 0 || player9.name.length == 0 || player9.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm8(true)
-			setEdit8(true)
-
-
-			dispatch(createPlayers(player8));
-
+			setPopUp9(true)
+			
 		}
 	}
+
 
 	const handleSubmit9 = (e) => {
 		e.preventDefault()
-		if (Object.values(errors9).length > 0) {
+		setConfirm9(true)
+		setEdit9(true)
+		setPopUp9(false)
+		dispatch(createPlayers(player9));
+		
+	}
+
+	const handlePopUp10 = (e) => {
+		e.preventDefault()
+		if (Object.values(errors10).length > 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player9.surname.length == 0 || player9.name.length == 0 || player9.dni == 0) {
+		} else if (player10.surname.length == 0 || player10.name.length == 0 || player10.dni == 0) {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
-			setConfirm9(true)
-			setEdit9(true)
-
-			dispatch(createPlayers(player9));
-
+			setPopUp10(true)
 		}
 	}
+
 
 	const handleSubmit10 = (e) => {
 		e.preventDefault()
-		if (Object.values(errors10).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player10.surname.length == 0 || player10.name.length == 0 || player10.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm10(true)
-			setEdit10(true)
-
-			dispatch(createPlayers(player10));
-
-		}
+		setConfirm10(true)
+		setEdit10(true)
+		setPopUp10(false)
+		dispatch(createPlayers(player10));
+		
 	}
 
-	const handlePut1 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors1).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player1.surname.length == 0 || player1.name.length == 0 || player1.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm1(true)
-			setEdit1(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut2 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors2).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player2.surname.length == 0 || player2.name.length == 0 || player2.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm2(true)
-			setEdit2(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut3 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors3).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player3.surname.length == 0 || player3.name.length == 0 || player3.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm3(true)
-			setEdit3(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-
-	const handlePut4 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors4).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player4.surname.length == 0 || player4.name.length == 0 || player4.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm4(true)
-			setEdit4(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-
-	const handlePut5 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors5).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player5.surname.length == 0 || player5.name.length == 0 || player1.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm5(true)
-			setEdit5(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut6 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors1).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player6.surname.length == 0 || player6.name.length == 0 || player6.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm6(true)
-			setEdit6(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut7 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors7).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player7.surname.length == 0 || player7.name.length == 0 || player7.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm7(true)
-			setEdit7(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut8 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors8).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player8.surname.length == 0 || player8.name.length == 0 || player8.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm8(true)
-			setEdit8(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut9 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors9).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player9.surname.length == 0 || player9.name.length == 0 || player9.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm9(true)
-			setEdit9(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
-
-	const handlePut10 = (e) => {
-		e.preventDefault()
-		if (Object.values(errors10).length > 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, revisá los datos ingresados del jugador' })
-		} else if (player10.surname.length == 0 || player10.name.length == 0 || player10.dni == 0) {
-			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
-		} else {
-			setConfirm10(true)
-			setEdit10(true)
-			//Agregar ruta de edicion jugador 1
-
-		}
-
-	}
 
 	const handleAddScrub1 = (e) => {
 		e.preventDefault()
@@ -580,7 +441,6 @@ export default function PlayerInscription() {
 		console.log(team)
 		setFinal(false)
 	}
-
 
 	const [loading, setLoading] = React.useState(1)
 
@@ -729,7 +589,6 @@ export default function PlayerInscription() {
 			tournaments: [selectTournament.name]
 		});
 	};
-
 	const handleChange9 = (e) => {
 		e.preventDefault();
 		let selectTournament = nextTournaments.find(e => e.id == selectValue)
@@ -739,7 +598,6 @@ export default function PlayerInscription() {
 			tournaments: [selectTournament.name]
 		});
 	};
-
 	const handleChange10 = (e) => {
 		e.preventDefault();
 		let selectTournament = nextTournaments.find(e => e.id == selectValue)
@@ -753,39 +611,30 @@ export default function PlayerInscription() {
 	const handleErrors1 = (e) => {
 		setErrors1(validate1(player1));
 	};
-
 	const handleErrors2 = (e) => {
 		setErrors2(validate2(player2));
 	};
-
 	const handleErrors3 = (e) => {
 		setErrors3(validate3(player3));
 	};
-
 	const handleErrors4 = (e) => {
 		setErrors4(validate4(player4));
 	};
-
 	const handleErrors5 = (e) => {
 		setErrors5(validate5(player5));
 	};
-
 	const handleErrors6 = (e) => {
 		setErrors6(validate6(player6));
 	};
-
 	const handleErrors7 = (e) => {
 		setErrors7(validate7(player7));
 	};
-
 	const handleErrors8 = (e) => {
 		setErrors8(validate8(player8));
 	};
-
 	const handleErrors9 = (e) => {
 		setErrors9(validate9(player9));
 	};
-
 	const handleErrors10 = (e) => {
 		setErrors10(validate10(player10));
 	};
@@ -796,8 +645,7 @@ export default function PlayerInscription() {
 		} else {
 			setErrorSelect({})
 		}
-	}
-
+	};
 
 	const validate1 = (data) => {
 		let error = {};
@@ -829,7 +677,6 @@ export default function PlayerInscription() {
 
 		return error;
 	};
-
 	const validate2 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -859,7 +706,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate3 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -889,7 +735,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate4 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -919,7 +764,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate5 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -949,7 +793,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate6 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -979,7 +822,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate7 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -1009,7 +851,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate8 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -1039,7 +880,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate9 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -1069,7 +909,6 @@ export default function PlayerInscription() {
 		}
 		return error;
 	};
-
 	const validate10 = (data) => {
 		let error = {};
 		if (!data.name) {
@@ -1150,15 +989,322 @@ export default function PlayerInscription() {
 			</div>
 
 
+			{/*----------PopUps de confirmacion de jugadores------------*/}
+
+
+			<div
+				className={
+					popUp1
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp1 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player1.name}</p>
+					<p>Apellido: {player1.surname}</p>
+					<p>DNI: {player1.dni}</p>
+					<button
+						onClick={(e) => handleSubmit1(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp1(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp2
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp2 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player2.name}</p>
+					<p>Apellido: {player2.surname}</p>
+					<p>DNI: {player2.dni}</p>
+					<button
+						onClick={(e) => handleSubmit2(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp2(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp3
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp3 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player3.name}</p>
+					<p>Apellido: {player3.surname}</p>
+					<p>DNI: {player3.dni}</p>
+					<button
+						onClick={(e) => handleSubmit3(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp3(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp4
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp4 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player4.name}</p>
+					<p>Apellido: {player4.surname}</p>
+					<p>DNI: {player4.dni}</p>
+					<button
+						onClick={(e) => handleSubmit4(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp4(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp5
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp5 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?5</h2>
+					<p>Nombre: {player5.name}</p>
+					<p>Apellido: {player5.surname}</p>
+					<p>DNI: {player5.dni}</p>
+					<button
+						onClick={(e) => handleSubmit5(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp5(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp6
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp6 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?6</h2>
+					<p>Nombre: {player6.name}</p>
+					<p>Apellido: {player6.surname}</p>
+					<p>DNI: {player6.dni}</p>
+					<button
+						onClick={(e) => handleSubmit6(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp6(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp7
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp7 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player7.name}</p>
+					<p>Apellido: {player7.surname}</p>
+					<p>DNI: {player7.dni}</p>
+					<button
+						onClick={(e) => handleSubmit7(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp7(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp8
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp8 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player8.name}</p>
+					<p>Apellido: {player8.surname}</p>
+					<p>DNI: {player8.dni}</p>
+					<button
+						onClick={(e) => handleSubmit8(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp8(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp9
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp9 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?</h2>
+					<p>Nombre: {player9.name}</p>
+					<p>Apellido: {player9.surname}</p>
+					<p>DNI: {player9.dni}</p>
+					<button
+						onClick={(e) => handleSubmit9(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp9(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+			<div
+				className={
+					popUp10
+						? popUpStyles.popUpOverlay
+						: popUpStyles.popUpOverlay_hidden
+				}>
+
+
+
+
+				<div className={popUp10 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+					<h2>¿Están correctos los datos del jugador?10</h2>
+					<p>Nombre: {player10.name}</p>
+					<p>Apellido: {player10.surname}</p>
+					<p>DNI: {player10.dni}</p>
+					<button
+						onClick={(e) => handleSubmit10(e)}
+						className={popUpStyles.okBtn}
+					>
+						Si
+					</button>
+					<button
+						onClick={() => setPopUp10(false)}
+						className={popUpStyles.okBtn}
+					>
+						Revisar información
+					</button>
+				</div>
+			</div>
+
+
+
+
+			{/*----------PopUps de confirmacion de jugadores------------*/}
+
+
 			<div className='min-h-screen flex flex-col items-center relative'>
 
 
 				<Link to='/home'>
 					<button className='absolute w-[200px] h-[70px] bg-green-500
-
 				text-xl font-medium rounded-full left-3 top-6 text-white
 				hover:scale-110 duration-300 animate-appear'>Volver</button>
-
 				</Link>
 
 				<h2 className='text-3xl font-bold text-green-500 mb-10 mt-24 animate-appear'>Inscribi a tu equipo</h2>
@@ -1179,7 +1325,7 @@ export default function PlayerInscription() {
 								<label className='text-2xl font-medium 
 						text-green-500 mb-2'>Torneo: </label>
 								<select name="tournament" value={selectValue} onChange={e => handleChangeSelect(e)} onClick={e => handleErrorSelect(e)}>
-									<option value="undefined" >Elegir torneo</option>
+									<option value="undefined">Elegir torneo</option>
 									{nextTournaments.map(e => <option value={e.id}>{e.name}</option>)}
 								</select>
 
@@ -1188,10 +1334,6 @@ export default function PlayerInscription() {
 									style={errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{errorSelect.errorSelect}</p>
 								</div>
-
-
-
-
 
 								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Nombre de tu equipo: </label>
@@ -1218,19 +1360,17 @@ export default function PlayerInscription() {
 									onChange={e => handleShield(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
 						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
-						<br />
+								<br />
 								{loading === 1 ? <small>{"(opcional)"}</small> : false}
 
 								{loading === 2 ? <p>Cargando imagen...</p> : false}
-								{loading === 0 ? <img className= "h-[200px]" src={shield} alt="" /> : false}
+								{loading === 0 ? <img className="h-[200px]" src={shield} alt="" /> : false}
 								<div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
 						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
 									style={errorShield ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{errorShield}</p>
 								</div>
-
 							</div>
-
 						</div>
 
 					</div>
@@ -1291,9 +1431,7 @@ export default function PlayerInscription() {
 								style={errors1.surname1 ? { opacity: 1 } : { opacity: 0 }}>
 								<p>{errors1.surname1}</p>
 							</div>
-
 						</div>
-
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -1308,36 +1446,18 @@ export default function PlayerInscription() {
 								onKeyUp={(e) => handleErrors1(e)}
 								disabled={edit1}
 							></input>
-
 							<div className='absolute bg-red-500 p-2 text-white font-medium
 							rounded-lg shadow shadow-black right-50 top-0 lg:right-0 duration-300'
 								style={errors1.dni1 ? { opacity: 1 } : { opacity: 0 }}>
 								<p>{errors1.dni1}</p>
 							</div>
 						</div>
-
-						{!edit1 && !confirm1 ? <button type="submit" onClick={handleSubmit1}
+						<button type="submit" onClick={(e) => handlePopUp1(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit1 && confirm1 ? <button onClick={handleDisabled1}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit1 && confirm1 ? <button onClick={handlePut1}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
-
-
+						</button>
 
 					</div>
 					{confirm1 ? <div className='bg-gray-200 w-5/6 min-w-[330px] my-6 p-3'>
@@ -1411,26 +1531,13 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit2 && !confirm2 ? <button type="submit" onClick={handleSubmit2}
+						<button type="submit" onClick={(e) => handlePopUp2(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
+						</button>
 
-						{edit2 && confirm2 ? <button onClick={handleDisabled2}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit2 && confirm2 ? <button onClick={handlePut2}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
 
 					</div> : false}
 
@@ -1483,6 +1590,7 @@ export default function PlayerInscription() {
 
 						</div>
 
+
 						<div className='flex flex-col justify-end items-center h-[140px]
 						relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
 						min-w-[320px]'>
@@ -1505,26 +1613,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit3 && !confirm3 ? <button type="submit" onClick={handleSubmit3}
+						<button type="submit" onClick={(e) => handlePopUp3(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit3 && confirm3 ? <button onClick={handleDisabled3}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit3 && confirm3 ? <button onClick={handlePut3}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -1599,26 +1693,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit4 && !confirm4 ? <button type="submit" onClick={handleSubmit4}
+						<button type="submit" onClick={(e) => handlePopUp4(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit4 && confirm4 ? <button onClick={handleDisabled4}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit4 && confirm4 ? <button onClick={handlePut4}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -1693,26 +1773,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit5 && !confirm5 ? <button type="submit" onClick={handleSubmit5}
+						<button type="submit" onClick={(e) => handlePopUp5(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit5 && confirm5 ? <button onClick={handleDisabled5}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit5 && confirm5 ? <button onClick={handlePut5}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -1787,26 +1853,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit6 && !confirm6 ? <button type="submit" onClick={handleSubmit6}
+						<button type="submit" onClick={(e) => handlePopUp6(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit6 && confirm6 ? <button onClick={handleDisabled6}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit6 && confirm6 ? <button onClick={handlePut6}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -1881,26 +1933,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit7 && !confirm7 ? <button type="submit" onClick={handleSubmit7}
+						<button type="submit" onClick={(e) => handlePopUp7(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit7 && confirm7 ? <button onClick={handleDisabled7}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit7 && confirm7 ? <button onClick={handlePut7}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -1975,26 +2013,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit8 && !confirm8 ? <button type="submit" onClick={handleSubmit8}
+						<button type="submit" onClick={(e) => handlePopUp8(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
 							Confirmar Jugador
-						</button> : false}
-
-						{edit8 && confirm8 ? <button onClick={handleDisabled8}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Jugador
-						</button> : false}
-
-						{!edit8 && confirm8 ? <button onClick={handlePut8}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+						</button>
 
 					</div> : false}
 
@@ -2077,26 +2101,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit9 && !confirm9 ? <button type="submit" onClick={handleSubmit9}
+						<button type="submit" onClick={(e) => handlePopUp9(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
-							Confirmar Suplente
-						</button> : false}
-
-						{edit9 && confirm9 ? <button onClick={handleDisabled9}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Suplente
-						</button> : false}
-
-						{!edit9 && confirm9 ? <button onClick={handlePut9}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+							Confirmar Jugador
+						</button>
 					</div> : false}
 
 					{confirm9 && !addScrub2 ? <button onClick={handleAddScrub2}>Agregar suplente (opcional)</button> : false}
@@ -2179,26 +2189,12 @@ export default function PlayerInscription() {
 							</div>
 						</div>
 
-						{!edit10 && !confirm10 ? <button type="submit" onClick={handleSubmit10}
+						<button type="submit" onClick={(e) => handlePopUp10(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 						duration-300'>
-							Confirmar Suplente
-						</button> : false}
-
-						{edit10 && confirm10 ? <button onClick={handleDisabled10}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Editar Suplente
-						</button> : false}
-
-						{!edit10 && confirm10 ? <button onClick={handlePut10}
-							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300'>
-							Confirmar edición
-						</button> : false}
+							Confirmar Jugador
+						</button>
 					</div> : false}
 
 
@@ -2213,8 +2209,6 @@ export default function PlayerInscription() {
 							los datos no sean comprobables o incorrectos al momento de arrancar
 							el partido, el equipo quedará <b>DESCALIFICADO.</b>
 						</p>
-
-
 						<div className='flex mt-6'>
 							<input
 								type="checkbox"
