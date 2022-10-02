@@ -332,7 +332,6 @@ export default function PlayerInscription() {
 		}
 	}
 
-
 	const handleSubmit8 = (e) => {
 		e.preventDefault()
 		setConfirm8(true)
@@ -350,6 +349,7 @@ export default function PlayerInscription() {
 			setPopUpError({ title: 'Error!', msg: 'Por favor, completá los campos' })
 		} else {
 			setPopUp9(true)
+			
 		}
 	}
 
@@ -2209,8 +2209,6 @@ export default function PlayerInscription() {
 							los datos no sean comprobables o incorrectos al momento de arrancar
 							el partido, el equipo quedará <b>DESCALIFICADO.</b>
 						</p>
-
-
 						<div className='flex mt-6'>
 							<input
 								type="checkbox"
