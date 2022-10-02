@@ -16,6 +16,7 @@ import popUpStyles from '../styles/PopUpStyles.module.css';
 import { Link } from 'react-router-dom';
 import {BiArrowBack} from 'react-icons/bi';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useHistory } from 'react-router-dom';
 
 export default function Reviews() {
 	const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Reviews() {
 	const userDetail = useSelector((state) => state.actualUser);
 	const [popUpError, setPopUpError] = useState({});
 	const {loginWithRedirect} = useAuth0();
+	const history = useHistory();
 
 	const [review, setReview] = useState({
 		id: '',
@@ -247,14 +249,15 @@ export default function Reviews() {
 				</div>
 			</div>
 
-				<Link to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								hover:scale-110 duration-300 text-white
-								flex justify-center items-center animate-appear'>
-					<p className='text-xl font-bold flex items-center justify-center'>
-						<BiArrowBack className="mr-3" />
-						Volver
-					</p>
-				</Link>
+			<button to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+			hover:scale-110 duration-300 text-white
+			flex justify-center items-center animate-appear'
+			onClick={() => history.goBack()}>
+				<p className='text-xl font-bold flex items-center justify-center'>
+					<BiArrowBack className="mr-3" />
+					Volver
+				</p>
+			</button>
 
 			<Footer />
 		</div>

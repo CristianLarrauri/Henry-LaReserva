@@ -1,154 +1,112 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import Nav from './Nav';
 import icon from "../images/tournamentIcon_1.png";
+import github from '../images/github_icon.png';
+import linkedin from '../images/linkedin_icon.png';
+import maxi from '../images/maxi_profile.png';
 
 export default function About() {
   return (
-    <div>
-      <button>
-        <Link to="/home">
-          <p>Volver</p>
-        </Link>
-      </button>
-      <header>
-        <span>El dream Team</span>
-      </header>
-      <div>
-        <p>
-          Somos un equipo de 8 desarrolladores Full Stack. Para nuestra ultima
-          etapa del bootcamp tuvimos como objetivo realizar una web app donde
-          los usuarios pudieran registrarse a jugar torneos amateur de futbol.
-        </p>
-        <p>Contactate con nosotros</p>
+   <div className="bg-red-300 flex flex-col justify-between min-h-screen">
+      <Nav/>
+
+      <div className="flex justify-center overflow-hidden">{/*main section*/}
+
+        <div className="bg-yellow-300 w-[300px] h-[530px] relative 
+        rounded-t-[100%100px] rounded-b-3xl bg-gradient-to-tr 
+        from-yellow-500 via-yellow-200 to-yellow-500 shadow-inner shadow-gray-500
+        mt-3 overflow-hidden ">
+
+          <div className="bg-red-300 w-[100px] h-[100px] absolute 
+          top-[-50px] left-[-50px] rounded-full shadow shadow-gray-500"/>
+          <div className="bg-red-300 w-[100px] h-[100px] absolute 
+          top-[-50px] right-[-50px] rounded-full shadow shadow-gray-500"/>
+
+          <div className="bg-red-300 w-[300px] h-[300px] rounded-[100%10px]
+          absolute bottom-[-100px] left-[-150px] rotate-[60deg] 
+          shadow-inner shadow-gray-500"/>
+
+          <div className="bg-red-300 w-[300px] h-[300px] rounded-[100%10px]
+          absolute bottom-[-100px] right-[-150px] rotate-[-60deg] scale-x-[-1]
+          shadow-inner shadow-gray-500"/>
+
+          <div className="bg-red-300 w-full h-[67px] absolute bottom-0"/>
+
+          <div className="bg-transparent w-full h-7/12 flex justify-between items-end">
+            
+            <div className="h-[200px] w-5/12 flex flex-col justify-around 
+            items-center">
+              <div className="text-center border-b text-yellow-800 border-yellow-800">
+                <h2 className="font-bold text-5xl">91</h2>
+                <h3 className="font-medium text-xl">FULLSTACK</h3>
+              </div>
+
+              <div className="w-[53px] h-[56px] overflow-hidden border-b border-yellow-800">
+                <img className="w-full" src={github} alt="githubIcon.png" />
+              </div>
+
+              <div className="w-[53px] h-[53px] overflow-hidden">
+                <img className="h-full w-full" src={linkedin} alt="linkedinIcon.png" />
+              </div>
+            </div>
+
+            <div className="w-7/12 h-full flex items-end">
+              <img src={maxi} className='w-full' alt='portrait.png' />
+            </div>
+          </div>
+
+          <div className="text-yellow-800 flex flex-col items-center">
+            <h2 className="font-bold text-[1.4em]">MAXIMILIANO GIAGNORIO</h2>
+            <div className="w-5/6 border-b border-yellow-700"/>
+
+            <div className="w-full flex justify-around mt-3">
+              <div>
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">84</h3>
+                  <p className="font-medium text-xl">PAC</p>
+                </div>
+                
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">87</h3>
+                  <p className="font-medium text-xl">SHO</p>
+                </div>
+                
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">90</h3>
+                  <p className="font-medium text-xl">PASS</p>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">81</h3>
+                  <p className="font-medium text-xl">DRI</p>
+                </div>
+                
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">54</h3>
+                  <p className="font-medium text-xl">DEF</p>
+                </div>
+                
+                <div className="flex justify-between w-[75px] items-end">
+                  <h3 className="font-bold text-xl">83</h3>
+                  <p className="font-medium text-xl">PHY</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <div>
-        <p>En este proyecto utilizamos los siguientes tecnologias:</p>
-        {/* Buscar logos de todas las tecnologias que usamos y listarlas */}
-      </div>
-      <div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">Franco Bosco</h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/FranBosco" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">Cristian Larrauri</h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/CristianLarrauri" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">Braian Garcia</h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/braiangarcia99" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">
-            Maximiliano Giagnorio
-          </h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/mxgiagnorio" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">Mauro Alós</h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/MauroDavid512" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">Nicolas Carballo</h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/Neiko1210" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="w-[60px] h-[60px] rounded-full overflow-hidden mt-2">
-          <img src={icon} alt="icon" className="h-full w-full" />
-        </div>
-
-        <div className="w-9/12">
-          <h2 className="text-gray-800 font-bold mb-2">
-            Juan Manuel Berraz Montyn
-          </h2>
-
-          <div className="flex justify-between font-medium text-gray-800">
-            <div className="flex flex-col items-center">
-              <a href="https://github.com/BerrazMontyn" target="_blank">
-                Github
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-9/12">
-        <h2 className="text-gray-800 font-bold mb-2">Matias Franco</h2>
-        <div className="flex justify-between font-medium text-gray-800">
-          <div className="flex flex-col items-center">
-            <a href="https://github.com/MatiasFranco289" target="_blank">
-              Github
-            </a>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </div>
-  );
+      <Footer/>
+   </div> 
+  )
 }
+
+
+
+

@@ -15,36 +15,34 @@ export default function Nav() {
         </Link>
       </div>
 
-      <div className="w-9/12 flex justify-center ml-6 flex-wrap items-center xl:justify-between xl:flex-nowrap">
-        <div className="flex justify-between mt-3">
+      <div className="w-9/12 flex justify-center flex-wrap items-center xl:justify-between xl:flex-nowrap">
+        <div className="flex justify-between mt-3 w-5/12 min-w-[280px]
+         flex-col items-center sm:flex-row sm:min-w-[320px] max-w-[450px]">
           <Link
             to="/tournaments"
-            className="text-stone-400 text-2xl mr-10 hover:text-green-500"
+            className="text-stone-400 text-2xl hover:text-green-500 mr-3"
           >
             Torneos
           </Link>
+
           <Link
             to="/inscription"
             className="text-stone-400 text-2xl hover:text-green-500"
           >
             Inscripciones
           </Link>
+
+          <Link
+            to="/reviews"
+            className="text-stone-400 text-2xl hover:text-green-500 ml-3"
+          >
+            Reseñas
+          </Link>
         </div>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
 
-        <div className="flex items-center mt-3 mb-3 mr-6">
-          {/* <Link
-            to="/"
-            className="min-w-[60px] h-[60px] rounded-full overflow-hidden mr-2 bg-green-600"
-          ></Link>
-
-          <Link to="/" className="mr-10">
-            <h2 className="text-stone-400 text-xl">Nombre usuario</h2>
-            <p className="text-stone-400">Rol</p>
-          </Link>
-
-          <BiDownArrow className="mr-3" /> */}
+        <div className="flex items-center mt-3 mb-3 mx-6">
           <Profile/>
         </div>
       </div>

@@ -162,7 +162,10 @@ export const searchTournaments = (name) => {
 			);
 			return dispatch({ type: SEARCH_TOURNAMENTS, payload: info.data });
 		} catch (error) {
-			console.log(error);
+			return dispatch({
+				type: SEARCH_TOURNAMENTS,
+				payload: []
+			})
 		}
 	};
 };

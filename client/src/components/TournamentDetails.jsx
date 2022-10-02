@@ -7,13 +7,14 @@ import Footer from './Footer';
 import ScorersTable from '../components/ScorersTable';
 import TeamsTable from '../components/TeamsTable';
 import { BsCalendarDate, BsGenderFemale, BsGenderMale, BsGenderAmbiguous, BsFillPersonFill } from 'react-icons/bs';
-
 import { BiCategoryAlt, BiArrowBack } from 'react-icons/bi'
+import { useHistory } from 'react-router-dom';
 
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
@@ -98,14 +99,15 @@ const TournamentDetail = (props) => {
 				</div>
 
 
-				<Link to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								hover:scale-110 duration-300 text-white
-								flex justify-center items-center animate-appear'>
+				<button className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+				hover:scale-110 duration-300 text-white
+				flex justify-center items-center animate-appear'
+				onClick={() => history.goBack()}>
 					<p className='text-xl font-bold flex items-center justify-center'>
 						<BiArrowBack className="mr-3" />
 						Volver
 					</p>
-				</Link>
+				</button>
 
 			</div>
 
