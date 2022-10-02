@@ -3,6 +3,8 @@ const { Tournaments, Teams } = require("../db");
 const {
   create_tournament,
   get_tournaments_db,
+  get_tournaments_panel,
+  get_tournaments_disabled,
 } = require("../utils/utilsTournaments");
 const { Op } = require("sequelize");
 
@@ -27,7 +29,7 @@ module.exports = {
 
 router.get("/panel", async (req, res) => {
   try {
-    let data = await get_tournaments_db();
+    let data = await get_tournaments_panel();
 
     res.status(200).send(data);
   } catch (error) {
