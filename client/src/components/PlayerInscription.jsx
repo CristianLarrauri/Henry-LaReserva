@@ -655,8 +655,8 @@ export default function PlayerInscription() {
 			error.name1 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name1 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name1 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name1 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname1 = 'Campo requerido';
@@ -664,8 +664,8 @@ export default function PlayerInscription() {
 			error.surname1 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname1 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname1 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname1 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni1 = 'Campo requerido';
@@ -685,8 +685,8 @@ export default function PlayerInscription() {
 			error.name2 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name2 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name2 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name2 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname2 = 'Campo requerido';
@@ -694,8 +694,8 @@ export default function PlayerInscription() {
 			error.surname2 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname2 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname2 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname2 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni2 = 'Campo requerido';
@@ -714,8 +714,8 @@ export default function PlayerInscription() {
 			error.name3 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name3 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name3 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name3 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname3 = 'Campo requerido';
@@ -723,8 +723,8 @@ export default function PlayerInscription() {
 			error.surname3 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname3 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname3 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname3 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni3 = 'Campo requerido';
@@ -743,8 +743,8 @@ export default function PlayerInscription() {
 			error.name4 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name4 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name4 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name4 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname4 = 'Campo requerido';
@@ -752,8 +752,8 @@ export default function PlayerInscription() {
 			error.surname4 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname4 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname4 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname4 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni4 = 'Campo requerido';
@@ -772,8 +772,8 @@ export default function PlayerInscription() {
 			error.name5 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name5 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name5 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name5 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname5 = 'Campo requerido';
@@ -781,8 +781,8 @@ export default function PlayerInscription() {
 			error.surname5 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname5 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname5 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname5 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni5 = 'Campo requerido';
@@ -801,8 +801,8 @@ export default function PlayerInscription() {
 			error.name6 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name6 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name6 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name6 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname6 = 'Campo requerido';
@@ -810,8 +810,8 @@ export default function PlayerInscription() {
 			error.surname6 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname6 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname6 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname6 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni6 = 'Campo requerido';
@@ -830,8 +830,8 @@ export default function PlayerInscription() {
 			error.name7 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name7 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name7 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name7 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname7 = 'Campo requerido';
@@ -839,8 +839,8 @@ export default function PlayerInscription() {
 			error.surname7 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname7 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname7 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname7 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni7 = 'Campo requerido';
@@ -859,8 +859,8 @@ export default function PlayerInscription() {
 			error.name8 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name8 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name8 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name8 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname8 = 'Campo requerido';
@@ -868,8 +868,8 @@ export default function PlayerInscription() {
 			error.surname8 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname8 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname8 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname8 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni8 = 'Campo requerido';
@@ -888,8 +888,8 @@ export default function PlayerInscription() {
 			error.name9 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name9 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name9 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name9 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname9 = 'Campo requerido';
@@ -897,8 +897,8 @@ export default function PlayerInscription() {
 			error.surname9 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname9 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname9 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname9 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni9 = 'Campo requerido';
@@ -917,8 +917,8 @@ export default function PlayerInscription() {
 			error.name10 = 'El nombre debe estar solamente compuesto por letras';
 		} else if (data.name.length <= 2) {
 			error.name10 = 'El nombre debe contener más de 2 caracteres';
-		} else if (data.name.length >= 10) {
-			error.name10 = 'El nombre no puede contener más de 10 caracteres';
+		} else if (data.name.length >= 15) {
+			error.name10 = 'El nombre no puede contener más de 15 caracteres';
 		}
 		if (!data.surname) {
 			error.surname10 = 'Campo requerido';
@@ -926,8 +926,8 @@ export default function PlayerInscription() {
 			error.surname10 = 'El apellido debe estar solamente compuesto por letras';
 		} else if (data.surname.length <= 2) {
 			error.surname10 = 'El apellido debe contener más de 2 caracteres';
-		} else if (data.surname.length >= 10) {
-			error.surname10 = 'El apellido no puede contener más de 10 caracteres';
+		} else if (data.surname.length >= 15) {
+			error.surname10 = 'El apellido no puede contener más de 15 caracteres';
 		}
 		if (!data.dni) {
 			error.dni10 = 'Campo requerido';
