@@ -32,7 +32,6 @@ const create_tournament = async (data) => {
   try {
     const {
       name,
-      amountOfTeams,
       dateInit,
       dateFinish,
       category,
@@ -44,7 +43,6 @@ const create_tournament = async (data) => {
 
     const new_tournament = await Tournaments.create({
       name,
-      amountOfTeams,
       dateInit,
       dateFinish,
       category,
