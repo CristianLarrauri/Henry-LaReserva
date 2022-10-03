@@ -18,7 +18,6 @@ export default function SearchBar() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		if (!name) {
-			/* return alert("Debes escribir algo"); //Usar un POP UP  ?? */
 			setErrorPopUp(true); //Esto activa el popUp
 		} else {
 			dispatch(searchTournaments(name));
@@ -27,7 +26,7 @@ export default function SearchBar() {
 	}
 
 	return (
-		<div className="w-[600px] h-[50px] mr-3 ml-3 mt-3 flex items-center">
+		<div className="w-[600px] h-[50px] flex items-center">
 			{/*Esta div es el popUp, esta siempre invisible a no ser que el estado "errorPopUp" sea true*/}
 			<div
 				className={
@@ -52,7 +51,7 @@ export default function SearchBar() {
 			</div>
 
 			<input
-				className="w-5/6 rounded-full h-full pl-4 border-2"
+				className="w-5/6 rounded-full h-full pl-4 border-2 outline-none"
 				type="text"
 				name="search"
 				placeholder="Busca tu torneo"

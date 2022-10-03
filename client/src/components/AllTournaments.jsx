@@ -15,8 +15,10 @@ import {
   AiOutlineArrowLeft,
 } from "react-icons/ai";
 import { BiArrowBack } from "react-icons/bi";
+import { useHistory } from "react-router-dom";
 
 export default function AllTournaments() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournaments);
   const [page, setPage] = useState(0);
@@ -116,18 +118,28 @@ export default function AllTournaments() {
     setValueState("");
     setOrder("ASC");
   };
+  
+  function handleNewSearch(e){
+    e.preventDefault();
+    handleGetAllTournaments(e);
+    dispatch(getAllTournaments(page, order, property, category, genre, state));
+  }
 
   useEffect(() => {
     dispatch(getAllTournaments(page, order, property, category, genre, state));
   }, [dispatch, page, order, property, category, genre, state]);
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen flex flex-col justify-between ">
+    <div className="bg-gray-100 w-full min-h-screen flex flex-col items-center justify-between">
       <Nav />
-      <SearchBar />
 
-      <div className="min-h-screen flex flex-col items-center">
+      <div className="min-h-screen flex flex-col items-center w-5/6">
         {/*main section*/}
+
+        {/*SearchBar*/}
+        <div className="bg-white w-5/6 flex justify-center p-4">
+          <SearchBar />
+        </div>
 
         <div className="bg-white w-5/6 flex justify-around flex-wrap mt-6 animate-appear">
           {/*filtros*/}
@@ -223,7 +235,7 @@ export default function AllTournaments() {
           </button>
 
           <div className="w-4/6 flex flex-wrap justify-around min-w-[280px]">
-            {tournaments
+            {tournaments.length
               ? tournaments?.map((ele) => {
                   return (
                     <div>
@@ -238,7 +250,16 @@ export default function AllTournaments() {
                     </div>
                   );
                 })
-              : "No se Encontro nada"}
+              :
+              <div className="text-gray-700 p-3">
+                <h2 className="font-medium text-lg">{"No se encontro nada :("}</h2>
+                <button
+                onClick={(e) => handleNewSearch(e)}
+                className="bg-gray-200 text-center rounded text-xl p-2 cursor-pointer mx-3 font-medium hover:bg-gray-300 mt-3">
+                  Nueva busqueda
+                </button>
+              </div>
+              }
           </div>
 
           <button
@@ -250,17 +271,17 @@ export default function AllTournaments() {
           </button>
         </div>
 
-        <Link
+        <button
           to="/home"
           className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
-								flex justify-center items-center animate-appear"
-        >
+					hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
+					flex justify-center items-center animate-appear"
+          onClick={() => history.goBack()}>
           <p className="text-xl font-bold flex items-center justify-center">
             <BiArrowBack className="mr-3" />
             Volver
           </p>
-        </Link>
+        </button>
       </div>
       <Footer />
     </div>
