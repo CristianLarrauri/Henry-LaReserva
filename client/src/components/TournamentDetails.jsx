@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 import Footer from "./Footer";
 import ScorersTable from "../components/ScorersTable";
 import TeamsTable from "../components/TeamsTable";
+import popUpStyles from '../styles/PopUpStyles.module.css';
 import {
   BsCalendarDate,
   BsGenderFemale,
@@ -32,6 +33,7 @@ const TournamentDetail = (props) => {
   const [fixture, setFixture] = React.useState("")
   const [errorFixture, setErrorFixture] = React.useState("")
   const [loading, setLoading] = React.useState(1)
+  const [popUp, setPopUp] = React.useState(false)
 
   const handleFixture = async (e) => {
     const files = e.target.files;
@@ -87,6 +89,37 @@ const TournamentDetail = (props) => {
       <div className="w-full min-h-screen flex flex-col items-center relative animate-appear">
         <div className="bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center">
           {/*info container*/}
+
+          <div
+            className={
+              popUp
+                ? popUpStyles.popUpOverlay
+                : popUpStyles.popUpOverlay_hidden
+            }>
+
+
+
+
+            <div className={popUp ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+              <h2>¿Estás seguro de los cambios?</h2>
+
+              <button
+                onClick={(e) => {
+                  handleUpdateFixture(e);
+                  window.location.reload(false);
+                }}
+                className={popUpStyles.okBtn}
+              >
+                Si
+              </button>
+              <button
+                onClick={() => setPopUp(false)}
+                className={popUpStyles.okBtn}
+              >
+                Revisar información
+              </button>
+            </div>
+          </div>
 
           <div className="w-3/6 text-gray-800 text-center">
             <h1 className="font-bold text-2xl">TORNEO</h1>
@@ -160,7 +193,7 @@ const TournamentDetail = (props) => {
           </div>
         </div>
 
-       
+
         <div
           className="w-5/6 mt-10 flex items-center flex-col 
 					lg:flex-row lg:justify-between lg:items-start"
@@ -175,35 +208,34 @@ const TournamentDetail = (props) => {
         </div>
 
         {userDetail.admin === true ?
-        <div >
-           <label className='text-2xl font-medium
+          <div >
+            <label className='text-2xl font-medium
 						text-green-500 mb-2'>Cargar fixture </label>
-								<input id='inputFile' type="file" name='image'
-									onChange={e => handleFixture(e)}
-									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
-						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/> 
+            <input id='inputFile' type="file" name='image'
+              onChange={e => handleFixture(e)}
+              className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
+						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"/>
 
-          {loading === 2 ? <p>Cargando imagen...</p> : false}
-          {loading === 0 ? <div><img className="h-[800px] textaling:center" src={fixture} alt="" />
-          <br />
-          <button className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+            {loading === 2 ? <p>Cargando imagen...</p> : false}
+            {loading === 0 ? <div><img className="h-[800px] textaling:center" src={fixture} alt="" />
+              <br />
+              <button className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
 								flex justify-center items-center"
-                onClick={e => {handleUpdateFixture(e);
-                window.location.reload(false);}
-                }>Actualizar</button>
+                onClick={() => setPopUp(true)}
+              >Actualizar</button>
+            </div>
+              : false}
+
+            <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
+p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
+              style={errorFixture ? { opacity: 1 } : { opacity: 0 }}>
+              <p>{errorFixture}</p>
+            </div>
           </div>
           : false}
 
-          <div className='absolute right-50 top-2 bg-red-600 text-white rounded-lg
-p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4'
-            style={errorFixture ? { opacity: 1 } : { opacity: 0 }}>
-            <p>{errorFixture}</p>
-          </div>
-        </div>
-        : false}
-
-          <img  className="h-[800px] textaling:center" src={tournament.fixture} alt="fixture tournament" />
+        <img className="h-[800px] textaling:center" src={tournament.fixture} alt="fixture tournament" />
 
 
         <Link
