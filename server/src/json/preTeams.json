@@ -9,7 +9,7 @@
     ]
   },
   {
-    "name": "Riber Plate",
+    "name": "River Plate",
     "points": 0,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "name": "Talleres de America",
+    "name": "Talleres (C)",
     "points": 99,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -27,7 +27,7 @@
     ]
   },
   {
-    "name": "Boquita",
+    "name": "Boca Juniors",
     "points": 21,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "name": "Velesh",
+    "name": "Velez Sarfield",
     "points": 1,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -45,7 +45,7 @@
     ]
   },
   {
-    "name": "El Calamar",
+    "name": "Platense",
     "points": 18,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "name": "San Lorenzo de ?",
+    "name": "San Lorenzo",
     "points": 0,
     "tournaments": ["Copa Libertadores"],
     "players": [
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "name": "Rasin Club",
+    "name": "Racing Club",
     "points": 5,
     "tournaments": ["Copa Libertadores"],
     "players": [

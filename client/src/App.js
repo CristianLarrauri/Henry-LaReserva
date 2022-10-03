@@ -60,8 +60,12 @@ function App() {
 						<Route exact path="/tournaments" component={AllTournaments} />
 						<Route exact path="/details/:id" component={TournamentDetail} />
 						<Route exact path="/loading" component={Loading} />
-						<Route exact path="/login" component={Login} />
 
+						{/* LOGEADO Y NO BANEADO*/}
+						{(userInfo.ban===true && <Route exact path="/pago" component={Ban}/>) ||
+						 (userInfo.ban===false && <Route exact path="/pago" component={FormPago}/>) ||
+						 (userInfo.ban===undefined) && <Route exact path="/pago" component={Loading}/> ||
+						 (userInfo.ban==='dc') && <Route exact path="/pago" component={Home}/>}
 						{/* LOGEADO Y NO BANEADO*/}
 
 						{/*Pasarela pagos*/}
@@ -125,6 +129,7 @@ function App() {
 							(userInfo.ban === undefined && (
 								<Route exact path="/reviews" component={Loading} />
 							))}
+
 
 						{/*Panel admin*/}
 						{(userInfo.admin === true && (
