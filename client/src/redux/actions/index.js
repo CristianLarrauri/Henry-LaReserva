@@ -25,6 +25,9 @@ export const POST_REVIEWS = 'POST_REVIEWS';
 export const DELETE_REVIEWS = 'DELETE_REVIEWS';
 export const GET_ID_REVIEW = 'GET_ID_REVIEW';
 export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
+export const GET_ENABLED_REVIEWS = 'GET_ENABLED_REVIEWS';
+export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
+export const REPORT_REVIEW = 'REPORT_REVIEW';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -292,14 +295,16 @@ export function getNextTournament() {
 export function deleteTournament(id) {
 	return async (dispatch) => {
 		try {
-			const info = await axios.delete(
-				`http://localhost:3001/tournaments/${id}`
+			const info = await axios.put(
+				`http://localhost:3001/tournaments/enabled/${id}`
 			);
 			dispatch({
 				type: DELETE_TOURNAMENT,
 				payload: info.data
 			});
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 }
 
@@ -393,6 +398,48 @@ export function getIdReview(id) {
 			});
 		} catch (e) {
 			console.log(e);
+		}
+	};
+}
+
+export function getEnabledReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get('http://localhost:3001/reviews/enabled');
+			return dispatch({
+				type: GET_ENABLED_REVIEWS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function getDisabledReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get('http://localhost:3001/reviews/disabled');
+			return dispatch({
+				type: GET_DISABLED_REVIEWS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function reportAllowReview(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: REPORT_REVIEW,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
 		}
 	};
 }

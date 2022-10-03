@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
     },
     amountOfTeams: {
       type: DataTypes.INTEGER,
+      defaultValue: 8,
     },
     dateInit: {
       type: DataTypes.STRING,

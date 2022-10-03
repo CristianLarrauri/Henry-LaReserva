@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
     const mailOptions = {
       from: `${EMAIL_RESERVA}`,
       to: email,
-      subject: "Enviado desde nodemailer",
-      text: "Su pago ha sido procesado con exito.",
+      subject: "La Reserva Complejo",
+      text: "Su inscripcion ha sido procesada con exito. Los esperamos para competir y buscar la victoria!!",
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -32,12 +32,29 @@ router.post("/", async (req, res) => {
         res.status(200).json(info);
       }
     });
-  } else if (option === "Campeon") {
+  } else if (option === "Ban") {
     const mailOptions = {
       from: `${EMAIL_RESERVA}`,
       to: email,
-      subject: "Enviado desde nodemailer",
-      text: "Son CAMPEONEEES.",
+      subject: "La Reserva Complejo",
+      text: `Su usuario con el siguiente mail ${email} ha sido baneado.`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send(error.message);
+      } else {
+        console.log("Email enviado", info.response);
+        res.status(200).json(info);
+      }
+    });
+  }
+  else if (option === "Unban") {
+    const mailOptions = {
+      from: `${EMAIL_RESERVA}`,
+      to: email,
+      subject: "La Reserva Complejo",
+      text: `Su usuario con el siguiente mail ${email} ha sido desbaneado.`,
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

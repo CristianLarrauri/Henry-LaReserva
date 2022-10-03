@@ -10,8 +10,13 @@ import {
 	getAllUsers,
 	banUser,
 	getTournamentsAdmin,
-	deleteTournament
+	deleteTournament,
+	getDisabledReviews,
+	deleteReviews,
+	reportAllowReview
 } from '../redux/actions';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 export default function DashBoardAdmin() {
 	const history = useHistory();
@@ -19,7 +24,10 @@ export default function DashBoardAdmin() {
 	const allUsers = useSelector((state) => state.users);
 	console.log('allUsers', allUsers);
 	const allTournaments = useSelector((state) => state.tournamentsAdmin);
+	const {user} = useAuth0()
 
+
+	const adminReviews = useSelector((state) => state.disabledReviews);
 	const [idUser, setIdUser] = useState('');
 	const [idTournament, setIdTournament] = useState('');
 	const [nameTournament, setNameTournament] = useState('');
@@ -28,19 +36,61 @@ export default function DashBoardAdmin() {
 	useEffect(() => {
 		dispatch(getAllUsers());
 		dispatch(getTournamentsAdmin());
+		dispatch(getDisabledReviews());
 	}, [dispatch]);
 
 	const handleBan = (e) => {
+		const payload ={
+			email: `${user.email}`,
+			option:"Ban"
+		}
 		dispatch(banUser(e.target.value));
 		alert('Se ha baneado el usuario');
+		axios.post("http://localhost:3001/email",payload)
+			.then((data)=>{
+				return data
+			})
+			.catch((err)=> console.log(err))
 	};
 
-	const handleDeleteTournament = (e) => {
+	const handleUnban = (e) => {
+		const payload ={
+			email: `${user.email}`,
+			option:"Unban"
+		}
+		dispatch(banUser(e.target.value));
+		alert('Se ha quitado el baneo al usuario');
+		axios.post("http://localhost:3001/email",payload)
+			.then((data)=>{
+				return data
+			})
+			.catch((err)=> console.log(err))
+	};
+
+	const handleEnableTournament = (e) => {
 		dispatch(deleteTournament(e.target.value));
-		alert('Se ha borrado el torneo');
+		alert('Se ha habilitado el torneo');
 		setNameTournament('');
 		setIdTournament('');
 		setTournamentValue('');
+	};
+
+	const handleDisableTournament = (e) => {
+		dispatch(deleteTournament(e.target.value));
+		alert('Se ha deshabilitado el torneo');
+		setNameTournament('');
+		setIdTournament('');
+		setTournamentValue('');
+	};
+
+	const handleDeleteReview = (e) => {
+		dispatch(deleteReviews(e.target.value));
+		alert('el comentario ha sido definitivamente eliminado');
+	};
+
+	const handleAllowReview = (e) => {
+		dispatch(reportAllowReview(e.target.value));
+		alert('el comentario fue permitido');
 	};
 
 	return (
@@ -56,17 +106,23 @@ export default function DashBoardAdmin() {
 							Administracion de usuarios:{' '}
 						</h2>
 						<div>
-							{allUsers?.map((e) => (
-								<tr key={e.id} value={e.id}>
-									<td>
-										{e.name}{' '}
-										<button value={e.id} onClick={(e) => handleBan(e)}>
-											Banear user
-										</button>
-									</td>
-								</tr>
-							))}
-						</div>
+                            {allUsers?.map((e) => (
+                                <tr key={e.id} value={e.id}>
+                                    <td>
+                                        {e.name}{' '}
+                                        {e.ban === false ? (
+                                            <button value={e.id} onClick={(e) => handleBan(e)}>
+                                                Banear user
+                                            </button>
+                                        ) : (
+                                            <button value={e.id} onClick={(e) => handleUnban(e)}>
+                                                Desbanear user
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </div>
 					</div>
 				</div>
 				<div className="flex flex-col items-center">
@@ -77,12 +133,21 @@ export default function DashBoardAdmin() {
 								<tr key={e.name} value={e.id}>
 									<td>
 										{e.name}{' '}
-										<button
-											value={e.id}
-											onClick={(e) => handleDeleteTournament(e)}
-										>
-											Eliminar torneo
-										</button>{' '}
+										{e.enabled ? (
+											<button
+												value={e.id}
+												onClick={(e) => handleDisableTournament(e)}
+											>
+												Deshabilitar torneo
+											</button>
+										) : (
+											<button
+												value={e.id}
+												onClick={(e) => handleEnableTournament(e)}
+											>
+												Habilitar torneo
+											</button>
+										)}
 										<Link to={`/admin/modify/${e.id}`}>
 											<button>Modifica el torneo</button>
 										</Link>
@@ -110,6 +175,21 @@ export default function DashBoardAdmin() {
 							Ver reseñas
 						</button>
 					</Link>
+					<div>
+						{adminReviews?.map((e) => (
+							<tr key={e.id} value={e.id}>
+								<td>
+									{e.nombreUsuario} {e.comentario}
+									<button value={e.id} onClick={(e) => handleAllowReview(e)}>
+										Permitir comentario
+									</button>
+									<button value={e.id} onClick={(e) => handleDeleteReview(e)}>
+										Eliminar comentario
+									</button>
+								</td>
+							</tr>
+						))}
+					</div>
 				</div>
 			</div>
 
@@ -117,150 +197,3 @@ export default function DashBoardAdmin() {
 		</div>
 	);
 }
-
-//---------VIEJO PANEL DE ADM CON LOS SELECT--------------------------------------------------
-
-// import React, { useState } from 'react';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Link, useParams } from 'react-router-dom';
-// import Nav from './Nav';
-// import Footer from './Footer';
-// import { useHistory } from 'react-router-dom';
-
-// import {
-// 	getAllUsers,
-// 	banUser,
-// 	toAdmin,
-// 	getUserDetails,
-// 	getTournamentsAdmin,
-// 	deleteTournament
-// } from '../redux/actions';
-
-// export default function DashBoardAdmin() {
-// 	const history = useHistory();
-// 	const dispatch = useDispatch();
-// 	const allUsers = useSelector((state) => state.users);
-// 	const allTournaments = useSelector((state) => state.tournamentsAdmin);
-
-// 	const [idUser, setIdUser] = useState('');
-// 	const [idTournament, setIdTournament] = useState('');
-// 	const [nameTournament, setNameTournament] = useState('');
-// 	const [tournamentValue, setTournamentValue] = useState('');
-
-// 	useEffect(() => {
-// 		dispatch(getAllUsers());
-// 		dispatch(getTournamentsAdmin());
-// 	}, [dispatch]);
-
-// 	const handleSelectUser = (e) => {
-// 		let target = e.target.value;
-// 		let targetName = e.target.name;
-// 		setIdUser(target);
-// 		setNameTournament(targetName);
-// 	};
-
-// 	const handleSelectTournament = (e) => {
-// 		let target = e.target.value;
-// 		setIdTournament(target);
-// 		setTournamentValue(target);
-// 	};
-
-// 	const handleBan = () => {
-// 		dispatch(banUser(idUser));
-// 	};
-
-// 	const handleDeleteTournament = () => {
-// 		dispatch(deleteTournament(idTournament));
-// 		alert('Se ha borrado el torneo');
-// 		setNameTournament('');
-// 		setIdTournament('');
-// 		setTournamentValue('');
-// 	};
-
-// 	return (
-// 		<div className="min-h-screen flex flex-col justify-between items-center">
-// 			<Nav />
-
-// 			<div className="bg-gray-100 flex flex-col items-center p-10 shadow shadow-black">
-// 				<h1 className="text-2xl font-bold">Panel de administrador</h1>
-
-// 				<div className="p-3 flex flex-col items-center">
-// 					<h2 className="text-xl font-medium">Administracion de usuarios: </h2>
-// 					<div>
-// 						<h3 className="text-lg font-medium">Banear Usuario:</h3>
-// 						<select
-// 							onChange={(e) => handleSelectUser(e)}
-// 							className="bg-green-300 p-2 rounded font-medium
-// 					cursor-pointer hover:scale-110 duration-300 hover:text-white"
-// 						>
-// 							<option>Ver usuarios</option>
-// 							{allUsers?.map((e) => (
-// 								<option key={e.id} value={e.id}>
-// 									{e.name}, {e.email}, {e.id}
-// 								</option>
-// 							))}
-// 						</select>
-// 						{idUser === '' ? (
-// 							<p className="text-red-700">Seleccione un usuario</p>
-// 						) : (
-// 							<button onClick={(e) => handleBan(e)}>Banear user</button>
-// 						)}
-// 					</div>
-// 				</div>
-// 				<div className="flex flex-col items-center">
-// 					<h2 className="text-xl font-medium">Administracion de torneos:</h2>
-// 					<select
-// 						onChange={(e) => handleSelectTournament(e)}
-// 						className="bg-green-300 p-2 rounded font-medium cursor-pointer
-// 					hover:scale-110 duration-300 hover:text-white"
-// 						value={tournamentValue}
-// 					>
-// 						<option>Ver torneos</option>
-// 						{allTournaments?.map((e) => (
-// 							<option key={e.id} value={e.id} name={e.name}>
-// 								{e.name}
-// 							</option>
-// 						))}
-// 					</select>
-// 					{idTournament === '' ? (
-// 						<p className="text-red-700">Seleccione un torneo</p>
-// 					) : (
-// 						<Link to={`/admin/modify/${idTournament}`}>
-// 							<button>Modifica el torneo</button>
-// 						</Link>
-// 					)}
-// 					{idTournament === '' ? (
-// 						<></>
-// 					) : (
-// 						<button onClick={(e) => handleDeleteTournament(e)}>
-// 							Elimina el torneo
-// 						</button>
-// 					)}
-
-// 					<Link to="/create">
-// 						<button
-// 							className="bg-green-300 font-medium p-3 rounded-full
-// 					hover:scale-110 hover:text-white duration-300"
-// 						>
-// 							Crear nuevo torneo
-// 						</button>
-// 					</Link>
-// 				</div>
-// 				<div className="flex flex-col items-center">
-// 					<h2 className="text-xl font-medium">Administacion de reseñas: </h2>
-// 					<Link to="/reviews">
-// 						<button
-// 							className="bg-green-300 font-medium p-3 rounded-full
-// 					hover:scale-110 hover:text-white duration-300"
-// 						>
-// 							Ver reseñas
-// 						</button>
-// 					</Link>
-// 				</div>
-// 			</div>
-
-// 			<Footer />
-// 		</div>
-// 	);
-// }
