@@ -23,7 +23,8 @@ import {
 	GET_ID_REVIEW,
 	GET_ENABLED_REVIEWS,
 	GET_DISABLED_REVIEWS,
-	REPORT_REVIEW
+	REPORT_REVIEW,
+	PUT_FIXTURE
 } from '../actions/index.js';
 
 let initialState = {
@@ -90,6 +91,11 @@ function rootReducer(state = initialState, action) {
 				...state,
 				tournamentDetail: action.payload
 			};
+		case PUT_FIXTURE:
+			return {
+				...state,
+				tournamentDetail: {...state.tournamentDetail, fixture: action.payload}
+			}
 		case GET_ALL_TOURNAMENTS:
 			return {
 				...state,
