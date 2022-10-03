@@ -27,10 +27,7 @@ const TournamentDetail = (props) => {
 
   let tournament = useSelector((state) => state.tournamentDetail);
 
-
-
-
-  let adminUser = false
+  const userDetail = useSelector((state) => state.actualUser);
 
   const [fixture, setFixture] = React.useState("")
   const [errorFixture, setErrorFixture] = React.useState("")
@@ -80,6 +77,7 @@ const TournamentDetail = (props) => {
   const handleUpdateFixture = (e) => {
     e.preventDefault()
     console.log(fixture)
+    setLoading(1)
     dispatch(actions.putFixture(id, fixture));
   }
 
@@ -176,10 +174,10 @@ const TournamentDetail = (props) => {
           </div>
         </div>
 
-        {adminUser ?
+        {userDetail.admin === true ?
         <div >
            <label className='text-2xl font-medium
-						text-green-500 mb-2'>Actualizar fixture </label>
+						text-green-500 mb-2'>Cargar fixture </label>
 								<input id='inputFile' type="file" name='image'
 									onChange={e => handleFixture(e)}
 									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
@@ -190,7 +188,10 @@ const TournamentDetail = (props) => {
           <br />
           <button className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
-								flex justify-center items-center" onClick={e => handleUpdateFixture(e)}>Actualizar</button>
+								flex justify-center items-center"
+                onClick={e => {handleUpdateFixture(e);
+                window.location.reload(false);}
+                }>Actualizar</button>
           </div>
           : false}
 
