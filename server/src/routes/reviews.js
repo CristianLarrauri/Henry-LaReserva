@@ -49,17 +49,45 @@ router.get("/:id", async (req, res) => {
 
 // ------------------------------------------------------------------------------
 
+// router.put("/:id", async (req, res) => {
+//   try {
+//     let { id } = req.params;
+//     let editReview = req.body;
+
+//     let data = await Reviews.update(editReview, {
+//       where: { id },
+//     });
+//     return res.status(200).send("Review successfully updated");
+//   } catch (error) {
+//     return res.status(400).send("ERROR EN PUT/REVIEWS", error);
+//   }
+// });
+
 router.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
     let editReview = req.body;
+    let reseña = await Reviews.findByPk(id);
 
-    let data = await Reviews.update(editReview, {
-      where: { id },
-    });
-    return res.status(200).send("Review successfully updated");
+    if (reseña.enabled === true) {
+      let data = await Reviews.update(
+        { enabled: false },
+        {
+          where: { id },
+        }
+      );
+    }
+    if (reseña.enabled === false) {
+      let data = await Reviews.update(
+        { enabled: true },
+        {
+          where: { id },
+        }
+      );
+    }
+    res.status(200).send("put exitoso");
   } catch (error) {
-    return res.status(400).send("ERROR EN PUT/REVIEWS", error);
+    console.log("Error en ruta PUT/REVIEWS", error);
   }
 });
 
