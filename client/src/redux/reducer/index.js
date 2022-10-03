@@ -20,7 +20,10 @@ import {
 	GET_REVIEWS,
 	POST_REVIEWS,
 	DELETE_REVIEWS,
-	GET_ID_REVIEW
+	GET_ID_REVIEW,
+	GET_ENABLED_REVIEWS,
+	GET_DISABLED_REVIEWS,
+	REPORT_REVIEW
 } from '../actions/index.js';
 
 let initialState = {
@@ -36,6 +39,8 @@ let initialState = {
 	order: '',
 	mpData: [],
 	allReviews: [],
+	enabledReviews: [],
+	disabledReviews: [],
 	idReview: {},
 	actualUser: {
 		username: undefined,
@@ -173,11 +178,26 @@ function rootReducer(state = initialState, action) {
 				...state,
 				idReview: action.payload
 			};
+		case GET_ENABLED_REVIEWS:
+			return {
+				...state,
+				enabledReviews: action.payload
+			};
+		case GET_DISABLED_REVIEWS:
+			return {
+				...state,
+				disabledReviews: action.payload
+			};
+		case REPORT_REVIEW:
+			return {
+				...state
+			};
 		case SET_ACTUAL_USER:
 			return {
 				...state,
 				actualUser: action.payload
 			};
+
 		default:
 			return state;
 	}
