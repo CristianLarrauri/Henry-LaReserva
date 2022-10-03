@@ -173,11 +173,6 @@ export default function PlayerInscription() {
 
 	const [formErrors, setFormErrors] = useState({})
 
-	const handleDisabled1 = (e) => {
-		e.preventDefault()
-		setEdit1(false)
-	}
-
 	const handlePopUp1 = (e) => {
 		e.preventDefault()
 		if (Object.values(errors1).length > 0) {
@@ -1369,6 +1364,8 @@ export default function PlayerInscription() {
 							<div className='w-5/6 min-h-[160px] flex flex-col justify-end items-center
 					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between
 					mt-10'>
+
+						
 								<label className='text-2xl font-medium
 						text-green-500 mb-2'>Escudo/bandera/imagen: </label>
 								<input id='inputFile' type="file" name='image'
