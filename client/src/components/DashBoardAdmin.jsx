@@ -12,6 +12,8 @@ import {
 	getTournamentsAdmin,
 	deleteTournament
 } from '../redux/actions';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 export default function DashBoardAdmin() {
 	const history = useHistory();
@@ -19,6 +21,7 @@ export default function DashBoardAdmin() {
 	const allUsers = useSelector((state) => state.users);
 	console.log('allUsers', allUsers);
 	const allTournaments = useSelector((state) => state.tournamentsAdmin);
+	const {user} = useAuth0()
 
 	const [idUser, setIdUser] = useState('');
 	const [idTournament, setIdTournament] = useState('');
@@ -31,8 +34,31 @@ export default function DashBoardAdmin() {
 	}, [dispatch]);
 
 	const handleBan = (e) => {
+		const payload ={
+			email: `${user.email}`,
+			option:"Ban"
+		}
 		dispatch(banUser(e.target.value));
 		alert('Se ha baneado el usuario');
+		axios.post("http://localhost:3001/email",payload)
+			.then((data)=>{
+				return data
+			})
+			.catch((err)=> console.log(err))
+	};
+
+	const handleUnban = (e) => {
+		const payload ={
+			email: `${user.email}`,
+			option:"Unban"
+		}
+		dispatch(banUser(e.target.value));
+		alert('Se ha quitado el baneo al usuario');
+		axios.post("http://localhost:3001/email",payload)
+			.then((data)=>{
+				return data
+			})
+			.catch((err)=> console.log(err))
 	};
 
 	const handleDeleteTournament = (e) => {
@@ -56,17 +82,23 @@ export default function DashBoardAdmin() {
 							Administracion de usuarios:{' '}
 						</h2>
 						<div>
-							{allUsers?.map((e) => (
-								<tr key={e.id} value={e.id}>
-									<td>
-										{e.name}{' '}
-										<button value={e.id} onClick={(e) => handleBan(e)}>
-											Banear user
-										</button>
-									</td>
-								</tr>
-							))}
-						</div>
+                            {allUsers?.map((e) => (
+                                <tr key={e.id} value={e.id}>
+                                    <td>
+                                        {e.name}{' '}
+                                        {e.ban === false ? (
+                                            <button value={e.id} onClick={(e) => handleBan(e)}>
+                                                Banear user
+                                            </button>
+                                        ) : (
+                                            <button value={e.id} onClick={(e) => handleUnban(e)}>
+                                                Desbanear user
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </div>
 					</div>
 				</div>
 				<div className="flex flex-col items-center">
