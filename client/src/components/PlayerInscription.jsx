@@ -8,6 +8,8 @@ import popUpStyles from '../styles/PopUpStyles.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import * as actions from '../redux/actions'
 import queryString from 'query-string'
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 export default function PlayerInscription() {
@@ -16,6 +18,8 @@ export default function PlayerInscription() {
 	const id = queryString.parse(useLocation().search).id
 
 	const [selectValue, setSelectValue] = React.useState("undefined")
+
+	const { user} = useAuth0();
 
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
@@ -432,14 +436,23 @@ export default function PlayerInscription() {
 			}
 			setTeam({ ...team, name: teamName, image: shield, players: [...players], tournaments: selectTournament.name })
 			setFinal(true)
-
+			
 		}
 	};
 
 	const handleFinal = () => {
 		dispatch(actions.createTeam(team))
+		const payload = {
+			email: `${user.email}`,
+			option:`Pago`
+		}
 		console.log(team)
 		setFinal(false)
+		axios.post("http://localhost:3001/email",payload)
+				.then((data)=>{
+					return data
+				})
+				.catch((err)=> console.log(err))
 	}
 
 	const [loading, setLoading] = React.useState(1)
@@ -973,12 +986,14 @@ export default function PlayerInscription() {
 				<div className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
 					<h2>¿Estás seguro?</h2>
 					<p>Si está todo bien, haz click en pagar inscripción</p>
+					<Link to="/pago">
 					<button
 						onClick={() => handleFinal()}
 						className={popUpStyles.okBtn}
 					>
 						Pagar inscripción
 					</button>
+					</Link>
 					<button
 						onClick={() => setFinal(false)}
 						className={popUpStyles.okBtn}
@@ -2219,7 +2234,7 @@ export default function PlayerInscription() {
 							/>
 							<p className='ml-1 font-medium text-lg'>Entiendo y acepto las condiciones.</p>
 						</div>
-
+					
 						<button type="submit" onClick={e => handleSubmit(e)}
 							className='bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
