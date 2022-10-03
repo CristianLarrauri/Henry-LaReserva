@@ -1,8 +1,7 @@
 [
   {
-    "id": 1,
     "name": "Los Magios",
-    "points": 10,
+    "points": 26,
     "tournaments": ["Copa Libertadores"],
     "players": [
       40000000, 40000001, 40000002, 40000003, 40000004, 40000005, 40000006,
@@ -10,7 +9,6 @@
     ]
   },
   {
-    "id": 2,
     "name": "Riber Plate",
     "points": 0,
     "tournaments": ["Copa Libertadores"],
@@ -20,9 +18,8 @@
     ]
   },
   {
-    "id": 3,
     "name": "Talleres de America",
-    "points": 20,
+    "points": 99,
     "tournaments": ["Copa Libertadores"],
     "players": [
       10000000, 10000001, 10000002, 10000003, 10000004, 10000005, 10000006,
@@ -30,13 +27,48 @@
     ]
   },
   {
-    "id": 4,
     "name": "Boquita",
-    "points": 15,
+    "points": 21,
     "tournaments": ["Copa Libertadores"],
     "players": [
       20000000, 20000001, 20000002, 20000003, 20000004, 20000005, 20000006,
       20000007, 20000008, 20000009
+    ]
+  },
+  {
+    "name": "Velesh",
+    "points": 1,
+    "tournaments": ["Copa Libertadores"],
+    "players": [
+      50000000, 50000001, 50000002, 50000003, 50000004, 50000005, 50000006,
+      50000007, 50000008, 50000009
+    ]
+  },
+  {
+    "name": "El Calamar",
+    "points": 18,
+    "tournaments": ["Copa Libertadores"],
+    "players": [
+      60000000, 60000001, 60000002, 60000003, 60000004, 60000005, 60000006,
+      60000007, 60000008, 60000009
+    ]
+  },
+  {
+    "name": "San Lorenzo de ?",
+    "points": 0,
+    "tournaments": ["Copa Libertadores"],
+    "players": [
+      70000000, 70000001, 70000002, 70000003, 70000004, 70000005, 70000006,
+      70000007, 70000008, 70000009
+    ]
+  },
+  {
+    "name": "Rasin Club",
+    "points": 5,
+    "tournaments": ["Copa Libertadores"],
+    "players": [
+      80000000, 80000001, 80000002, 80000003, 80000004, 80000005, 80000006,
+      80000007, 80000008, 80000009
     ]
   }
 ]
