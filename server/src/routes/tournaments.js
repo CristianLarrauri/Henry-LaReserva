@@ -2,12 +2,16 @@ const { Router } = require('express');
 const { Tournaments, Teams } = require('../db');
 const {
 	create_tournament,
-	get_tournaments_db
+	get_tournaments_db,
+	get_tournaments_panel,
+	get_tournaments_disabled
 } = require('../utils/utilsTournaments');
 const { Op } = require('sequelize');
 
+const router = Router();
+
 // ------------------------------------------------------------
-// agregue esto pinu no te enojes :P
+// Mercado pago
 const mercadopago = require('mercadopago');
 require('dotenv').config();
 
@@ -21,12 +25,11 @@ module.exports = {
 };
 
 // ----------------------------------------------------------------
-const router = Router();
-// Get para el panel de admin
+// Get /tournaments/admin
 
 router.get('/panel', async (req, res) => {
 	try {
-		let data = await get_tournaments_db();
+		let data = await get_tournaments_panel();
 
 		res.status(200).send(data);
 	} catch (error) {
@@ -72,6 +75,7 @@ router.get('/', async (req, res) => {
 		if (req.query.genre && req.query.category && req.query.state) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					category: req.query.category,
 					genre: req.query.genre,
 					state: req.query.state
@@ -87,6 +91,7 @@ router.get('/', async (req, res) => {
 		if (req.query.genre && req.query.category) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					category: req.query.category,
 					genre: req.query.genre
 				},
@@ -101,6 +106,7 @@ router.get('/', async (req, res) => {
 		if (req.query.genre && req.query.state) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					genre: req.query.genre,
 					state: req.query.state
 				},
@@ -115,6 +121,7 @@ router.get('/', async (req, res) => {
 		if (req.query.category && req.query.state) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					category: req.query.category,
 					state: req.query.state
 				},
@@ -132,6 +139,7 @@ router.get('/', async (req, res) => {
 				limit: 6,
 				order: [[req.query.property, req.query.order]],
 				where: {
+					enabled: true,
 					genre: req.query.genre
 				}
 			});
@@ -142,6 +150,7 @@ router.get('/', async (req, res) => {
 		if (req.query.category) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					category: req.query.category
 				},
 				Offset: req.query.page,
@@ -155,6 +164,7 @@ router.get('/', async (req, res) => {
 		if (req.query.state) {
 			let dataFilter = await Tournaments.findAll({
 				where: {
+					enabled: true,
 					state: req.query.state
 				},
 				Offset: req.query.page,
@@ -175,6 +185,9 @@ router.get('/', async (req, res) => {
 				: res.status(404).send('No se encontro el torneo');
 		} else {
 			let data_total = await Tournaments.findAll({
+				where: {
+					enabled: true
+				},
 				offset: req.query.page,
 				limit: 6,
 				order: [[req.query.property, req.query.order]],
@@ -244,6 +257,22 @@ router.put('/:id', async (req, res) => {
 		return res.status(200).send('Tournament successfully edited');
 	} catch (error) {
 		return res.status(400).send('ERROR EN PUT/TOURNAMENTS', error);
+	}
+});
+
+// modificar enabled
+
+router.put('/enabled/:id', async (req, res) => {
+	try {
+		const { id } = req.params;
+		let tournament = await Tournaments.findByPk(id);
+		await tournament.update({
+			...tournament,
+			enabled: tournament.enabled === false ? true : false
+		});
+		res.send(tournament);
+	} catch (error) {
+		console.log('Rompo en ruta put/enabled', error);
 	}
 });
 

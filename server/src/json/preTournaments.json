@@ -2,7 +2,6 @@
   {
     "id": 1,
     "name": "Rusticom Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
@@ -13,7 +12,6 @@
   {
     "id": 2,
     "name": "La Gran 7 Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
@@ -24,7 +22,6 @@
   {
     "id": 3,
     "name": "Henry Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Libre",
@@ -35,7 +32,6 @@
   {
     "id": 4,
     "name": "Magios Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Libre",
@@ -46,7 +42,6 @@
   {
     "id": 5,
     "name": "Pibardas Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Libre",
@@ -57,7 +52,6 @@
   {
     "id": 6,
     "name": "Oxidados Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
@@ -68,7 +62,6 @@
   {
     "id": 7,
     "name": "Matadoras Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Sub20",
@@ -79,7 +72,6 @@
   {
     "id": 8,
     "name": "Oxidadas Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
@@ -90,7 +82,6 @@
   {
     "id": 9,
     "name": "Oxidades Apertura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-01-01",
     "dateFinish": "2022-06-01",
     "category": "Senior",
@@ -101,7 +92,6 @@
   {
     "id": 10,
     "name": "Rusticom Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
@@ -112,7 +102,6 @@
   {
     "id": 11,
     "name": "La Gran 7 Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
@@ -123,7 +112,6 @@
   {
     "id": 12,
     "name": "Henry Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Libre",
@@ -134,7 +122,6 @@
   {
     "id": 13,
     "name": "Magios Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Libre",
@@ -145,7 +132,6 @@
   {
     "id": 14,
     "name": "Pibardas Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Libre",
@@ -156,7 +142,6 @@
   {
     "id": 15,
     "name": "Oxidados Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
@@ -167,7 +152,6 @@
   {
     "id": 16,
     "name": "Matadoras Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Sub20",
@@ -178,7 +162,6 @@
   {
     "id": 17,
     "name": "Oxidadas Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
@@ -189,7 +172,6 @@
   {
     "id": 18,
     "name": "Oxidades Clausura 22",
-    "amountOfTeams": 7,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Senior",
@@ -200,7 +182,6 @@
   {
     "id": 19,
     "name": "Rusticom Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-01",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
@@ -211,7 +192,6 @@
   {
     "id": 20,
     "name": "La Gran 7 Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-05",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
@@ -222,7 +202,6 @@
   {
     "id": 21,
     "name": "Henry Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-10",
     "dateFinish": "2023-06-01",
     "category": "Libre",
@@ -233,7 +212,6 @@
   {
     "id": 22,
     "name": "Magios Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-15",
     "dateFinish": "2023-06-01",
     "category": "Libre",
@@ -244,7 +222,6 @@
   {
     "id": 23,
     "name": "Pibardas Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-20",
     "dateFinish": "2023-06-01",
     "category": "Libre",
@@ -255,7 +232,6 @@
   {
     "id": 24,
     "name": "Oxidados Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-01-25",
     "dateFinish": "2023-06-01",
     "category": "Senior",
@@ -266,7 +242,6 @@
   {
     "id": 25,
     "name": "Matadoras Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-02-01",
     "dateFinish": "2023-06-01",
     "category": "Sub20",
@@ -277,7 +252,6 @@
   {
     "id": 26,
     "name": "Oxidadas Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-02-05",
     "dateFinish": "2023-06-01",
     "category": "Senior",
@@ -288,7 +262,6 @@
   {
     "id": 27,
     "name": "Oxidades Apertura 23",
-    "amountOfTeams": 7,
     "dateInit": "2023-02-10",
     "dateFinish": "2023-06-01",
     "category": "Senior",
@@ -299,7 +272,6 @@
   {
     "id": 28,
     "name": "Copa Libertadores",
-    "amountOfTeams": 10,
     "dateInit": "2022-06-01",
     "dateFinish": "2023-01-01",
     "category": "Libre",
