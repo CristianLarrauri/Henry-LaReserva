@@ -103,7 +103,7 @@ router.put("/admin/:id", async (req, res) => {
     console.log("Rompo en ruta put/admin", error);
   }
 });
-
+//Ruta delete
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
