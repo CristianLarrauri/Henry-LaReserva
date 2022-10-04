@@ -261,7 +261,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //.........................................................................................//
-// POST /tournaments/cupos
+// PUT /tournaments/cupos
 router.put("/cupos/:id", async (req, res) => {
   try {
     let { id } = req.params;
