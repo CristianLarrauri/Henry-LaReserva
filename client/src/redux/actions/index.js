@@ -31,6 +31,10 @@ export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
 export const REPORT_REVIEW = 'REPORT_REVIEW';
 export const PUT_FIXTURE = 'PUT_FIXTURE';
 export const DELETE_USER = 'DELETE_USER';
+export const ADD_POINT = 'ADD_POINT';
+export const QUIT_POINT = 'QUIT_POINT';
+export const ADD_GOAL = 'ADD_GOAL';
+export const QUIT_GOAL = 'QUIT_GOAL';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -170,6 +174,60 @@ export const putFixture = (id, payload) => {
 			);
 			dispatch({
 				type: PUT_FIXTURE,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const addPoint = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(``);
+			dispatch({
+				type: ADD_POINT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const quitPoit = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(``);
+			dispatch({
+				type: QUIT_POINT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+export const addGoal = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(``);
+			dispatch({
+				type: ADD_GOAL,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+export const quitGoal = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(``);
+			dispatch({
+				type: QUIT_GOAL,
 				payload: info.data
 			});
 		} catch (error) {
