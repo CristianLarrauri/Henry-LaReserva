@@ -28,7 +28,7 @@ export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 export const GET_ENABLED_REVIEWS = 'GET_ENABLED_REVIEWS';
 export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
 export const REPORT_REVIEW = 'REPORT_REVIEW';
-export const PUT_FIXTURE = 'PUT_FIXTURE	'
+export const PUT_FIXTURE = 'PUT_FIXTURE '
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -335,7 +335,7 @@ export const putFixture = (id, payload) => {
 			try {
 				const newOrder = await axios({
 					method: 'post',
-					url: '/order',
+					url: 'http://localhost:3001/order',
 					data: { tournamentId }
 				});
 				return dispatch({

@@ -37,7 +37,7 @@ let initialState = {
 	userProfile: {},
 	tournamentsHome: [],
 	nextTournaments: { next: [], nextFive: [] },
-	order: '',
+	order: "",
 	mpData: [],
 	allReviews: [],
 	enabledReviews: [],
@@ -155,7 +155,7 @@ function rootReducer(state = initialState, action) {
 				...state,
 				mpData: action.payload
 			};
-		case 'NEW_ORDER':
+		case "NEW_ORDER":
 			return {
 				...state,
 				order: action.payload
