@@ -58,20 +58,54 @@ router.get("/", async (req, res) => {
     name_surname_players.length
       ? res.status(200).send(name_surname_players)
       : res
-          .status(404)
-          .send("No se encontro Jugador con ese nombre y apellido.");
+        .status(404)
+        .send("No se encontro Jugador con ese nombre y apellido.");
   }
 });
 
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const data = req.body;
+// router.put("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const data = req.body;
 
+//   try {
+//     let change_player = await Players.update(data, { where: { id } });
+//     return res.send(change_player);
+//   } catch (error) {
+//     console.log("Rompo en route/put", error);
+//   }
+// });
+
+router.put("/add/:id", async (req, res) => {
   try {
-    let change_player = await Players.update(data, { where: { id } });
-    return res.send(change_player);
+    let { id } = req.params;
+    let players = await Players.findByPk(id); // findByPk ??????!!!
+
+    await players.update({
+      ...players,
+      goals: players.goals + 1,
+    });
+
+    return res.status(200).send("Gol agregado");
   } catch (error) {
-    console.log("Rompo en route/put", error);
+    console.log("ERROR EN RUTA PUT/add/players/goals", error);
+  }
+});
+
+router.put("/quit/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let players = await Players.findByPk(id); // findByPk ??????!!!
+
+    if (players.goals === 0) return res.status(404).send("El jugador ya no tiene goles que le puedas quitar!");
+    
+    await players.update({
+      ...players,
+      goals: players.goals - 1,
+    });
+
+    return res.status(200).send("Gol quitado");
+  } catch (error) {
+    console.log("ERROR EN RUTA PUT/quit/players/goals", error);
   }
 });
 
