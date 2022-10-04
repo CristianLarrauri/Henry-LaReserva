@@ -25,7 +25,11 @@ import {
 	GET_DISABLED_REVIEWS,
 	REPORT_REVIEW,
 	PUT_FIXTURE,
+<<<<<<< HEAD
 	PAYMENT_HISTORY
+=======
+	DELETE_USER
+>>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 } from '../actions/index.js';
 
 let initialState = {
@@ -95,8 +99,8 @@ function rootReducer(state = initialState, action) {
 		case PUT_FIXTURE:
 			return {
 				...state,
-				tournamentDetail: {...state.tournamentDetail, fixture: action.payload}
-			}
+				tournamentDetail: { ...state.tournamentDetail, fixture: action.payload }
+			};
 		case GET_ALL_TOURNAMENTS:
 			return {
 				...state,
@@ -136,6 +140,10 @@ function rootReducer(state = initialState, action) {
 				...state
 			};
 		case TO_ADMIN:
+			return {
+				...state
+			};
+		case DELETE_USER:
 			return {
 				...state
 			};

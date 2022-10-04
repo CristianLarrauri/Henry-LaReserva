@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IoLogoNoSmoking } from 'react-icons/io';
 export const CREATE_TOURNAMENT = 'CREATE_TOURNAMENT';
 export const GET_ALL_TOURNAMENTS = 'GET_ALL_TOURNAMENTS';
 export const NAME_SORT = 'NAME_SORT';
@@ -28,8 +29,13 @@ export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 export const GET_ENABLED_REVIEWS = 'GET_ENABLED_REVIEWS';
 export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
 export const REPORT_REVIEW = 'REPORT_REVIEW';
+<<<<<<< HEAD
 export const PUT_FIXTURE = 'PUT_FIXTURE '
 
+=======
+export const PUT_FIXTURE = 'PUT_FIXTURE';
+export const DELETE_USER = 'DELETE_USER';
+>>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -108,7 +114,6 @@ export const createTeam = (payload) => {
 	};
 };
 
-
 export const getAllTournaments = (
 	page,
 	order,
@@ -163,8 +168,11 @@ export const tournamentDetails = (id) => {
 export const putFixture = (id, payload) => {
 	return async (dispatch) => {
 		try {
-			const obj = {fixture: payload};
-			const info = await axios.put(`http://localhost:3001/tournaments/${id}`, obj);
+			const obj = { fixture: payload };
+			const info = await axios.put(
+				`http://localhost:3001/tournaments/${id}`,
+				obj
+			);
 			dispatch({
 				type: PUT_FIXTURE,
 				payload: info.data
@@ -173,164 +181,124 @@ export const putFixture = (id, payload) => {
 			console.log(error);
 		}
 	};
-}
+};
 
-
-
-	export const searchTournaments = (name) => {
-		return async function (dispatch) {
-			try {
-				const info = await axios.get(
-					`http://localhost:3001/tournaments?name=${name}`
-				);
-				return dispatch({ type: SEARCH_TOURNAMENTS, payload: info.data });
-			} catch (error) {
-				return dispatch({
-					type: SEARCH_TOURNAMENTS,
-					payload: []
-				})
-			}
-		};
-	};
-
-	export const getTournamentsHome = (page, order, property) => {
-		return async (dispatch) => {
-			try {
-				const info = await axios.get(
-					`http://localhost:3001/home?page=${page}&order=${order}&property=${property}`
-				);
-				dispatch({
-					type: GET_TOURNAMENTS_HOME,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	};
-
-	export const getAllUsers = (payload) => {
-		return async (dispatch) => {
-			try {
-				const info = await axios.get('http://localhost:3001/users', payload);
-				dispatch({
-					type: GET_ALL_USERS,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	};
-
-	export const createUser = (payload) => {
-		return async (dispatch) => {
-			try {
-				const info = await axios.post(
-					'http://localhost:3001/users/post',
-					payload
-				);
-				dispatch({
-					type: CREATE_USER,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	};
-
-	export const banUser = (id) => {
-		return async (dispatch) => {
-			try {
-				const info = await axios.put(`http://localhost:3001/users/ban/${id}`);
-				dispatch({
-					type: BAN_USER,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	};
-
-	export const toAdmin = (id) => {
-		return async (dispatch) => {
-			try {
-				const info = await axios.put(`http://localhost:3001/users/admin/${id}`);
-				dispatch({
-					type: TO_ADMIN,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	};
-
-	export const getUserDetails = (email) => {
-		return async function (dispatch) {
-			const info = await axios.get(`http://localhost:3001/users/${email}`);
+export const searchTournaments = (name) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get(
+				`http://localhost:3001/tournaments?name=${name}`
+			);
+			return dispatch({ type: SEARCH_TOURNAMENTS, payload: info.data });
+		} catch (error) {
 			return dispatch({
-				type: GET_USER_DETAILS,
+				type: SEARCH_TOURNAMENTS,
+				payload: []
+			});
+		}
+	};
+};
+
+export const getTournamentsHome = (page, order, property) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get(
+				`http://localhost:3001/home?page=${page}&order=${order}&property=${property}`
+			);
+			dispatch({
+				type: GET_TOURNAMENTS_HOME,
 				payload: info.data
 			});
-		};
+		} catch (error) {
+			console.log(error);
+		}
 	};
+};
 
-	export function getNext5Tournaments() {
-		return async (dispatch) => {
-			try {
-				const nextTournaments = await axios.get(
-					'http://localhost:3001/next?index=1&limit=5'
-				);
+export const getAllUsers = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.get('http://localhost:3001/users', payload);
+			dispatch({
+				type: GET_ALL_USERS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
-				dispatch({
-					type: GET_NEXT_FIVE_TOURNAMENTS,
-					payload: nextTournaments.data
-				});
-			} catch (err) {
-				console.error(err.message);
-			}
-		};
-	}
+export const createUser = (payload) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.post(
+				'http://localhost:3001/users/post',
+				payload
+			);
+			dispatch({
+				type: CREATE_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
-	export function getNextTournament() {
-		return async (dispatch) => {
-			try {
-				const nextTournament = await axios.get(
-					'http://localhost:3001/next?index=0&limit=1'
-				);
+export const banUser = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/users/ban/${id}`);
+			dispatch({
+				type: BAN_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
-				dispatch({
-					type: GET_NEXT_TOURNAMENT,
-					payload: nextTournament.data
-				});
-			} catch (err) {
-				console.error(err.message);
-			}
-		};
-	}
+export const toAdmin = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/users/admin/${id}`);
+			dispatch({
+				type: TO_ADMIN,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
-	export function deleteTournament(id) {
-		return async (dispatch) => {
-			try {
-				const info = await axios.put(
-					`http://localhost:3001/tournaments/enabled/${id}`
-				);
-				dispatch({
-					type: DELETE_TOURNAMENT,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	}
+export const getUserDetails = (email) => {
+	return async function (dispatch) {
+		const info = await axios.get(`http://localhost:3001/users/${email}`);
+		return dispatch({
+			type: GET_USER_DETAILS,
+			payload: info.data
+		});
+	};
+};
 
-	// --------------------------------------------------
-	// Aqui todas las actions necesarias para MercadoPago
+export const deleteUser = (email) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.delete(`http://localhost:3001/users/${email}`);
+			return dispatch({
+				type: DELETE_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
 
+<<<<<<< HEAD
 	export function postOrder(tournamentId) {
 		return async function (dispatch) {
 			try {
@@ -348,122 +316,111 @@ export const putFixture = (id, payload) => {
 			}
 		};
 	}
+=======
+export function getNext5Tournaments() {
+	return async (dispatch) => {
+		try {
+			const nextTournaments = await axios.get(
+				'http://localhost:3001/next?index=1&limit=5'
+			);
+>>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 
-	export function getMercadoPago(orderId) {
-		return async function (dispatch) {
-			try {
-				const mp = await axios.get(`/mercadopago/${orderId}`);
-				return dispatch({
-					type: 'MP_DATA',
-					payload: mp.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
+			dispatch({
+				type: GET_NEXT_FIVE_TOURNAMENTS,
+				payload: nextTournaments.data
+			});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+}
 
-	/* -----------------------------------------Necesarias para reviews------------------------------------------------------------------------------*/
+export function getNextTournament() {
+	return async (dispatch) => {
+		try {
+			const nextTournament = await axios.get(
+				'http://localhost:3001/next?index=0&limit=1'
+			);
 
-	export function getReviews() {
-		return async function (dispatch) {
-			try {
-				const info = await axios.get(`http://localhost:3001/reviews`);
-				console.log('info', info.data);
-				return dispatch({
-					type: 'GET_REVIEWS',
-					payload: info.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
+			dispatch({
+				type: GET_NEXT_TOURNAMENT,
+				payload: nextTournament.data
+			});
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+}
 
-	export function postReviews(payload) {
-		return async function (dispatch) {
-			try {
-				const info = await axios.post(`http://localhost:3001/reviews`, payload);
-				return dispatch({
-					type: 'POST_REVIEWS',
-					payload: info.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
+export function deleteTournament(id) {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(
+				`http://localhost:3001/tournaments/enabled/${id}`
+			);
+			dispatch({
+				type: DELETE_TOURNAMENT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
 
-	export function deleteReviews(id) {
-		return async function (dispatch) {
-			try {
-				const info = await axios.delete(`http://localhost:3001/reviews/${id}`);
-				return dispatch({
-					type: 'DELETE_REVIEWS',
-					payload: info.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
+// --------------------------------------------------
+// Aqui todas las actions necesarias para MercadoPago
 
-	export function getIdReview(id) {
-		return async function (dispatch) {
-			try {
-				const info = await axios.get(`http://localhost:3001/reviews/${id}`);
-				return dispatch({
-					type: 'GET_ID_REVIEW',
-					payload: info.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
+export function postOrder(tournamentId) {
+	return async function (dispatch) {
+		try {
+			const newOrder = await axios({
+				method: 'post',
+				url: '/order',
+				data: { tournamentId }
+			});
+			return dispatch({
+				type: 'NEW_ORDER',
+				payload: newOrder.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 
-	export function getEnabledReviews() {
-		return async function (dispatch) {
-			try {
-				const info = await axios.get('http://localhost:3001/reviews/enabled');
-				return dispatch({
-					type: GET_ENABLED_REVIEWS,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	}
+export function getMercadoPago(orderId) {
+	return async function (dispatch) {
+		try {
+			const mp = await axios.get(`/mercadopago/${orderId}`);
+			return dispatch({
+				type: 'MP_DATA',
+				payload: mp.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 
-	export function getDisabledReviews() {
-		return async function (dispatch) {
-			try {
-				const info = await axios.get('http://localhost:3001/reviews/disabled');
-				return dispatch({
-					type: GET_DISABLED_REVIEWS,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	}
+/* -----------------------------------------Necesarias para reviews------------------------------------------------------------------------------*/
 
-	export function reportAllowReview(id) {
-		return async function (dispatch) {
-			try {
-				const info = await axios.put(`http://localhost:3001/reviews/${id}`);
-				return dispatch({
-					type: REPORT_REVIEW,
-					payload: info.data
-				});
-			} catch (error) {
-				console.log(error);
-			}
-		};
-	}
+export function getReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get(`http://localhost:3001/reviews`);
+			console.log('info', info.data);
+			return dispatch({
+				type: 'GET_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 
+<<<<<<< HEAD
 	export function setActualUser(username, ban, admin) {
 		return {
 			type: SET_ACTUAL_USER,
@@ -474,3 +431,99 @@ export const putFixture = (id, payload) => {
 			}
 		};
 	}
+=======
+export function postReviews(payload) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.post(`http://localhost:3001/reviews`, payload);
+			return dispatch({
+				type: 'POST_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function deleteReviews(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.delete(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: 'DELETE_REVIEWS',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function getIdReview(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: 'GET_ID_REVIEW',
+				payload: info.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
+
+export function getEnabledReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get('http://localhost:3001/reviews/enabled');
+			return dispatch({
+				type: GET_ENABLED_REVIEWS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function getDisabledReviews() {
+	return async function (dispatch) {
+		try {
+			const info = await axios.get('http://localhost:3001/reviews/disabled');
+			return dispatch({
+				type: GET_DISABLED_REVIEWS,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function reportAllowReview(id) {
+	return async function (dispatch) {
+		try {
+			const info = await axios.put(`http://localhost:3001/reviews/${id}`);
+			return dispatch({
+				type: REPORT_REVIEW,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+export function setActualUser(username, ban, admin) {
+	return {
+		type: SET_ACTUAL_USER,
+		payload: {
+			username: username,
+			ban: ban,
+			admin: admin
+		}
+	};
+}
+>>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
