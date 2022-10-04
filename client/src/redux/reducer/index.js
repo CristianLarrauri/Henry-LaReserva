@@ -24,7 +24,8 @@ import {
 	GET_ENABLED_REVIEWS,
 	GET_DISABLED_REVIEWS,
 	REPORT_REVIEW,
-	PUT_FIXTURE
+	PUT_FIXTURE,
+	PAYMENT_HISTORY
 } from '../actions/index.js';
 
 let initialState = {
@@ -165,6 +166,12 @@ function rootReducer(state = initialState, action) {
 				...state,
 				order: action.payload
 			};
+
+		// case PAYMENT_HISTORY:
+		// 	return {
+		// 		...state,
+		// 		order: action.payload
+		// 	}
 
 		case GET_REVIEWS:
 			return {
