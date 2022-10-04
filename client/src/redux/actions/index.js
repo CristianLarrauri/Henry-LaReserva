@@ -29,13 +29,8 @@ export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 export const GET_ENABLED_REVIEWS = 'GET_ENABLED_REVIEWS';
 export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
 export const REPORT_REVIEW = 'REPORT_REVIEW';
-<<<<<<< HEAD
-export const PUT_FIXTURE = 'PUT_FIXTURE '
-
-=======
 export const PUT_FIXTURE = 'PUT_FIXTURE';
 export const DELETE_USER = 'DELETE_USER';
->>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -298,32 +293,29 @@ export const deleteUser = (email) => {
 	};
 };
 
-<<<<<<< HEAD
-	export function postOrder(tournamentId) {
-		return async function (dispatch) {
-			try {
-				const newOrder = await axios({
-					method: 'post',
-					url: 'http://localhost:3001/order',
-					data: { tournamentId }
-				});
-				return dispatch({
-					type: 'NEW_ORDER',
-					payload: newOrder.data
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-	}
-=======
+export function postOrder(tournamentId) {
+	return async function (dispatch) {
+		try {
+			const newOrder = await axios({
+				method: 'post',
+				url: 'http://localhost:3001/order',
+				data: { tournamentId }
+			});
+			return dispatch({
+				type: 'NEW_ORDER',
+				payload: newOrder.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 export function getNext5Tournaments() {
 	return async (dispatch) => {
 		try {
 			const nextTournaments = await axios.get(
 				'http://localhost:3001/next?index=1&limit=5'
 			);
->>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 
 			dispatch({
 				type: GET_NEXT_FIVE_TOURNAMENTS,
@@ -371,24 +363,6 @@ export function deleteTournament(id) {
 // --------------------------------------------------
 // Aqui todas las actions necesarias para MercadoPago
 
-export function postOrder(tournamentId) {
-	return async function (dispatch) {
-		try {
-			const newOrder = await axios({
-				method: 'post',
-				url: '/order',
-				data: { tournamentId }
-			});
-			return dispatch({
-				type: 'NEW_ORDER',
-				payload: newOrder.data
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	};
-}
-
 export function getMercadoPago(orderId) {
 	return async function (dispatch) {
 		try {
@@ -420,18 +394,6 @@ export function getReviews() {
 	};
 }
 
-<<<<<<< HEAD
-	export function setActualUser(username, ban, admin) {
-		return {
-			type: SET_ACTUAL_USER,
-			payload: {
-				username: username,
-				ban: ban,
-				admin: admin
-			}
-		};
-	}
-=======
 export function postReviews(payload) {
 	return async function (dispatch) {
 		try {
@@ -526,4 +488,3 @@ export function setActualUser(username, ban, admin) {
 		}
 	};
 }
->>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3

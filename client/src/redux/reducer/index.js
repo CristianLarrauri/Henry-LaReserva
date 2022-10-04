@@ -25,11 +25,7 @@ import {
 	GET_DISABLED_REVIEWS,
 	REPORT_REVIEW,
 	PUT_FIXTURE,
-<<<<<<< HEAD
-	PAYMENT_HISTORY
-=======
 	DELETE_USER
->>>>>>> 049e0ebc82bd17fe12537900bb5cbc0001d954a3
 } from '../actions/index.js';
 
 let initialState = {
