@@ -59,7 +59,6 @@ function rootReducer(state = initialState, action) {
 				...state
 			};
 		case GET_ALL_TOURNAMENTS:
-			console.log('entrando', state.tournaments);
 			return {
 				...state,
 				tournaments: action.payload

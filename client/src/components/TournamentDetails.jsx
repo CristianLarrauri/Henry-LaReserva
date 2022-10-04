@@ -16,6 +16,7 @@ import {
 } from 'react-icons/bs';
 
 import { BiCategoryAlt, BiArrowBack } from 'react-icons/bi';
+import ball from '../images/blackBall.png';
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;
@@ -23,7 +24,6 @@ const TournamentDetail = (props) => {
 
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
-		console.log(tournament);
 	}, [dispatch]);
 
 	let tournament = useSelector((state) => state.tournamentDetail);
@@ -33,7 +33,7 @@ const TournamentDetail = (props) => {
 	const [fixture, setFixture] = React.useState('');
 	const [errorFixture, setErrorFixture] = React.useState('');
 	const [loading, setLoading] = React.useState(1);
-	const [popUp, setPopUp] = React.useState(false);
+	const [popUpError, setPopUpError] = React.useState({ title: '', msg: '' });
 
 	const handleFixture = async (e) => {
 		const files = e.target.files;
@@ -42,7 +42,7 @@ const TournamentDetail = (props) => {
 		if (files) {
 			size += files[0].size;
 		}
-		console.log(size);
+
 		data.append('file', files[0]);
 		data.append('upload_preset', 'ReservaTeams');
 		setLoading(2);
@@ -57,7 +57,7 @@ const TournamentDetail = (props) => {
 			const file = await res.json();
 			let array = file.secure_url.split('.');
 			let format = array[array.length - 1];
-			console.log(format);
+
 			if (size > 2000000) {
 				setErrorFixture('El archivo es demasiado grande');
 			} else {
@@ -78,7 +78,7 @@ const TournamentDetail = (props) => {
 
 	const handleUpdateFixture = (e) => {
 		e.preventDefault();
-		console.log(fixture);
+
 		setLoading(1);
 		dispatch(actions.putFixture(id, fixture));
 	};
@@ -87,21 +87,25 @@ const TournamentDetail = (props) => {
 		<div className="bg-white w-full min-h-screen flex flex-col justify-between items-center">
 			<Nav />
 			<div className="w-full min-h-screen flex flex-col items-center relative animate-appear">
-				<div className="bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center">
+				<div className="bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center shadow shadow-gray-700">
 					{/*info container*/}
-
 					<div
 						className={
-							popUp ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
+							popUpError.title
+								? popUpStyles.popUpOverlay
+								: popUpStyles.popUpOverlay_hidden
 						}
 					>
 						<div
-							className={popUp ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+							className={
+								popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden
+							}
 						>
-							<h2>¿Estás seguro de los cambios?</h2>
-
+							<h2>{popUpError.title}</h2>
+							<p>{popUpError.msg}</p>
 							<button
 								onClick={(e) => {
+									setPopUpError({});
 									handleUpdateFixture(e);
 									window.location.reload(false);
 								}}
@@ -109,11 +113,12 @@ const TournamentDetail = (props) => {
 							>
 								Si
 							</button>
+
 							<button
-								onClick={() => setPopUp(false)}
+								onClick={() => setPopUpError({})}
 								className={popUpStyles.okBtn}
 							>
-								Revisar información
+								Cancelar
 							</button>
 						</div>
 					</div>
@@ -205,46 +210,87 @@ const TournamentDetail = (props) => {
 					className="w-5/6 mt-10 flex items-center flex-col 
 					lg:flex-row lg:justify-between lg:items-start"
 				>
-					<div className="bg-gray-100 w-7/12 h-full min-h-[150px] p-5 m-3 min-w-[340px]">
+					<div className="bg-gray-100 w-7/12 h-full min-h-[150px] p-5 m-3 min-w-[340px] shadow shadow-gray-700">
 						<TeamsTable id={id} />
 					</div>
 
-					<div className="w-2/6 h-full min-h-[220px] min-w-[340px] m-3 bg-gray-100 p-5">
+					<div className="w-2/6 h-full min-h-[220px] min-w-[340px] m-3 bg-gray-100 p-5 shadow shadow-gray-700">
 						<ScorersTable id={id} />
 					</div>
 				</div>
 
-				{userDetail.admin === true ? (
-					<div>
-						<label
-							className="text-2xl font-medium
-						text-green-500 mb-2"
-						>
-							Cargar fixture{' '}
-						</label>
-						<input
-							id="inputFile"
-							type="file"
-							name="image"
-							onChange={(e) => handleFixture(e)}
-							className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
-						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"
+				{tournament.fixture && (
+					<div
+						className="bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
+					sm:w-[640px] sm:h-[360px] flex justify-center items-center overflow-hidden mt-10
+					shadow shadow-gray-700"
+					>
+						<img
+							className="w-full h-full"
+							src={tournament.fixture}
+							alt="fixture.png"
 						/>
+					</div>
+				)}
 
-						{loading === 2 ? <p>Cargando imagen...</p> : false}
-						{loading === 0 ? (
+				{userDetail.admin === true ? (
+					<div className=" mt-10 w-5/6 flex flex-col items-center">
+						<div className="bg-gray-100 p-3 flex flex-col items-center shadow shadow-gray-700 my-12 min-w-fit m-3">
+							<label
+								className="text-2xl font-medium
+							text-gray-700 mb-2"
+							>
+								Cargar fixture
+							</label>
+
+							<input
+								id="inputFile"
+								type="file"
+								name="image"
+								onChange={(e) => handleFixture(e)}
+								className="text-xl text-gray-700 bg-white p-2 w-5/6 shadow shadow-gray-700"
+							/>
+
+							<p className="">Tamaño recomendado 1280*720</p>
+						</div>
+
+						{loading === 2 ? (
 							<div>
+								<p className="text-gray-700 font-medium my-3 text-xl">
+									Cargando...
+								</p>
 								<img
-									className="h-[800px] textaling:center"
-									src={fixture}
-									alt=""
+									className="w-[80px] h-[80px] animate-spin"
+									src={ball}
+									alt="ball.png"
 								/>
-								<br />
+							</div>
+						) : (
+							false
+						)}
+						{loading === 0 ? (
+							<div className="flex flex-col items-center">
+								<div
+									className="bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
+								sm:w-[640px] sm:h-[360px] flex justify-center items-center overflow-hidden"
+								>
+									<img
+										className="w-full h-full"
+										src={fixture}
+										alt="fixture.png"
+									/>
+								</div>
+
 								<button
 									className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								hover:bg-white hover:text-green-700 hover:scale-110 duration-300 text-white
-								flex justify-center items-center"
-									onClick={() => setPopUp(true)}
+								hover:scale-110 duration-300 text-white
+								flex justify-center items-center font-bold text-xl"
+									onClick={() =>
+										setPopUpError({
+											title: 'Seguro?',
+											msg: 'Esta seguro que desea usar esta imagen?'
+										})
+									}
 								>
 									Actualizar
 								</button>
@@ -255,7 +301,7 @@ const TournamentDetail = (props) => {
 
 						<div
 							className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
-p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
+							p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
 							style={errorFixture ? { opacity: 1 } : { opacity: 0 }}
 						>
 							<p>{errorFixture}</p>
@@ -265,17 +311,11 @@ p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
 					false
 				)}
 
-				<img
-					className="h-[800px] textaling:center"
-					src={tournament.fixture}
-					alt="fixture tournament"
-				/>
-
 				<Link
 					to="/home"
 					className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
-								hover:scale-110 duration-300 text-white
-								flex justify-center items-center animate-appear"
+					hover:scale-110 duration-300 text-white
+					flex justify-center items-center animate-appear my-20"
 				>
 					<p className="text-xl font-bold flex items-center justify-center">
 						<BiArrowBack className="mr-3" />
