@@ -12,7 +12,7 @@ export default function ScorersTable({ id }) {
 	}, []);
 
 	return (
-		<table className="w-full relative bg-white text-gray-800">
+		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
 			<div className="min-h-[70px]" />
 
 			<div

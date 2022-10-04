@@ -1158,7 +1158,7 @@ export default function PlayerInscription() {
 					final ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
+				<div className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
 					<h2>¿Estás seguro?</h2>
 					<p>Si está todo bien, haz click en pagar inscripción</p>
 					<Link to="/pago">
@@ -1179,11 +1179,11 @@ export default function PlayerInscription() {
 					popUp1 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp1 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player1.name}</p>
-					<p>Apellido: {player1.surname}</p>
-					<p>DNI: {player1.dni}</p>
+				<div className={popUp1 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>  
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player1.name}</p>
+					<p className='text-lg'>Apellido: {player1.surname}</p>
+					<p className='text-lg'>DNI: {player1.dni}</p>
 					<button
 						onClick={(e) => handleSubmit1(e)}
 						className={popUpStyles.okBtn}
@@ -1204,11 +1204,11 @@ export default function PlayerInscription() {
 					popUp2 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp2 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player2.name}</p>
-					<p>Apellido: {player2.surname}</p>
-					<p>DNI: {player2.dni}</p>
+				<div className={popUp2 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player2.name}</p>
+					<p className='text-lg'>Apellido: {player2.surname}</p>
+					<p className='text-lg'>DNI: {player2.dni}</p>
 					<button
 						onClick={(e) => handleSubmit2(e)}
 						className={popUpStyles.okBtn}
@@ -1229,11 +1229,11 @@ export default function PlayerInscription() {
 					popUp3 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp3 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player3.name}</p>
-					<p>Apellido: {player3.surname}</p>
-					<p>DNI: {player3.dni}</p>
+				<div className={popUp3 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player3.name}</p>
+					<p className='text-lg'>Apellido: {player3.surname}</p>
+					<p className='text-lg'>DNI: {player3.dni}</p>
 					<button
 						onClick={(e) => handleSubmit3(e)}
 						className={popUpStyles.okBtn}
@@ -1254,11 +1254,11 @@ export default function PlayerInscription() {
 					popUp4 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp4 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player4.name}</p>
-					<p>Apellido: {player4.surname}</p>
-					<p>DNI: {player4.dni}</p>
+				<div className={popUp4 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player4.name}</p>
+					<p className='text-lg'>Apellido: {player4.surname}</p>
+					<p className='text-lg'>DNI: {player4.dni}</p>
 					<button
 						onClick={(e) => handleSubmit4(e)}
 						className={popUpStyles.okBtn}
@@ -1279,11 +1279,11 @@ export default function PlayerInscription() {
 					popUp5 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp5 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?5</h2>
-					<p>Nombre: {player5.name}</p>
-					<p>Apellido: {player5.surname}</p>
-					<p>DNI: {player5.dni}</p>
+				<div className={popUp5 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player5.name}</p>
+					<p className='text-lg'>Apellido: {player5.surname}</p>
+					<p className='text-lg'>DNI: {player5.dni}</p>
 					<button
 						onClick={(e) => handleSubmit5(e)}
 						className={popUpStyles.okBtn}
@@ -1304,11 +1304,11 @@ export default function PlayerInscription() {
 					popUp6 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp6 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?6</h2>
-					<p>Nombre: {player6.name}</p>
-					<p>Apellido: {player6.surname}</p>
-					<p>DNI: {player6.dni}</p>
+				<div className={popUp6 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player6.name}</p>
+					<p className='text-lg'>Apellido: {player6.surname}</p>
+					<p className='text-lg'>DNI: {player6.dni}</p>
 					<button
 						onClick={(e) => handleSubmit6(e)}
 						className={popUpStyles.okBtn}
@@ -1329,11 +1329,11 @@ export default function PlayerInscription() {
 					popUp7 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp7 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player7.name}</p>
-					<p>Apellido: {player7.surname}</p>
-					<p>DNI: {player7.dni}</p>
+				<div className={popUp7 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player7.name}</p>
+					<p className='text-lg'>Apellido: {player7.surname}</p>
+					<p className='text-lg'>DNI: {player7.dni}</p>
 					<button
 						onClick={(e) => handleSubmit7(e)}
 						className={popUpStyles.okBtn}
@@ -1354,11 +1354,11 @@ export default function PlayerInscription() {
 					popUp8 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp8 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player8.name}</p>
-					<p>Apellido: {player8.surname}</p>
-					<p>DNI: {player8.dni}</p>
+				<div className={popUp8 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player8.name}</p>
+					<p className='text-lg'>Apellido: {player8.surname}</p>
+					<p className='text-lg'>DNI: {player8.dni}</p>
 					<button
 						onClick={(e) => handleSubmit8(e)}
 						className={popUpStyles.okBtn}
@@ -1379,11 +1379,11 @@ export default function PlayerInscription() {
 					popUp9 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp9 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?</h2>
-					<p>Nombre: {player9.name}</p>
-					<p>Apellido: {player9.surname}</p>
-					<p>DNI: {player9.dni}</p>
+				<div className={popUp9 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player9.name}</p>
+					<p className='text-lg'>Apellido: {player9.surname}</p>
+					<p className='text-lg'>DNI: {player9.dni}</p>
 					<button
 						onClick={(e) => handleSubmit9(e)}
 						className={popUpStyles.okBtn}
@@ -1404,11 +1404,11 @@ export default function PlayerInscription() {
 					popUp10 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp10 ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-					<h2>¿Están correctos los datos del jugador?10</h2>
-					<p>Nombre: {player10.name}</p>
-					<p>Apellido: {player10.surname}</p>
-					<p>DNI: {player10.dni}</p>
+				<div className={popUp10 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+					<h2>Son los datos correctos?</h2>
+					<p className='text-lg'>Nombre: {player10.name}</p>
+					<p className='text-lg'>Apellido: {player10.surname}</p>
+					<p className='text-lg'>DNI: {player10.dni}</p>
 					<button
 						onClick={(e) => handleSubmit10(e)}
 						className={popUpStyles.okBtn}
@@ -1441,107 +1441,123 @@ export default function PlayerInscription() {
 					Inscribi a tu equipo
 				</h2>
 
-				<form className="bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] animate-appear">
+				<form className="bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] shadow shadow-gray-700 animate-appear">
 					<div className="w-full flex flex-col items-center">
-						<div className="bg-gray-100 w-4/6 min-w-[330px] flex flex-col items-center">
+						<div className="bg-gray-100 w-5/6 min-w-[330px] flex flex-col items-center mt-10">
 							<div
-								className="w-5/6 min-h-[160px] flex flex-col justify-end items-center
-					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between"
-							>
-								<label
-									className="text-2xl font-medium 
-						text-green-500 mb-2"
-								>
-									Torneo:{' '}
-								</label>
-								<select
-									name="tournament"
-									value={selectValue}
-									onChange={(e) => handleChangeSelect(e)}
-									onClick={(e) => handleErrorSelect(e)}
-								>
-									<option value="undefined">Elegir torneo</option>
-									{nextTournaments.map((e) => (
-										<option value={e.id}>{e.name}</option>
-									))}
-								</select>
+								className="w-full bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700">
+								
+								<div className='flex flex-col justify-end items-center h-[140px]
+ 								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+ 								min-w-[320px] w-full' >
+									<label
+										className="text-2xl font-medium 
+										text-green-500 mb-2">
+										Torneo:{' '}
+									</label>
+									<select
+										name="tournament"
+										value={selectValue}
+										onChange={(e) => handleChangeSelect(e)}
+										onClick={(e) => handleErrorSelect(e)}
+										className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+										outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+									>
+										<option value="undefined">Elegir torneo</option>
+										{nextTournaments.map((e) => (
+											<option value={e.id}>{e.name}</option>
+										))}
+									</select>
 
-								<div
+									<div
 									className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
-						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
+									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
 									style={
 										errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }
-									}
-								>
+									}>
 									<p>{errorSelect.errorSelect}</p>
+									</div>
 								</div>
-
-								<label
+								
+								<div className='flex flex-col justify-end items-center h-[140px]
+ 								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+ 								min-w-[320px] w-full'>
+									<label
 									className="text-2xl font-medium
-						text-green-500 mb-2"
-								>
+									text-green-500 mb-2">
 									Nombre de tu equipo:{' '}
 								</label>
-								<input
+									<input
 									type="text"
 									value={teamName}
 									name="name"
 									onChange={(e) => handleChange(e)}
 									onKeyUp={(e) => handleError(e)}
 									placeholder="Nombre del equipo"
-									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
-						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"
-								/>
+									className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+									outline-none pl-2 min-w-[300px] text-gray-500 text-lg'/>
+
+									<div
+									className="absolute right-50 top-[-25px] bg-red-600 text-white rounded-lg
+									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
+									style={formErrors.name ? { opacity: 1 } : { opacity: 0 }}>
+									<p>{formErrors.name}</p>
+									</div>
+									
+								</div>
+								
+
+								
 
 								<div
-									className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
-						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
-									style={formErrors.name ? { opacity: 1 } : { opacity: 0 }}
-								>
-									<p>{formErrors.name}</p>
-								</div>
-							</div>
-
-							<div
-								className="w-5/6 min-h-[160px] flex flex-col justify-end items-center
-					lg:flex-row lg:items-end relative lg:min-h-[120px] lg:justify-between
-					mt-10"
-							>
+								className='flex flex-col justify-end items-center h-[140px]
+								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
+								min-w-[320px] w-full' >
 								<label
 									className="text-2xl font-medium
-						text-green-500 mb-2"
-								>
+									text-green-500 mb-2">
 									Escudo/bandera/imagen:{' '}
 								</label>
+								
+
 								<input
 									id="inputFile"
 									type="file"
 									name="image"
 									onChange={(e) => handleShield(e)}
-									className="w-3/6 h-[50px] bg-gray-100 border-b border-green-500 outline-none
-						pl-[10px] min-w-[300px] ml-3 text-lg text-gray-500"
-								/>
-								<br />
-								{loading === 1 ? <small>{'(opcional)'}</small> : false}
+									className='w-4/6 bg-gray-100 border-b border-green-500
+									outline-none min-w-[300px] text-gray-500 text-lg'/>
 
-								{loading === 2 ? <p>Cargando imagen...</p> : false}
+								{/* {loading === 1 ? <small>{'(opcional)'}</small> : false} */}
+
+								{loading === 2 ? <p className="absolute right-50 top-2 bg-green-700 text-white rounded-lg
+									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4">Cargando imagen...</p> : false}
 								{loading === 0 ? (
-									<img className="h-[200px]" src={shield} alt="" />
+									<div className='w-[80px] h-[80px] flex justify-center items-center overflow-hidden 
+									bg-white shadow shadow-gray-700 absolute right-0 top-[-10px]'>
+										<img className="h-full w-full" src={shield} alt="" />
+									</div>
 								) : (
 									false
 								)}
+
+
 								<div
 									className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
-						p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
-									style={errorShield ? { opacity: 1 } : { opacity: 0 }}
-								>
+									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
+									style={errorShield ? { opacity: 1 } : { opacity: 0 }}>
 									<p>{errorShield}</p>
 								</div>
 							</div>
+
+							</div>
+
+							
+
 						</div>
 					</div>
 
-					<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
+					<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
 						<b> Por favor, completá con los datos REALES de los jugadores.</b>{' '}
 						<br /> Recordá que los datos serán pedidos por el personal de la
 						cancha antes de iniciar el partido.
@@ -1558,8 +1574,8 @@ export default function PlayerInscription() {
 						</ul>
 					</div>
 
-					<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-						<h2 className="text-2xl text-green-500 font-medium mt-4">
+					<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+						<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 							Jugador 1
 						</h2>
 
@@ -1661,8 +1677,8 @@ export default function PlayerInscription() {
 						</button>
 					</div>
 					{confirm1 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 2
 							</h2>
 
@@ -1771,8 +1787,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm2 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 3
 							</h2>
 
@@ -1881,8 +1897,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm3 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 4
 							</h2>
 
@@ -1991,8 +2007,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm4 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 5
 							</h2>
 
@@ -2101,8 +2117,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm5 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 6
 							</h2>
 
@@ -2211,8 +2227,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm6 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 7
 							</h2>
 
@@ -2321,8 +2337,8 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm7 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
 								Jugador 8
 							</h2>
 
@@ -2431,26 +2447,34 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm8 && !addScrub1 ? (
-						<button onClick={handleAddScrub1}>
-							Agregar suplente (opcional)
-						</button>
+						<div className='w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700'>
+							<button onClick={handleAddScrub1}
+							className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+							text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+							duration-300">
+							Agregar suplente
+							</button>
+
+							<p className='text-gray-700'>{`(Opcional)`}</p>
+						</div>
 					) : (
 						false
 					)}
 
 					{addScrub1 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
-								Suplente 1
-							</h2>
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
 							<button
 								onClick={deleteScrub1}
 								className="bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300"
+								text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+								duration-300"
 							>
 								X
 							</button>
+
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
+								Suplente 1
+							</h2>
 
 							<div
 								className="flex flex-col justify-end items-center h-[140px]
@@ -2557,27 +2581,34 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm9 && !addScrub2 ? (
-						<button onClick={handleAddScrub2}>
-							Agregar suplente (opcional)
+						<div className='w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700'>
+						<button onClick={handleAddScrub2}
+						className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+						duration-300">
+						Agregar suplente
 						</button>
+
+						<p className='text-gray-700'>{`(Opcional)`}</p>
+					</div>
 					) : (
 						false
 					)}
 
 					{addScrub2 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3">
-							<h2 className="text-2xl text-green-500 font-medium mt-4">
-								Suplente 2
-							</h2>
-
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
 							<button
-								onClick={deleteScrub2}
-								className="bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
-						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300"
+							onClick={deleteScrub2}
+							className="bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
+							text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
+							duration-300"
 							>
 								X
 							</button>
+
+							<h2 className="text-2xl text-green-500 font-medium mt-4 text-center">
+								Suplente 2
+							</h2>
 
 							<div
 								className="flex flex-col justify-end items-center h-[140px]
@@ -2684,7 +2715,7 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm8 ? (
-						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 flex items-center flex-col relative">
+						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700 flex items-center flex-col relative">
 							<h3>
 								<b>CONDICIÓN NECESARIA</b>
 							</h3>
