@@ -17,9 +17,12 @@ export default function Login(props){
 		//Si el email existe no hacer nada
 		//Si el email no existe crear el usuario en la db
 		console.log('PROPS: '+props.to);
-		if(props.authed === false) loginWithRedirect({
-			redirectUri: `http://localhost:3000${props.to}`
-		});
+		if(props.authed === false){
+
+			loginWithRedirect({
+				redirectUri: `http://localhost:3000${props.to}`
+			});
+		}
 
         if(!isLoading && user){
 			axios.post('http://localhost:3001/users/post', {

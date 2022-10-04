@@ -13,7 +13,7 @@ export default function TeamsTable({ id }) {
 	}, []);
 
 	return (
-		<table className="w-full relative bg-white text-gray-800">
+		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
 			<div className="flex items-center min-h-[70px]" />
 
 			<div className="absolute w-full top-0 left-0 flex items-center justify-center min-h-[70px]">
