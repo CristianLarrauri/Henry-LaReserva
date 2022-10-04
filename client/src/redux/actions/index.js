@@ -351,6 +351,23 @@ export const deleteUser = (email) => {
 	};
 };
 
+export function postOrder(tournamentId) {
+	return async function (dispatch) {
+		try {
+			const newOrder = await axios({
+				method: 'post',
+				url: 'http://localhost:3001/order',
+				data: { tournamentId }
+			});
+			return dispatch({
+				type: 'NEW_ORDER',
+				payload: newOrder.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 export function getNext5Tournaments() {
 	return async (dispatch) => {
 		try {
@@ -403,24 +420,6 @@ export function deleteTournament(id) {
 
 // --------------------------------------------------
 // Aqui todas las actions necesarias para MercadoPago
-
-export function postOrder(tournamentId) {
-	return async function (dispatch) {
-		try {
-			const newOrder = await axios({
-				method: 'post',
-				url: '/order',
-				data: { tournamentId }
-			});
-			return dispatch({
-				type: 'NEW_ORDER',
-				payload: newOrder.data
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	};
-}
 
 export function getMercadoPago(orderId) {
 	return async function (dispatch) {

@@ -63,18 +63,58 @@ router.delete('/:id', async (req, res) => {
 
 
 // Ruta PUT para que el admin pueda actualizar info de teams (tabla de posiciones)
-router.put('/:id', async (req, res) => {
+// router.put('/:id', async (req, res) => {
+//     try {
+//         let { id } = req.params;
+//         let editTeam = req.body;
+
+//         let data = await Teams.update(editTeam, {
+//           where: { id },
+//         });
+//         return res.status(200).send("Team successfully updated");
+//       } catch (error) {
+//         return res.status(400).send("ERROR EN PUT/TEAMS", error);
+//       }
+// });
+
+router.put("/add/:id", async (req, res) => {
     try {
         let { id } = req.params;
-        let editTeam = req.body;
-    
-        let data = await Teams.update(editTeam, {
-          where: { id },
+        let teams = await Teams.findByPk(id); // findByPk ??????!!!
+
+        // if (players.amountOfTeams <= 0) {
+        //   return res.status(400).send("No hay mas cupos");
+        // }
+
+        await teams.update({
+            ...teams,
+            points: teams.points + 1,
         });
-        return res.status(200).send("Team successfully updated");
-      } catch (error) {
-        return res.status(400).send("ERROR EN PUT/TEAMS", error);
-      }
+
+        return res.status(200).send("Punto agregado");
+    } catch (error) {
+        console.log("ERROR EN RUTA PUT/add/teams/points", error);
+    }
+});
+
+router.put("/quit/:id", async (req, res) => {
+    try {
+        let { id } = req.params;
+        let teams = await Teams.findByPk(id); // findByPk ??????!!!
+
+        // if (players.amountOfTeams <= 0) {
+        //   return res.status(400).send("No hay mas cupos");
+        // }
+
+        await teams.update({
+            ...teams,
+            points: teams.points - 1,
+        });
+
+        return res.status(200).send("Punto quitado");
+    } catch (error) {
+        console.log("ERROR EN RUTA PUT/quit/teams/points", error);
+    }
 });
 
 module.exports = router;
