@@ -68,24 +68,28 @@ export default function TeamsTable({ id }) {
 							<td>{index + 1}</td>
 
 							<td className="text-green-700">{team.points}</td>
-							{userDetail.admin === true ? (						
-								<button
-									value={team.id}
-									onKeyUp={(e) => handleAddPoints(e)}
-									onClick={(e) => handleAddPoints(e)}
-									className="mr-3 px-4 py-4 bold text-2xl "
-								>
-									+
-								</button>
+							{userDetail.admin === true ? (		
+								<td>			
+									<button
+										value={team.id}
+										onKeyUp={(e) => handleAddPoints(e)}
+										onClick={(e) => handleAddPoints(e)}
+										className="mr-3 px-4 py-4 bold text-2xl "
+									>
+										+
+									</button>
+								</td>	
 							) : null}
 							{userDetail.admin === true ? (
-								<button
-								value={team.id}
-								onKeyUp={(e) => handleQuitPoint(e)}
-								onClick={(e) => handleQuitPoint(e)}
-								className="mr-3 px-4 py-4 bold text-2xl">
-								-
-								</button>
+								<td>
+									<button
+									value={team.id}
+									onKeyUp={(e) => handleQuitPoint(e)}
+									onClick={(e) => handleQuitPoint(e)}
+									className="mr-3 px-4 py-4 bold text-2xl">
+									-
+									</button>
+								</td>
 							) : null}
 						</tr>
 					);

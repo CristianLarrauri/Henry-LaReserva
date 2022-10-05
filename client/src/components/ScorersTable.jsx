@@ -13,22 +13,21 @@ export default function ScorersTable({ id }) {
 
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/scorers?tournament=${id}`)
+			.get(`http://localhost:3001/scorers?tournament=${id}&limit=99`)
 			.then((data) => setScorersInfo(data.data));
-	}, []);
+	}, [userDetail]);
 
 	const handleAddGoal = (e) => {
 		dispatch(addGoal(e.target.value)).
-		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}`)
+		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}&limit=99`)
 		.then((data) => {
-			console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA');
 			setScorersInfo(data.data);
 		}));
 	};
 
 	const handleQuitGoal = (e) => {
 		dispatch(quitGoal(e.target.value)).
-		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}`)
+		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}&limit=99`)
 		.then(data => setScorersInfo(data.data)));
 	};
 	
@@ -54,18 +53,19 @@ export default function ScorersTable({ id }) {
 			{scorersInfo[0] ? (
 				scorersInfo.map((player, index) => {
 					return (
-						<tr
+
+						((userDetail.admin===false || userDetail.admin==='dc') && index > 8)?null:(<tr
 							key={`trScr${index}`}
 							className="text-center font-medium border-b border-t
-                     border-black text-lg"
-						>
+                    		border-black text-lg">
+
 							<td className="py-1">{index + 1}</td>
 							<td>{player.name + ` ` + player.surname}</td>
 							<td value={player.id} className="text-green-700">
 								{player.goals}
 							</td>
-
-							{userDetail.admin && (
+							{console.log(userDetail.admin)}
+							{userDetail.admin===true? (
 								<td>
 									<button
 									value={player.id}
@@ -74,9 +74,9 @@ export default function ScorersTable({ id }) {
 									+
 									</button>
 								</td>
-							)}
+							):null}
 
-							{userDetail.admin && (
+							{userDetail.admin===true?(
 								<td>
 									<button
 									value={player.id}
@@ -85,9 +85,9 @@ export default function ScorersTable({ id }) {
 									-
 									</button>
 								</td>
-							)}
-						</tr>
-					);
+							):null}
+						</tr>)
+					)
 				})
 			) : (
 				<tr className="flex justify-center font-bold text-xl w-full absolute">
