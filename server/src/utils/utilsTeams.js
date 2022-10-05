@@ -24,7 +24,7 @@ const preload_teams = async () => {
 
 const create_teams = async (data) => {
   try {
-    const { name, players, tournaments, points, user } = data;
+    const { name, players, tournaments, points, email } = data;
 
     const new_teams = await Teams.create({
       name,
@@ -40,12 +40,12 @@ const create_teams = async (data) => {
     });
 
     const users_relation = await Users.findAll({
-      where: { email: user },
+      where: { email: email },
     });
 
     new_teams.addPlayers(players_relation);
     new_teams.addTournaments(tournaments_relation);
-    new_teams.addTournaments(users_relation);
+    new_teams.addUsers(users_relation);
 
     return new_teams;
   } catch (error) {

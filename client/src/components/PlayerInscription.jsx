@@ -9,6 +9,8 @@ import { Link, useLocation } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 export default function PlayerInscription() {
@@ -20,6 +22,7 @@ export default function PlayerInscription() {
 
 	const history = useHistory()
 
+	const { user } = useAuth0()
 
 
 	React.useEffect(() => {
@@ -461,7 +464,7 @@ export default function PlayerInscription() {
 
 
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e) => {{/*Handle final*/}
 		e.preventDefault();
 		if (!teamName) {
 			setPopUpError({
@@ -558,8 +561,10 @@ export default function PlayerInscription() {
 		}
 	}, [idTeam]);
 
-
 	const handleFinal = () => {
+		team.email=user.email;
+		console.log('AAAAAAAAA');
+		console.log(team);
 		axios.post('http://localhost:3001/teams', team)
 			.then(data => data.data).then(e => {
 				setIdTeam(e.id)

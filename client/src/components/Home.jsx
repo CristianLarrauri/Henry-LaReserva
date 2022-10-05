@@ -63,6 +63,13 @@ export default function Home() {
 			})
 			.catch((err) => console.log(err));
 		} else if(status === "in_process"){//Si se rechazo el pago
+
+     /*  console.log('me rechazaron el pago we');
+      let idTeam = localStorage.getItem("idTeam");
+      console.log('id: '+idTeam);
+
+      axios.delete(`http://localhost:3001/teams/${idTeam}`); */
+
 			axios
 			.post('http://localhost:3001/email', payloadbad)
 			.then((data) => {
