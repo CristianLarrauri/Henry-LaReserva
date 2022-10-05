@@ -1,11 +1,31 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { RiTeamFill } from 'react-icons/ri';
+import { addPoint, quitPoint } from '../redux/actions';
 
 export default function TeamsTable({ id }) {
 	const [teams, setTeams] = useState([]);
+	const dispatch = useDispatch();
+	const userDetail = useSelector((state) => state.actualUser);
 
+	const handleAddPoints = (e) => {
+		axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => {
+				setTeams(data.data);
+				dispatch(addPoint(e.target.value));
+			});
+	};
+
+	const handleQuitPoint = (e) => {
+		dispatch(quitPoint(e.target.value));
+		axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => setTeams(data.data));
+	};
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/positions?tournament=${id}`)
@@ -13,7 +33,7 @@ export default function TeamsTable({ id }) {
 	}, []);
 
 	return (
-		<table className="w-full relative bg-white text-gray-800">
+		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
 			<div className="flex items-center min-h-[70px]" />
 
 			<div className="absolute w-full top-0 left-0 flex items-center justify-center min-h-[70px]">
@@ -37,7 +57,28 @@ export default function TeamsTable({ id }) {
 						>
 							<td className="py-2">{team.name}</td>
 							<td>{index + 1}</td>
+
 							<td className="text-green-700">{team.points}</td>
+							{userDetail.admin === true ? (
+								<button
+									value={team.id}
+									onKeyUp={(e) => handleQuitPoint(e)}
+									onClick={(e) => handleQuitPoint(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									-
+								</button>
+							) : null}
+							{userDetail.admin === true ? (
+								<button
+									value={team.id}
+									onKeyUp={(e) => handleAddPoints(e)}
+									onClick={(e) => handleAddPoints(e)}
+									className="mr-3 px-4 py-4 bold text-2xl "
+								>
+									+
+								</button>
+							) : null}
 						</tr>
 					);
 				})

@@ -24,7 +24,12 @@ import {
 	GET_ENABLED_REVIEWS,
 	GET_DISABLED_REVIEWS,
 	REPORT_REVIEW,
-	PUT_FIXTURE
+	PUT_FIXTURE,
+	DELETE_USER,
+	ADD_POINT,
+	QUIT_POINT,
+	ADD_GOAL,
+	QUIT_GOAL
 } from '../actions/index.js';
 
 let initialState = {
@@ -37,7 +42,7 @@ let initialState = {
 	userProfile: {},
 	tournamentsHome: [],
 	nextTournaments: { next: [], nextFive: [] },
-	order: '',
+	order: "",
 	mpData: [],
 	allReviews: [],
 	enabledReviews: [],
@@ -58,7 +63,6 @@ function rootReducer(state = initialState, action) {
 				...state
 			};
 		case GET_ALL_TOURNAMENTS:
-			console.log('entrando', state.tournaments);
 			return {
 				...state,
 				tournaments: action.payload
@@ -94,8 +98,8 @@ function rootReducer(state = initialState, action) {
 		case PUT_FIXTURE:
 			return {
 				...state,
-				tournamentDetail: {...state.tournamentDetail, fixture: action.payload}
-			}
+				tournamentDetail: { ...state.tournamentDetail, fixture: action.payload }
+			};
 		case GET_ALL_TOURNAMENTS:
 			return {
 				...state,
@@ -138,6 +142,10 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state
 			};
+		case DELETE_USER:
+			return {
+				...state
+			};
 		case GET_NEXT_FIVE_TOURNAMENTS:
 			return {
 				...state,
@@ -148,6 +156,22 @@ function rootReducer(state = initialState, action) {
 				...state,
 				nextTournaments: { ...state.nextTournaments, next: action.payload }
 			};
+		case ADD_POINT:
+			return {
+				...state
+			};
+		case QUIT_POINT:
+			return {
+				...state
+			};
+		case ADD_GOAL:
+			return {
+				...state
+			};
+		case QUIT_GOAL:
+			return {
+				...state
+			};
 
 		// MercadoPago
 		case 'MP_DATA':
@@ -155,7 +179,7 @@ function rootReducer(state = initialState, action) {
 				...state,
 				mpData: action.payload
 			};
-		case 'NEW_ORDER':
+		case "NEW_ORDER":
 			return {
 				...state,
 				order: action.payload
@@ -165,6 +189,12 @@ function rootReducer(state = initialState, action) {
 				...state,
 				order: action.payload
 			};
+
+		// case PAYMENT_HISTORY:
+		// 	return {
+		// 		...state,
+		// 		order: action.payload
+		// 	}
 
 		case GET_REVIEWS:
 			return {

@@ -110,9 +110,6 @@ export default function CreateTournament() {
 
 	let today = Date.now();
 
-	console.log('input', Date.parse(input.dateInit));
-	console.log('today', today);
-
 	function validate(data) {
 		let errors = {};
 

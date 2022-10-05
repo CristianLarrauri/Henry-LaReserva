@@ -103,5 +103,17 @@ router.put('/admin/:id', async (req, res) => {
 		console.log('Rompo en ruta put/admin', error);
 	}
 });
+//Ruta delete
+router.delete('/:email', async (req, res) => {
+	const { email } = req.params;
+	try {
+		await Users.destroy({
+			where: { email }
+		});
+		res.send('El usuario a sido borrado');
+	} catch (error) {
+		console.log('ROMPO EN ROUTER DELETE USER', error);
+	}
+});
 
 module.exports = router;

@@ -19,8 +19,6 @@ export default function ModifyTournaments() {
 	const [popUpError, setPopUpError] = useState({});
 	const id = params.id;
 
-	// const tournamentToModify = useSelector((state) => state.tournamentDetail);
-	// console.log('tm', tournamentToModify);
 	const [input, setInput] = useState({
 		name: '',
 		amountOfTeams: 0,
@@ -46,7 +44,6 @@ export default function ModifyTournaments() {
 
 		dispatch(tournamentDetails(id));
 	}, []);
-	console.log('input', input);
 
 	const handleChange = (e) => {
 		setInput({

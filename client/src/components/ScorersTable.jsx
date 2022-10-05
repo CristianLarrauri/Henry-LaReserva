@@ -2,9 +2,21 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { RiFootballLine } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addGoal, quitGoal } from '../redux/actions';
 
 export default function ScorersTable({ id }) {
 	const [scorersInfo, setScorersInfo] = useState([]);
+	const dispatch = useDispatch();
+	const userDetail = useSelector((state) => state.actualUser);
+	const handleAddGoal = (e) => {
+		dispatch(addGoal(e.target.value));
+	};
+
+	const handleQuitGoal = (e) => {
+		dispatch(quitGoal(e.target.value));
+	};
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/scorers?tournament=${id}`)
@@ -12,7 +24,7 @@ export default function ScorersTable({ id }) {
 	}, []);
 
 	return (
-		<table className="w-full relative bg-white text-gray-800">
+		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
 			<div className="min-h-[70px]" />
 
 			<div
@@ -39,7 +51,27 @@ export default function ScorersTable({ id }) {
 						>
 							<td className="py-1">{index + 1}</td>
 							<td>{player.name + ` ` + player.surname}</td>
-							<td className="text-green-700">{player.goals}</td>
+							<td value={player.id} className="text-green-700">
+								{player.goals}
+							</td>
+							{userDetail.admin === true ? (
+								<button
+									value={player.id}
+									onClick={(e) => handleQuitGoal(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									-
+								</button>
+							) : null}
+							{userDetail.admin === true ? (
+								<button
+									value={player.id}
+									onClick={(e) => handleAddGoal(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									+
+								</button>
+							) : null}
 						</tr>
 					);
 				})
