@@ -44,7 +44,7 @@ router.post('/post', async (req, res) => {
 	let { name, email, img } = req.body;
 	try {
 		const user = await Users.findOrCreate({
-			where: { email: email, name: name, img: img }
+			where: { email: email}
 		}); //busca usuario que tenga el email que le pasamos,
 		//  si el usuario no esta, lo crea, si o encuentra lo devuelve.
 

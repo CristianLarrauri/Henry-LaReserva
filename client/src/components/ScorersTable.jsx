@@ -10,18 +10,28 @@ export default function ScorersTable({ id }) {
 	const [scorersInfo, setScorersInfo] = useState([]);
 	const dispatch = useDispatch();
 	const userDetail = useSelector((state) => state.actualUser);
-	const handleAddGoal = (e) => {
-		dispatch(addGoal(e.target.value));
-	};
 
-	const handleQuitGoal = (e) => {
-		dispatch(quitGoal(e.target.value));
-	};
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/scorers?tournament=${id}`)
 			.then((data) => setScorersInfo(data.data));
 	}, []);
+
+	const handleAddGoal = (e) => {
+		dispatch(addGoal(e.target.value)).
+		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}`)
+		.then((data) => {
+			console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA');
+			setScorersInfo(data.data);
+		}));
+	};
+
+	const handleQuitGoal = (e) => {
+		dispatch(quitGoal(e.target.value)).
+		then(() => axios.get(`http://localhost:3001/scorers?tournament=${id}`)
+		.then(data => setScorersInfo(data.data)));
+	};
+	
 
 	return (
 		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
@@ -54,24 +64,28 @@ export default function ScorersTable({ id }) {
 							<td value={player.id} className="text-green-700">
 								{player.goals}
 							</td>
-							{userDetail.admin === true ? (
-								<button
-									value={player.id}
-									onClick={(e) => handleQuitGoal(e)}
-									className="mr-3 px-4 py-4 bold text-2xl"
-								>
-									-
-								</button>
-							) : null}
-							{userDetail.admin === true ? (
-								<button
+
+							{userDetail.admin && (
+								<td>
+									<button
 									value={player.id}
 									onClick={(e) => handleAddGoal(e)}
-									className="mr-3 px-4 py-4 bold text-2xl"
-								>
+									className="mr-3 px-4 py-4 bold text-2xl">
 									+
-								</button>
-							) : null}
+									</button>
+								</td>
+							)}
+
+							{userDetail.admin && (
+								<td>
+									<button
+									value={player.id}
+									onClick={(e) => handleQuitGoal(e)}
+									className="mr-3 px-4 py-4 bold text-2xl">
+									-
+									</button>
+								</td>
+							)}
 						</tr>
 					);
 				})
