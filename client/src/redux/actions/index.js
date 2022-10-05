@@ -185,7 +185,7 @@ export const putFixture = (id, payload) => {
 export const addPoint = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put(``);
+			const info = await axios.put(`http://localhost:3001/teams/add/${id}`);
 			dispatch({
 				type: ADD_POINT,
 				payload: info.data
@@ -196,10 +196,10 @@ export const addPoint = (id) => {
 	};
 };
 
-export const quitPoit = (id) => {
+export const quitPoint = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put(``);
+			const info = await axios.put(`http://localhost:3001/teams/quit/${id}`);
 			dispatch({
 				type: QUIT_POINT,
 				payload: info.data
@@ -212,7 +212,7 @@ export const quitPoit = (id) => {
 export const addGoal = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put(``);
+			const info = await axios.put(`http://localhost:3001/players/add/${id}`);
 			dispatch({
 				type: ADD_GOAL,
 				payload: info.data
@@ -225,7 +225,7 @@ export const addGoal = (id) => {
 export const quitGoal = (id) => {
 	return async (dispatch) => {
 		try {
-			const info = await axios.put(``);
+			const info = await axios.put(`http://localhost:3001/players/quit/${id}`);
 			dispatch({
 				type: QUIT_GOAL,
 				payload: info.data

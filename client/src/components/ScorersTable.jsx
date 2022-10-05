@@ -10,12 +10,6 @@ export default function ScorersTable({ id }) {
 	const [scorersInfo, setScorersInfo] = useState([]);
 	const dispatch = useDispatch();
 	const userDetail = useSelector((state) => state.actualUser);
-	useEffect(() => {
-		axios
-			.get(`http://localhost:3001/scorers?tournament=${id}`)
-			.then((data) => setScorersInfo(data.data));
-	}, []);
-
 	const handleAddGoal = (e) => {
 		dispatch(addGoal(e.target.value));
 	};
@@ -23,6 +17,11 @@ export default function ScorersTable({ id }) {
 	const handleQuitGoal = (e) => {
 		dispatch(quitGoal(e.target.value));
 	};
+	useEffect(() => {
+		axios
+			.get(`http://localhost:3001/scorers?tournament=${id}`)
+			.then((data) => setScorersInfo(data.data));
+	}, []);
 
 	return (
 		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
@@ -56,10 +55,22 @@ export default function ScorersTable({ id }) {
 								{player.goals}
 							</td>
 							{userDetail.admin === true ? (
-								<button className="mr-3 px-4 py-4 bold text-2xl">-</button>
+								<button
+									value={player.id}
+									onClick={(e) => handleQuitGoal(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									-
+								</button>
 							) : null}
 							{userDetail.admin === true ? (
-								<button className="mr-3 px-4 py-4 bold text-2xl">+</button>
+								<button
+									value={player.id}
+									onClick={(e) => handleAddGoal(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									+
+								</button>
 							) : null}
 						</tr>
 					);

@@ -4,27 +4,33 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { RiTeamFill } from 'react-icons/ri';
-import { addPoint, quitPoit } from '../redux/actions';
+import { addPoint, quitPoint } from '../redux/actions';
 
 export default function TeamsTable({ id }) {
 	const [teams, setTeams] = useState([]);
 	const dispatch = useDispatch();
 	const userDetail = useSelector((state) => state.actualUser);
-	console.log('ud', userDetail.admin);
 
+	const handleAddPoints = (e) => {
+		axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => {
+				setTeams(data.data);
+				dispatch(addPoint(e.target.value));
+			});
+	};
+
+	const handleQuitPoint = (e) => {
+		dispatch(quitPoint(e.target.value));
+		axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => setTeams(data.data));
+	};
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/positions?tournament=${id}`)
 			.then((data) => setTeams(data.data));
 	}, []);
-
-	const handleAddPoints = (e) => {
-		dispatch(addPoint(e.target.value));
-	};
-
-	const handleQuitPoint = (e) => {
-		dispatch(quitPoit(e.target.value));
-	};
 
 	return (
 		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
@@ -52,14 +58,26 @@ export default function TeamsTable({ id }) {
 							<td className="py-2">{team.name}</td>
 							<td>{index + 1}</td>
 
-							<td value={team.id} className="text-green-700">
-								{team.points}
-							</td>
+							<td className="text-green-700">{team.points}</td>
 							{userDetail.admin === true ? (
-								<button className="mr-3 px-4 py-4 bold text-2xl">-</button>
+								<button
+									value={team.id}
+									onKeyUp={(e) => handleQuitPoint(e)}
+									onClick={(e) => handleQuitPoint(e)}
+									className="mr-3 px-4 py-4 bold text-2xl"
+								>
+									-
+								</button>
 							) : null}
 							{userDetail.admin === true ? (
-								<button className="mr-3 px-4 py-4 bold text-2xl">+</button>
+								<button
+									value={team.id}
+									onKeyUp={(e) => handleAddPoints(e)}
+									onClick={(e) => handleAddPoints(e)}
+									className="mr-3 px-4 py-4 bold text-2xl "
+								>
+									+
+								</button>
 							) : null}
 						</tr>
 					);
