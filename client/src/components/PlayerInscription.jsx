@@ -510,10 +510,10 @@ export default function PlayerInscription() {
 				player8.dni
 			];
 			if (player9.name.length > 0 && addScrub1) {
-				players.push(player9);
+				players.push(player9.dni);
 			}
 			if (player10.name.length > 0 && addScrub2) {
-				players.push(player10);
+				players.push(player10.dni);
 			}
 			setTeam({
 				...team,
