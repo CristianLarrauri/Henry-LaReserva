@@ -42,7 +42,7 @@ export default function About() {
       <Nav/>
       <h1 className="text-green-500 font-bold text-4xl mt-6">NUESTRO EQUIPO</h1>
       <div className=" w-full flex pt-16 bg-white shadow shadow-gray-700 p-3 mt-12 sm:w-5/6">{/*main section*/}
-        <div className="w-full flex justify-around flex-wrap pt-16 green-300 overflow-hidden">
+        <div className="w-full flex justify-around flex-wrap pt-16 bg-white overflow-hidden">
         {teamInfo.map((member, index) => {
           return (
             <div className={`bg-yellow-300 w-[300px] min-w-[300px] h-[530px] relative 

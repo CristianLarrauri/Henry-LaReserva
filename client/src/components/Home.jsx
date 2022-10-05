@@ -42,14 +42,27 @@ export default function Home() {
   }, []);
 
 	useEffect(()=>{
+
 		if(status === "approved"){
+      //Put por aca cupos
+      let IdTournament = localStorage.getItem("IdTournament");
+      console.log('torneo id: '+IdTournament);
+
+      if(IdTournament){
+        axios.put(`http://localhost:3001/tournaments/quitcupos/${IdTournament}`)
+        .then(() =>{
+          IdTournament.setItem("IdTournament", undefined);
+          console.log(IdTournament.getItem("IdTournament"))
+        });
+      }
+
 			axios
 			.post('http://localhost:3001/email', payloadgood)
 			.then((data) => {
 				return data;
 			})
 			.catch((err) => console.log(err));
-		} else if(status === "in_process"){
+		} else if(status === "in_process"){//Si se rechazo el pago
 			axios
 			.post('http://localhost:3001/email', payloadbad)
 			.then((data) => {
@@ -138,9 +151,10 @@ export default function Home() {
             <div className="bg-green-600 absolute right-0 bottom-0 w-[300px] h-[300px] rounded-tl-full z-0" />
           </div>
         </div>
-        <div className="flex justify-center items-center bg-green-600 font-bold text-white text-2xl">
-          <RiFootballLine className="text-2xl" />
-          <h2>Torneos en curso</h2>
+        <div className="w-full flex justify-start pl-9">
+          <div className='bg-white p-3 flex justify-center text-4xl text-green-700 font-bold w-11/12 rounded'>
+            <h2>Torneos en curso</h2>
+          </div>
         </div>
         <div>
           <TournamentCards />

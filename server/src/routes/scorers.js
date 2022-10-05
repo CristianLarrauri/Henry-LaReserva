@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     let data = await Players.findAll({
       order: [["goals", "DESC"]],
-      limit: 8,
+      limit: req.query.limit,
       include: {
         model: Tournaments,
         where: { id: req.query.tournament, enabled: true },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlayers } from '../redux/actions';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import popUpStyles from '../styles/PopUpStyles.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import queryString from 'query-string';
+import { useHistory } from 'react-router-dom';
 
 
 export default function PlayerInscription() {
@@ -17,7 +18,9 @@ export default function PlayerInscription() {
 
 	const [selectValue, setSelectValue] = React.useState('undefined');
 
-	
+	const history = useHistory()
+
+
 
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
@@ -30,9 +33,13 @@ export default function PlayerInscription() {
 	let nextTournaments = allTournaments.filter(
 		(e) => e.state === 'Proximo' && e.amountOfTeams > 0
 	);
+	const aux = useSelector(state => state.createdTeam)
+
 
 	const handleChangeSelect = (e) => {
 		e.preventDefault();
+		localStorage.setItem("IdTournament", e.target.value);
+		console.log(e.target.value);
 		setSelectValue(e.target.value);
 	};
 
@@ -451,6 +458,9 @@ export default function PlayerInscription() {
 		setAddScrub2(false);
 	};
 
+
+
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!teamName) {
@@ -526,10 +536,38 @@ export default function PlayerInscription() {
 		}
 	};
 
+	const storagePasarela = localStorage.getItem("idTeam");
+	const [idTeam, setIdTeam] = React.useState(undefined)
+	if(idTeam === undefined) {
+		setIdTeam(0)
+	}
+
+
+// 	const storagePasarela = JSON.parse(localStorage.getItem("pasarela"));
+//   useEffect(() => {
+//     localStorage.setItem("pasarela", JSON.stringify(selectValue));
+//   }, [selectValue]);
+
+
+
+	useEffect(() => {
+		localStorage.setItem("idTeam", idTeam);
+		console.log('UseEffect ' + idTeam)
+		if(idTeam){
+			history.push('/pago')
+		}
+	}, [idTeam]);
+
+
 	const handleFinal = () => {
-		dispatch(actions.createTeam(team));
+		axios.post('http://localhost:3001/teams', team)
+			.then(data => data.data).then(e => {
+				setIdTeam(e.id)
+			})
 		setFinal(false);
+		
 	};
+
 
 	const [loading, setLoading] = React.useState(1);
 
@@ -1153,11 +1191,11 @@ export default function PlayerInscription() {
 				>
 					<h2>¿Estás seguro?</h2>
 					<p>Si está todo bien, haz click en pagar inscripción</p>
-					<Link to="/pago">
+					{/* <Link to="/pago"> */}
 						<button onClick={() => handleFinal()} className={popUpStyles.okBtn}>
 							Pagar inscripción
 						</button>
-					</Link>
+					{/* </Link> */}
 					<button onClick={() => setFinal(false)} className={popUpStyles.okBtn}>
 						Revisar información
 					</button>
