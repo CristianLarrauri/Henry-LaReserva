@@ -38,6 +38,8 @@ export default function PlayerInscription() {
 
 	const handleChangeSelect = (e) => {
 		e.preventDefault();
+		localStorage.setItem("IdTournament", e.target.value);
+		console.log(e.target.value);
 		setSelectValue(e.target.value);
 	};
 
@@ -560,7 +562,7 @@ export default function PlayerInscription() {
 	const handleFinal = () => {
 		axios.post('http://localhost:3001/teams', team)
 			.then(data => data.data).then(e => {
-			setIdTeam(e.id)
+				setIdTeam(e.id)
 			})
 		setFinal(false);
 		
