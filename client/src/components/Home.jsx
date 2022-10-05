@@ -1,31 +1,70 @@
-import React from "react";
-import Footer from "./Footer";
-import NextTournaments from "./NextTournaments";
-import jugador from "../images/jugadorHome.png";
-import { BsCalendarDate } from "react-icons/bs";
-import { BiCategory } from "react-icons/bi";
-import { BsFillPersonFill } from "react-icons/bs";
+import React from 'react';
+import Footer from './Footer';
+import NextTournaments from './NextTournaments';
+import jugador from '../images/jugadorHome.png';
+import { BsCalendarDate } from 'react-icons/bs';
+import { BiCategory } from 'react-icons/bi';
+import { BsFillPersonFill } from 'react-icons/bs';
 import { RiFootballLine } from "react-icons/ri";
-import TournamentCards from "./TournamentCards";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getNextTournament } from "../redux/actions";
-import Nav from "../components/Nav";
-import { Link } from "react-router-dom";
+import TournamentCards from './TournamentCards';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNextTournament } from '../redux/actions';
+import Nav from '../components/Nav';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const nextTournaments = useSelector((store) => store.nextTournaments);
+	const dispatch = useDispatch();
+	const nextTournaments = useSelector((store) => store.nextTournaments);
+	const queryString = window.location.search
+	const params = new URLSearchParams(queryString)
+	const status = params.get("status")
+
+	const { user } = useAuth0()
+	
+	const payloadgood = {
+		email: `${user ? user.email : "No Logueado"}`,
+		option: `Pago`
+	}
+
+	const payloadbad = {
+		email: `${user ? user.email : "No Logueado"}`,
+		option: `Reject`
+	};
+
+	
+
 
   useEffect(() => {
     dispatch(getNextTournament());
   }, []);
 
-  return (
-    <div className="w-full min-h-screen flex flex-col justify-between bg-gray-200">
-      <Nav />
-      <div className="flex justify-start flex-col">
-        {/*div principal*/}
+	useEffect(()=>{
+		if(status === "approved"){
+			axios
+			.post('http://localhost:3001/email', payloadgood)
+			.then((data) => {
+				return data;
+			})
+			.catch((err) => console.log(err));
+		} else if(status === "in_process"){
+			axios
+			.post('http://localhost:3001/email', payloadbad)
+			.then((data) => {
+				return data;
+			})
+			.catch((err) => console.log(err));
+		}
+	},[])
+
+	return (
+		<div className="w-full min-h-screen flex flex-col justify-between bg-gray-200">
+			<Nav />
+			<div className="flex justify-start flex-col">
+				{/*div principal*/}
+
 
         <div className="w-full flex flex-wrap justify-center md:flex-nowrap md:justify-start">
           {/*div superior*/}

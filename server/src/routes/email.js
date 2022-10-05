@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
       from: `${EMAIL_RESERVA}`,
       to: email,
       subject: "La Reserva Complejo",
-      text: "Su inscripcion ha sido procesada con exito. Los esperamos para competir y buscar la victoria!!",
+      text: "Su inscripcion y pago han sido procesados con exito. Los esperamos para competir y buscar la victoria!!",
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -32,7 +32,23 @@ router.post("/", async (req, res) => {
         res.status(200).json(info);
       }
     });
-  } else if (option === "Ban") {
+  } else if (option === "Reject") {
+    const mailOptions = {
+      from: `${EMAIL_RESERVA}`,
+      to: email,
+      subject: "La Reserva Complejo",
+      text: "Su pago e inscripcion no ha sido procesada con exito. Vuelva a intentarlo para que se realice exitosamente",
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else {
+        console.log("Email enviado", info.response);
+        res.status(200).json(info);
+      }
+    });
+  } 
+  else if (option === "Ban") {
     const mailOptions = {
       from: `${EMAIL_RESERVA}`,
       to: email,
