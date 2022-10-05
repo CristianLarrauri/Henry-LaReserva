@@ -9,6 +9,7 @@ const preload_teams = async () => {
         points: teams.points,
         players: teams.players,
         tournaments: teams.tournaments,
+        email: teams.email
       };
     });
 
@@ -38,7 +39,7 @@ const create_teams = async (data) => {
     const tournaments_relation = await Tournaments.findAll({
       where: { name: tournaments },
     });
-  
+ 
     const users_relation = await Users.findAll({
       where: { email: email },
     });
