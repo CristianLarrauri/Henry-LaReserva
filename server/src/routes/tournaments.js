@@ -262,7 +262,7 @@ router.put("/:id", async (req, res) => {
 
 //.........................................................................................//
 // PUT /tournaments/cupos
-router.put("/cupos/:id", async (req, res) => {
+router.put("/quitcupos/:id", async (req, res) => {
   try {
     let { id } = req.params;
     let tournament = await Tournaments.findByPk(id);
@@ -282,6 +282,21 @@ router.put("/cupos/:id", async (req, res) => {
   }
 });
 
+router.put("/addcupos/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let tournament = await Tournaments.findByPk(id);
+
+    await tournament.update({
+      ...tournament,
+      amountOfTeams: tournament.amountOfTeams + 1,
+    });
+
+    return res.status(200).send("Inscripto");
+  } catch (error) {
+    console.log("ERROR EN RUTA POST/tournaments/addcupos", error);
+  }
+});
 // modificar enabled
 
 router.put("/enabled/:id", async (req, res) => {
