@@ -40,9 +40,11 @@ export default function About() {
       z-20 ${overlay?'opacity-1':'opacity-0'} ${overlay?'delay-300':'delay-0'} 
       duration-300 pointer-events-none z-10`}/>
       <Nav/>
-      <h1 className="text-green-500 font-bold text-4xl mt-6">NUESTRO EQUIPO</h1>
-      <div className=" w-full flex pt-16 bg-white shadow shadow-gray-700 p-3 mt-12 sm:w-5/6">{/*main section*/}
-        <div className="w-full flex justify-around flex-wrap pt-16 bg-white overflow-hidden">
+      <div className="w-5/6 bg-green-500 p-3 flex justify-center mt-6 shadow shadow-gray-700">
+        <h1 className="text-white font-bold text-4xl py-3">NUESTRO EQUIPO</h1>
+      </div>
+      <div className=" w-full flex pt-16 bg-green-500 shadow shadow-gray-700 p-3 mt-12 sm:w-5/6">{/*main section*/}
+        <div className="w-full flex justify-around flex-wrap pt-16 bg-green-500 overflow-hidden">
         {teamInfo.map((member, index) => {
           return (
             <div className={`bg-yellow-300 w-[300px] min-w-[300px] h-[530px] relative 
@@ -51,20 +53,20 @@ export default function About() {
             m-14 duration-300 ${overlay?'hover:scale-110':'scale-100'} animate-appear
             z-0 hover:z-20 ${overlay?'delay-0':'delay-200'} hover:bg-gradient-to-r`}>
 
-            <div className="bg-white w-[100px] h-[100px] absolute 
+            <div className="bg-green-500 w-[100px] h-[100px] absolute 
             top-[-50px] left-[-50px] rounded-full"/>
-            <div className="bg-white w-[100px] h-[100px] absolute 
+            <div className="bg-green-500 w-[100px] h-[100px] absolute 
             top-[-50px] right-[-50px] rounded-full"/>
 
-            <div className="bg-white w-[300px] h-[300px] rounded-[100%10px]
+            <div className="bg-green-500 w-[300px] h-[300px] rounded-[100%10px]
             absolute bottom-[-100px] left-[-150px] rotate-[60deg] 
             "/>
 
-            <div className="bg-white w-[300px] h-[300px] rounded-[100%10px]
+            <div className="bg-green-500 w-[300px] h-[300px] rounded-[100%10px]
             absolute bottom-[-100px] right-[-150px] rotate-[-60deg] scale-x-[-1]
             "/>
 
-            <div className="bg-white w-full h-[67px] absolute bottom-0"/>
+            <div className="bg-green-500 w-full h-[67px] absolute bottom-0"/>
             
             <div 
             onMouseEnter={() => setOverlay(true)}
@@ -144,7 +146,7 @@ export default function About() {
 
         <div className="w-full flex flex-col items-center mt-24">
 
-          <div className="text-gray-700 text-center w-4/6 bg-white p-6 shadow shadow-gray-700">
+          <div className="text-gray-700 text-center w-4/6 bg-green-500 p-6 shadow shadow-gray-700">
             <h2 className="font-bold text-3xl mb-3 text-green-500">Quienes somos?</h2>
 
             <p className="text-xl text-left">
@@ -159,7 +161,7 @@ export default function About() {
             </p>
           </div>
 
-          <div className="text-gray-700 text-center w-4/6 bg-white p-6 shadow shadow-gray-700 mt-6">
+          <div className="text-gray-700 text-center w-4/6 bg-green-500 p-6 shadow shadow-gray-700 mt-6">
             <h2 className="font-bold text-3xl mb-3 text-green-500">Que tecnologias usamos?</h2>
 
             <div className="w-full flex justify-center flex-wrap">
