@@ -7,6 +7,7 @@ const router = Router();
 //ruta post para --> /teams
 router.post("/", async (req, res) => {
   let data = req.body;
+
   let data_teams = await Teams.findAll();
 
   if (!data.name) res.status(400).send("Name es requerido");

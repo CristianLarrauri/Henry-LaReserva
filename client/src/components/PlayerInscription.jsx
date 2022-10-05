@@ -9,6 +9,8 @@ import { Link, useLocation } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import queryString from 'query-string';
 import { useHistory } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 export default function PlayerInscription() {
@@ -20,11 +22,13 @@ export default function PlayerInscription() {
 
 	const history = useHistory()
 
+	const { user } = useAuth0()
 
 
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
 		if (id) {
+			localStorage.setItem("IdTournament", id);
 			setSelectValue(id);
 		}
 	}, []);
@@ -39,7 +43,7 @@ export default function PlayerInscription() {
 	const handleChangeSelect = (e) => {
 		e.preventDefault();
 		localStorage.setItem("IdTournament", e.target.value);
-		console.log(e.target.value);
+		console.log("asd: "+e.target.value);
 		setSelectValue(e.target.value);
 	};
 
@@ -461,7 +465,7 @@ export default function PlayerInscription() {
 
 
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e) => {{/*Handle final*/}
 		e.preventDefault();
 		if (!teamName) {
 			setPopUpError({
@@ -558,8 +562,8 @@ export default function PlayerInscription() {
 		}
 	}, [idTeam]);
 
-
 	const handleFinal = () => {
+		team.email=user.email;
 		axios.post('http://localhost:3001/teams', team)
 			.then(data => data.data).then(e => {
 				setIdTeam(e.id)

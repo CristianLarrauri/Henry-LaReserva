@@ -46,12 +46,11 @@ export default function Home() {
 		if(status === "approved"){
       //Put por aca cupos
       let IdTournament = localStorage.getItem("IdTournament");
-      console.log('torneo id: '+IdTournament);
 
-      if(IdTournament){
+      if(IdTournament!==undefined){
         axios.put(`http://localhost:3001/tournaments/quitcupos/${IdTournament}`)
         .then(() =>{
-          IdTournament.setItem("IdTournament", undefined);
+          localStorage.setItem("IdTournament", undefined);
           console.log(IdTournament.getItem("IdTournament"))
         });
       }
@@ -63,6 +62,7 @@ export default function Home() {
 			})
 			.catch((err) => console.log(err));
 		} else if(status === "in_process"){//Si se rechazo el pago
+
 			axios
 			.post('http://localhost:3001/email', payloadbad)
 			.then((data) => {
