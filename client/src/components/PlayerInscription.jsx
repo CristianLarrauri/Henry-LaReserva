@@ -28,6 +28,7 @@ export default function PlayerInscription() {
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
 		if (id) {
+			localStorage.setItem("IdTournament", id);
 			setSelectValue(id);
 		}
 	}, []);
@@ -42,7 +43,7 @@ export default function PlayerInscription() {
 	const handleChangeSelect = (e) => {
 		e.preventDefault();
 		localStorage.setItem("IdTournament", e.target.value);
-		console.log(e.target.value);
+		console.log("asd: "+e.target.value);
 		setSelectValue(e.target.value);
 	};
 
@@ -563,8 +564,6 @@ export default function PlayerInscription() {
 
 	const handleFinal = () => {
 		team.email=user.email;
-		console.log('AAAAAAAAA');
-		console.log(team);
 		axios.post('http://localhost:3001/teams', team)
 			.then(data => data.data).then(e => {
 				setIdTeam(e.id)

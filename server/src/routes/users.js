@@ -3,7 +3,7 @@ const { Router } = require("express");
 const { find_by_email } = require("../utils/users");
 
 const router = Router();
-const { Users } = require("../db");
+const { Users, Teams } = require("../db");
 
 // Usuarios
 
@@ -21,6 +21,7 @@ router.get("/historial", async (req, res) => {
 
     return res.status(200).send(data);
   } catch (error) {
+	res.status(404).send(error);
     console.log("Rompo ruta Get de User/historial");
   }
 });

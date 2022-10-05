@@ -6,20 +6,49 @@ import TournamentListView from './TournamentListView';
 import { BiArrowBack } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser } from '../redux/actions/index';
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function PanelUser() {
 	const dispatch = useDispatch();
 	const { user, logout } = useAuth0();
+	const [tournaments, setTournaments] = useState([]);
 
 	const handleDeleteUser = () => {
 		dispatch(deleteUser(user.email));
 		logout({ returnTo: 'http://localhost:3000/home' });
 	};
 
+	useEffect(() => {
+		if(user.email){
+			axios.get(`http://localhost:3001/users/historial`)
+			.then(res => {
+				let filteredRes = res.data.filter(t => t.email===user.email);
+				
+				let promisifiedArray = [];
+
+				filteredRes[0].teams.map(teams => {
+					promisifiedArray.push(
+						axios.get(`http://localhost:3001/teams?name=${teams.name}`)
+					)
+				})
+
+				Promise.all(promisifiedArray)
+				.then(res => {
+					let tournaments = res.map(res => {
+						return res.data[0].tournaments[0];
+					})
+
+					setTournaments(tournaments);
+				})
+			});
+		}
+	},[user.email])
+
 	return (
 		<div className="min-h-screen flex flex-col justify-between">
 			<Nav />
-
+			{console.log(tournaments)}
 			<div className="flex justify-center text-gray-700 flex-wrap">
 				<div
 					className="bg-gray-100 p-6 flex flex-col items-center
@@ -62,67 +91,25 @@ export default function PanelUser() {
 					className="bg-gray-100 p-6 m-10 shadow shadow-gray-700 
                 w-4/6 flex flex-col items-center min-w-[320px]"
 				>
-					<h2 className="text-2xl font-bold border-b-2 border-black">
-						Inscripciones activas
+					<h2 className="text-3xl font-bold ">
+						Tus torneos
 					</h2>
 
-					<div className="w-full flex flex-col items-center border-b-2 border-gray-700 mb-3">
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
+					<div className="w-full flex flex-col items-center mt-6 mb-3">
+						{
+							tournaments?.map(tournament => (
+								<TournamentListView
+								name={tournament.name}
+								id={tournament.id}
+								dateInit={tournament.dateInit}
+								dateFinish={tournament.dateFinish}
+								category={tournament.category}
+								genre={tournament.genre}/>
+							))
+						}
 					</div>
 
-					<h2 className="text-2xl font-bold border-b-2 border-black">
-						Torneos pasados
-					</h2>
-
-					<div className="w-full flex flex-col items-center">
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
-						<TournamentListView
-							name={'Prueba 1'}
-							id="001"
-							dateInit="22/03/19"
-							dateFinish="22/03/19"
-							category="Sub20"
-							genre="Masculino"
-						/>
-					</div>
+					
 				</div>
 			</div>
 
