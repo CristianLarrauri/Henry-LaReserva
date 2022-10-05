@@ -210,11 +210,11 @@ const TournamentDetail = (props) => {
 					className="w-5/6 mt-10 flex items-center flex-col 
 					lg:flex-row lg:justify-between lg:items-start"
 				>
-					<div className="bg-gray-100 w-7/12 h-full min-h-[150px] p-5 m-3 min-w-[340px] shadow shadow-gray-700">
+					<div className="bg-gray-100 min-w-fit h-full min-h-[150px] p-5 m-3 shadow shadow-gray-700">
 						<TeamsTable id={id} />
 					</div>
 
-					<div className="w-2/6 h-full min-h-[220px] min-w-[340px] m-3 bg-gray-100 p-5 shadow shadow-gray-700">
+					<div className="bg-gray-100 h-full min-h-[220px] min-w-fit m-3 p-5 shadow shadow-gray-700">
 						<ScorersTable id={id} />
 					</div>
 				</div>

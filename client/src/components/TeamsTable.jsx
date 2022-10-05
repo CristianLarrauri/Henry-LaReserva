@@ -11,26 +11,35 @@ export default function TeamsTable({ id }) {
 	const dispatch = useDispatch();
 	const userDetail = useSelector((state) => state.actualUser);
 
-	const handleAddPoints = (e) => {
-		axios
-			.get(`http://localhost:3001/positions?tournament=${id}`)
-			.then((data) => {
-				setTeams(data.data);
-				dispatch(addPoint(e.target.value));
-			});
-	};
+	const [tournamentDetails, setTournamentDetails] = useState();
 
-	const handleQuitPoint = (e) => {
-		dispatch(quitPoint(e.target.value));
-		axios
-			.get(`http://localhost:3001/positions?tournament=${id}`)
-			.then((data) => setTeams(data.data));
-	};
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/positions?tournament=${id}`)
 			.then((data) => setTeams(data.data));
 	}, []);
+
+	
+	const handleAddPoints = (e) => {
+		dispatch(addPoint(e.target.value)).
+		then(() =>
+			axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => {
+				setTeams(data.data);
+			})
+		)
+	};
+
+	const handleQuitPoint = (e) => {
+		dispatch(quitPoint(e.target.value)).
+		then(() => {
+			axios
+			.get(`http://localhost:3001/positions?tournament=${id}`)
+			.then((data) => setTeams(data.data));
+		})
+		
+	};
 
 	return (
 		<table className="w-full relative bg-white text-gray-800 shadow shadow-gray-700">
@@ -59,17 +68,7 @@ export default function TeamsTable({ id }) {
 							<td>{index + 1}</td>
 
 							<td className="text-green-700">{team.points}</td>
-							{userDetail.admin === true ? (
-								<button
-									value={team.id}
-									onKeyUp={(e) => handleQuitPoint(e)}
-									onClick={(e) => handleQuitPoint(e)}
-									className="mr-3 px-4 py-4 bold text-2xl"
-								>
-									-
-								</button>
-							) : null}
-							{userDetail.admin === true ? (
+							{userDetail.admin === true ? (						
 								<button
 									value={team.id}
 									onKeyUp={(e) => handleAddPoints(e)}
@@ -77,6 +76,15 @@ export default function TeamsTable({ id }) {
 									className="mr-3 px-4 py-4 bold text-2xl "
 								>
 									+
+								</button>
+							) : null}
+							{userDetail.admin === true ? (
+								<button
+								value={team.id}
+								onKeyUp={(e) => handleQuitPoint(e)}
+								onClick={(e) => handleQuitPoint(e)}
+								className="mr-3 px-4 py-4 bold text-2xl">
+								-
 								</button>
 							) : null}
 						</tr>
