@@ -8,7 +8,7 @@ import popUpStyles from '../styles/PopUpStyles.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import * as actions from '../redux/actions';
 import queryString from 'query-string';
-import { useAuth0 } from '@auth0/auth0-react';
+
 
 export default function PlayerInscription() {
 	const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function PlayerInscription() {
 
 	const [selectValue, setSelectValue] = React.useState('undefined');
 
-	const { user } = useAuth0();
+	
 
 	React.useEffect(() => {
 		dispatch(actions.getTournamentsAdmin());
@@ -528,18 +528,7 @@ export default function PlayerInscription() {
 
 	const handleFinal = () => {
 		dispatch(actions.createTeam(team));
-		const payload = {
-			email: `${user.email}`,
-			option: `Pago`
-		};
-
 		setFinal(false);
-		axios
-			.post('http://localhost:3001/email', payload)
-			.then((data) => {
-				return data;
-			})
-			.catch((err) => console.log(err));
 	};
 
 	const [loading, setLoading] = React.useState(1);
