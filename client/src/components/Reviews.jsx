@@ -26,7 +26,7 @@ export default function Reviews() {
 
 	const userDetail = useSelector((state) => state.actualUser);
 	const [popUpError, setPopUpError] = useState({});
-	const {loginWithRedirect} = useAuth0();
+	const { loginWithRedirect } = useAuth0();
 	const history = useHistory();
 
 	const [review, setReview] = useState({
@@ -76,7 +76,6 @@ export default function Reviews() {
 
 	const handleDeleteReview = (e) => {
 		dispatch(deleteReviews(e.target.value));
-		/* console.log('etar', e.target.value); */
 
 		setPopUpError({
 			title: 'Exito',
@@ -99,7 +98,6 @@ export default function Reviews() {
 				msg: 'Se ha guardado tu comentario.'
 			});
 		}
-		/* console.log('reviewSubmited', review); */
 	};
 
 	function drawStars(calification) {
@@ -320,11 +318,14 @@ export default function Reviews() {
 				</div>
 			</div>
 
-			<button to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+			<button
+				to="/home"
+				className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 			hover:scale-110 duration-300 text-white
-			flex justify-center items-center animate-appear'
-			onClick={() => history.goBack()}>
-				<p className='text-xl font-bold flex items-center justify-center'>
+			flex justify-center items-center animate-appear"
+				onClick={() => history.goBack()}
+			>
+				<p className="text-xl font-bold flex items-center justify-center">
 					<BiArrowBack className="mr-3" />
 					Volver
 				</p>

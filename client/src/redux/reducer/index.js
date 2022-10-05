@@ -25,7 +25,11 @@ import {
 	GET_DISABLED_REVIEWS,
 	REPORT_REVIEW,
 	PUT_FIXTURE,
-	DELETE_USER
+	DELETE_USER,
+	ADD_POINT,
+	QUIT_POINT,
+	ADD_GOAL,
+	QUIT_GOAL
 } from '../actions/index.js';
 
 let initialState = {
@@ -59,7 +63,6 @@ function rootReducer(state = initialState, action) {
 				...state
 			};
 		case GET_ALL_TOURNAMENTS:
-			console.log('entrando', state.tournaments);
 			return {
 				...state,
 				tournaments: action.payload
@@ -152,6 +155,22 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				nextTournaments: { ...state.nextTournaments, next: action.payload }
+			};
+		case ADD_POINT:
+			return {
+				...state
+			};
+		case QUIT_POINT:
+			return {
+				...state
+			};
+		case ADD_GOAL:
+			return {
+				...state
+			};
+		case QUIT_GOAL:
+			return {
+				...state
 			};
 
 		// MercadoPago

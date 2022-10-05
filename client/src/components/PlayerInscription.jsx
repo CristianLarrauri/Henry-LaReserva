@@ -532,7 +532,7 @@ export default function PlayerInscription() {
 			email: `${user.email}`,
 			option: `Pago`
 		};
-		console.log(team);
+
 		setFinal(false);
 		axios
 			.post('http://localhost:3001/email', payload)
@@ -551,7 +551,7 @@ export default function PlayerInscription() {
 		if (files) {
 			size += files[0].size;
 		}
-		console.log(size);
+
 		data.append('file', files[0]);
 		data.append('upload_preset', 'ReservaTeams');
 		setLoading(2);
@@ -566,7 +566,7 @@ export default function PlayerInscription() {
 			const file = await res.json();
 			let array = file.secure_url.split('.');
 			let format = array[array.length - 1];
-			console.log(format);
+
 			if (size > 2000000) {
 				setErrorShield('El archivo es demasiado grande');
 			} else {
@@ -1158,7 +1158,10 @@ export default function PlayerInscription() {
 					final ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={final ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>¿Estás seguro?</h2>
 					<p>Si está todo bien, haz click en pagar inscripción</p>
 					<Link to="/pago">
@@ -1179,11 +1182,14 @@ export default function PlayerInscription() {
 					popUp1 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp1 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>  
+				<div
+					className={popUp1 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player1.name}</p>
-					<p className='text-lg'>Apellido: {player1.surname}</p>
-					<p className='text-lg'>DNI: {player1.dni}</p>
+					<p className="text-lg">Nombre: {player1.name}</p>
+					<p className="text-lg">Apellido: {player1.surname}</p>
+					<p className="text-lg">DNI: {player1.dni}</p>
 					<button
 						onClick={(e) => handleSubmit1(e)}
 						className={popUpStyles.okBtn}
@@ -1204,11 +1210,14 @@ export default function PlayerInscription() {
 					popUp2 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp2 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp2 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player2.name}</p>
-					<p className='text-lg'>Apellido: {player2.surname}</p>
-					<p className='text-lg'>DNI: {player2.dni}</p>
+					<p className="text-lg">Nombre: {player2.name}</p>
+					<p className="text-lg">Apellido: {player2.surname}</p>
+					<p className="text-lg">DNI: {player2.dni}</p>
 					<button
 						onClick={(e) => handleSubmit2(e)}
 						className={popUpStyles.okBtn}
@@ -1229,11 +1238,14 @@ export default function PlayerInscription() {
 					popUp3 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp3 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp3 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player3.name}</p>
-					<p className='text-lg'>Apellido: {player3.surname}</p>
-					<p className='text-lg'>DNI: {player3.dni}</p>
+					<p className="text-lg">Nombre: {player3.name}</p>
+					<p className="text-lg">Apellido: {player3.surname}</p>
+					<p className="text-lg">DNI: {player3.dni}</p>
 					<button
 						onClick={(e) => handleSubmit3(e)}
 						className={popUpStyles.okBtn}
@@ -1254,11 +1266,14 @@ export default function PlayerInscription() {
 					popUp4 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp4 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp4 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player4.name}</p>
-					<p className='text-lg'>Apellido: {player4.surname}</p>
-					<p className='text-lg'>DNI: {player4.dni}</p>
+					<p className="text-lg">Nombre: {player4.name}</p>
+					<p className="text-lg">Apellido: {player4.surname}</p>
+					<p className="text-lg">DNI: {player4.dni}</p>
 					<button
 						onClick={(e) => handleSubmit4(e)}
 						className={popUpStyles.okBtn}
@@ -1279,11 +1294,14 @@ export default function PlayerInscription() {
 					popUp5 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp5 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp5 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player5.name}</p>
-					<p className='text-lg'>Apellido: {player5.surname}</p>
-					<p className='text-lg'>DNI: {player5.dni}</p>
+					<p className="text-lg">Nombre: {player5.name}</p>
+					<p className="text-lg">Apellido: {player5.surname}</p>
+					<p className="text-lg">DNI: {player5.dni}</p>
 					<button
 						onClick={(e) => handleSubmit5(e)}
 						className={popUpStyles.okBtn}
@@ -1304,11 +1322,14 @@ export default function PlayerInscription() {
 					popUp6 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp6 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp6 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player6.name}</p>
-					<p className='text-lg'>Apellido: {player6.surname}</p>
-					<p className='text-lg'>DNI: {player6.dni}</p>
+					<p className="text-lg">Nombre: {player6.name}</p>
+					<p className="text-lg">Apellido: {player6.surname}</p>
+					<p className="text-lg">DNI: {player6.dni}</p>
 					<button
 						onClick={(e) => handleSubmit6(e)}
 						className={popUpStyles.okBtn}
@@ -1329,11 +1350,14 @@ export default function PlayerInscription() {
 					popUp7 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp7 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp7 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player7.name}</p>
-					<p className='text-lg'>Apellido: {player7.surname}</p>
-					<p className='text-lg'>DNI: {player7.dni}</p>
+					<p className="text-lg">Nombre: {player7.name}</p>
+					<p className="text-lg">Apellido: {player7.surname}</p>
+					<p className="text-lg">DNI: {player7.dni}</p>
 					<button
 						onClick={(e) => handleSubmit7(e)}
 						className={popUpStyles.okBtn}
@@ -1354,11 +1378,14 @@ export default function PlayerInscription() {
 					popUp8 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp8 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp8 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player8.name}</p>
-					<p className='text-lg'>Apellido: {player8.surname}</p>
-					<p className='text-lg'>DNI: {player8.dni}</p>
+					<p className="text-lg">Nombre: {player8.name}</p>
+					<p className="text-lg">Apellido: {player8.surname}</p>
+					<p className="text-lg">DNI: {player8.dni}</p>
 					<button
 						onClick={(e) => handleSubmit8(e)}
 						className={popUpStyles.okBtn}
@@ -1379,11 +1406,14 @@ export default function PlayerInscription() {
 					popUp9 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp9 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp9 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player9.name}</p>
-					<p className='text-lg'>Apellido: {player9.surname}</p>
-					<p className='text-lg'>DNI: {player9.dni}</p>
+					<p className="text-lg">Nombre: {player9.name}</p>
+					<p className="text-lg">Apellido: {player9.surname}</p>
+					<p className="text-lg">DNI: {player9.dni}</p>
 					<button
 						onClick={(e) => handleSubmit9(e)}
 						className={popUpStyles.okBtn}
@@ -1404,11 +1434,14 @@ export default function PlayerInscription() {
 					popUp10 ? popUpStyles.popUpOverlay : popUpStyles.popUpOverlay_hidden
 				}
 			>
-				<div className={popUp10 ? popUpStyles.popUp : popUpStyles.popUp_hidden} style={{padding:'1em'}}>
+				<div
+					className={popUp10 ? popUpStyles.popUp : popUpStyles.popUp_hidden}
+					style={{ padding: '1em' }}
+				>
 					<h2>Son los datos correctos?</h2>
-					<p className='text-lg'>Nombre: {player10.name}</p>
-					<p className='text-lg'>Apellido: {player10.surname}</p>
-					<p className='text-lg'>DNI: {player10.dni}</p>
+					<p className="text-lg">Nombre: {player10.name}</p>
+					<p className="text-lg">Apellido: {player10.surname}</p>
+					<p className="text-lg">DNI: {player10.dni}</p>
 					<button
 						onClick={(e) => handleSubmit10(e)}
 						className={popUpStyles.okBtn}
@@ -1444,15 +1477,16 @@ export default function PlayerInscription() {
 				<form className="bg-gray-100 w-5/6 flex flex-col items-center text-center min-w-[350px] shadow shadow-gray-700 animate-appear">
 					<div className="w-full flex flex-col items-center">
 						<div className="bg-gray-100 w-5/6 min-w-[330px] flex flex-col items-center mt-10">
-							<div
-								className="w-full bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700">
-								
-								<div className='flex flex-col justify-end items-center h-[140px]
+							<div className="w-full bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700">
+								<div
+									className="flex flex-col justify-end items-center h-[140px]
  								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
- 								min-w-[320px] w-full' >
+ 								min-w-[320px] w-full"
+								>
 									<label
 										className="text-2xl font-medium 
-										text-green-500 mb-2">
+										text-green-500 mb-2"
+									>
 										Torneo:{' '}
 									</label>
 									<select
@@ -1460,8 +1494,8 @@ export default function PlayerInscription() {
 										value={selectValue}
 										onChange={(e) => handleChangeSelect(e)}
 										onClick={(e) => handleErrorSelect(e)}
-										className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
-										outline-none pl-2 min-w-[300px] text-gray-500 text-lg'
+										className="w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+										outline-none pl-2 min-w-[300px] text-gray-500 text-lg"
 									>
 										<option value="undefined">Elegir torneo</option>
 										{nextTournaments.map((e) => (
@@ -1470,90 +1504,100 @@ export default function PlayerInscription() {
 									</select>
 
 									<div
-									className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
+										className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
 									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
-									style={
-										errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }
-									}>
-									<p>{errorSelect.errorSelect}</p>
+										style={
+											errorSelect.errorSelect ? { opacity: 1 } : { opacity: 0 }
+										}
+									>
+										<p>{errorSelect.errorSelect}</p>
 									</div>
 								</div>
-								
-								<div className='flex flex-col justify-end items-center h-[140px]
+
+								<div
+									className="flex flex-col justify-end items-center h-[140px]
  								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
- 								min-w-[320px] w-full'>
+ 								min-w-[320px] w-full"
+								>
 									<label
-									className="text-2xl font-medium
-									text-green-500 mb-2">
-									Nombre de tu equipo:{' '}
-								</label>
+										className="text-2xl font-medium
+									text-green-500 mb-2"
+									>
+										Nombre de tu equipo:{' '}
+									</label>
 									<input
-									type="text"
-									value={teamName}
-									name="name"
-									onChange={(e) => handleChange(e)}
-									onKeyUp={(e) => handleError(e)}
-									placeholder="Nombre del equipo"
-									className='w-4/6 h-[50px] bg-gray-100 border-b border-green-500
-									outline-none pl-2 min-w-[300px] text-gray-500 text-lg'/>
+										type="text"
+										value={teamName}
+										name="name"
+										onChange={(e) => handleChange(e)}
+										onKeyUp={(e) => handleError(e)}
+										placeholder="Nombre del equipo"
+										className="w-4/6 h-[50px] bg-gray-100 border-b border-green-500
+									outline-none pl-2 min-w-[300px] text-gray-500 text-lg"
+									/>
 
 									<div
-									className="absolute right-50 top-[-25px] bg-red-600 text-white rounded-lg
+										className="absolute right-50 top-[-25px] bg-red-600 text-white rounded-lg
 									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
-									style={formErrors.name ? { opacity: 1 } : { opacity: 0 }}>
-									<p>{formErrors.name}</p>
+										style={formErrors.name ? { opacity: 1 } : { opacity: 0 }}
+									>
+										<p>{formErrors.name}</p>
 									</div>
-									
 								</div>
-								
-
-								
 
 								<div
-								className='flex flex-col justify-end items-center h-[140px]
+									className="flex flex-col justify-end items-center h-[140px]
 								relative my-10 lg:flex-row lg:justify-between lg:items-end lg:h-[120px]
-								min-w-[320px] w-full' >
-								<label
-									className="text-2xl font-medium
-									text-green-500 mb-2">
-									Escudo/bandera/imagen:{' '}
-								</label>
-								
+								min-w-[320px] w-full"
+								>
+									<label
+										className="text-2xl font-medium
+									text-green-500 mb-2"
+									>
+										Escudo/bandera/imagen:{' '}
+									</label>
 
-								<input
-									id="inputFile"
-									type="file"
-									name="image"
-									onChange={(e) => handleShield(e)}
-									className='w-4/6 bg-gray-100 border-b border-green-500
-									outline-none min-w-[300px] text-gray-500 text-lg'/>
+									<input
+										id="inputFile"
+										type="file"
+										name="image"
+										onChange={(e) => handleShield(e)}
+										className="w-4/6 bg-gray-100 border-b border-green-500
+									outline-none min-w-[300px] text-gray-500 text-lg"
+									/>
 
-								{/* {loading === 1 ? <small>{'(opcional)'}</small> : false} */}
+									{/* {loading === 1 ? <small>{'(opcional)'}</small> : false} */}
 
-								{loading === 2 ? <p className="absolute right-50 top-2 bg-green-700 text-white rounded-lg
-									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4">Cargando imagen...</p> : false}
-								{loading === 0 ? (
-									<div className='w-[80px] h-[80px] flex justify-center items-center overflow-hidden 
-									bg-white shadow shadow-gray-700 absolute right-0 top-[-10px]'>
-										<img className="h-full w-full" src={shield} alt="" />
-									</div>
-								) : (
-									false
-								)}
-
-
-								<div
-									className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
+									{loading === 2 ? (
+										<p
+											className="absolute right-50 top-2 bg-green-700 text-white rounded-lg
 									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
-									style={errorShield ? { opacity: 1 } : { opacity: 0 }}>
-									<p>{errorShield}</p>
+										>
+											Cargando imagen...
+										</p>
+									) : (
+										false
+									)}
+									{loading === 0 ? (
+										<div
+											className="w-[80px] h-[80px] flex justify-center items-center overflow-hidden 
+									bg-white shadow shadow-gray-700 absolute right-0 top-[-10px]"
+										>
+											<img className="h-full w-full" src={shield} alt="" />
+										</div>
+									) : (
+										false
+									)}
+
+									<div
+										className="absolute right-50 top-2 bg-red-600 text-white rounded-lg
+									p-2 font-medium shadow shadow-black duration-500 lg:right-0 lg:top-4"
+										style={errorShield ? { opacity: 1 } : { opacity: 0 }}
+									>
+										<p>{errorShield}</p>
+									</div>
 								</div>
 							</div>
-
-							</div>
-
-							
-
 						</div>
 					</div>
 
@@ -2447,15 +2491,17 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm8 && !addScrub1 ? (
-						<div className='w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700'>
-							<button onClick={handleAddScrub1}
-							className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						<div className="w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700">
+							<button
+								onClick={handleAddScrub1}
+								className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 							text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-							duration-300">
-							Agregar suplente
+							duration-300"
+							>
+								Agregar suplente
 							</button>
 
-							<p className='text-gray-700'>{`(Opcional)`}</p>
+							<p className="text-gray-700">{`(Opcional)`}</p>
 						</div>
 					) : (
 						false
@@ -2581,16 +2627,18 @@ export default function PlayerInscription() {
 					)}
 
 					{confirm9 && !addScrub2 ? (
-						<div className='w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700'>
-						<button onClick={handleAddScrub2}
-						className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
+						<div className="w-5/6 bg-gray-200 flex flex-col items-center p-3 shadow shadow-gray-700">
+							<button
+								onClick={handleAddScrub2}
+								className="bg-white w-[200px] h-[70px] rounded-full text-xl font-medium
 						text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
-						duration-300">
-						Agregar suplente
-						</button>
+						duration-300"
+							>
+								Agregar suplente
+							</button>
 
-						<p className='text-gray-700'>{`(Opcional)`}</p>
-					</div>
+							<p className="text-gray-700">{`(Opcional)`}</p>
+						</div>
 					) : (
 						false
 					)}
@@ -2598,8 +2646,8 @@ export default function PlayerInscription() {
 					{addScrub2 ? (
 						<div className="bg-gray-200 w-5/6 min-w-[330px] my-6 p-3 shadow shadow-gray-700">
 							<button
-							onClick={deleteScrub2}
-							className="bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
+								onClick={deleteScrub2}
+								className="bg-white w-[70px] h-[70px] rounded-full text-xl font-medium
 							text-green-500 my-6 hover:bg-green-500 hover:text-white hover:scale-110
 							duration-300"
 							>

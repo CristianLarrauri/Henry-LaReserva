@@ -24,7 +24,6 @@ const TournamentDetail = (props) => {
 
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
-		console.log(tournament);
 	}, [dispatch]);
 
 	let tournament = useSelector((state) => state.tournamentDetail);
@@ -34,7 +33,7 @@ const TournamentDetail = (props) => {
 	const [fixture, setFixture] = React.useState('');
 	const [errorFixture, setErrorFixture] = React.useState('');
 	const [loading, setLoading] = React.useState(1);
-	const [popUpError, setPopUpError] = React.useState({title:'',msg:''});
+	const [popUpError, setPopUpError] = React.useState({ title: '', msg: '' });
 
 	const handleFixture = async (e) => {
 		const files = e.target.files;
@@ -43,7 +42,7 @@ const TournamentDetail = (props) => {
 		if (files) {
 			size += files[0].size;
 		}
-		console.log(size);
+
 		data.append('file', files[0]);
 		data.append('upload_preset', 'ReservaTeams');
 		setLoading(2);
@@ -58,7 +57,7 @@ const TournamentDetail = (props) => {
 			const file = await res.json();
 			let array = file.secure_url.split('.');
 			let format = array[array.length - 1];
-			console.log(format);
+
 			if (size > 2000000) {
 				setErrorFixture('El archivo es demasiado grande');
 			} else {
@@ -79,7 +78,7 @@ const TournamentDetail = (props) => {
 
 	const handleUpdateFixture = (e) => {
 		e.preventDefault();
-		console.log(fixture);
+
 		setLoading(1);
 		dispatch(actions.putFixture(id, fixture));
 	};
@@ -91,32 +90,38 @@ const TournamentDetail = (props) => {
 				<div className="bg-gray-100 w-5/6 p-5 mt-10 flex flex-col items-center shadow shadow-gray-700">
 					{/*info container*/}
 					<div
-					className={
-						popUpError.title
-							? popUpStyles.popUpOverlay
-							: popUpStyles.popUpOverlay_hidden}>
-					<div
 						className={
-							popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden}>
-						<h2>{popUpError.title}</h2>
-						<p>{popUpError.msg}</p>
-						<button
-							onClick={(e) => {
-								setPopUpError({});
-								handleUpdateFixture(e);
-								window.location.reload(false);
-							}}
-							className={popUpStyles.okBtn}>
-							Si
-						</button>
+							popUpError.title
+								? popUpStyles.popUpOverlay
+								: popUpStyles.popUpOverlay_hidden
+						}
+					>
+						<div
+							className={
+								popUpError.title ? popUpStyles.popUp : popUpStyles.popUp_hidden
+							}
+						>
+							<h2>{popUpError.title}</h2>
+							<p>{popUpError.msg}</p>
+							<button
+								onClick={(e) => {
+									setPopUpError({});
+									handleUpdateFixture(e);
+									window.location.reload(false);
+								}}
+								className={popUpStyles.okBtn}
+							>
+								Si
+							</button>
 
-						<button
-							onClick={() => setPopUpError({}) }
-							className={popUpStyles.okBtn}>
-							Cancelar
-						</button>
+							<button
+								onClick={() => setPopUpError({})}
+								className={popUpStyles.okBtn}
+							>
+								Cancelar
+							</button>
+						</div>
 					</div>
-				</div>
 
 					<div className="w-3/6 text-gray-800 text-center">
 						<h1 className="font-bold text-2xl">TORNEO</h1>
@@ -215,22 +220,26 @@ const TournamentDetail = (props) => {
 				</div>
 
 				{tournament.fixture && (
-					<div className='bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
+					<div
+						className="bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
 					sm:w-[640px] sm:h-[360px] flex justify-center items-center overflow-hidden mt-10
-					shadow shadow-gray-700'>
+					shadow shadow-gray-700"
+					>
 						<img
-						className="w-full h-full"
-						src={tournament.fixture}
-						alt="fixture.png"/>
+							className="w-full h-full"
+							src={tournament.fixture}
+							alt="fixture.png"
+						/>
 					</div>
 				)}
 
 				{userDetail.admin === true ? (
-					<div className=' mt-10 w-5/6 flex flex-col items-center'>
-						<div className='bg-gray-100 p-3 flex flex-col items-center shadow shadow-gray-700 my-12 min-w-fit m-3'>
+					<div className=" mt-10 w-5/6 flex flex-col items-center">
+						<div className="bg-gray-100 p-3 flex flex-col items-center shadow shadow-gray-700 my-12 min-w-fit m-3">
 							<label
-							className="text-2xl font-medium
-							text-gray-700 mb-2">
+								className="text-2xl font-medium
+							text-gray-700 mb-2"
+							>
 								Cargar fixture
 							</label>
 
@@ -239,38 +248,53 @@ const TournamentDetail = (props) => {
 								type="file"
 								name="image"
 								onChange={(e) => handleFixture(e)}
-								className='text-xl text-gray-700 bg-white p-2 w-5/6 shadow shadow-gray-700'
+								className="text-xl text-gray-700 bg-white p-2 w-5/6 shadow shadow-gray-700"
 							/>
 
-							<p className=''>Tamaño recomendado 1280*720</p>
+							<p className="">Tamaño recomendado 1280*720</p>
 						</div>
 
-						{loading === 2 ? 
-						<div>
-							<p className='text-gray-700 font-medium my-3 text-xl'>Cargando...</p>
-							<img className='w-[80px] h-[80px] animate-spin' src={ball} alt="ball.png" />
-						</div>: 
-						false}
+						{loading === 2 ? (
+							<div>
+								<p className="text-gray-700 font-medium my-3 text-xl">
+									Cargando...
+								</p>
+								<img
+									className="w-[80px] h-[80px] animate-spin"
+									src={ball}
+									alt="ball.png"
+								/>
+							</div>
+						) : (
+							false
+						)}
 						{loading === 0 ? (
-							<div className='flex flex-col items-center'>
-
-								<div className='bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
-								sm:w-[640px] sm:h-[360px] flex justify-center items-center overflow-hidden'>
+							<div className="flex flex-col items-center">
+								<div
+									className="bg-green-700 w-[320px] h-[180px] lg:w-[960px] lg:h-[540px]
+								sm:w-[640px] sm:h-[360px] flex justify-center items-center overflow-hidden"
+								>
 									<img
-									className="w-full h-full"
-									src={fixture}
-									alt="fixture.png"/>
+										className="w-full h-full"
+										src={fixture}
+										alt="fixture.png"
+									/>
 								</div>
 
 								<button
-								className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+									className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 								hover:scale-110 duration-300 text-white
 								flex justify-center items-center font-bold text-xl"
-								onClick={() => setPopUpError({title:'Seguro?',msg:'Esta seguro que desea usar esta imagen?'})}>
+									onClick={() =>
+										setPopUpError({
+											title: 'Seguro?',
+											msg: 'Esta seguro que desea usar esta imagen?'
+										})
+									}
+								>
 									Actualizar
 								</button>
 							</div>
-							
 						) : (
 							false
 						)}
@@ -286,7 +310,6 @@ const TournamentDetail = (props) => {
 				) : (
 					false
 				)}
-				
 
 				<Link
 					to="/home"
