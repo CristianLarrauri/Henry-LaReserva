@@ -23,7 +23,7 @@ import { useHistory } from 'react-router-dom';
 export default function Reviews() {
 	const dispatch = useDispatch();
 	const allReviews = useSelector((state) => state.enabledReviews);
-
+	const { user } = useAuth0();
 	const userDetail = useSelector((state) => state.actualUser);
 	const [popUpError, setPopUpError] = useState({});
 	const { loginWithRedirect } = useAuth0();
@@ -41,9 +41,9 @@ export default function Reviews() {
 	}, []);
 
 	useEffect(() => {
-		if (userDetail.username !== undefined) {
+		if (user !== undefined) {
 			setReview({
-				nombreUsuario: userDetail.username,
+				nombreUsuario: user.email,
 				comentario: '',
 				calificacionComplejo: 0
 			});
@@ -279,9 +279,7 @@ export default function Reviews() {
 							<h1 className="text-2xl font-bold mb-3">Deja tu opinion!</h1>
 
 							<div className="w-full">
-								<h2 className="text-xl font-medium mb-1">
-									{userDetail.username + ':'}
-								</h2>
+								<h2 className="text-xl font-medium mb-1">{user.email + ':'}</h2>
 							</div>
 
 							<textarea
