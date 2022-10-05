@@ -68,13 +68,13 @@ export default function CreateTournament() {
 	};
 
 	const [formErrors, setFormErrors] = useState({
-		name: 'Nombre invalido',
-		amountOfTeams: 'Cantidad inadecuada',
-		dateFinish: 'Ingrese una fecha de finalizacion',
-		dateInit: 'Ingrese una fecha de inicio',
-		genre: 'Seleccione el genero del torneo',
-		category: 'Seleccione la categoria del torneo',
-		description: 'Ingrese una descripcion del torneo'
+		name: '',
+		amountOfTeams: '',
+		dateFinish: '',
+		dateInit: '',
+		genre: '',
+		category: '',
+		description: ''
 	});
 
 	function validateName(str) {
@@ -115,7 +115,7 @@ export default function CreateTournament() {
 
 		if (validateName(data.name)) errors.name = 'Nombre invalido';
 		if (validateAmount(data.amountOfTeams))
-			errors.amountOfTeams = 'Cantidad inadaecuada';
+			errors.amountOfTeams = 'Ingrese una cantidad entre 8 y 40';
 		if (validateDate(data.dateInit))
 			errors.dateInit = 'Ingrese una fecha de inicio';
 		if (validateDate(data.dateFinish))

@@ -23,6 +23,7 @@ export default function DashBoardAdmin() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const allUsers = useSelector((state) => state.users);
+	console.log('allus', allUsers);
 
 	const allTournaments = useSelector((state) => state.tournamentsAdmin);
 	const { user } = useAuth0();
@@ -171,7 +172,7 @@ export default function DashBoardAdmin() {
 						{allUsers?.map((e) => (
 							<tr key={e.id} value={e.id} className="border-y border-black">
 								<td className="mx-3 text-lg font-medium break-words max-w-[300px]">
-									{e.name}
+									{e.email}
 								</td>
 
 								{e.ban === false ? (

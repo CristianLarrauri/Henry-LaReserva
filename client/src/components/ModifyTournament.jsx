@@ -261,9 +261,9 @@ export default function ModifyTournaments() {
 							onChange={(e) => handleChange(e)}
 						>
 							<option>{input.genre}</option>
-							<option>Male</option>
-							<option>Female</option>
-							<option>Mixed</option>
+							<option>Masculino</option>
+							<option>Femenino</option>
+							<option>Mixto</option>
 						</select>
 
 						<div
@@ -285,7 +285,7 @@ export default function ModifyTournaments() {
 						>
 							<option>{input.category}</option>
 							<option key={'Sub20'}>Sub20</option>
-							<option key={'Libre'}>Free</option>
+							<option key={'Libre'}>Libre</option>
 							<option key={'Senior'}>Senior</option>
 						</select>
 						<div
