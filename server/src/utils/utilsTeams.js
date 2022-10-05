@@ -38,7 +38,7 @@ const create_teams = async (data) => {
     const tournaments_relation = await Tournaments.findAll({
       where: { name: tournaments },
     });
-
+  
     const users_relation = await Users.findAll({
       where: { email: email },
     });
