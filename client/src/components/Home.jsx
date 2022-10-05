@@ -138,9 +138,10 @@ export default function Home() {
             <div className="bg-green-600 absolute right-0 bottom-0 w-[300px] h-[300px] rounded-tl-full z-0" />
           </div>
         </div>
-        <div className="flex justify-center items-center bg-green-600 font-bold text-white text-2xl">
-          <RiFootballLine className="text-2xl" />
-          <h2>Torneos en curso</h2>
+        <div className="w-full flex justify-start pl-9">
+          <div className='bg-white p-3 flex justify-center text-4xl text-green-700 font-bold w-11/12 rounded'>
+            <h2>Torneos en curso</h2>
+          </div>
         </div>
         <div>
           <TournamentCards />
