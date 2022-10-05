@@ -25,6 +25,7 @@ export default function PlayerInscription() {
 		dispatch(actions.getTournamentsAdmin());
 		if (id) {
 			setSelectValue(id)
+			console.log(id)
 		}
 	}, [])
 
