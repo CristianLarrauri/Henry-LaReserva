@@ -108,6 +108,8 @@ export default function CreateTournament() {
 		if (!text) return true;
 	}
 
+	let today = Date.now();
+
 	function validate(data) {
 		let errors = {};
 
@@ -124,6 +126,10 @@ export default function CreateTournament() {
 			errors.category = 'Seleccione la categoria del torneo';
 		if (validateDescription(data.description))
 			errors.description = 'Ingrese una descripcion del torneo';
+		if (Date.parse(input.dateInit) < today)
+			errors.dateInit = 'Ingrese una fecha de inicio valida';
+		if (Date.parse(input.dateInit) > Date.parse(input.dateFinish))
+			errors.dateFinish = 'Fecha de inicio posterior a la finalizacion';
 		return errors;
 	}
 

@@ -29,6 +29,9 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.TEXT,
     },
+    fixture: {
+      type: DataTypes.STRING,
+    },
     enabled: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

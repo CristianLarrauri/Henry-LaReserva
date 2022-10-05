@@ -7,21 +7,24 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Auth0Provider } from '@auth0/auth0-react';
 import store from './redux/store/index';
+import HttpsRedirect from 'react-https-redirect';
 
 ReactDOM.render(
 
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <Auth0Provider
-          domain="dev-spt1ynm1.us.auth0.com"
-          clientId="mkZe8iRlQFUWM8U9VlTxYQ0gpyaW0V7T"
-          redirectUri={window.location.href}
-        >
-          <App />
-        </Auth0Provider>
-      </React.StrictMode>
-    </BrowserRouter>
+    <HttpsRedirect>
+      <BrowserRouter>
+        <React.StrictMode>
+          <Auth0Provider
+            domain="dev-spt1ynm1.us.auth0.com"
+            clientId="mkZe8iRlQFUWM8U9VlTxYQ0gpyaW0V7T"
+            redirectUri={window.location.href}
+          >
+            <App />
+          </Auth0Provider>
+        </React.StrictMode>
+      </BrowserRouter>
+    </HttpsRedirect>
   </Provider>,
   document.getElementById("root")
 

@@ -9,11 +9,7 @@ export default function BotonPago({ productos, data }) {
     useEffect(() => {
         const script = document.createElement("script"); //Crea un elemento html script
 
-        const payload = {
-            email:"nico.gye33@gmail.com",
-            option:"Pago"
-        }
-
+        
         const attr_data_preference = document.createAttribute("data-preference-id"); //Crea un nodo atribute
         attr_data_preference.value = data.id; //Le asigna como valor el id que devuelve MP
 
@@ -29,11 +25,7 @@ export default function BotonPago({ productos, data }) {
         return () => {
             //Elimina el script como nodo hijo del elemento form
             document.getElementById("form1").removeChild(script);
-            axios.post("http://localhost:3001/email",payload)
-                .then((data)=>{
-                    return data
-                })
-                .catch((err)=> console.log(err))
+            
         };
 
     }, [data]);

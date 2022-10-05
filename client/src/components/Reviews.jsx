@@ -23,10 +23,10 @@ import { useHistory } from 'react-router-dom';
 export default function Reviews() {
 	const dispatch = useDispatch();
 	const allReviews = useSelector((state) => state.enabledReviews);
-
+	const { user } = useAuth0();
 	const userDetail = useSelector((state) => state.actualUser);
 	const [popUpError, setPopUpError] = useState({});
-	const {loginWithRedirect} = useAuth0();
+	const { loginWithRedirect } = useAuth0();
 	const history = useHistory();
 
 	const [review, setReview] = useState({
@@ -41,9 +41,9 @@ export default function Reviews() {
 	}, []);
 
 	useEffect(() => {
-		if (userDetail.username !== undefined) {
+		if (user !== undefined) {
 			setReview({
-				nombreUsuario: userDetail.username,
+				nombreUsuario: user.email,
 				comentario: '',
 				calificacionComplejo: 0
 			});
@@ -76,7 +76,6 @@ export default function Reviews() {
 
 	const handleDeleteReview = (e) => {
 		dispatch(deleteReviews(e.target.value));
-		/* console.log('etar', e.target.value); */
 
 		setPopUpError({
 			title: 'Exito',
@@ -99,7 +98,6 @@ export default function Reviews() {
 				msg: 'Se ha guardado tu comentario.'
 			});
 		}
-		/* console.log('reviewSubmited', review); */
 	};
 
 	function drawStars(calification) {
@@ -281,9 +279,7 @@ export default function Reviews() {
 							<h1 className="text-2xl font-bold mb-3">Deja tu opinion!</h1>
 
 							<div className="w-full">
-								<h2 className="text-xl font-medium mb-1">
-									{userDetail.username + ':'}
-								</h2>
+								<h2 className="text-xl font-medium mb-1">{user.email + ':'}</h2>
 							</div>
 
 							<textarea
@@ -320,11 +316,14 @@ export default function Reviews() {
 				</div>
 			</div>
 
-			<button to='/home' className='bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
+			<button
+				to="/home"
+				className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 			hover:scale-110 duration-300 text-white
-			flex justify-center items-center animate-appear'
-			onClick={() => history.goBack()}>
-				<p className='text-xl font-bold flex items-center justify-center'>
+			flex justify-center items-center animate-appear"
+				onClick={() => history.goBack()}
+			>
+				<p className="text-xl font-bold flex items-center justify-center">
 					<BiArrowBack className="mr-3" />
 					Volver
 				</p>

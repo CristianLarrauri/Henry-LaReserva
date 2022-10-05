@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IoLogoNoSmoking } from 'react-icons/io';
 export const CREATE_TOURNAMENT = 'CREATE_TOURNAMENT';
 export const GET_ALL_TOURNAMENTS = 'GET_ALL_TOURNAMENTS';
 export const NAME_SORT = 'NAME_SORT';
@@ -28,6 +29,12 @@ export const SET_ACTUAL_USER = 'SET_ACTUAL_USER';
 export const GET_ENABLED_REVIEWS = 'GET_ENABLED_REVIEWS';
 export const GET_DISABLED_REVIEWS = 'GET_DISABLED_REVIEWS';
 export const REPORT_REVIEW = 'REPORT_REVIEW';
+export const PUT_FIXTURE = 'PUT_FIXTURE';
+export const DELETE_USER = 'DELETE_USER';
+export const ADD_POINT = 'ADD_POINT';
+export const QUIT_POINT = 'QUIT_POINT';
+export const ADD_GOAL = 'ADD_GOAL';
+export const QUIT_GOAL = 'QUIT_GOAL';
 
 export const createTournament = (payload) => {
 	return async function (dispatch) {
@@ -157,6 +164,78 @@ export const tournamentDetails = (id) => {
 	};
 };
 
+export const putFixture = (id, payload) => {
+	return async (dispatch) => {
+		try {
+			const obj = { fixture: payload };
+			const info = await axios.put(
+				`http://localhost:3001/tournaments/${id}`,
+				obj
+			);
+			dispatch({
+				type: PUT_FIXTURE,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const addPoint = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/teams/add/${id}`);
+			dispatch({
+				type: ADD_POINT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export const quitPoint = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/teams/quit/${id}`);
+			dispatch({
+				type: QUIT_POINT,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+export const addGoal = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/players/add/${id}`);
+			dispatch({
+				type: ADD_GOAL,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+export const quitGoal = (id) => {
+	return async (dispatch) => {
+		try {
+			const info = await axios.put(`http://localhost:3001/players/quit/${id}`);
+			dispatch({
+				type: QUIT_GOAL,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
 export const searchTournaments = (name) => {
 	return async function (dispatch) {
 		try {
@@ -168,7 +247,7 @@ export const searchTournaments = (name) => {
 			return dispatch({
 				type: SEARCH_TOURNAMENTS,
 				payload: []
-			})
+			});
 		}
 	};
 };
@@ -258,6 +337,37 @@ export const getUserDetails = (email) => {
 	};
 };
 
+export const deleteUser = (email) => {
+	return async function (dispatch) {
+		try {
+			const info = await axios.delete(`http://localhost:3001/users/${email}`);
+			return dispatch({
+				type: DELETE_USER,
+				payload: info.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+};
+
+export function postOrder(tournamentId) {
+	return async function (dispatch) {
+		try {
+			const newOrder = await axios({
+				method: 'post',
+				url: 'http://localhost:3001/order',
+				data: { tournamentId }
+			});
+			return dispatch({
+				type: 'NEW_ORDER',
+				payload: newOrder.data
+			});
+		} catch (e) {
+			console.log(e);
+		}
+	};
+}
 export function getNext5Tournaments() {
 	return async (dispatch) => {
 		try {
@@ -310,24 +420,6 @@ export function deleteTournament(id) {
 
 // --------------------------------------------------
 // Aqui todas las actions necesarias para MercadoPago
-
-export function postOrder(tournamentId) {
-	return async function (dispatch) {
-		try {
-			const newOrder = await axios({
-				method: 'post',
-				url: '/order',
-				data: { tournamentId }
-			});
-			return dispatch({
-				type: 'NEW_ORDER',
-				payload: newOrder.data
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	};
-}
 
 export function getMercadoPago(orderId) {
 	return async function (dispatch) {
