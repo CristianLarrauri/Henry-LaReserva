@@ -17,10 +17,12 @@ import {
 
 import { BiCategoryAlt, BiArrowBack } from 'react-icons/bi';
 import ball from '../images/blackBall.png';
+import { useHistory } from 'react-router-dom';
 
 const TournamentDetail = (props) => {
 	let { id } = props.match.params;
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	React.useEffect(() => {
 		dispatch(actions.tournamentDetails(id));
@@ -310,8 +312,8 @@ const TournamentDetail = (props) => {
 					false
 				)}
 
-				<Link
-					to="/home"
+				<button
+					onClick={() => history.goBack()}
 					className="bg-green-500 w-[180px] h-[80px] rounded-full m-8 z-50
 					hover:scale-110 duration-300 text-white
 					flex justify-center items-center animate-appear my-20"
@@ -320,7 +322,7 @@ const TournamentDetail = (props) => {
 						<BiArrowBack className="mr-3" />
 						Volver
 					</p>
-				</Link>
+				</button>
 			</div>
 
 			<Footer />

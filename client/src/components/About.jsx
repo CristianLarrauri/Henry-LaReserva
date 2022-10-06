@@ -35,38 +35,41 @@ export default function About() {
   const [overlay, setOverlay] = useState(false);
 
   return (
-   <div className="bg-white flex flex-col justify-between min-h-screen text-center items-center overflow-hidden">
+   <div className="bg-gray-100 flex flex-col justify-between min-h-screen text-center items-center overflow-hidden">
       <div className={`w-screen h-screen fixed left-0 top-0 backdrop-blur-lg
       z-20 ${overlay?'opacity-1':'opacity-0'} ${overlay?'delay-300':'delay-0'} 
       duration-300 pointer-events-none z-10`}/>
       <Nav/>
-      <div className="w-5/6 bg-green-500 p-3 flex justify-center mt-6 shadow shadow-gray-700">
-        <h1 className="text-white font-bold text-4xl py-3">NUESTRO EQUIPO</h1>
+      <div className="w-5/6 bg-white p-3 flex justify-center mt-6 shadow-md shadow-gray-700">
+        <h1 className="text-green-600 font-bold text-4xl py-3">NUESTRO EQUIPO</h1>
       </div>
-      <div className=" w-full flex pt-16 bg-green-500 shadow shadow-gray-700 p-3 mt-12 sm:w-5/6">{/*main section*/}
-        <div className="w-full flex justify-around flex-wrap pt-16 bg-green-500 overflow-hidden">
+      <div className=" w-full flex pt-16 bg-white shadow-md
+      shadow-gray-700 p-3 mt-12 sm:w-5/6 overflow-hidden">{/*main section*/}
+
+
+        <div className="w-full flex justify-around flex-wrap pt-16 bg-white overflow-hidden">
         {teamInfo.map((member, index) => {
           return (
-            <div className={`bg-yellow-300 w-[300px] min-w-[300px] h-[530px] relative 
+            <div className={`shadow-xl shadow-black w-[300px] min-w-[300px] h-[530px] relative 
             rounded-t-[100%100px] rounded-b-3xl bg-gradient-to-tr 
-            from-yellow-500 via-yellow-200 to-yellow-500 shadow-inner shadow-gray-500
+            from-green-700 via-green-500 to-green-700 shadow-inner shadow-gray-500
             m-14 duration-300 ${overlay?'hover:scale-110':'scale-100'} animate-appear
             z-0 hover:z-20 ${overlay?'delay-0':'delay-200'} hover:bg-gradient-to-r`}>
 
-            <div className="bg-green-500 w-[100px] h-[100px] absolute 
+            <div className="bg-white w-[100px] h-[100px] absolute 
             top-[-50px] left-[-50px] rounded-full"/>
-            <div className="bg-green-500 w-[100px] h-[100px] absolute 
+            <div className="bg-white w-[100px] h-[100px] absolute 
             top-[-50px] right-[-50px] rounded-full"/>
 
-            <div className="bg-green-500 w-[300px] h-[300px] rounded-[100%10px]
+            <div className="bg-white w-[300px] h-[300px] rounded-[100%10px]
             absolute bottom-[-100px] left-[-150px] rotate-[60deg] 
             "/>
 
-            <div className="bg-green-500 w-[300px] h-[300px] rounded-[100%10px]
+            <div className="bg-white w-[300px] h-[300px] rounded-[100%10px]
             absolute bottom-[-100px] right-[-150px] rotate-[-60deg] scale-x-[-1]
             "/>
 
-            <div className="bg-green-500 w-full h-[67px] absolute bottom-0"/>
+            <div className="bg-white w-full h-[67px] absolute bottom-0"/>
             
             <div 
             onMouseEnter={() => setOverlay(true)}
@@ -75,12 +78,12 @@ export default function About() {
             
             <div className="h-[200px] w-5/12 flex flex-col justify-around 
             items-center">
-              <div className="text-center border-b text-yellow-800 border-yellow-800">
+              <div className="text-center border-b text-gray-100 border-green-800">
                 <h2 className="font-bold text-5xl">{91+index}</h2>
                 <h3 className="font-medium text-xl">FULLSTACK</h3>
               </div>
 
-              <a href={member.github} target='_blank' className="w-[53px] h-[56px] border-b border-yellow-800 duration-300 hover:scale-110">
+              <a href={member.github} target='_blank' className="w-[53px] h-[56px] border-b border-green-800 duration-300 hover:scale-110">
                 <img className="w-full" src={github} alt="githubIcon.png" />
               </a>
 
@@ -94,9 +97,9 @@ export default function About() {
             </div>
           </div>
 
-          <div className="text-yellow-800 flex flex-col items-center">
+          <div className="text-gray-100 flex flex-col items-center">
             <h2 className="font-bold text-[1.4em]">{member.fullName}</h2>
-            <div className="w-5/6 border-b border-yellow-700"/>
+            <div className="w-5/6 border-b border-green-700"/>
 
             <div className="w-full flex justify-around mt-3">
               <div>
@@ -146,8 +149,8 @@ export default function About() {
 
         <div className="w-full flex flex-col items-center mt-24">
 
-          <div className="text-gray-700 text-center w-4/6 bg-green-500 p-6 shadow shadow-gray-700">
-            <h2 className="font-bold text-3xl mb-3 text-green-500">Quienes somos?</h2>
+          <div className="text-gray-700 text-center w-4/6 bg-white p-6 shadow shadow-gray-700">
+            <h2 className="font-bold text-3xl mb-3 text-green-600">Quienes somos?</h2>
 
             <p className="text-xl text-left">
               Somos un equipo de 8 desarrolladores web Full Stack.
@@ -161,8 +164,8 @@ export default function About() {
             </p>
           </div>
 
-          <div className="text-gray-700 text-center w-4/6 bg-green-500 p-6 shadow shadow-gray-700 mt-6">
-            <h2 className="font-bold text-3xl mb-3 text-green-500">Que tecnologias usamos?</h2>
+          <div className="text-gray-700 text-center w-4/6 bg-white p-6 shadow shadow-gray-700 mt-6">
+            <h2 className="font-bold text-3xl mb-3 text-green-600">Que tecnologias usamos?</h2>
 
             <div className="w-full flex justify-center flex-wrap">
               <FaReact className="text-8xl m-10 group"/>

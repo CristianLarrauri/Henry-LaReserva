@@ -161,12 +161,13 @@ export default function CreateTournament() {
 					</div>
 				</div>
 
-				<button className={styles.backBtn}>
-					<Link to="/home" className={styles.linkBack}>
-						<IoIosArrowBack />
-						<p>Volver</p>
-					</Link>
+				<button className={styles.backBtn} onClick = {() => history.goBack()}>
+						<div className='flex items-center justify-center'>
+							<IoIosArrowBack />
+							<p>Volver</p>
+						</div>
 				</button>
+
 				<form className={styles.mainForm}>
 					<div className={styles.infoSection}>
 						<label>Nombre del torneo: </label>
