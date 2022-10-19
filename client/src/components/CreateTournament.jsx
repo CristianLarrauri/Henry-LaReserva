@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,123 +20,118 @@ export default function CreateTournament() {
 		dateInit: '',
 		dateFinish: '',
 		genre: '',
-		category: ''
+		category: '',
+		description: ''
 	});
 
-	const handleChange = (e) => {
-		e.preventDefault();
-		setInput({
-			...input,
-			[e.target.name]: e.target.value
-		});
-
-		setFormErrors(
-			validate({
-				...input,
-				[e.target.name]: e.target.value
-			})
-		);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		let error = Object.keys(validate(input));
-		if (error.length !== 0) {
-			setPopUpError({
-				title: 'Error',
-				msg: 'Llene los campos correctamente'
-			});
-		} else {
-			dispatch(createTournament(input));
-			setPopUpError({
-				title: 'Exito!',
-				msg: 'Torneo creado correctamente.'
-			});
-			alert('Torneo creado correctamente');
-			history.push('/admin');
-			// setInput({
-			// 	name: '',
-			// 	amountOfTeams: 0,
-			// 	dateInit: '',
-			// 	dateFinish: '',
-			// 	genre: '',
-			// 	category: '',
-			// 	description: ''
-			// });
-		}
-	};
-
-	const [formErrors, setFormErrors] = useState({
+	const [errors, setErrors] = useState({
 		name: '',
 		amountOfTeams: '',
-		dateFinish: '',
 		dateInit: '',
+		dateFinish: '',
 		genre: '',
 		category: '',
 		description: ''
 	});
 
-	function validateName(str) {
-		// if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
-		if (str.length < 1) return true;
-		if (str[0] === ' ') return true;
+	const validations = {
+		name: (name) => validateName(name),
+		amountOfTeams: (amount) => validateAmount(amount),
+		genre: (genre) => validateGenre(genre),
+		category: (category) => validateCategory(category),
+		description: (description) => validateDescription(description),
+		dateInit: (dateInit) => validateDateInit(dateInit),
+		dateFinish: (dateFinish) => validateDateFinish(dateFinish)
 	}
 
-	function validateAmount(num) {
-		if (isNaN(num)) return true;
-		if (num < 8 || num > 40) return true;
-		if (num.indexOf('.') !== -1) return true;
-		if (num.indexOf(',') !== -1) return true;
-		if (num.indexOf('-') !== -1) return true;
+	function validateName(name){
+		if(name.length <= 0) return setErrors({...errors, name: "Este campo no puede estar vacio."})  
+		if(/[^A-Za-z 0-9]/g.test(name)) return setErrors({...errors, name: "Caracteres especiales no admitidos."})
+		return setErrors({...errors, name: ''})
 	}
 
-	function validateDate(str) {
-		if (!str) return true;
+	function validateAmount(amount){
+		if(amount.length < 1) return setErrors({...errors, amountOfTeams: 'Este campo no puede estar vacio.'})
+		if(amount < 8) return setErrors({...errors, amountOfTeams: 'Minimo de 8 equipos.'});
+		if(amount > 40) return setErrors({...errors, amountOfTeams: 'Maximo de 40 equipos.'})
+		return setErrors({...errors, amountOfTeams: ''});
 	}
 
-	function validateSelect(select) {
-		if (
-			select === '' ||
-			select === 'Seleccione un genero' ||
-			select === 'Seleccione una categoria'
-		)
-			return true;
+	function validateGenre(genre){
+		if(genre.length > 14) return setErrors({...errors, genre: 'Seleccione un genero.'});
+		return setErrors({...errors, genre: ''})
+	}
+	
+	function validateCategory(category){
+		if(category.length > 14) return setErrors({...errors, category: 'Seleccione una categoria.'});
+		return setErrors({...errors, category: ''})
 	}
 
-	function validateDescription(text) {
-		if (!text) return true;
+	function validateDescription(description){
+		if(description.length <= 0) return setErrors({...errors, description: "Este campo no puede estar vacio."})
+		if(description.length > 200) return setErrors({...errors, description: "200 caracteres maximo."})
+		return setErrors({...errors, description: ''})
 	}
 
-	let today = Date.now();
+	function validateDateInit(dateInit){
+		const today = Date.now();
 
-	function validate(data) {
-		let errors = {};
+		if(new Date(dateInit) < today) return setErrors({...errors, dateInit: 'La fecha de inicio no puede ser en el pasado o hoy mismo.'})
 
-		if (validateName(data.name)) errors.name = 'Nombre invalido';
-		if (validateAmount(data.amountOfTeams))
-			errors.amountOfTeams = 'Ingrese una cantidad entre 8 y 40';
-		if (validateDate(data.dateInit))
-			errors.dateInit = 'Ingrese una fecha de inicio';
-		if (validateDate(data.dateFinish))
-			errors.dateFinish = 'Ingrese una fecha de finalizacion';
-		if (validateSelect(data.genre))
-			errors.genre = 'Seleccione el genero del torneo';
-		if (validateSelect(data.category))
-			errors.category = 'Seleccione la categoria del torneo';
-		if (validateDescription(data.description))
-			errors.description = 'Ingrese una descripcion del torneo';
-		if (Date.parse(input.dateInit) < today)
-			errors.dateInit = 'Ingrese una fecha de inicio valida';
-		if (Date.parse(input.dateInit) > Date.parse(input.dateFinish))
-			errors.dateFinish = 'Fecha de inicio posterior a la finalizacion';
-		return errors;
+		if(input.dateFinish && new Date(input.dateFinish) <= new Date(dateInit)){//Si hay un fecha de inicio definida
+			return setErrors({...errors, dateInit: 'La fecha de inicio no puede ser pasada o igual a la de finalizacion.'})
+		}
+
+		return setErrors({...errors, dateInit: ''}) 
+	}
+
+	function validateDateFinish(dateFinish){
+		const today = Date.now();
+
+		if(new Date(dateFinish) < today) return setErrors({...errors, dateFinish: 'La fecha de finalizacion no puede ser en el pasado o hoy mismo.'});
+
+		if(input.dateInit && new Date(input.dateInit) >= new Date(dateFinish)){//Si hay un fecha de inicio definida
+			return setErrors({...errors, dateFinish: 'La fecha de finalizacion no puede ser anterior o igual a la de inicio.'})
+		}
+
+		return setErrors({...errors, dateFinish: ''});
+	}
+
+	function handleChange(e){
+		setInput({...input, [e.target.name]: e.target.value})
+		validations[e.target.name](e.target.value);
+	}
+
+	function handleSubmit(e){
+		e.preventDefault();
+
+		if(Object.keys(errors).some(element => errors[element] !=='') || Object.keys(input).some(element =>  input[element] === '')){
+			setPopUpError({
+				title: 'Error!',
+				msg: 'Algunos campos contienen errores o estan vacios.'
+			});
+		}
+		else{
+			dispatch(createTournament(input));
+
+			setPopUpError({
+				title: 'Exito!',
+				msg: 'Torneo creado correctamente.'
+			});
+		}
+	}
+
+	function handlePopUpClose(){
+		setPopUpError({title:'',msg:''});
+		if(popUpError.title === 'Exito!') history.push('/admin');
 	}
 
 	return (
 		<div>
 			<Nav />
 			<div className={styles.mainWrapper}>
-				<h1>Crear torneo</h1>
+				<h1 className='mb-10'>Crear torneo</h1>
+
 				<div
 					className={
 						popUpError.title
@@ -153,7 +147,7 @@ export default function CreateTournament() {
 						<h2>{popUpError.title}</h2>
 						<p>{popUpError.msg}</p>
 						<button
-							onClick={() => setPopUpError({})}
+							onClick={() => handlePopUpClose()}
 							className={popUpStyles.okBtn}
 						>
 							Ok
@@ -161,36 +155,33 @@ export default function CreateTournament() {
 					</div>
 				</div>
 
-				<button className={styles.backBtn} onClick = {() => history.goBack()}>
-						<div className='flex items-center justify-center'>
-							<IoIosArrowBack />
-							<p>Volver</p>
-						</div>
-				</button>
+				<form className='w-4/6 bg-gray-100 p-3 shadow shadow-gray-700 flex 
+				flex-col items-center min-w-[280px]'>
 
-				<form className={styles.mainForm}>
-					<div className={styles.infoSection}>
-						<label>Nombre del torneo: </label>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
+						<label>Nombre: </label>
 						<input
-							className={styles.stringInput}
+							className='w-3/6 h-[50px] border-b-2 border-green-500 min-w-[250px] bg-gray-100'
 							type="text"
 							value={input.name}
 							name="name"
-							onChange={handleChange}
+							onChange={(e) => handleChange(e)}
 						></input>
 						<div
-							style={{ left: '35%' }}
 							className={
-								formErrors.name ? styles.error_visible : styles.error_hidden
+								errors.name ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.name}
+							{errors.name}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
-						<label>Cantidad de equipos: </label>
+
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
+						<label>Cantidad equipos: </label>
 						<input
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							type="number"
 							value={input.amountOfTeams}
 							onChange={(e) => handleChange(e)}
@@ -198,54 +189,55 @@ export default function CreateTournament() {
 						></input>
 
 						<div
-							style={{ left: '30%' }}
 							className={
-								formErrors.amountOfTeams
+								errors.amountOfTeams
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.amountOfTeams}
+							{errors.amountOfTeams}
 						</div>
 					</div>
-					<div className={styles.dateSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Fecha inicio/fin: </label>
-						<div className={styles.dateInputsWrapper}>
+
+						<div className='w-3/6 flex justify-center lg:justify-between'>
 							<input
-								className={styles.dateInput}
+								className='w-5/12 h-[50px] min-w-[110px] rounded-lg mx-1'
 								type="date"
 								placeholder="DD/MM/AA"
 								value={input.dateInit}
 								name="dateInit"
-								onChange={handleChange}
+								onChange={(e) => handleChange(e)}
 							></input>
 							<input
-								className={styles.dateInput}
+								className='w-5/12 h-[50px] min-w-[110px] rounded-lg mx-1'
 								type="date"
 								placeholder="DD/MM/AA"
 								value={input.dateFinish}
 								name="dateFinish"
-								onChange={handleChange}
+								onChange={(e) => handleChange(e)}
 							></input>
 						</div>
 
 						<div
-							style={{ left: '22%' }}
 							className={
-								formErrors.dateFinish || formErrors.dateInit
+								errors.dateFinish || errors.dateInit
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.dateFinish
-								? formErrors.dateFinish
-								: formErrors.dateInit}
+							{errors.dateFinish
+								? errors.dateFinish
+								: errors.dateInit}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Genero: </label>
 						<select
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							name="genre"
 							value={input.genre}
 							onChange={(e) => handleChange(e)}
@@ -257,18 +249,18 @@ export default function CreateTournament() {
 						</select>
 
 						<div
-							style={{ left: '22%' }}
 							className={
-								formErrors.genre ? styles.error_visible : styles.error_hidden
+								errors.genre ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.genre}
+							{errors.genre}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Categoria: </label>
 						<select
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							name="category"
 							value={input.category}
 							onChange={(e) => handleChange(e)}
@@ -279,34 +271,33 @@ export default function CreateTournament() {
 							<option key={'Senior'}>Senior</option>
 						</select>
 						<div
-							style={{ left: '21%' }}
 							className={
-								formErrors.category ? styles.error_visible : styles.error_hidden
+								errors.category ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.category}
+							{errors.category}
 						</div>
 					</div>
 
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Descripcion: </label>
 						<input
-							className={styles.stringInput}
+							className='w-3/6 h-[50px] border-b-2 border-green-500 min-w-[250px] bg-gray-100'
 							type="text"
 							value={input.description}
 							name="description"
-							onChange={handleChange}
+							onChange={(e) => handleChange(e)}
 						></input>
 
 						<div
-							style={{ left: '20%' }}
 							className={
-								formErrors.description
+								errors.description
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.description}
+							{errors.description}
 						</div>
 					</div>
 
@@ -315,9 +306,18 @@ export default function CreateTournament() {
 						type="submit"
 						onClick={(e) => handleSubmit(e)}
 					>
-						Inscribir
+						Crear Torneo
 					</button>
 				</form>
+
+				<div className='w-full flex justify-center py-10'>
+					<button className='flex items-center justify-center bg-green-500 w-[200px] h-[70px]
+					rounded-full text-white text-2xl font-bold duration-300 hover:scale-110'
+					onClick={() => history.goBack()}>
+						<IoIosArrowBack />
+						<p>Volver</p>
+					</button>
+				</div>
 			</div>
 
 			<Footer />

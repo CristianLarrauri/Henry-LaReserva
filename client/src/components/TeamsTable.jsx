@@ -50,11 +50,16 @@ export default function TeamsTable({ id }) {
 				<h2 className="text-2xl font-bold py-3 ml-2">EQUIPOS</h2>
 			</div>
 
+			{teams[0]?
 			<tr className="font-bold text-2xl border-black h-[50px] border-b border-t">
-				<th>Nombre</th>
-				<th>Posicion</th>
-				<th>Puntos</th>
+			<th>Nombre</th>
+			<th>Posicion</th>
+			<th>Puntos</th>
+			</tr>:
+			<tr className="font-medium text-xl border-black h-[50px] border-b border-t text-center">
+				<td>Todavia no hay datos.</td>
 			</tr>
+			}
 
 			{teams[0] ? (
 				teams.map((team, index) => {
@@ -94,11 +99,7 @@ export default function TeamsTable({ id }) {
 						</tr>
 					);
 				})
-			) : (
-				<tr className="flex justify-center font-bold text-xl w-full absolute">
-					<td className="p-3"></td>
-				</tr>
-			)}
+			) : null}
 		</table>
 	);
 }
