@@ -95,7 +95,7 @@ export default function PanelUser() {
 						Tus torneos
 					</h2>
 
-					<div className="w-full flex flex-col items-center justify-center mt-6 mb-3 h-full">
+					<div className="w-full flex flex-col items-center justify-start mt-6 mb-3 h-full">
 						{
 							tournaments.length!==0?
 								tournaments.map(tournament => (
