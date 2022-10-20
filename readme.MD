@@ -39,6 +39,21 @@ Si deseas logearte como un administrador ingresa a la pagina usando las siguient
 - Usuario: lareservamagio@gmail.com
 - Contraseña: Lareserva1234
 
+## Como puedo probar la pasarela de pago?
+
+La pasarela de pago se encuentra en modo de prueba para que cualquier pueda probarle sin necesidad de gastar dinero de verdad.
+Para probarla primero tendra que logearte en mercadopago con las siguiente credenciales:
+
+- Usuario: test_user_82319176@testuser.com
+- Contraseña: 3WMy1HemQ8
+
+Una vez logeado podras utilizar los siguientes datos para simular un pago:
+
+- Numero de tarjeta: 5031 7557 3453 0604
+- Fecha de vencimiento: 11/25
+- Titular: APRO (Si quieres que el pago se apruebe) o OTHE (Si quieres simular un pago fallido).
+- CVV: 123
+
 ## Que tecnologias usamos?
 
 - __JavaScript__
@@ -99,6 +114,21 @@ If you want to login as an administrator, please login to the page using the fol
 
 - User: lareservamagio@gmail.com
 - Password : Lareserva1234
+
+## How can I test the payment gateway?
+
+The payment gateway is in trial mode so that anyone can use it out without spending any real money.
+To use it you will first have to log in to mercadopago with the following credentials:
+
+- User: test_user_82319176@testuser.com
+- Password: 3WMy1HemQ8
+
+Once logged in you can use the following data to simulate a payment:
+
+- Card number: 5031 7557 3453 0604
+- Expiration date: 11/25
+- Cardholder: APRO (If you want the payment to be approved) or OTHE (If you want the payment to be declined).
+- CVV: 123
 
 ## What technologies have we used?
 
