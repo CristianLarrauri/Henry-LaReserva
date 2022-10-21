@@ -77,9 +77,6 @@ Somos un equipo de 8 desarolladores apasionados por su trabajo, siempre con gana
 Hicimos esto como proyecto final para el bootcamp de Henry con el objetivo de afianzar y ganar practica con las tecnologias previamente mencionadas.
 
 # Final project - The reserve [EN]
-<h1>Deploy: 
-<a>https://lareserva-frontend.herokuapp.com</a>
-</h1>
 
 ## Summary
 
