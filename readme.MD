@@ -4,6 +4,9 @@
 <a>https://lareserva-frontend.herokuapp.com</a>
 </h1>
 
+<h1>Video: 
+<a>https://www.youtube.com/watch?v=Bu6TwkF7WDE</a>
+</h1>
 ## Resumen
 
 La reserva es una pagina web orientada a un complejo de futbol que permite a sus usuarios inscribirse a torneos y mas tarde acceder a informacion sobre el mismo.Por parte de los administradores estos cuentan con varios herramientas para mantener el orden dentro de la pagina.
