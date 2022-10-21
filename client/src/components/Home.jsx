@@ -70,17 +70,17 @@ export default function Home() {
       }))
     })
 
-    bulkPromises.push(axios.post('http://localhost:3001/teams',{
+    bulkPromises.push(axios.put(`http://localhost:3001/tournaments/quitcupos/${teamInfo.tournament}`))
+    await Promise.all(bulkPromises);
+
+    await axios.post('http://localhost:3001/teams',{
       name: teamInfo.teamName,
-      players: teamInfo.playerDni.map((dni) => {return dni}),
+      players: teamInfo.playerDni.map((dni) => {return parseInt(dni)}),
       image: 'null',
       tournaments: [tournamentName],
       email: teamInfo.mail
-    }))
+    })
 
-    bulkPromises.push(axios.put(`http://localhost:3001/tournaments/quitcupos/${teamInfo.tournament}`))
-
-    await Promise.all(bulkPromises);
     localStorage.setItem('tournamentPlayers', null);
   }
 

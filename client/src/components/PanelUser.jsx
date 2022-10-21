@@ -24,7 +24,7 @@ export default function PanelUser() {
 			axios.get(`http://localhost:3001/users/historial`)
 			.then(res => {
 				let filteredRes = res.data.filter(t => t.email===user.email);
-				
+				console.log(filteredRes);
 				let promisifiedArray = [];
 
 				filteredRes[0].teams.map(teams => {
@@ -48,7 +48,6 @@ export default function PanelUser() {
 	return (
 		<div className="min-h-screen flex flex-col justify-between">
 			<Nav />
-			{console.log(tournaments)}
 			<div className="flex justify-center text-gray-700 flex-wrap">
 				<div
 					className="bg-gray-100 p-6 flex flex-col items-center
@@ -98,8 +97,9 @@ export default function PanelUser() {
 					<div className="w-full flex flex-col items-center justify-start mt-6 mb-3 h-full">
 						{
 							tournaments.length!==0?
-								tournaments.map(tournament => (
+								tournaments.map((tournament, index) => (
 								<TournamentListView
+								key = {`inscrpt${index}`}
 								name={tournament.name}
 								id={tournament.id}
 								dateInit={tournament.dateInit}
