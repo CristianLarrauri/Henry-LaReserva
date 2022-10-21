@@ -1,33 +1,53 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { modifyTournaments, tournamentDetails } from '../redux/actions';
+import { createTournament } from '../redux/actions';
 import styles from '../styles/CreateTournament.module.css';
 import popUpStyles from '../styles/PopUpStyles.module.css';
 import { IoIosArrowBack } from 'react-icons/io';
 import Nav from '../components/Nav';
-import { useParams } from 'react-router-dom';
-import { modifyTournaments, tournamentDetails } from '../redux/actions';
+import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
-export default function ModifyTournaments() {
+export default function ModifyTournament() {
+	const params = useParams();
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const params = useParams();
 	const [popUpError, setPopUpError] = useState({});
 	const id = params.id;
 
 	const [input, setInput] = useState({
 		name: '',
-		amountOfTeams: 0,
+		amountOfTeams: '',
 		dateInit: '',
 		dateFinish: '',
 		genre: '',
 		category: '',
 		description: ''
 	});
+
+	const [errors, setErrors] = useState({
+		name: '',
+		amountOfTeams: '',
+		dateInit: '',
+		dateFinish: '',
+		genre: '',
+		category: '',
+		description: ''
+	});
+
+	const validations = {
+		name: (name) => validateName(name),
+		amountOfTeams: (amount) => validateAmount(amount),
+		genre: (genre) => validateGenre(genre),
+		category: (category) => validateCategory(category),
+		description: (description) => validateDescription(description),
+		dateInit: (dateInit) => validateDateInit(dateInit),
+		dateFinish: (dateFinish) => validateDateFinish(dateFinish)
+	}
+
 
 	useEffect(() => {
 		axios.get(`http://localhost:3001/tournaments/${id}`).then((data) =>
@@ -45,29 +65,74 @@ export default function ModifyTournaments() {
 		dispatch(tournamentDetails(id));
 	}, []);
 
-	const handleChange = (e) => {
-		setInput({
-			...input,
-			[e.target.name]: e.target.value
-		});
+	function validateName(name){
+		if(name.length <= 0) return setErrors({...errors, name: "Este campo no puede estar vacio."})  
+		if(/[^A-Za-z 0-9]/g.test(name)) return setErrors({...errors, name: "Caracteres especiales no admitidos."})
+		return setErrors({...errors, name: ''})
+	}
 
-		setFormErrors(
-			validate({
-				...input,
-				[e.target.name]: e.target.value
-			})
-		);
-	};
+	function validateAmount(amount){
+		if(amount.length < 1) return setErrors({...errors, amountOfTeams: 'Este campo no puede estar vacio.'})
+		if(amount < 8) return setErrors({...errors, amountOfTeams: 'Minimo de 8 equipos.'});
+		if(amount > 40) return setErrors({...errors, amountOfTeams: 'Maximo de 40 equipos.'})
+		return setErrors({...errors, amountOfTeams: ''});
+	}
 
-	const handleSubmit = (e) => {
+	function validateGenre(genre){
+		if(genre.length > 14) return setErrors({...errors, genre: 'Seleccione un genero.'});
+		return setErrors({...errors, genre: ''})
+	}
+	
+	function validateCategory(category){
+		if(category.length > 14) return setErrors({...errors, category: 'Seleccione una categoria.'});
+		return setErrors({...errors, category: ''})
+	}
+
+	function validateDescription(description){
+		if(description.length <= 0) return setErrors({...errors, description: "Este campo no puede estar vacio."})
+		if(description.length > 200) return setErrors({...errors, description: "200 caracteres maximo."})
+		return setErrors({...errors, description: ''})
+	}
+
+	function validateDateInit(dateInit){
+		const today = Date.now();
+
+		if(new Date(dateInit) < today) return setErrors({...errors, dateInit: 'La fecha de inicio no puede ser en el pasado o hoy mismo.'})
+
+		if(input.dateFinish && new Date(input.dateFinish) <= new Date(dateInit)){//Si hay un fecha de inicio definida
+			return setErrors({...errors, dateInit: 'La fecha de inicio no puede ser pasada o igual a la de finalizacion.'})
+		}
+
+		return setErrors({...errors, dateInit: ''}) 
+	}
+
+	function validateDateFinish(dateFinish){
+		const today = Date.now();
+
+		if(new Date(dateFinish) < today) return setErrors({...errors, dateFinish: 'La fecha de finalizacion no puede ser en el pasado o hoy mismo.'});
+
+		if(input.dateInit && new Date(input.dateInit) >= new Date(dateFinish)){//Si hay un fecha de inicio definida
+			return setErrors({...errors, dateFinish: 'La fecha de finalizacion no puede ser anterior o igual a la de inicio.'})
+		}
+
+		return setErrors({...errors, dateFinish: ''});
+	}
+
+	function handleChange(e){
+		setInput({...input, [e.target.name]: e.target.value})
+		validations[e.target.name](e.target.value);
+	}
+
+	function handleSubmit(e){
 		e.preventDefault();
-		let error = Object.keys(validate(input));
-		if (error.length !== 0) {
+
+		if(Object.keys(errors).some(element => errors[element] !=='') || Object.keys(input).some(element =>  input[element] === '')){
 			setPopUpError({
-				title: 'Error',
-				msg: 'Llene los campos correctamente'
+				title: 'Error!',
+				msg: 'Algunos campos contienen errores o estan vacios.'
 			});
-		} else {
+		}
+		else{
 			dispatch(
 				modifyTournaments(
 					id,
@@ -84,71 +149,20 @@ export default function ModifyTournaments() {
 				title: 'Exito!',
 				msg: 'Torneo modificado correctamente.'
 			});
-			alert('torneo modificado correctamente');
-			history.push('/admin');
 		}
-	};
-
-	const [formErrors, setFormErrors] = useState({
-		name: '',
-		amountOfTeams: '',
-		dateFinish: '',
-		dateInit: '',
-		genre: '',
-		category: '',
-		description: ''
-	});
-
-	function validateName(str) {
-		// if (!/^[a-zA-Z\s]*$/.test(input.name)) return true;
-		if (str[0] === ' ') return true;
 	}
 
-	function validateAmount(num) {
-		if (isNaN(num)) return true;
-		if (num < 8 || num > 40) return true;
-	}
-
-	function validateDate(str) {
-		if (!str) return true;
-	}
-
-	function validateSelect(select) {
-		if (
-			select === 'Seleccione un genero' ||
-			select === 'Seleccione una categoria'
-		)
-			return true;
-	}
-
-	// function validateDescription(text) {
-	// 	if (text.length > 20000) return true;
-	// }
-
-	function validate(data) {
-		let errors = {};
-
-		if (validateName(data.name)) errors.name = 'Nombre invalido';
-		if (validateAmount(data.amountOfTeams))
-			errors.amountOfTeams = 'Cantidad inadaecuada';
-		if (validateDate(data.dateInit))
-			errors.dateInit = 'Ingrese una fecha de inicio';
-		if (validateDate(data.dateFinish))
-			errors.dateFinish = 'Ingrese una fecha de finalizacion';
-		if (validateSelect(data.genre))
-			errors.genre = 'Seleccione el genero del torneo';
-		if (validateSelect(data.category))
-			errors.category = 'Seleccione la categoria del torneo';
-		// if (validateDescription(data.description))
-		// 	errors.description = 'Ingrese una descripcion del torneo';
-		return errors;
+	function handlePopUpClose(){
+		setPopUpError({title:'',msg:''});
+		if(popUpError.title === 'Exito!') history.push('/admin');
 	}
 
 	return (
 		<div>
 			<Nav />
 			<div className={styles.mainWrapper}>
-				<h1>Modificar torneo "{input.name}"</h1>
+				<h1 className='mb-10'>Modificar torneo</h1>
+
 				<div
 					className={
 						popUpError.title
@@ -164,7 +178,7 @@ export default function ModifyTournaments() {
 						<h2>{popUpError.title}</h2>
 						<p>{popUpError.msg}</p>
 						<button
-							onClick={() => setPopUpError({})}
+							onClick={() => handlePopUpClose()}
 							className={popUpStyles.okBtn}
 						>
 							Ok
@@ -172,35 +186,33 @@ export default function ModifyTournaments() {
 					</div>
 				</div>
 
-				<button className={styles.backBtn}>
-					<Link to="/home" className={styles.linkBack}>
-						<IoIosArrowBack />
-						<p>Volver</p>
-					</Link>
-				</button>
-				<form className={styles.mainForm}>
-					<div className={styles.infoSection}>
-						<label>Nombre del torneo: </label>
+				<form className='w-4/6 bg-gray-100 p-3 shadow shadow-gray-700 flex 
+				flex-col items-center min-w-[280px]'>
+
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
+						<label>Nombre: </label>
 						<input
-							className={styles.stringInput}
+							className='w-3/6 h-[50px] border-b-2 border-green-500 min-w-[250px] bg-gray-100'
 							type="text"
 							value={input.name}
 							name="name"
 							onChange={(e) => handleChange(e)}
 						></input>
 						<div
-							style={{ left: '35%' }}
 							className={
-								formErrors.name ? styles.error_visible : styles.error_hidden
+								errors.name ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.name}
+							{errors.name}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
-						<label>Cantidad de equipos: </label>
+
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
+						<label>Cantidad equipos: </label>
 						<input
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							type="number"
 							value={input.amountOfTeams}
 							onChange={(e) => handleChange(e)}
@@ -208,21 +220,22 @@ export default function ModifyTournaments() {
 						></input>
 
 						<div
-							style={{ left: '30%' }}
 							className={
-								formErrors.amountOfTeams
+								errors.amountOfTeams
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.amountOfTeams}
+							{errors.amountOfTeams}
 						</div>
 					</div>
-					<div className={styles.dateSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Fecha inicio/fin: </label>
-						<div className={styles.dateInputsWrapper}>
+
+						<div className='w-3/6 flex justify-center lg:justify-between'>
 							<input
-								className={styles.dateInput}
+								className='w-5/12 h-[50px] min-w-[110px] rounded-lg mx-1'
 								type="date"
 								placeholder="DD/MM/AA"
 								value={input.dateInit}
@@ -230,7 +243,7 @@ export default function ModifyTournaments() {
 								onChange={(e) => handleChange(e)}
 							></input>
 							<input
-								className={styles.dateInput}
+								className='w-5/12 h-[50px] min-w-[110px] rounded-lg mx-1'
 								type="date"
 								placeholder="DD/MM/AA"
 								value={input.dateFinish}
@@ -240,84 +253,83 @@ export default function ModifyTournaments() {
 						</div>
 
 						<div
-							style={{ left: '22%' }}
 							className={
-								formErrors.dateFinish || formErrors.dateInit
+								errors.dateFinish || errors.dateInit
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.dateFinish
-								? formErrors.dateFinish
-								: formErrors.dateInit}
+							{errors.dateFinish
+								? errors.dateFinish
+								: errors.dateInit}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Genero: </label>
 						<select
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							name="genre"
 							value={input.genre}
 							onChange={(e) => handleChange(e)}
 						>
-							<option>{input.genre}</option>
+							<option>Seleccione un genero</option>
 							<option>Masculino</option>
 							<option>Femenino</option>
 							<option>Mixto</option>
 						</select>
 
 						<div
-							style={{ left: '22%' }}
 							className={
-								formErrors.genre ? styles.error_visible : styles.error_hidden
+								errors.genre ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.genre}
+							{errors.genre}
 						</div>
 					</div>
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Categoria: </label>
 						<select
-							className={styles.dropdownInput}
+							className='w-3/6 h-[50px] rounded-lg min-w-[250px]'
 							name="category"
 							value={input.category}
 							onChange={(e) => handleChange(e)}
 						>
-							<option>{input.category}</option>
+							<option>Seleccione una categoria</option>
 							<option key={'Sub20'}>Sub20</option>
 							<option key={'Libre'}>Libre</option>
 							<option key={'Senior'}>Senior</option>
 						</select>
 						<div
-							style={{ left: '21%' }}
 							className={
-								formErrors.category ? styles.error_visible : styles.error_hidden
+								errors.category ? styles.error_visible : styles.error_hidden
 							}
 						>
-							{formErrors.category}
+							{errors.category}
 						</div>
 					</div>
 
-					<div className={styles.infoSection}>
+					<div className='w-5/6 flex flex-col lg:flex-row items-center lg:items-end 
+					justify-between my-3 relative h-[120px] '>
 						<label>Descripcion: </label>
 						<input
-							className={styles.stringInput}
+							className='w-3/6 h-[50px] border-b-2 border-green-500 min-w-[250px] bg-gray-100'
 							type="text"
 							value={input.description}
 							name="description"
 							onChange={(e) => handleChange(e)}
 						></input>
 
-						{/* <div
-							style={{ left: '20%' }}
+						<div
 							className={
-								formErrors.description
+								errors.description
 									? styles.error_visible
 									: styles.error_hidden
 							}
 						>
-							{formErrors.description}
-						</div> */}
+							{errors.description}
+						</div>
 					</div>
 
 					<button
@@ -328,7 +340,17 @@ export default function ModifyTournaments() {
 						Modificar
 					</button>
 				</form>
+
+				<div className='w-full flex justify-center py-10'>
+					<button className='flex items-center justify-center bg-green-500 w-[200px] h-[70px]
+					rounded-full text-white text-2xl font-bold duration-300 hover:scale-110'
+					onClick={() => history.goBack()}>
+						<IoIosArrowBack />
+						<p>Volver</p>
+					</button>
+				</div>
 			</div>
+
 			<Footer />
 		</div>
 	);

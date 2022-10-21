@@ -126,6 +126,7 @@
 }
 
 .error_visible, .error_hidden{
+    pointer-events: none;
     background-color: darkred;
     position: absolute;
     border-radius: 5px;
@@ -140,7 +141,7 @@
     min-width: 12%;
     top: 0;
     right: 0;
-    min-width: 260px;
+    width: 260px;
 }
 
 .error_visible{

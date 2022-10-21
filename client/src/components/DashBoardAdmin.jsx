@@ -23,7 +23,6 @@ export default function DashBoardAdmin() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const allUsers = useSelector((state) => state.users);
-	console.log('allus', allUsers);
 
 	const allTournaments = useSelector((state) => state.tournamentsAdmin);
 	const { user } = useAuth0();
