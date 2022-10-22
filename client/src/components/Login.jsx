@@ -16,17 +16,13 @@ export default function Login(props) {
 		//Si el usuario esta logeado agarrar su mail y preguntar en el backend si el email existe
 		//Si el email existe no hacer nada
 		//Si el email no existe crear el usuario en la db
-		console.log('hola');
-		
 		if (props.authed === false) {
-			console.log('entre aca: ');
 			loginWithRedirect({
 				redirectUri: `http://localhost:3000${props.to}`
 			});
 		}
 
 		if (!isLoading && user) {
-			console.log('no, aca');	
 			axios
 				.post('http://localhost:3001/users/post', {
 					email: user.email,
@@ -35,7 +31,6 @@ export default function Login(props) {
 				})
 				.then((info) => {
 					//En caso de exito redirige al home
-					console.log('Creado con exito');
 					let userInfo = info.data[0];
 					dispatch(setActualUser(userInfo.name, userInfo.ban, userInfo.admin));
 					history.push('/home');

@@ -70,7 +70,6 @@ export default function ScorersTable({ id }) {
 							<td value={player.id} className="text-green-700">
 								{player.goals}
 							</td>
-							{console.log(userDetail.admin)}
 							{userDetail.admin===true? (
 								<td>
 									<button

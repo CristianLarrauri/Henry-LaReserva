@@ -154,17 +154,17 @@ const TournamentDetail = (props) => {
 							</div>
 
 							<div className="flex my-1">
-								{tournament.genre === 'Male' ? (
+								{tournament.genre === 'Masculino' ? (
 									<BsGenderMale className="text-2xl" />
-								) : tournament.genre === 'Female' ? (
+								) : tournament.genre === 'Femenino' ? (
 									<BsGenderFemale className="text-2xl" />
 								) : (
 									<BsGenderAmbiguous className="text-2xl" />
 								)}
 								<p className="font-medium text-xl ml-3">{`Genero: ${
-									tournament.genre === 'Male'
+									tournament.genre === 'Masculino'
 										? 'Masculino'
-										: tournament.genre === 'Female'
+										: tournament.genre === 'Femenino'
 										? 'Femenino'
 										: 'Mixto'
 								}`}</p>
