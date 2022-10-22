@@ -33,6 +33,8 @@
     align-items: center;
     color: white;
     transition-duration: 1s;
+    padding: 5px;
+    text-align: center;
 }
 
 

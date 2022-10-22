@@ -3,13 +3,7 @@ import Card from './Card';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	getAllTournaments,
-	getTournamentsHome
-} from '../redux/actions/index.js';
-import { Link } from 'react-router-dom';
-import { AiOutlineArrowDown } from 'react-icons/ai';
-import { AiOutlineArrowUp } from 'react-icons/ai';
+import {getTournamentsHome} from '../redux/actions/index.js';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
