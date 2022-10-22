@@ -44,11 +44,17 @@ export default function ScorersTable({ id }) {
 				<h2 className="text-2xl font-bold py-3 ml-2">TOP GOLEADORES</h2>
 			</div>
 
+			{scorersInfo[0] ?
 			<tr className="font-bold text-xl bg-white h-[50px] text-center">
 				<td>Posicion</td>
 				<td>Jugador</td>
 				<td>Goles</td>
+			</tr>:
+			<tr className="font-medium text-xl border-black h-[50px] border-b border-t text-center">
+				<td>Todavia no hay datos.</td>
 			</tr>
+			}
+			
 
 			{scorersInfo[0] ? (
 				scorersInfo.map((player, index) => {

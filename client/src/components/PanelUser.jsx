@@ -91,13 +91,14 @@ export default function PanelUser() {
 					className="bg-gray-100 p-6 m-10 shadow shadow-gray-700 
                 w-4/6 flex flex-col items-center min-w-[320px]"
 				>
-					<h2 className="text-3xl font-bold ">
+					<h2 className="text-3xl font-bold border-b-2 border-gray-700">
 						Tus torneos
 					</h2>
 
-					<div className="w-full flex flex-col items-center mt-6 mb-3">
+					<div className="w-full flex flex-col items-center justify-center mt-6 mb-3 h-full">
 						{
-							tournaments?.map(tournament => (
+							tournaments.length!==0?
+								tournaments.map(tournament => (
 								<TournamentListView
 								name={tournament.name}
 								id={tournament.id}
@@ -105,7 +106,7 @@ export default function PanelUser() {
 								dateFinish={tournament.dateFinish}
 								category={tournament.category}
 								genre={tournament.genre}/>
-							))
+							)):<p className='text-xl font-medium'>{'Todavia no te has unido a ningun torneo :('}</p>
 						}
 					</div>
 
