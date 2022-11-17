@@ -22,22 +22,6 @@ router.post("/", async (req, res) => {
         return res.status(200).send(data);
       }
     }
-
-    // for (const e of data) {
-    //   let comparation = e.dni === data_player.dni;
-
-    //   if (comparation) {
-    //     res.status(400).send("Jugador existente");
-    //   } else {
-    //     create_players(data);
-    //     data_player.filter((e) => e.dni === data_player.dni);
-
-    // comparation.length
-    // ? res.status(200).send(comparation)
-    // : res.status(400).send("Ya existe este jugador");
-    //     res.status(200).send("Jugador creado con exito");
-    //   }
-    // }
   } catch (error) {
     console.log("ROMPO EN RUTA POST DE PLAYERS", error);
   }

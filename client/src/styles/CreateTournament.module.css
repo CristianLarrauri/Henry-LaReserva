@@ -84,6 +84,8 @@
     font-weight: bolder;
     border-radius: 60px;
     transition-duration: .4s;
+    z-index: 20;
+    font-size: 1.4em;
 }
 
 .sendBtn{
@@ -124,18 +126,22 @@
 }
 
 .error_visible, .error_hidden{
+    pointer-events: none;
     background-color: darkred;
     position: absolute;
-    border-radius: 10px;
-    height: 100%;
+    border-radius: 5px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    padding: 2px;
+    padding: 5px;
     color: white;
     box-shadow: 10px 10px 5px rgba(0,0,0,.3);
     min-width: 12%;
+    top: 0;
+    right: 0;
+    width: 260px;
 }
 
 .error_visible{
@@ -154,6 +160,13 @@
     color: #2DCC70;
 }
 
+@media(max-width:1024px){
+    .error_visible, .error_hidden{
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
 
 @keyframes buttonEnter{
     from{

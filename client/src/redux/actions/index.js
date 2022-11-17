@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { IoLogoNoSmoking } from 'react-icons/io';
 export const CREATE_TOURNAMENT = 'CREATE_TOURNAMENT';
 export const GET_ALL_TOURNAMENTS = 'GET_ALL_TOURNAMENTS';
 export const NAME_SORT = 'NAME_SORT';

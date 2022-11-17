@@ -5,13 +5,12 @@ import jugador from '../images/jugadorHome.png';
 import { BsCalendarDate } from 'react-icons/bs';
 import { BiCategory } from 'react-icons/bi';
 import { BsFillPersonFill } from 'react-icons/bs';
-import { RiFootballLine } from "react-icons/ri";
 import TournamentCards from './TournamentCards';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNextTournament } from '../redux/actions';
 import Nav from '../components/Nav';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -34,35 +33,16 @@ export default function Home() {
 		option: `Reject`
 	};
 
-	
-
-
   useEffect(() => {
     dispatch(getNextTournament());
   }, []);
 
-	useEffect(()=>{
-
+	useEffect(()=>{ 
 		if(status === "approved"){
-      //Put por aca cupos
-      let IdTournament = localStorage.getItem("IdTournament");
-
-      if(IdTournament!==undefined){
-        axios.put(`http://localhost:3001/tournaments/quitcupos/${IdTournament}`)
-        .then(() =>{
-          localStorage.setItem("IdTournament", undefined);
-          console.log(IdTournament.getItem("IdTournament"))
-        });
-      }
-
-			axios
-			.post('http://localhost:3001/email', payloadgood)
-			.then((data) => {
-				return data;
-			})
-			.catch((err) => console.log(err));
+      let teamInfo = localStorage.getItem('tournamentPlayers');
+      if(teamInfo!==null && teamInfo!=='null') createPlayers(teamInfo);
 		} else if(status === "in_process"){//Si se rechazo el pago
-
+      localStorage.setItem('tournamentPlayers', null);
 			axios
 			.post('http://localhost:3001/email', payloadbad)
 			.then((data) => {
@@ -70,7 +50,39 @@ export default function Home() {
 			})
 			.catch((err) => console.log(err));
 		}
+    else{
+      localStorage.setItem('tournamentPlayers', null);
+    }
 	},[])
+
+  async function createPlayers(teamInfo){
+    teamInfo = JSON.parse(teamInfo);
+    let bulkPromises = [];
+    let tournamentName = await axios.get(`http://localhost:3001/tournaments/${teamInfo.tournament}`);
+    tournamentName = tournamentName.data.name;
+
+    teamInfo.playerName.forEach((player, index) => {
+      bulkPromises.push(axios.post('http://localhost:3001/players', {
+        name: teamInfo.playerName[index],
+        surname: teamInfo.playerSurname[index],
+        dni: teamInfo.playerDni[index],
+        tournaments: [tournamentName]
+      }))
+    })
+
+    bulkPromises.push(axios.put(`http://localhost:3001/tournaments/quitcupos/${teamInfo.tournament}`))
+    await Promise.all(bulkPromises);
+
+    await axios.post('http://localhost:3001/teams',{
+      name: teamInfo.teamName,
+      players: teamInfo.playerDni.map((dni) => {return parseInt(dni)}),
+      image: 'null',
+      tournaments: [tournamentName],
+      email: teamInfo.mail
+    })
+
+    localStorage.setItem('tournamentPlayers', null);
+  }
 
 	return (
 		<div className="w-full min-h-screen flex flex-col justify-between bg-gray-200">
@@ -157,7 +169,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <TournamentCards />
+          <TournamentCards/>
         </div>
       </div>
       <Footer />

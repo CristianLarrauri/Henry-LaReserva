@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {setActualUser} from '../redux/actions/index';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function Profile() {
 	const { loginWithRedirect, logout, user, isLoading,} = useAuth0();
@@ -13,6 +14,7 @@ export default function Profile() {
 	const wrapperRef = useRef(null);
 	const actualUser = useSelector((store) => store.actualUser);
 	const dispatch = useDispatch();
+	const history = useHistory();
 	useOutsideAlerter(wrapperRef);
 
 	function useOutsideAlerter(ref) {
@@ -40,6 +42,25 @@ export default function Profile() {
 			axios.get(`http://localhost:3001/users/${user.email}`)
 			.then(info => {
 				dispatch(setActualUser(info.data.name,info.data.ban,info.data.admin))//Hago un dispatch guardando la info que ahora App.js podra acceder
+			})
+			.catch(err => {
+				axios
+				.post('http://localhost:3001/users/post', {
+					email: user.email,
+					name: user.name,
+					img: user.picture
+				})
+				.then((info) => {
+					//En caso de exito redirige al home
+					let userInfo = info.data[0];
+					dispatch(setActualUser(userInfo.name, userInfo.ban, userInfo.admin));
+					history.push(history.location.pathname);
+				})
+				.catch((error) => {
+					console.error('Error al crear el usuario');
+					history.push(history.location.pathname);
+				});
+
 			})
 		}
 		else if(!isLoading && !user && !actualUser.username){
